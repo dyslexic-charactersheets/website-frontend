@@ -1,0 +1,7 @@
+---
+
+## Configuration for the Node web server for Dyslexic Character Sheets
+## NOTE: the config.yml should never be checked into git!
+
+patreon_client_id: your patreon client ID
+patreon_client_secret: your patreon secret key
