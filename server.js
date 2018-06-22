@@ -3,6 +3,8 @@
 const express = require('express');
 const hbs = require('hbs');
 
+const conf = require('./src/conf.js');
+
 // engines
 const pathfinder2 = require('./src/pathfinder2-server.js');
 
