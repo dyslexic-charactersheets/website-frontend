@@ -6,19 +6,11 @@ const _ = require('lodash');
 
 var translations = {};
 
-/*
-fs.readFile('./data/translations.json', (err, data) => {
-    if (err) throw err;
-    translations = JSON.parse(data);
-});
-*/
-
 fs.readdir("../data/i18n", (err, files) => {
     files.forEach(file => {
         if (file.match(/\.po$/)) {
             fs.readFile('../data/i18n/'+file, 'utf8', (err, data) => {
                 if (err) throw err;
-                console.log("Read "+file);
 
                 var lang = file.replace(/.po$/, '');
                 if (!_.has(translations, lang))
@@ -33,14 +25,11 @@ fs.readdir("../data/i18n", (err, files) => {
                     var msgid = line.match(/^msgid \"(.*)\"/);
                     if (msgid) {
                         current_msgid = msgid[1];
-                        // console.log("msgid: "+msgid[1]);
                     }
                     var msgstr = line.match(/^msgstr \"(.*)\"/);
                     if (msgstr) {
-                        // console.log("msgstr: "+msgstr[1]);
                         var translation = msgstr[1];
                         if (translation != "") {
-                            // console.log(current_msgid+" = "+translation);
                             translations[lang][current_msgid] = translation;
                         }
                     }
