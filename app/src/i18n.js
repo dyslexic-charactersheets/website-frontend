@@ -40,7 +40,7 @@ fs.readdir("../data/i18n", (err, files) => {
                         // console.log("msgstr: "+msgstr[1]);
                         var translation = msgstr[1];
                         if (translation != "") {
-                            console.log(current_msgid+" = "+translation);
+                            // console.log(current_msgid+" = "+translation);
                             translations[lang][current_msgid] = translation;
                         }
                     }
