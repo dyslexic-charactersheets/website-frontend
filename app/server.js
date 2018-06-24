@@ -3,13 +3,13 @@
 const express = require('express');
 const hbs = require('hbs');
 
-const conf = require('./src/conf.js');
+const conf = require('./src/conf');
 
 // engines
-const pathfinder2 = require('./src/pathfinder2-server.js');
+const pathfinder2 = require('./src/pathfinder2-server');
 
 // i18n
-const i18n = require('./src/i18n.js');
+const i18n = require('./src/i18n');
 hbs.registerHelper('__', function(str) {
     return i18n.translate(str, this.lang);
 });

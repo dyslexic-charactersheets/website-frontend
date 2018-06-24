@@ -7,7 +7,7 @@ const yaml = require('js-yaml');
 
 var config = {};
 
-fs.readFile('./data/config.yml', (err, data) => {
+fs.readFile('../data/config.yml', (err, data) => {
     if (err) throw err;
     config = yaml.safeLoad(data);
 });

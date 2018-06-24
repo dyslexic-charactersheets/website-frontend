@@ -1,32 +1,28 @@
-
-#: views/build-pathfinder.hbs:1
-msgid "Build Pathfinder""
+#: app/views/build-pathfinder.hbs
+msgid "Build Pathfinder"
 msgstr ""
 
-#: views/index.hbs:1
-msgid "Foo""
+#: app/views/layout.hbs
+msgid "Copyright &copy; Marcus Downing. This product is released under the Artistic License 2.0, and uses properties covered by the Open Game License. I thank everyone who has helped out with feedback, fixes and contributions."
 msgstr ""
 
-#: views/layout.hbs:5
-msgid "title"
+#: app/views/layout.hbs
+msgid "Facebook group"
 msgstr ""
 
-#: views/layout.hbs:46
-msgid "Leave a message""
+#: app/views/index.hbs
+msgid "Foo"
 msgstr ""
 
-#: views/layout.hbs:48
-msgid "Facebook group""
+#: app/views/layout.hbs
+msgid "Leave a message"
 msgstr ""
 
-#: views/layout.hbs:50
-msgid "Translate""
+#: app/views/layout.hbs
+msgid "Legal Information"
 msgstr ""
 
-#: views/layout.hbs:64
-msgid "Copyright &copy; Marcus Downing. This product is released under the Artistic License 2.0, and uses properties covered by the Open Game License. I thank everyone who has helped out with feedback, fixes and contributions.""
+#: app/views/layout.hbs
+msgid "Translate"
 msgstr ""
 
-#: views/layout.hbs:67
-msgid "Legal Information""
-msgstr ""

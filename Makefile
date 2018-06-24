@@ -1,8 +1,8 @@
 setup:
-	npm install
+	@cd app; npm install
 
 run:
-	@nodejs server.js
+	@cd app; nodejs server.js
 
 pot:
 	@bin/make-pot.sh
