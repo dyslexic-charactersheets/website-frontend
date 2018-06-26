@@ -14,21 +14,30 @@ hbs.registerHelper('__', function(str) {
     return i18n.translate(str, this.lang);
 });
 
+// notes
+const quotes = require('./src/quotes');
+hbs.registerHelper('note',  function() {
+    var quote = quotes();
+
+    return `<aside class='float right top'>
+        <aside class='note'>
+        <blockquote class='${quote.noteClass}'>${quote.quote}</blockquote>
+        <cite>&mdash; ${quote.author}</cite>
+        </aside>
+    </aside>`;
+});
+
 // set up the http engine
 const app = express();
 app.set('view engine', 'hbs');
-app.use(express.static('public'));
+app.use(express.static('../public'));
 
 // ordinary pages
-app.get('/', (req, res) => res.render('index', {
-    title: 'Dyslexic Character Sheets',
-    lang: 'en'
-}));
+app.get('/', (req, res) => res.render('index', { lang: 'en' }));
+app.get('/:lang', (req, res) => res.render('index', { lang: req.params.lang }));
 
-app.get('/:lang', (req, res) => res.render('index', {
-    title: 'Dyslexic Character Sheets',
-    lang: req.params.lang
-}));
+app.get('/howto', (req, res) => res.render('howto', { lang: 'en' }))
+app.get('/:lang/howto', (req, res) => res.render('howto', { lang: req.params.lang }));
 
 // character sheet builder forms
 app.get('/build/:game', (req, res) => res.render('build-'+req.params.game, {

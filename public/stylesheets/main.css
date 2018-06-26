@@ -1,21 +1,6 @@
-/*---------------------------------------------------
-    LESS Elements 0.6
-  ---------------------------------------------------
-    A set of useful LESS mixins by Dmitry Fadeyev
-    Special thanks for mixin suggestions to:
-      Kris Van Herzeele,
-      Benoit Adam,
-      Portenart Emile-Victor,
-      Ryan Faerman
+@import "../fonts/ReenieBeanie.css";
+@import "../fonts/Chunkfive.css";
 
-    More info at: http://lesselements.com
------------------------------------------------------*/
-/*
-YUI 3.5.0 (build 5089)
-Copyright 2012 Yahoo! Inc. All rights reserved.
-Licensed under the BSD License.
-http://yuilibrary.com/license/
-*/
 .yui3-g {
   letter-spacing: -0.31em;
   *letter-spacing: normal;
@@ -211,7 +196,7 @@ html {
   color: #25281a;
 }
 .postload {
-  background: #aeb398 url(/assets/images/ferryman.jpg) 50% 100% no-repeat;
+  background: #aeb398 url(/images/ferryman.jpg) 50% 100% no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -508,7 +493,7 @@ aside.note {
   width: 285px;
   height: 285px;
   position: relative;
-  background: url(/assets/images/note.png) top left no-repeat;
+  background: url(/images/note.png) top left no-repeat;
   cursor: pointer;
   margin-bottom: -30px;
 }
@@ -596,7 +581,7 @@ dl dt {
   margin-bottom: 10px;
   width: 100px;
   height: 22px;
-  background: url(/assets/images/patreon-button.png);
+  background: url(/images/patreon-button.png);
   background-repeat: no-repeat;
 }
 aside.linkbar {
@@ -692,7 +677,7 @@ table#example a img {
 #messageform {
   width: 1024px;
   height: 768px;
-  background: url(/assets/images/note-big.png) top left no-repeat;
+  background: url(/images/note-big.png) top left no-repeat;
   margin-top: -70px;
   margin-bottom: -130px;
 }
@@ -819,7 +804,7 @@ div.lightbox img {
 div.lightbox section.note {
   width: 1024px;
   height: 768px;
-  background: url(/assets/images/note-big.png) top left no-repeat;
+  background: url(/images/note-big.png) top left no-repeat;
 }
 div.lightbox section.note h1 {
   margin-top: 10px;
@@ -989,7 +974,7 @@ form#build-my-character .well {
   padding: 15px;
   border-radius: 3px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.6) url(/assets/images/white-spot.png) 50% 50% no-repeat;
+  background: rgba(255, 255, 255, 0.6) url(/images/white-spot.png) 50% 50% no-repeat;
   box-shadow: inset 0px 2px 3px #676;
   overflow: auto;
   text-align: center;
@@ -1098,7 +1083,7 @@ form#build-my-character #party-readout {
   height: 250px;
   border-radius: 3px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.6) url(/assets/images/white-spot.png) 50% 50% no-repeat;
+  background: rgba(255, 255, 255, 0.6) url(/images/white-spot.png) 50% 50% no-repeat;
   background-size: 100%;
   box-shadow: inset 0px 2px 3px #676;
   text-align: center;
@@ -1220,16 +1205,16 @@ form#build-my-character #flexi-skills select {
   background-clip: padding-box;
 }
 #download-thanks-dialog #paypal-button {
-  background-image: url(/assets/images/paypal.png);
-  background: url(/assets/images/paypal.png) center center no-repeat, -webkit-gradient(linear, left bottom, left top, color-stop(0, #d0d0d0), color-stop(1, #e8e8e8));
-  background: url(/assets/images/paypal.png) center center no-repeat, -ms-linear-gradient(bottom, #d0d0d0, #e8e8e8);
-  background: url(/assets/images/paypal.png) center center no-repeat, -moz-linear-gradient(center bottom, #d0d0d0 0%, #e8e8e8 100%);
+  background-image: url(/images/paypal.png);
+  background: url(/images/paypal.png) center center no-repeat, -webkit-gradient(linear, left bottom, left top, color-stop(0, #d0d0d0), color-stop(1, #e8e8e8));
+  background: url(/images/paypal.png) center center no-repeat, -ms-linear-gradient(bottom, #d0d0d0, #e8e8e8);
+  background: url(/images/paypal.png) center center no-repeat, -moz-linear-gradient(center bottom, #d0d0d0 0%, #e8e8e8 100%);
 }
 #download-thanks-dialog #patreon-button {
-  background-image: url(/assets/images/patreon.png);
-  background: url(/assets/images/patreon.png) center center no-repeat, -webkit-gradient(linear, left bottom, left top, color-stop(0, #d0d0d0), color-stop(1, #e8e8e8));
-  background: url(/assets/images/patreon.png) center center no-repeat, -ms-linear-gradient(bottom, #d0d0d0, #e8e8e8);
-  background: url(/assets/images/patreon.png) center center no-repeat, -moz-linear-gradient(center bottom, #d0d0d0 0%, #e8e8e8 100%);
+  background-image: url(/images/patreon.png);
+  background: url(/images/patreon.png) center center no-repeat, -webkit-gradient(linear, left bottom, left top, color-stop(0, #d0d0d0), color-stop(1, #e8e8e8));
+  background: url(/images/patreon.png) center center no-repeat, -ms-linear-gradient(bottom, #d0d0d0, #e8e8e8);
+  background: url(/images/patreon.png) center center no-repeat, -moz-linear-gradient(center bottom, #d0d0d0 0%, #e8e8e8 100%);
 }
 #download-thanks-dialog #close {
   margin-top: -15px;
@@ -1310,7 +1295,7 @@ form#build-my-character #flexi-skills select {
   overflow-y: auto;
   border-radius: 3px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.5) url(/assets/images/white-spot.png) 50% 50% no-repeat;
+  background: rgba(255, 255, 255, 0.5) url(/images/white-spot.png) 50% 50% no-repeat;
   box-shadow: inset 0px 2px 3px #676;
   padding: 5px;
 }
