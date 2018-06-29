@@ -15,6 +15,8 @@ hbs.registerHelper('__', function(str) {
     return i18n.translate(str, this.lang);
 });
 
+hbs.registerHelper('eq', (params) => params[0] == params[1]);
+
 // notes
 const quotes = require('./src/quotes');
 hbs.registerHelper('note',  function() {
