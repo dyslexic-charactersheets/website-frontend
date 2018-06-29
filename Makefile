@@ -6,6 +6,7 @@ run:
 
 pot:
 	@bin/make-pot.sh
+	# @find app/views/ -iname '*.hbs' -exec xgettext --from-code=utf-8 --keyword=__ --language=JavaScript --add-comments --sort-output --force-po -o data/msg.pot {} +
 
 mo:
 	@#find views/ -iname *.hbs -exec xgettext --keyword=__ --language=JavaProperties --add-comments --sort-output -o data/msg.pot {} +
