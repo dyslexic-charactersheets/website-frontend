@@ -5,6 +5,11 @@ const hbs = require('hbs');
 
 const conf = require('./src/conf');
 
+// set up the http engine
+const app = express();
+app.set('view engine', 'hbs');
+app.use(express.static('../public'));
+
 // engines
 const gameData = require('./src/gamedata');
 const pathfinder2 = require('./src/pathfinder2-server');
@@ -30,63 +35,42 @@ hbs.registerHelper('note',  function() {
     </aside>`;
 });
 
-// patreon
-var url = require('url')
-var patreon = require('patreon')
-var patreonAPI = patreon.patreon
+// login
+const auth = require('./src/auth')
+auth.set(conf, app);
 
-var patreonOAuthClient = patreon.oauth(conf('patreon_client_id'), conf('patreon_client_secret'));
+// app.get('/oauth/redirect', auth.oauthRedirect);
+app.get('/patreon-redirect', auth.patreonRedirect);
 
-// set up the http engine
-const app = express();
-app.set('view engine', 'hbs');
-app.use(express.static('../public'));
+app.get('/login', (req, res) => res.render('login', { title: 'Login', lang: 'en' }));
+app.get('/:lang/login', (req, res) => res.render('login', { title: 'Login', lang: req.params.lang }));
 
-// patreon
-app.get('/oauth/redirect', (req, res) => {
-    var oauthGrantCode = url.parse(req.url, true).query.code
- 
-    patreonOAuthClient
-        .getTokens(oauthGrantCode, conf('url')+'oauth/redirect')
-        .then(function(tokensResponse) {
-            var patreonAPIClient = patreonAPI(tokensResponse.access_token)
-            return patreonAPIClient('/current_user')
-        })
-        .then(function(result) {
-            var store = result.store
-            // store is a [JsonApiDataStore](https://github.com/beauby/jsonapi-datastore)
-            // You can also ask for result.rawJson if you'd like to work with unparsed data
-            response.end(store.findAll('user').map(user => user.serialize()))
-        })
-        .catch(function(err) {
-            console.error('error!', err)
-            response.end(err)
-        })
-});
+app.get('/just-login', auth.login);
+app.get('/translators-login', auth.translatorsLogin);
 
-app.get('/login', (req, res) => res.render('login', { lang: 'en' }));
-app.get('/:lang/login', (req, res) => res.render('login', { lang: req.params.lang }));
-
-
-var loginGuard = function (fn) {
-    if (conf('require_login')) {
-
+var loginGuard = function (req, res, lang, fn) {
+    if (conf('require_login') && !auth.isLoggedIn(req)) {
+        res.render('login', {
+            lang: lang,
+            patreon_client_id: conf('patreon_client_id'),
+            patreon_redirect_uri: encodeURIComponent(conf('url')+'patreon-redirect')
+        });
     }
     return fn();
 };
 
 // ordinary pages
-app.get('/howto', (req, res) => loginGuard(() => res.render('howto', { lang: 'en' })));
-app.get('/:lang/howto', (req, res) => loginGuard(() => res.render('howto', { lang: req.params.lang })));
+app.get('/howto', (req, res) => loginGuard(req, res, 'en', () => res.render('howto', { title: 'How to', lang: 'en' })));
+app.get('/:lang/howto', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('howto', { title: 'How to', lang: req.params.lang })));
 
-app.get('/legal', (req, res) => loginGuard(() => res.render('legal', { lang: 'en' })));
-app.get('/:lang/legal', (req, res) => loginGuard(() => res.render('legal', { lang: req.params.lang })));
+app.get('/legal', (req, res) => loginGuard(req, res, 'en', () => res.render('legal', { title: 'Legal information', lang: 'en' })));
+app.get('/:lang/legal', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('legal', { title: 'Legal information', lang: req.params.lang })));
 
-app.get('/opensource', (req, res) => loginGuard(() => res.render('opensource', { lang: 'en' })));
-app.get('/:lang/opensource', (req, res) => loginGuard(() => res.render('opensource', { lang: req.params.lang })));
+app.get('/opensource', (req, res) => loginGuard(req, res, 'en', () => res.render('opensource', { title: 'Open source', lang: 'en' })));
+app.get('/:lang/opensource', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('opensource', { title: 'Open source', lang: req.params.lang })));
 
-app.get('/', (req, res) => loginGuard(() => res.render('index', { lang: 'en' })));
-app.get('/:lang', (req, res) => loginGuard(() => res.render('index', { lang: req.params.lang })));
+app.get('/', (req, res) => loginGuard(req, res, 'en', () => res.render('index', { title: 'Dyslexic Character Sheets', lang: 'en', isLoggedIn: auth.isLoggedIn(req) })));
+app.get('/:lang', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('index', { title: 'Dyslexic Character Sheets', lang: req.params.lang })));
 
 // character sheet builder forms
 function renderBuildForm(req, res, lang) {
@@ -102,13 +86,13 @@ function renderBuildForm(req, res, lang) {
     });
 }
 
-app.get('/build/:game', (req, res) => loginGuard(() => renderBuildForm(req, res, 'en')));
-app.get('/:lang/build/:game', (req, res) => loginGuard(() => renderBuildForm(req, res, req.params.lang)));
+app.get('/build/:game', (req, res) => loginGuard(req, res, 'en', () => renderBuildForm(req, res, 'en')));
+app.get('/:lang/build/:game', (req, res) => loginGuard(req, res, req.params.lang, () => renderBuildForm(req, res, req.params.lang)));
 
 // let's build a character sheet
-app.post('/render/pathfinder2', (req, res) => loginGuard(() => pathfinder2.render(req, res, 'en')));
+app.post('/render/pathfinder2', (req, res) => loginGuard(req, res, 'en', () => pathfinder2.render(req, res, 'en')));
 
-app.post('/:lang/render/pathfinder2', (req, res) => loginGuard(() => pathfinder2.render(req, res, req.params.lang)));
+app.post('/:lang/render/pathfinder2', (req, res) => loginGuard(req, res, req.params.lang, () => pathfinder2.render(req, res, req.params.lang)));
 
 // go!
 app.listen(3000, () => console.log('Listening on port 3000'));

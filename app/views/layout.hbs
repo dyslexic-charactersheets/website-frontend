@@ -45,6 +45,12 @@
           <p><a class='button facebook' href='https://www.facebook.com/groups/dyslexic-charactersheets/'>{{__ "Facebook group"}}</a></p>
 
           <p><a class='button' href='/translate'>{{__ "Translate"}}</a></p>
+
+          {{#if isLoggedIn}}
+          {{__ "You are logged in!"}}
+          {{else}}
+          <p><a class='button' href='/login'>{{__ "Log In"}}</a></p>
+          {{/if}}
         </aside>
 
         <div id='message-lightbox' class='lightbox'>

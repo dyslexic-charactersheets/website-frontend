@@ -1,8 +1,39 @@
 
 <header id='bodyheader'>
     <h1>{{__ "Dyslexic Character Sheets"}}</h1>
+      <nav class='tabs'>
+        <ul>
+          {{!-- <li><a href='/'>&laquo; {{__ "Back to intro"}}</a></li> --}}
+          <li><a rel='#login-tab' class='selected' id='login-tab-link'>{{__ "Login"}}</a></li>
+          </ul>
+        </nav>
 </header>
 
 <section class='tab selected' id=''>
-    <p>Login</p>
+    <p>{{__ "Patrons and contributors to the project get early access to content on the dev site. Login with one of the options below."}}</p>
+    
+    <div class="yui3-g">
+        <div class="yui3-u-1-2">
+            <h3>{{__ "Patreon"}}</h3>
+            <p>{{__ "Log into your Patreon account, then grant permission for this site to access your information."}}</p>
+        </div>
+        <div class="yui3-u-1-2">
+            <h3>{{__ "Translators"}}</h3>
+            <p>{{__ "Log into the translators' website then click the button on your dashboard to log in here."}}</p>
+        </div>
+    </div>
+    <div class="yui3-g">
+        <div class="yui3-u-1-2">
+            <p class='center'>
+                <a class='button' href='https://www.patreon.com/oauth2/authorize?response_type=code&client_id={{patreon_client_id}}&redirect_uri={{patreon_redirect_uri}}'>{{__ "Login"}}</a>
+            </p>
+        </div>
+        <div class="yui3-u-1-2">
+            <p class='center'>
+                <a class='button' href='https://translate.dyslexic-charactersheets.com/authorize'>{{__ "Login"}}</a>
+            </p>
+        </div>
+    </div>
+
+    <a class='button' href='/just-login'>Just Login</a>
 </section>

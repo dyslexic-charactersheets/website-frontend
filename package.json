@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dyslexic-charactersheets/website2#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
     "file": "^0.2.2",
     "hbs": "^4.0.1",
