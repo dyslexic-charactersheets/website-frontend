@@ -29,6 +29,7 @@ function setupAuth() {
     sharedSecret = conf('shared_secret');
     
     patreonOAuthClient = patreon.oauth(conf('patreon_client_id'), conf('patreon_client_secret'));
+    console.log("Auth configured");
 }
 
 function login(res) {
@@ -48,8 +49,8 @@ function login(res) {
 
 function checkSignature(message, signature, salt) {
     const hash = crypto.createHash('sha256');
-    hash.update(loginToken);
-    hash.update(sessionKey);
+    hash.update(message);
+    hash.update(salt);
     var signature2 = hash.digest('hex');
 
     return signature == signature2;
@@ -87,8 +88,10 @@ module.exports = {
     },
 
     translatorsLogin: (req, res) => {    
+        setupAuth();
+
         try {
-            var token = req.params.login;
+            var token = req.query.login;
 
             var tokenParts = token.split(/:/);
             var id = tokenParts[0];
@@ -98,7 +101,7 @@ module.exports = {
                 res.redirect('/login');
             login(res);
         } catch (e) {
-            console.log("Error :", e);
+            console.log("Error:", e);
             res.redirect('/login');
         }
     },

@@ -36,7 +36,7 @@ hbs.registerHelper('note',  function() {
 });
 
 // login
-const auth = require('./src/auth')
+const auth = require('./src/auth');
 auth.set(conf, app);
 
 // app.get('/oauth/redirect', auth.oauthRedirect);
