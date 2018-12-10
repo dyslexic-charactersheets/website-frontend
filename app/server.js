@@ -2,11 +2,13 @@
 
 const express = require('express');
 const hbs = require('hbs');
+const cookieParser = require('cookie-parser');
 
 const conf = require('./src/conf');
 
 // set up the http engine
 const app = express();
+app.use(cookieParser());
 app.set('view engine', 'hbs');
 app.use(express.static('../public'));
 
@@ -15,7 +17,7 @@ const gameData = require('./src/gamedata');
 const pathfinder2 = require('./src/pathfinder2-server');
 
 // i18n
-const i18n = require('./src/i18n');
+const i18n = require('./src/i18n')(conf);
 hbs.registerHelper('__', function(str) {
     return i18n.translate(str, this.lang);
 });
@@ -36,25 +38,31 @@ hbs.registerHelper('note',  function() {
 });
 
 // login
-const auth = require('./src/auth');
-auth.set(conf, app);
+const auth = require('./src/auth')(conf);
+
+function renderLogin(req, res, lang) {
+    auth.setup();
+    return res.render('login', {
+        title: 'Dyslexic Character Sheets',
+        lang: lang,
+        translators_login_url: auth.translatorsLoginURL(),
+        patreon_login_url: auth.patreonLoginURL(),
+        allow_just_login: auth.allowJustLogin,
+    });
+}
 
 // app.get('/oauth/redirect', auth.oauthRedirect);
-app.get('/patreon-redirect', auth.patreonRedirect);
+app.get('/auth/patreon-redirect', auth.patreonRedirect);
 
-app.get('/login', (req, res) => res.render('login', { title: 'Login', lang: 'en' }));
-app.get('/:lang/login', (req, res) => res.render('login', { title: 'Login', lang: req.params.lang }));
+app.get('/auth/login', (req, res) => renderLogin(req, res, 'en'));
+app.get('/:lang/auth/login', (req, res) => renderLogin(req, res, req.params.lang));
 
-app.get('/just-login', auth.login);
-app.get('/translators-login', auth.translatorsLogin);
+app.get('/auth/translators-login', auth.translatorsLogin);
+app.get('/auth/token-login', auth.tokenLogin);
 
 var loginGuard = function (req, res, lang, fn) {
     if (conf('require_login') && !auth.isLoggedIn(req)) {
-        res.render('login', {
-            lang: lang,
-            patreon_client_id: conf('patreon_client_id'),
-            patreon_redirect_uri: encodeURIComponent(conf('url')+'patreon-redirect')
-        });
+        return renderLogin(req, res, lang);
     }
     return fn();
 };

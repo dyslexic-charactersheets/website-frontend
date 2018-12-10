@@ -1,10 +1,26 @@
----
-
 ## Configuration for the Node web server for Dyslexic Character Sheets
-## NOTE: the config.yml should never be checked into git!
+## NOTE: config.yml should never be checked into git!
 
 url: https://www.dyslexic-charactersheets.com/
 
+# Authentication
 require_login: false
-patreon_client_id: your patreon client ID
-patreon_client_secret: your patreon secret key
+allow_just_login: false
+shared_secret: your external app shared secret
+session_key: your cookie salt
+
+patreon_v1_client_id: your patreon client ID
+patreon_v1_client_secret: your patreon secret key
+
+patreon_v2_client_id: your patreon client ID
+patreon_v2_client_secret: your patreon secret key
+
+login_tokens:
+  - your login tokens
+  - your login tokens
+  - your login tokens
+
+# Translation
+i18n_live: false
+i18n_live_api: localhost
+i18n_live_port: 3743

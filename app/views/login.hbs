@@ -25,15 +25,19 @@
     <div class="yui3-g">
         <div class="yui3-u-1-2">
             <p class='center'>
-                <a class='button' href='https://www.patreon.com/oauth2/authorize?response_type=code&client_id={{patreon_client_id}}&redirect_uri={{patreon_redirect_uri}}'>{{__ "Login"}}</a>
+                <a class='button' href='{{patreon_login_url}}'>{{__ "Login"}}</a>
             </p>
         </div>
         <div class="yui3-u-1-2">
             <p class='center'>
-                <a class='button' href='https://translate.dyslexic-charactersheets.com/authorize'>{{__ "Login"}}</a>
+                <a class='button' href='{{translators_login_url}}'>{{__ "Login"}}</a>
             </p>
         </div>
     </div>
 
-    <a class='button' href='/just-login'>Just Login</a>
+    <p>{{__ "Logging in will set a cookie on your computer. We do not keep any personal information about you."}}</p>
+
+    {{#if allowJustLogin}}
+    <a class='button' href='/auth/just-login'>{{__ "Just Login"}}</a>
+    {{/if}}
 </section>
