@@ -59,7 +59,7 @@ var auth = {
     },
 
     setLogin: (res) => {
-        var loginDur = 3600*24*30; // 30 days
+        var loginDur = 3600*24*30*1000; // 30 days
         var now = Date.now();
 
         var loginToken = "$"+now;

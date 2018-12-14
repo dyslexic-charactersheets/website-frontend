@@ -10,31 +10,21 @@
 </header>
 
 <section class='tab selected' id=''>
-    <p>{{__ "Patrons and contributors to the project get early access to content on the dev site. Login with one of the options below."}}</p>
+    <p>{{__ "Patrons and contributors to the project get early access to content on the dev site."}}</p>
     
     <div class="yui3-g">
         <div class="yui3-u-1-2">
             <h3>{{__ "Patreon"}}</h3>
-            <p>{{__ "Log into your Patreon account, then grant permission for this site to access your information."}}</p>
+            <p>{{{__ "Check the <a href='https://www.patreon.com/dyslexic_charactersheets/posts'>Dyslexic Character Sheets Patreon Blog</a> for a login link."}}}</p>
         </div>
         <div class="yui3-u-1-2">
             <h3>{{__ "Translators"}}</h3>
             <p>{{__ "Log into the translators' website then click the button on your dashboard to log in here."}}</p>
-        </div>
-    </div>
-    <div class="yui3-g">
-        <div class="yui3-u-1-2">
-            <p class='center'>
-                <a class='button' href='{{patreon_login_url}}'>{{__ "Login"}}</a>
-            </p>
-        </div>
-        <div class="yui3-u-1-2">
-            <p class='center'>
-                <a class='button' href='{{translators_login_url}}'>{{__ "Login"}}</a>
-            </p>
+            <p>{{__ "If you'd like to help translate, send me a message."}}</p>
         </div>
     </div>
 
+    <h4>Cookies</h4>
     <p>{{__ "Logging in will set a cookie on your computer. We do not keep any personal information about you."}}</p>
 
     {{#if allowJustLogin}}

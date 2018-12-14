@@ -5,6 +5,7 @@ const hbs = require('hbs');
 const cookieParser = require('cookie-parser');
 
 const conf = require('./src/conf');
+const message = require('./src/message');
 
 // set up the http engine
 const app = express();
@@ -79,6 +80,16 @@ app.get('/:lang/opensource', (req, res) => loginGuard(req, res, req.params.lang,
 
 app.get('/', (req, res) => loginGuard(req, res, 'en', () => res.render('index', { title: 'Dyslexic Character Sheets', lang: 'en', isLoggedIn: auth.isLoggedIn(req) })));
 app.get('/:lang', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('index', { title: 'Dyslexic Character Sheets', lang: req.params.lang })));
+
+app.post('/message', (req, res) => {
+    sendMessage(res);
+    res.redirect('/message/sent');
+    console.log("Message!");
+
+    var message = req.query.message;
+    var author = req.query.author;
+    var email = req.query.email;
+});
 
 // character sheet builder forms
 function renderBuildForm(req, res, lang) {
