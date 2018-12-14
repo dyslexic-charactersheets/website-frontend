@@ -674,21 +674,21 @@ table#example a img {
   -moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
 }
-#messageform {
+/* #messageform {
   width: 1024px;
   height: 768px;
-  background: url(/images/note-big.png) top left no-repeat;
   margin-top: -70px;
   margin-bottom: -130px;
-}
+} */
 #messageform h1 {
   margin-top: 10px;
 }
 #messageform .inner {
-  -webkit-transform: rotate(-5deg);
+  padding-left: 30px;
+  /* -webkit-transform: rotate(-5deg);
   -moz-transform: rotate(-5deg);
   transform: rotate(-5deg);
-  padding: 75px 240px 50px 200px;
+  padding: 75px 240px 50px 200px; */
 }
 #messageform .inner label {
   display: block;
@@ -804,7 +804,10 @@ div.lightbox img {
 div.lightbox section.note {
   width: 1024px;
   height: 768px;
-  background: url(/images/note-big.png) top left no-repeat;
+  background-image: url(/images/note-big.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 div.lightbox section.note h1 {
   margin-top: 10px;

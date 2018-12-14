@@ -20,6 +20,9 @@ login_tokens:
   - your login tokens
   - your login tokens
 
+timed_token_base: your timed token base
+
+
 # Translation
 i18n_live: false
 i18n_live_api: localhost
