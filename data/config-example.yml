@@ -2,6 +2,8 @@
 ## NOTE: config.yml should never be checked into git!
 
 url: https://www.dyslexic-charactersheets.com/
+build_url: https://www.dyslexic-charactersheets.com/
+port: 3000
 
 # Authentication
 require_login: false
