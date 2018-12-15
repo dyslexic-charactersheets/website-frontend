@@ -12,6 +12,7 @@ const app = express();
 app.use(cookieParser());
 app.set('view engine', 'hbs');
 app.use(express.static('../public'));
+app.use(express.static('../../assets'));
 
 // engines
 const gameData = require('./src/gamedata');

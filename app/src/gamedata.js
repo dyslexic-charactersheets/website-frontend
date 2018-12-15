@@ -13,7 +13,7 @@ games.forEach(game => {
     var filename = '../../assets/data/'+game+'.json';
     fs.stat(filename, (err, stats) => {
         if (!stats.isFile()) {
-            console.log("File not found "+filename);
+            console.log("[data] File not found "+filename);
         } else {
             fs.readFile(filename, 'utf-8', (err, data) => {
                 var json = JSON.parse(data);
@@ -35,7 +35,7 @@ games.forEach(game => {
                         var book = books[bk];
                         book.classes = book.classes.map((cls) => {
                             if (!_.has(classes, cls)) {
-                                console.log("Missing class: "+cls);
+                                console.log("[data] Missing class: "+cls);
                                 return null;
                             } else {
                                 var clas = classes[cls];
@@ -58,9 +58,9 @@ games.forEach(game => {
                     });
                 });
 
-                // console.log("Layout: "+JSON.stringify(json.layout, null, 4));
+                // console.log("[data] Layout: "+JSON.stringify(json.layout, null, 4));
 
-                console.log("Loaded "+json.name);
+                console.log("[data] Loaded "+json.name);
                 gameData[game] = json;
             });
         }
