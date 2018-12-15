@@ -115,5 +115,5 @@ app.post('/render/pathfinder2', (req, res) => loginGuard(req, res, 'en', () => p
 app.post('/:lang/render/pathfinder2', (req, res) => loginGuard(req, res, req.params.lang, () => pathfinder2.render(req, res, req.params.lang)));
 
 // go!
-var port = conf('port');
-app.listen(port, () => console.log(`Listening on port ${port}`));
+var listen_port = conf('listen_port');
+app.listen(port, () => console.log(`Listening on port ${listen_port}`));

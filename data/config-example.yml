@@ -3,7 +3,7 @@
 
 url: https://www.dyslexic-charactersheets.com/
 build_url: https://www.dyslexic-charactersheets.com/
-port: 3000
+listen_port: 3000
 
 # Authentication
 require_login: false
