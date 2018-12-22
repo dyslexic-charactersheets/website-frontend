@@ -28,6 +28,6 @@
     "moment": "^2.23.0",
     "nodemailer": "^2.7.2",
     "patreon": "^0.4.1",
-    "request": "^2.88.0",
+    "request": "^2.88.0"
   }
 }
