@@ -1,22 +1,24 @@
 #!/usr/bin/env nodejs
 
 const express = require('express');
+var bodyParser = require('body-parser')
 const hbs = require('hbs');
 const cookieParser = require('cookie-parser');
 
 const conf = require('./src/conf');
-const message = require('./src/message');
+const message = require('./src/message')(conf);
 
 // set up the http engine
 const app = express();
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'hbs');
 app.use(express.static('../public'));
 app.use(express.static('../../assets'));
 
 // engines
-const gameData = require('./src/gamedata');
-const pathfinder2 = require('./src/pathfinder2-server');
+const gameData = require('./src/gamedata.js');
+const pathfinder2 = require('./src/pathfinder2-server.js');
 
 // i18n
 const i18n = require('./src/i18n')(conf);
@@ -83,13 +85,9 @@ app.get('/', (req, res) => loginGuard(req, res, 'en', () => res.render('index', 
 app.get('/:lang', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('index', { title: 'Dyslexic Character Sheets', lang: req.params.lang })));
 
 app.post('/message', (req, res) => {
-    sendMessage(res);
-    res.redirect('/message/sent');
     console.log("Message!");
-
-    var message = req.query.message;
-    var author = req.query.author;
-    var email = req.query.email;
+    message.sendMessage(req, res);
+    res.redirect('/message/sent');
 });
 
 // character sheet builder forms

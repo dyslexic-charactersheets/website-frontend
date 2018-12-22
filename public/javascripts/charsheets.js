@@ -239,6 +239,19 @@ $(function() {
     $(this).fadeOut("fast");
   });
   $("div.lightbox .note").click(function () {
+    var form = $("form#messageform");
+    var message = form.find('#message').val();
+    var author = form.find('#author').val();
+    var email = form.find('#email').val();
+
+    $.post('/message', {
+      message: message,
+      author: author,
+      email: email
+    }, function (data, status, xhr) {
+      console.log("Status:", status);
+      console.log("Data:", data);
+    });
     return false;
   });
 

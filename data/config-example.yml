@@ -5,6 +5,8 @@ url: https://www.dyslexic-charactersheets.com/
 build_url: https://www.dyslexic-charactersheets.com/
 listen_port: 3000
 
+maildest: your admin email address
+
 # Authentication
 require_login: false
 allow_just_login: false
@@ -23,7 +25,7 @@ login_tokens:
   - your login tokens
 
 timed_token_base: your timed token base
-
+timed_token_generate: false
 
 # Translation
 i18n_live: false
