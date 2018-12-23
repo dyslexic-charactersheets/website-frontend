@@ -15,9 +15,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'hbs');
 app.use(express.static('../public'));
 app.use(express.static('../../assets'));
+app.use('/iconics', express.static('../../assets/iconics/small'));
 
 // engines
 const gameData = require('./src/gamedata.js');
+const iconicData = require('./src/iconicdata');
 const pathfinder2 = require('./src/pathfinder2-server.js');
 
 // i18n
@@ -91,15 +93,19 @@ app.post('/message', (req, res) => {
 // character sheet builder forms
 function renderBuildForm(req, res, lang) {
     var game = req.params.game;
-    var data = gameData(game);
+    var gamedata = gameData(game);
 
     var buildForm = "build-form";
     if (game == "pathfinder2") buildForm = "build-pathfinder2";
 
     res.render(buildForm, {
-        title: "Build my character: "+data.name,
+        title: "Build my character: "+gamedata.name,
         lang: lang,
-        gameData: data,
+        gameData: gamedata,
+        iconics: iconicData.iconics(),
+        iconicGroups: iconicData.iconicGroups(),
+        logos: iconicData.logos(),
+        logoGroups: iconicData.logoGroups(),
     });
 }
 

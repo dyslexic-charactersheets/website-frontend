@@ -70,5 +70,7 @@ games.forEach(game => {
 module.exports = function (game) {
     if (_.has(gameData, game))
         return gameData[game];
-    return {};
+    return {
+        
+    };
 };

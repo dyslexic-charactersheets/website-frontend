@@ -607,12 +607,12 @@
           <span class='group'>{{__ "Dyslexic Studeos"}}</span>
           <span class='name'>{{__ "General purpose"}}</span>
         </a>
-        @for(set <- iconicSets) {
-          <a id='iconic-select-@set.id' data-set-id='iconic-image-list-@set.id'>
-            <span class='group'>@set.groupDisplayName</span>
-            <span class='name'>@set.setDisplayName</span>
+        {{#each iconicGroups}}
+          <a id='iconic-select-{{id}}' data-set-id='iconic-image-list-{{id}}'>
+            <span class='group'>{{folder}}</span>
+            <span class='name'>{{name}}</span>
           </a>
-        }
+        {{/each}}
       </div>
       <div id='iconic-image-list' class='image-list well'>
         <div id='iconic-image-list-custom'>
@@ -629,13 +629,13 @@
           <a data-id='none'><img src='/iconics/none.png'/>{{__ "None"}}</a>
           <a data-id='custom'><img src='/iconics/custom.png'/>{{__ "Upload your own"}}</a>
         </div>
-        @for(set <- iconicSets) {
-          <div id='iconic-image-list-@set.id' class='image-select-set'>
-            @for(iconic <- set.iconics) {
-              <a data-id='@iconic.id'><img src='/images/progress.gif' data-src='@iconic.url'/>@iconic.niceName</a>
-            }
+        {{#each iconicGroups}}
+          <div id='iconic-image-list-{{id}}' class='image-select-set'>
+            {{#each assets}}
+              <a data-id='{{id}}'><img src='/images/progress.gif' data-src='{{url}}'>{{name}}</a>
+            {{/each}}
           </div>
-        }
+        {{/each}}
       </div>
     </div></section>
 
