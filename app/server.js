@@ -85,9 +85,7 @@ app.get('/', (req, res) => loginGuard(req, res, 'en', () => res.render('index', 
 app.get('/:lang', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('index', { title: 'Dyslexic Character Sheets', lang: req.params.lang })));
 
 app.post('/message', (req, res) => {
-    console.log("Message!");
     message.sendMessage(req, res);
-    res.redirect('/message/sent');
 });
 
 // character sheet builder forms
@@ -99,6 +97,7 @@ function renderBuildForm(req, res, lang) {
     if (game == "pathfinder2") buildForm = "build-pathfinder2";
 
     res.render(buildForm, {
+        title: "Build my character: "+data.name,
         lang: lang,
         gameData: data,
     });
@@ -115,5 +114,5 @@ app.post('/:lang/render/pathfinder2', (req, res) => loginGuard(req, res, req.par
 // go!
 setTimeout(() => {
     var listen_port = conf('listen_port');
-    app.listen(listen_port, () => console.log(`Listening on port ${listen_port}`));
+    app.listen(listen_port, () => console.log(`[server] Listening on port ${listen_port}`));
 }, 500);

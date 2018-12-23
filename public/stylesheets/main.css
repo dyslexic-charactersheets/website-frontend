@@ -674,42 +674,36 @@ table#example a img {
   -moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
 }
-/* #messageform {
-  width: 1024px;
-  height: 768px;
-  margin-top: -70px;
-  margin-bottom: -130px;
-} */
-#messageform h1 {
+#message-form h1 {
   margin-top: 10px;
 }
-#messageform .inner {
+.note .inner {
   padding-left: 30px;
   /* -webkit-transform: rotate(-5deg);
   -moz-transform: rotate(-5deg);
   transform: rotate(-5deg);
   padding: 75px 240px 50px 200px; */
 }
-#messageform .inner label {
+#message-form .inner label {
   display: block;
   margin: 12px 0px 6px 0px;
   font-size: 18px;
 }
-#messageform .inner #human-line {
+#message-form .inner #human-line {
   font-size: 18px;
   padding-left: 30px;
 }
-#messageform .inner #human-line label {
+#message-form .inner #human-line label {
   display: inline;
   margin-left: 20px;
 }
-#messageform .inner #human-alert {
+#message-form .inner #human-alert {
   display: none;
 }
-#messageform .inner textarea,
-#messageform .inner input[type=text],
-#messageform .inner input[type=email],
-#messageform .inner input[type=password] {
+#message-form .inner textarea,
+#message-form .inner input[type=text],
+#message-form .inner input[type=email],
+#message-form .inner input[type=password] {
   display: block;
   margin: 6px 0px;
   padding: 2px 4px;
@@ -721,16 +715,26 @@ table#example a img {
   color: #238;
   font-size: 24px;
 }
-#messageform .inner textarea {
+#message-form .inner textarea {
   height: 280px;
   font-size: 36px;
 }
-#messageform .submitbutton {
-  margin-left: auto;
-  margin-right: auto;
-  width: 980px;
-  text-align: right;
+
+#message-send {
+  text-decoration: underline;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 32px;
+  color: #701b08;
+  cursor: pointer;
 }
+
+#message-ok, #message-error {
+  display: none;
+  -webkit-transform: rotate(-5deg);
+  -moz-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+}
+
 ul.filesystem {
   margin: 0;
   padding: 0;
@@ -812,7 +816,12 @@ div.lightbox section.note {
 div.lightbox section.note h1 {
   margin-top: 10px;
 }
-div.lightbox section.note form {
+div.lightbox section.note h2 {
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 56px;
+  color: #238;
+}
+div.lightbox section.note .rotate {
   -webkit-transform: rotate(-5deg);
   -moz-transform: rotate(-5deg);
   transform: rotate(-5deg);

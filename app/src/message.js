@@ -12,7 +12,7 @@ var mailer = nodemailer.createTransport('direct:?name=hostname');
 var conf;
 
 var maildir = path.resolve('../mail');
-console.log("Mail dir:", maildir);
+console.log("[message] Mail dir:", maildir);
 fs.mkdir(maildir, { recursive: true }, (err) => {
     
 });
@@ -22,18 +22,19 @@ function sendMessage(req, res) {
     var message = req.body.message;
     var author = req.body.author;
     var email = req.body.email;
+    var ok = true;
 
     // save it to a file first
     var date = moment().format('YYYY-MM-dd_HH-mm-ss');
     var mailfile = maildir+'/'+date+'.msg';
-    console.log("Logging a message to", mailfile);
+    // console.log("[message] Logging a message to", mailfile);
     logmsg = `From: ${author} <${email}>\n\n${message}`;
     fs.writeFile(mailfile, logmsg, 'utf8');
 
     // send the email
     var maildest = conf('maildest');
-    console.log("Mail destination:", maildest);
-    console.log("Sending a message from ", author, "-", email);
+    // console.log("[message] Mail destination:", maildest);
+    // console.log("[message] Sending a message from ", author, "-", email);
 
     // // emailjs
     // var server 	= email.server.connect({
@@ -59,10 +60,12 @@ function sendMessage(req, res) {
         html: message // html body
     };
     mailer.sendMail(mailOptions, (error, info) => {
-        if (error)
-            console.log("Error sending mail:", error, error.stack);
-        else
-            console.log("Message sent:", info)
+        if (error) {
+            ok = false;
+            console.log("[message] Error sending mail:", error, error.stack);
+        } else {
+            console.log("[message] Message sent");
+        }
     });
 
     // // sendmail
@@ -76,6 +79,11 @@ function sendMessage(req, res) {
     //     console.log(err && err.stack);
     //     console.dir(reply);
     // });
+
+    if (ok)
+        res.status(200).end();
+    else
+        res.status(500).end();
 }
 
 module.exports = function (c) {

@@ -55,7 +55,7 @@
 
         <div id='message-lightbox' class='lightbox'>
           <section class='note'>
-            <form id='messageform' method='post' action='/message'>
+            <form id='message-form' method='post' action='/message' class='rotate'>
               <div class='inner'>
                 <textarea id='message' name='message'></textarea>
                 <label for='author'>
@@ -67,9 +67,21 @@
                   <input id="email" name="email" type="email" placeholder="But only if you feel like it" class="box">
                 </label>
                 
-                <div class="submitbutton"><input type="submit" value="Send the message"></div>
+                <a id='message-send'>Send message</a>
               </div>
             </form>
+
+            <div id='message-ok' class='rotate'>
+              <div class='inner'>
+                <h2>Message sent!</h2>
+              </div>
+            </div>
+
+            <div id='message-error' class='rotate'>
+              <div class='inner'>
+                <h2>Error &nbsp; :(</h2>
+              </div>
+            </div>
           </section>
         </div>
 

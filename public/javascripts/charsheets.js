@@ -238,8 +238,17 @@ $(function() {
   $("div.lightbox").click(function () {
     $(this).fadeOut("fast");
   });
+
   $("div.lightbox .note").click(function () {
-    var form = $("form#messageform");
+    $("#message-form").show();
+    $("#message-ok").hide();
+    $("#message-error").hide();
+    return false;
+  });
+
+  $("#message-send").click(function () {
+    console.log("Sending message...");
+    var form = $("#message-form");
     var message = form.find('#message').val();
     var author = form.find('#author').val();
     var email = form.find('#email').val();
@@ -249,8 +258,15 @@ $(function() {
       author: author,
       email: email
     }, function (data, status, xhr) {
-      console.log("Status:", status);
-      console.log("Data:", data);
+      if (status == "success") {
+        console.log("Message sent");
+        $("#message-form").hide();
+        $("#message-ok").show();
+      } else {
+        console.log("Error");
+        $("#message-form").hide();
+        $("#message-error").show();
+      }
     });
     return false;
   });
