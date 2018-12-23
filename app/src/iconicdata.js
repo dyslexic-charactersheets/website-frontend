@@ -13,10 +13,12 @@ function loadAssets(data, base) {
         
         var id = code.replace(/[^0-9a-zA-Z-]+/g, '-');
         var url = base+code+".png";
+        var name = path.replace(/^.*\//, '');
         assets.push({
             id: id,
             code: code,
             url: url,
+            name: name,
             path: path
         });
     });
