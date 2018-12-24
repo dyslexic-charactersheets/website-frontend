@@ -1,6 +1,14 @@
 const fs = require('fs');
 const _ = require('lodash');
 
+function createId(code) {
+    code = code.toLowerCase();
+    code = code.replace(/[^a-z0-9]+/g, '-');
+    code = code.replace(/^-*/, '');
+    code = code.replace(/-*$/, '');
+    return code;
+}
+
 function loadAssets(data, base) {
     var assets = [];
     var lines = data.split(/\n/);
@@ -11,12 +19,14 @@ function loadAssets(data, base) {
         var path = parts[1].trim();
         if (code == "" || path == "") return;
         
-        var id = code.replace(/[^0-9a-zA-Z-]+/g, '-');
-        var url = base+code+".png";
+        var id = createId(code);
+        var filename = code+".png";
+        var url = base+filename;
         var name = path.replace(/^.*\//, '');
         assets.push({
             id: id,
             code: code,
+            filename: filename,
             url: url,
             name: name,
             path: path
@@ -35,7 +45,7 @@ function groupAssets(assets) {
             var groupPath = asset.path.replace(/\/[^/]*$/, '');
             var groupName = groupPath.replace(/^.*\//, '').replace(/^[0-9]+ /, '');
             var folderName = groupPath.replace(/\/[^/]*$/, '').replace(/^[0-9]+ /, '');
-            var groupId = groupCode.replace(/[^0-9a-zA-Z-]+/g, '-');
+            var groupId = createId(groupCode);
 
             groups[groupCode] = {
                 id: groupId,

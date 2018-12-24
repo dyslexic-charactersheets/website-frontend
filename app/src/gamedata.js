@@ -23,6 +23,18 @@ games.forEach(game => {
                 json.isPathfinder = game == "pathfinder";
                 json.isStarfinder = game == "starfinder";
 
+                switch (game) {
+                    case "pathfinder":
+                        json.defaultLogo = "pathfinder-Pathfinder";
+                        break;
+                    case "starfinder":
+                        json.defaultLogo = "starfinder-Starfinder";
+                        break;
+                    case "dnd35":
+                        json.defaultLogo = "dnd35-dnd35";
+                        break;
+                }
+
                 var books = {}
                 json.books.forEach((book) => { books[book.name] = book; });
                 // console.log("Books: "+JSON.stringify(books, null, 4));

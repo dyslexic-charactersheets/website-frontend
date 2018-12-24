@@ -1,47 +1,47 @@
 #!/usr/bin/env nodejs
 
-const express = require('express');
-var bodyParser = require('body-parser')
-const hbs = require('hbs');
-const cookieParser = require('cookie-parser');
-
+// my own data
 const conf = require('./src/conf');
 const message = require('./src/message')(conf);
 
+const i18n = require('./src/i18n')(conf);
+const quotes = require('./src/quotes');
+
 // set up the http engine
+const express = require('express');
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
+
 const app = express();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// and the app view engine with handlebars
+const hbs = require('hbs');
+const express_hbs  = require('express-handlebars');
+
 app.set('view engine', 'hbs');
-app.use(express.static('../public'));
-app.use(express.static('../../assets'));
-app.use('/iconics', express.static('../../assets/iconics/small'));
+
+var xhbs = express_hbs({
+    extname: '.hbs',
+    defaultView: 'default',
+    defaultLayout: 'main',
+    layoutsDir: __dirname + '/views/layouts/',
+    partialsDir: __dirname + '/views/partials/',
+    helpers: require('./src/view-helpers')(conf, i18n, quotes)
+  });
+// layouts = require('handlebars-layouts');
+// hbs.registerHelper(hbs_layouts(xhbs));
+app.engine('.hbs', xhbs);
+
+app.use(express.static(__dirname+'/../public'));
+app.use(express.static(__dirname+'/../../assets'));
+app.use('/iconics', express.static(__dirname+'/../../assets/iconics/small'));
 
 // engines
 const gameData = require('./src/gamedata.js');
 const iconicData = require('./src/iconicdata');
 const pathfinder2 = require('./src/pathfinder2-server.js');
-
-// i18n
-const i18n = require('./src/i18n')(conf);
-hbs.registerHelper('__', function(str) {
-    return i18n.translate(str, this.lang);
-});
-
-hbs.registerHelper('eq', (params) => params[0] == params[1]);
-
-// notes
-const quotes = require('./src/quotes');
-hbs.registerHelper('note',  function() {
-    var quote = quotes();
-
-    return `<aside class='float right top'>
-        <aside class='note'>
-        <blockquote class='${quote.noteClass}'>${quote.quote}</blockquote>
-        <cite>&mdash; ${quote.author}</cite>
-        </aside>
-    </aside>`;
-});
 
 // login
 const auth = require('./src/auth')(conf);
