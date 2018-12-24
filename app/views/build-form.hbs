@@ -89,10 +89,10 @@
             <ul>
               {{#each classes as |class classIndex|}}
                 <li>
-                {{#if class.radio}}
+                {{#if book.radio}}
                   <input type='radio' name='switch-{{book.name}}' value='{{name}}' id='class-{{code}}' data-class='{{code}}' data-classname='{{name}}' />
                 {{else}}
-                  <input type='checkbox' name='class-{{book.name}}' id='class-{{code}}' data-class='{{code}}' data-classname='{{name}}' />
+                  <input type='checkbox' name='class-{{class.name}}' id='class-{{code}}' data-class='{{code}}' data-classname='{{name}}' />
                 {{/if}}
                 <label for='class-{{code}}'>{{name}}</label>
                 {{#if variants}}
@@ -397,7 +397,7 @@
 
           <div class='well' id='logo'>
             {{#each logos}}
-              <img src='{{url}}' data-id='{{id}}' id='logo-{{id}}' class='{{#ifEq id @root.gameData.defaultLogo}}selected{{/ifEq}}' />
+              <img src='{{url}}' data-id='{{id}}' id='logo-{{id}}' {{#ifEq id @root.gameData.defaultLogo}}class='selected'{{/ifEq}} />
             {{/each}}
             <p><a class='button' href='javascript:void(0);' id='select-logo-button'>{{__ "Select logo"}}</a></p>
           </div>
@@ -528,7 +528,7 @@
 
           <div class='well' id='gm-logo'>
             {{#each logos}}
-              <img src='{{url}}' id='gm-logo-{{id}}' class='{{#ifEq logo.code gameData.game}}selected{{/ifEq}}' />
+              <img src='{{url}}' id='gm-logo-{{id}}' {{#ifEq logo.code gameData.game}}class='selected'{{/ifEq}} />
             {{/each}}
             <p><a class='button' href='javascript:void(0);' id='select-gm-logo-button'>{{__ "Select logo"}}</a></p>
           </div>

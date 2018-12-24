@@ -25,10 +25,10 @@ games.forEach(game => {
 
                 switch (game) {
                     case "pathfinder":
-                        json.defaultLogo = "pathfinder-Pathfinder";
+                        json.defaultLogo = "pathfinder-pathfinder";
                         break;
                     case "starfinder":
-                        json.defaultLogo = "starfinder-Starfinder";
+                        json.defaultLogo = "starfinder-starfinder";
                         break;
                     case "dnd35":
                         json.defaultLogo = "dnd35-dnd35";
