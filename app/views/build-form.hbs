@@ -90,7 +90,7 @@
               {{#each classes as |class classIndex|}}
                 <li>
                 {{#if book.radio}}
-                  <input type='radio' name='switch-{{book.name}}' value='{{name}}' id='class-{{code}}' data-class='{{code}}' data-classname='{{name}}' />
+                  <input type='radio' name='switch-class' value='{{name}}' id='class-{{code}}' data-class='{{code}}' data-classname='{{name}}' />
                 {{else}}
                   <input type='checkbox' name='class-{{class.name}}' id='class-{{code}}' data-class='{{code}}' data-classname='{{name}}' />
                 {{/if}}
