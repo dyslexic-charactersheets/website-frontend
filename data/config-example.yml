@@ -5,7 +5,9 @@ url: https://www.dyslexic-charactersheets.com/
 build_url: https://www.dyslexic-charactersheets.com/
 listen_port: 3000
 
+# Messages
 maildest: your admin email address
+recaptcha_secret: your google captcha secret
 
 # Authentication
 require_login: false

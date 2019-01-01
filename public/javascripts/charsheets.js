@@ -253,21 +253,26 @@ $(function() {
     var author = form.find('#author').val();
     var email = form.find('#email').val();
 
-    $.post('/message', {
-      message: message,
-      author: author,
-      email: email
-    }, function (data, status, xhr) {
-      if (status == "success") {
-        console.log("Message sent");
-        $("#message-form").hide();
-        $("#message-ok").show();
-      } else {
-        console.log("Error");
-        $("#message-form").hide();
-        $("#message-error").show();
-      }
-    });
+    grecaptcha.execute('6Lc2B4YUAAAAAEDgooBVMupDoQGvF5kSHtel_M73', {action: 'message'})
+      .then(function(token) {
+        // Verify the token on the server.
+        $.post('/message', {
+          message: message,
+          author: author,
+          email: email,
+          token: token
+        }, function (data, status, xhr) {
+          if (status == "success") {
+            console.log("Message sent");
+            $("#message-form").hide();
+            $("#message-ok").show();
+          } else {
+            console.log("Error");
+            $("#message-form").hide();
+            $("#message-error").show();
+          }
+        });
+      });
     return false;
   });
 
