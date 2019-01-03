@@ -90,22 +90,22 @@
               {{#each classes as |class classIndex|}}
                 <li>
                 {{#if book.radio}}
-                  <input type='radio' name='switch-class' value='{{name}}' id='class-{{code}}' data-class='{{code}}' data-classname='{{name}}' />
+                  <input type='radio' name='switch-class' value='{{class.name}}' id='class-{{class.code}}' data-class='{{class.code}}' data-classname='{{class.name}}' />
                 {{else}}
-                  <input type='checkbox' name='class-{{class.name}}' id='class-{{code}}' data-class='{{code}}' data-classname='{{name}}' />
+                  <input type='checkbox' name='class-{{class.name}}' id='class-{{class.code}}' data-class='{{class.code}}' data-classname='{{class.name}}' />
                 {{/if}}
                 <label for='class-{{code}}'>{{name}}</label>
                 {{#if variants}}
                   {{#if axes}}
                     {{#each axes as |axis axisIndex|}}
-                      <select name='variant-{{class.code}}-axis-{{axisIndex}}' id='variant-{{class.code}}-axis-{{axisIndex}}' class='axis-select'>
+                      <select name='variant-{{class.name}}-axis-{{axisIndex}}' id='variant-{{class.name}}-axis-{{axisIndex}}' class='axis-select'>
                         {{#each axis}}
                           <option value='{{this}}'>{{this}}</option>
                         {{/each}}
                       </select>
                     {{/each}}
                   {{else}}
-                    <select name='variant-{{code}}' id='variant-{{code}}'>
+                    <select name='variant-{{class.name}}' id='variant-{{class.name}}'>
                       {{#each variants as |variant variantIndex|}}
                         <option value='{{name}}'>{{name}}</option>
                       {{/each}}
