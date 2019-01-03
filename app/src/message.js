@@ -59,6 +59,9 @@ function sendMessage(req, res) {
                 text: message, // plain text body
                 html: message // html body
             };
+            if (email) {
+                mailOptions.replyTo = email;
+            }
             mailer.sendMail(mailOptions, (error, info) => {
                 if (error) {
                     res.status(500).end();
