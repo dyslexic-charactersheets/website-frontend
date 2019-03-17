@@ -18,7 +18,7 @@
 
           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display: inline;">
             <input type="hidden" name="cmd" value="_donations">
-            <input type="hidden" name="business" value="marcus.downing+paypal@@gmail.com">
+            <input type="hidden" name="business" value="marcus.downing+paypal@gmail.com">
             <input type="hidden" name="lc" value="GB">
             <input type="hidden" name="item_name" value="Dyslexic Character Sheets">
             <input type="hidden" name="no_note" value="0">
@@ -38,6 +38,10 @@
           <!-- AddThis Button END -->
 
         </aside>
+
+        {{#bar}}{{/bar}}
+
+        {{#alertBox}}{{/alertBox}}
 
         <aside id='messageme'>
           <p><a rel='#message-lightbox' class='button lightbox messageme' href='/message'>{{__ "Leave a message"}}</a></p>
