@@ -55,7 +55,7 @@ function sendMessage(req, res) {
             var mailOptions = {
                 from: `"${author}" <noreply@dyslexic-charactersheets.com>`, // sender address
                 to: maildest, // list of receivers
-                subject: `Message from ${author}`, // Subject line
+                subject: `Dyslexic Character Sheets: Message from ${author}`, // Subject line
                 text: message, // plain text body
                 html: message // html body
             };

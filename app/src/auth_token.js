@@ -16,7 +16,7 @@ function updateTimedTokens() {
     var d = moment().format(dateFormat);
     if (date != d) {
         date = d;
-        timedTokens = [];
+        tt = [];
 
         for (var i = 2; i >= 0; i--) {
             d = moment().subtract(i, "months").format(dateFormat);
@@ -27,8 +27,9 @@ function updateTimedTokens() {
             var token = hash.digest('hex').substring(0, 32);
 
             console.log("[token] Timed token:", token);
-            timedTokens.push(token);
+            tt.push(token);
         }
+        timedTokens = tt;
     }
 }
 
