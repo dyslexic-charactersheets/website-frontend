@@ -14,7 +14,8 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser());
 
 // and the app view engine with handlebars
 const hbs = require('hbs');
@@ -113,9 +114,9 @@ app.get('/build/:game', (req, res) => loginGuard(req, res, 'en', () => renderBui
 app.get('/:lang/build/:game', (req, res) => loginGuard(req, res, req.params.lang, () => renderBuildForm(req, res, req.params.lang)));
 
 // let's build a character sheet
-app.post('/render/pathfinder2', (req, res) => loginGuard(req, res, 'en', () => pathfinder2.render(req, res, 'en')));
+app.post('/download/pathfinder2', (req, res) => loginGuard(req, res, 'en', () => pathfinder2.render(req, res, 'en')));
 
-app.post('/:lang/render/pathfinder2', (req, res) => loginGuard(req, res, req.params.lang, () => pathfinder2.render(req, res, req.params.lang)));
+app.post('/:lang/download/pathfinder2', (req, res) => loginGuard(req, res, req.params.lang, () => pathfinder2.render(req, res, req.params.lang)));
 
 // go!
 setTimeout(() => {
