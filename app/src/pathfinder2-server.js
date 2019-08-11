@@ -2,11 +2,11 @@ const fs = require('fs');
 const CharacterSheets = require('dyslexic-charactersheets');
 
 // Assets
-let assetsDir = __dirname+'/../../../assets/iconics/large';
+var assetsDir = __dirname+'/../../../assets/iconics/large';
 CharacterSheets.addAssetsDir(assetsDir);
 
 // Log
-let logStream = fs.createWriteStream(__dirname+'/../../../pathfinder2.log', {flags: 'a'});
+var logStream = fs.createWriteStream(__dirname+'/../../../pathfinder2.log', {flags: 'a'});
 CharacterSheets.onCreate(function (request) {
     var date = new Date();
     var ts = date.getTime();
