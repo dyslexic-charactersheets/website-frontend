@@ -85,7 +85,7 @@
         {{#each gameData.layout as |col colIndex|}}
           <div class='yui3-u-1-{{@root.gameData.layout.length}}'>
           {{#each col as |book bookIndex|}}
-            <h3>{{name}}</h3>
+            <h3>{{__ name}}</h3>
             <ul>
               {{#each classes as |class classIndex|}}
                 <li>
@@ -94,20 +94,20 @@
                 {{else}}
                   <input type='checkbox' name='class-{{class.name}}' id='class-{{class.code}}' data-class='{{class.code}}' data-classname='{{class.name}}' />
                 {{/if}}
-                <label for='class-{{code}}'>{{name}}</label>
+                <label for='class-{{code}}'>{{__ name}}</label>
                 {{#if variants}}
                   {{#if axes}}
                     {{#each axes as |axis axisIndex|}}
                       <select name='variant-{{class.name}}-axis-{{axisIndex}}' id='variant-{{class.name}}-axis-{{axisIndex}}' class='axis-select'>
                         {{#each axis}}
-                          <option value='{{this}}'>{{this}}</option>
+                          <option value='{{this}}'>{{__ this}}</option>
                         {{/each}}
                       </select>
                     {{/each}}
                   {{else}}
                     <select name='variant-{{class.name}}' id='variant-{{class.name}}'>
                       {{#each variants as |variant variantIndex|}}
-                        <option value='{{name}}'>{{name}}</option>
+                        <option value='{{name}}'>{{__ name}}</option>
                       {{/each}}
                     </select>
                   {{/if}}
@@ -381,7 +381,7 @@
           {{/if}}
 
           <p><label for="include-mini"><input type="checkbox" name="include-mini" id="include-mini" checked /> {{__ "Map figure sheet"}}</label></p>
-          <p class='info'>Includes stand-up map figure, square map token and stats card for initiative tracking.</p>
+          <p class='info'>{{__ "Includes stand-up map figure, square map token and stats card for initiative tracking."}}</p>
           <p class='indent'>{{__ "Size"}}: 
             <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>&nbsp; 
             <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" checked> {{__ "Medium"}}</label>&nbsp; 
@@ -579,7 +579,7 @@
                 <p>
                   <label for='language-{{code}}'><input type='radio' name='language' id='language-{{code}}' value='{{code}}' {{#ifEq code "english"}}checked{{/ifEq}} /> 
                   <img class="flag" src="/images/flags/{{short}}.png"/>&nbsp;
-                  {{name}}</label>
+                  {{__ name}}</label>
                 </p>
               </div>
             {{/each}}

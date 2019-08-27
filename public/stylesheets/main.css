@@ -848,6 +848,14 @@ div.lightbox section.note form input[type=password] {
   padding: 4px;
   width: 560px;
 }
+
+form#build-my-character input.name {
+  display: block;
+  width: 98%;
+  padding: 6px;
+  font-size: 16px;
+}
+
 form#build-my-character ul {
   padding: 0px;
   margin: 0px;
@@ -895,6 +903,22 @@ form#build-my-character p.indent,
 form#build-my-character p.info {
   padding-left: 24px;
 }
+form#build-my-character #high-contrast span {
+  padding: 6px;
+  background: white;
+  color: black !important;
+  border-radius: 2px;
+}
+form#build-my-character #high-contrast input[type=checkbox] {
+  border: 1px solid black;
+}
+/*form#build-my-character #large-print {
+  padding: 4px 6px;
+}*/
+form#build-my-character #large-print label {
+  font-size: 24px !important;
+}
+
 form#build-my-character #colours label {
   display: block;
   margin: 12px 0px;
@@ -990,6 +1014,222 @@ form#build-my-character #colours label[for=colour-pink] {
 form#build-my-character #colours label[for=colour-pink] span {
   background: #e164c3;
 }
+
+form#build-my-character #colour-wheel {
+  position: relative;
+}
+form#build-my-character #colour-wheel input[type=radio] {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  display: block;
+  margin: 0;
+}
+form#build-my-character #colour-wheel input[type=radio][value=grey] {
+  top: 132px;
+  left: 132px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=red] {
+  top: 16px;
+  left: 132px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=orange] {
+  top: 32px;
+  left: 191px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=yellow] {
+  top: 75px;
+  left: 232px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=lime] {
+  top: 132px;
+  left: 248px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=green] {
+  top: 191px;
+  left: 234px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=teal] {
+  top: 234px;
+  left: 191px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=cyan] {
+  top: 248px;
+  left: 132px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=azure] {
+  top: 234px;
+  left: 75px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=blue] {
+  top: 191px;
+  left: 32px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=indigo] {
+  top: 132px;
+  left: 16px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=violet] {
+  top: 75px;
+  left: 32px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=magenta] {
+  top: 32px;
+  left: 75px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=grey] {
+  top: 132px;
+  left: 132px;
+}
+
+form#build-my-character #colour-wheel input[type=radio][value=red2] {
+  top: 58px;
+  left: 132px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=orange2] {
+  top: 68px;
+  left: 170px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=yellow2] {
+  top: 95px;
+  left: 197px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=lime2] {
+  top: 132px;
+  left: 206px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=green2] {
+  top: 170px;
+  left: 197px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=teal2] {
+  top: 197px;
+  left: 170px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=cyan2] {
+  top: 206px;
+  left: 132px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=azure2] {
+  top: 196px;
+  left: 95px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=blue2] {
+  top: 171px;
+  left: 67px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=indigo2] {
+  top: 132px;
+  left: 58px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=violet2] {
+  top: 95px;
+  left: 67px;
+}
+form#build-my-character #colour-wheel input[type=radio][value=magenta2] {
+  top: 67px;
+  left: 95px;
+}
+form#build-my-character span.colour-input {
+  background: white;
+  border-radius: 2px;
+  padding: 2px 1px 2px 5px;
+}
+form#build-my-character span.colour-input input {
+  border: 0 none;
+  padding: 3px;
+}
+
+form#build-my-character label.colour-sample {
+  display: inline-block;
+  vertical-align: middle;
+}
+form#build-my-character label.colour-sample span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 2px;
+}
+#colour-lightest {
+  background: #b0b0b0;
+}
+
+#colour-lighter {
+  background: #989898;
+}
+#colour-normal {
+  background: #808080;
+}
+#colour-darker {
+  background: #686868;
+}
+#colour-darkest {
+  background: #505050;
+}
+
+#colour-red {
+  background: #BF4C4C;
+}
+#colour-orange {
+  background: #CC843D;
+}
+#colour-yellow {
+  background: #D9D941;
+}
+#colour-lime {
+  background: #6CA632;
+}
+#colour-green {
+  background: #42A642;
+}
+#colour-teal {
+  background: #3AA66E;
+}
+#colour-cyan {
+  background: #32A6A6;
+}
+#colour-azure {
+  background: #3F78B3;
+}
+#colour-blue {
+  background: #4848B3;
+}
+#colour-indigo {
+  background: #793FB3;
+}
+#colour-violet {
+  background: #B33FB3;
+}
+#colour-magenta {
+  background: #B33F7A;
+}
+
+form#build-my-character #print-backgrounds input[type=radio] {
+  display: none;
+}
+form#build-my-character #print-backgrounds label {
+  border: 3px solid transparent;
+  border-radius: 5px;
+  padding: 4px;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  overflow: hidden;
+  display: inline-block;
+}
+form#build-my-character #print-backgrounds input[type=radio]:checked + label {
+  border-color: white;
+  background: rgba(255,255,255,0.2);
+}
+
+form#build-my-character .reveal {
+  display: none;
+}
+form#build-my-character .reveal.reveal-show {
+  display: block;
+}
+
 form#build-my-character .well {
   display: block;
   padding: 15px;

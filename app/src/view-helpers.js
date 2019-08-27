@@ -4,7 +4,22 @@ module.exports = function (conf, i18n, quotes) {
     var msg = message(conf);
     return {
         __: function(str) {
+            if (!(typeof str === 'string' || str instanceof String)) {
+                console.log("NOT A STRING");
+                return '';
+            }
+            if (str.match(/_\{(.*?)\}/)) {
+                var lang = this.lang;
+                return str.replace(/_\{(.*)\}/gs, function (m, p) {
+                    return i18n.translate(p, lang);
+                });
+            }
             return i18n.translate(str, this.lang);
+        },
+
+        e: function(str) {
+            str = str.replace(/\//g, '-');
+            return str;
         },
 
         ifEnglish: function(code, options) {

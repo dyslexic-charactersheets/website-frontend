@@ -97,9 +97,7 @@ function renderBuildForm(req, res, lang) {
     var gamedata = gameData(game);
 
     var buildForm = "build-form";
-    if (game == "pathfinder2") buildForm = "build-pathfinder2";
-
-    res.render(buildForm, {
+    var data = {
         title: "Build my character: "+gamedata.name,
         lang: lang,
         gameData: gamedata,
@@ -107,7 +105,17 @@ function renderBuildForm(req, res, lang) {
         iconicGroups: iconicData.iconicGroups(),
         logos: iconicData.logos(),
         logoGroups: iconicData.logoGroups(),
-    });
+        scriptFile: "charsheets.js",
+    };
+
+    // Pathfinder 2e-specific data
+    if (game == "pathfinder2") {
+        buildForm = "build-pathfinder2";
+        data = pathfinder2.formData(data);
+        data.scriptFile = "charsheets2.js";
+    }
+
+    res.render(buildForm, data);
 }
 
 app.get('/build/:game', (req, res) => loginGuard(req, res, 'en', () => renderBuildForm(req, res, 'en')));
