@@ -26,7 +26,7 @@ function updateTimedTokens() {
             hash.update(d);
             var token = hash.digest('hex').substring(0, 32);
 
-            console.log("[token] Timed token:", token);
+            console.log("[token]         Timed token:", token);
             tt.push(token);
         }
         timedTokens = tt;
@@ -39,9 +39,11 @@ module.exports = {
 
         loginTokens = conf('login_tokens');
         timedTokenBase = conf('timed_token_base');
-        console.log("[token] Tokens:", loginTokens);
+        console.log("[token]         Tokens:", loginTokens);
 
         updateTimedTokens();
+        var url = conf('url')+'auth/token-login?token='+timedTokens[0];
+        console.log("[token]         Login URL:", url);
     },
 
     getTimedLoginToken: () => {
@@ -49,14 +51,14 @@ module.exports = {
     },
 
     login: (req, res) => {
-        console.log("[token] login");
+        console.log("[token]         Login");
         try {
             var token = req.query.token;
-            console.log("[token] token =", token);
+            console.log("[token]         Token =", token);
 
             // static tokens
             if (loginTokens.indexOf(token) != -1) {
-                console.log("[token] login now");
+                console.log("[token]         Login now");
                 auth.setLogin(res);
                 return;
             }
@@ -64,7 +66,7 @@ module.exports = {
             // timed tokens
             updateTimedTokens();
             if (timedTokens.indexOf(token) != -1) {
-                console.log("[token] login now");
+                console.log("[token]         Login now");
                 auth.setLogin(res);
                 return;
             }
@@ -72,7 +74,7 @@ module.exports = {
             // Nope.
             res.redirect('/login');
         } catch (e) {
-            console.log("[token] Error:", e);
+            console.log("[token]         Error:", e);
             res.redirect('/login');
         }
     }

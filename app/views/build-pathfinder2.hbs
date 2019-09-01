@@ -214,8 +214,10 @@
             <p id='large-print'><input type='checkbox' id='option-large-print' name='option-large-print'> <label for='option-large-print'>{{__ "Large print"}}</label></p>    
           </div>
         </div>
+        <p>{{__ "High contrast mode overrides all other colour choices."}}</p>
       </fieldset>
 
+      <div id='colour-row'>
       <h2>{{__ "Colour"}}</h2>
       <fieldset>
         <div class='yui3-g'>
@@ -312,16 +314,37 @@
           </div>
         </div>
       </fieldset>
+      </div>
 
       <div class='yui3-g'>
-        <div class='yui3-u-1-3'>
+        <div class='yui3-u-2-5'>
           <h2>{{__ "Portrait"}}</h2>
-          <fieldset>
-            <p>...</p>
-          </fieldset>
+            
+          <div class='well well-drop-zone' id='iconic'>
+            <input type='hidden' name='iconic-portrait' id='iconic-portrait' value='default'/>
+            <img src='/iconics/generic.png' id='iconic-generic' class='selected' />
+            <img id='iconic-custom' class='custom' />
+            {{#each iconics}}
+              <img data-src='{{this.url}}' id='iconic-{{this.id}}'/>
+            {{/each}}
+            <p><a class='button' href='javascript:void(0);' id='select-iconic-button'>{{__ "Select portrait"}}</a></p>
+          </div>
+          
+          <h3>{{__ "Animal Portrait"}}</h3>
+            
+          <div class='well well-drop-zone' id='animal'>
+            <input type='hidden' name='animal-portrait' id='animal-portrait' value='default'/>
+            {{!-- <img src='' id='iconic-generic' class='selected' /> --}}
+            <img id='iconic-custom' class='custom' />
+            {{#each iconics}}
+              <img data-src='{{this.url}}' id='iconic-{{this.id}}'/>
+            {{/each}}
+            <p><a class='button' href='javascript:void(0);' id='select-animal-button'>{{__ "Select portrait"}}</a></p>
+          </div>
         </div>
 
-        <div class='yui3-u-2-3'>
+        <div class='yui3-u-3-5'>
+          <div id='background-area'>
           <h2>{{__ "Background"}}</h2>
           <div id='print-backgrounds'>
             <input type='radio' name='print-background' value='none' id='print-background-none' checked>
@@ -335,7 +358,19 @@
           </div>
 
           <h2>{{__ "Watermark"}}</h2>
-          <p><input name='watermark'></p>
+          <p><label for='has-watermark'><input type="checkbox" name="has-watermark" id="has-watermark" /> {{__ "Watermark every page"}}</label></p>
+          <p><input type='text' name='watermark' id='watermark' class='well' placeholder='YOUR MESSAGE' /></p>
+          </div>
+
+          <h2>{{__ "Logo"}}</h2>
+          <div class='well well-drop-zone' id='logo'>
+            <input type='hidden' name='logo' id='logo-select' />
+            <img id='iconic-custom' class='custom' />
+            {{#each logos}}
+              <img src='{{url}}' data-id='{{id}}' id='logo-{{id}}' {{#ifEq id @root.gameData.defaultLogo}}class='selected'{{/ifEq}} />
+            {{/each}}
+            <p><a class='button' href='javascript:void(0);' id='select-logo-button'>{{__ "Select logo"}}</a></p>
+          </div>
         </div>
       </div>
 
@@ -347,7 +382,15 @@
     </section>
 
     <section class='tab' id='download-tab'>
-      <h2>{{__ "Language"}}</h2>
+      
+      <h2>{{__ "Legal"}}</h2>
+      <fieldset id='legal'>
+        <p><label for='permission'><input type='checkbox' name='permission' id='permission'> {{__ "Permission to print"}}</label></p>
+        <p class='indent'>{{{__ "For detailed licensing information, see <a href='/legal'>Legal Info</a>"}}}.</p>
+      </fieldset>
+
+      {{!-- Languages --}}
+      {{!-- <h2>{{__ "Language"}}</h2> --}}
 
       <h2>{{__ "Download"}}</h2>
         <p class='center'>
@@ -360,6 +403,63 @@
       </nav>
     </section>
 
+
+    <section class='dialog select-dialog' id='iconic-select-dialog'><div class='inner'>
+      <h2>{{__ "Select a character picture"}}</h2>
+      <div id='iconic-set-list' class='set-list'>
+        <a id='iconic-select-generic' data-set-id='iconic-image-list-generic' class='selected'>
+          <span class='group'>{{__ "Dyslexic Studeos"}}</span>
+          <span class='name'>{{__ "General purpose"}}</span>
+        </a>
+        {{#each iconicGroups}}
+          <a id='iconic-select-{{id}}' data-set-id='iconic-image-list-{{id}}'>
+            <span class='group'>{{folder}}</span>
+            <span class='name'>{{name}}</span>
+          </a>
+        {{/each}}
+      </div>
+      <div id='iconic-image-list' class='image-list well'>
+        <div id='iconic-image-list-generic' class='image-select-set selected'>
+          <a data-id='generic'><img src='/iconics/generic.png'/>{{__ "Generic"}}</a>
+          <a data-id='none'><img src='/iconics/none.png'/>{{__ "None"}}</a>
+        </div>
+        {{#each iconicGroups}}
+          <div id='iconic-image-list-{{id}}' class='image-select-set'>
+            {{#each assets}}
+              <a data-id='{{id}}' data-value='{{value}}'><img src='/images/progress.gif' data-src='{{url}}'>{{name}}</a>
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+    </div></section>
+
+    <section class='dialog select-dialog' id='logo-select-dialog'><div class='inner'>
+      <h2>{{__ "Select a logo"}}</h2>
+      <div id='logo-set-list' class='set-list'>
+        <a id='logo-select-generic' data-set-id='logo-list-generic' class='selected'>
+          <span class='group'>{{__ "Dyslexic Studeos"}}</span>
+          <span class='name'>{{__ "General purpose"}}</span>
+        </a>
+        {{#each logoGroups}}
+          <a id='logo-select-{{id}}' data-set-id='logo-list-{{id}}'>
+            <span class='group'>{{folderName}}</span>
+            <span class='name'>{{name}}</span>
+          </a>
+        {{/each}}
+      </div>
+      <div id='logo-list' class='image-list well'>
+        <div id='logo-list-generic' class='image-select-set selected'>
+          <a data-id='none' data-code='none'><img src='/iconics/none.png'/>{{__ "None"}}</a>
+        </div>
+        {{#each logoGroups}}
+          <div id='logo-list-{{id}}' class='image-select-set'>
+            {{#each assets}}
+            <a data-id='{{id}}' data-value='{{value}}'><img src='/images/progress.gif' data-src='{{url}}'/></a>
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+    </div></section>
 </form>
 
 <form id='pf2-form' style='display: none;' method='post' action='/download/pathfinder2' enctype='application/x-www-form-urlencoded'>

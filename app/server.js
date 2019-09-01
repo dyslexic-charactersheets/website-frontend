@@ -129,5 +129,5 @@ app.post('/:lang/download/pathfinder2', (req, res) => loginGuard(req, res, req.p
 // go!
 setTimeout(() => {
     var listen_port = conf('listen_port');
-    app.listen(listen_port, () => console.log(`[server] Listening on port ${listen_port}`));
+    app.listen(listen_port, () => console.log(`[server]        Listening on port ${listen_port}\n\n`));
 }, 500);

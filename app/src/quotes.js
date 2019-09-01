@@ -26,7 +26,7 @@ fs.readFile('../../assets/quotes.txt', 'utf-8', (err, data) => {
         })
         .value();
 
-    console.log("[quotes] Loaded "+quotes.length+" quotes");
+    console.log("[quotes]        Loaded "+quotes.length+" quotes");
 });
 
 module.exports = function () {

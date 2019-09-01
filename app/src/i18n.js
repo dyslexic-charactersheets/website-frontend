@@ -90,10 +90,10 @@ var i18n = {
     translate: function (str, lang) {
         if (i18n.conf('i18n_live')) {
             i18n.translate = i18n.translateLive;
-            console.log("[i18n] live configured");
+            console.log("[i18n]          Live configured");
         } else {
             i18n.translate = i18n.translateFixed;
-            console.log("[i18n] configured");
+            console.log("[i18n]          Configured");
         }
         return i18n.translate(str, lang);
     }

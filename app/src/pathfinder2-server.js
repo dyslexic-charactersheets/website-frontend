@@ -3,13 +3,15 @@ const CharacterSheets = require('dyslexic-charactersheets');
 
 let systemFormData = null;
 CharacterSheets.getFormData('pathfinder2', data => {
-    console.log("[pathfinder2] System form data loaded");
+    console.log("[pathfinder2]   System form data loaded");
     systemFormData = data;
 });
 
 // Assets
 var assetsDir = __dirname+'/../../../assets/iconics/large';
 CharacterSheets.addAssetsDir(assetsDir);
+var logosDir = __dirname+'/../../../assets/logos';
+CharacterSheets.addAssetsDir(logosDir);
 
 // Log
 var logStream = fs.createWriteStream(__dirname+'/../../../pathfinder2.log', {flags: 'a'});
@@ -199,7 +201,7 @@ module.exports = {
         return data;
     },
     render: function (req, res, lang) {
-        console.log("Pathfinder 2e Character");
+        console.log("                Pathfinder 2e Character");
         var data = JSON.parse(req.body.request);
 
         var characterSheet = CharacterSheets.create(data);

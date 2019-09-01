@@ -72,7 +72,7 @@ games.forEach(game => {
 
                 // console.log("[data] Layout: "+JSON.stringify(json.layout, null, 4));
 
-                console.log("[data] Loaded "+json.name);
+                console.log("[data]          Loaded "+json.name);
                 gameData[game] = json;
             });
         }

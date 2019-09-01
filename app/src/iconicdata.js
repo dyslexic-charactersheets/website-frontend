@@ -23,12 +23,19 @@ function loadAssets(data, base) {
         var filename = code+".png";
         var url = base+filename;
         var name = path.replace(/^.*\//, '');
+        var value;
+        if (code.match(/^\/?iconics/)) {
+            value = code.replace(/^\/?iconics\//, '').toLowerCase().replace(/[^a-z0-9/]+/g, '-')+".png";
+        } else {
+            value = code.replace(/^\/?logos\//, '')+".png";
+        }
         assets.push({
             id: id,
             code: code,
             filename: filename,
             url: url,
             name: name,
+            value: value,
             path: path
         });
     });
@@ -76,39 +83,7 @@ fs.readFile('../../assets/iconics/iconics.txt', 'utf-8', (err, data) => {
     iconics = loadAssets(data, '/iconics/');
     iconicGroups = groupAssets(iconics);
 
-    // var lines = data.split(/\n/);
-    // _.each(lines, (line) => {
-    //     var parts = line.split(/=/);
-    //     if (parts.length < 2) return;
-    //     var code = parts[0].trim();
-    //     var path = parts[1].trim();
-    //     if (code == "" || path == "") return;
-        
-    //     var id = code.replace(/[^0-9a-zA-Z-]+/g, '-');
-    //     var url = "/iconics/"+code;
-    //     iconicGroups[group].push({
-    //         id: id,
-    //         url: url,
-    //         path: path
-    //     });
-        
-    //     var groupcode = code.replace(/\/[^/]?$/, '');
-    //     var groupname = path.replace(/\/[^/]?$/, '');
-    //     if (!_.has(iconicGroups, group))
-    //         iconicGroups[group] = {
-    //             group
-    //         };
-
-    //     var id = code.replace(/[^0-9a-zA-Z-]+/g, '-');
-    //     var url = "/iconics/"+code;
-    //     iconicGroups[group].push({
-    //         id: id,
-    //         url: url,
-    //         path: path
-    //     });
-    //     // console.log("Iconic:", path);
-    // });
-    console.log("[data] Found", iconics.length, "iconics in", _.size(iconicGroups), "groups");
+    console.log("[data]          Loaded", iconics.length, "iconics in", _.size(iconicGroups), "groups");
 });
 
 // Logos
@@ -124,26 +99,7 @@ fs.readFile('../../assets/logos/logos.txt', 'utf-8', (err, data) => {
     logos = loadAssets(data, '/logos/');
     logoGroups = groupAssets(logos);
 
-    // var lines = data.split(/\n/);
-    // _.each(lines, (line) => {
-    //     var parts = line.split(/=/);
-    //     if (parts.length < 2) return;
-    //     var code = parts[0].trim();
-    //     var path = parts[1].trim();
-    //     if (code == "" || path == "") return;
-
-    //     var group = code.replace(/\/[^/]?$/, '');
-
-    //     var id = code.replace(/[^0-9a-zA-Z-]+/g, '-');
-    //     var url = "/iconics/"+code;
-    //     logos.push({
-    //         id: id,
-    //         url: url,
-    //         path: path
-    //     });
-    //     // console.log("Iconic:", path);
-    // });
-    console.log("[data] Found", logos.length, "logos in", _.size(logoGroups), "groups");
+    console.log("[data]          Loaded", logos.length, "logos in", _.size(logoGroups), "groups");
 });
 
 
