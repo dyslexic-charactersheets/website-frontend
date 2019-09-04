@@ -96,6 +96,16 @@ var i18n = {
             console.log("[i18n]          Configured");
         }
         return i18n.translate(str, lang);
+    },
+
+    apply: function (str, lang) {
+        if (!(typeof str === 'string' || str instanceof String)) {
+            console.log("NOT A STRING");
+            return '';
+        }
+        return str.replace(/_\{(.*?)\}/gs, function (m, p) {
+            return i18n.translate(p, lang);
+        });
     }
 };
 

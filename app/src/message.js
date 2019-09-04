@@ -14,7 +14,7 @@ var mailer = nodemailer.createTransport('direct:?name=hostname');
 var conf;
 
 var maildir = path.resolve('../mail');
-console.log("[message] Mail dir:", maildir);
+console.log("[message]       Mail dir:", maildir);
 fs.mkdir(maildir, { recursive: true }, (err) => {
     
 });

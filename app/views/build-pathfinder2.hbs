@@ -118,7 +118,7 @@
           <div class="yui3-g">
             <div class="yui3-u-1-3">
               <ul>
-                <li><label for='class-other'><input type='radio' id='class-other' name='class' value='' checked> {{__ "Other"}}</label></li>
+                <li><label for='class-generic'><input type='radio' id='class-generic' name='class' value='generic' checked> {{__ "Other"}}</label></li>
               </ul>
             </div>
           </div>
@@ -203,7 +203,7 @@
 
     <section class='tab' id='appearance-tab'>
 
-      <h2>Accessibility</h2>
+      <h2>{{__ "Accessibility"}}</h2>
 
       <fieldset>
         <div class='yui3-g'>
@@ -212,6 +212,9 @@
           </div>
           <div class='yui3-u-1-3'>
             <p id='large-print'><input type='checkbox' id='option-large-print' name='option-large-print'> <label for='option-large-print'>{{__ "Large print"}}</label></p>    
+          </div>
+          <div class='yui3-u-1-3'>
+            <p id='dyslexic'><input type='checkbox' id='option-dyslexic' name='option-dyslexic'> <label for='otion-dyslexic'>{{__ "Dyslexic"}}</label></p>
           </div>
         </div>
         <p>{{__ "High contrast mode overrides all other colour choices."}}</p>
@@ -298,7 +301,7 @@
               <div class='yui3-u-1-4'>
                 <ul>
                   <li><input type='radio' id='accent-cyan' name='accent-colour' value='cyan'> <label class='colour-sample' for='accent-cyan'><span id='colour-cyan'></span> {{__ "Cyan"}}</label></li>
-                  <li><input type='radio' id='accent-azure' name='accent-colour' value='azre'> <label class='colour-sample' for='accent-azure'><span id='colour-azure'></span> {{__ "Azure"}}</label></li>
+                  <li><input type='radio' id='accent-azure' name='accent-colour' value='azure'> <label class='colour-sample' for='accent-azure'><span id='colour-azure'></span> {{__ "Azure"}}</label></li>
                   <li><input type='radio' id='accent-blue' name='accent-colour' value='blue'> <label class='colour-sample' for='accent-blue'><span id='colour-blue'></span> {{__ "Blue"}}</label></li>
                 </ul>
               </div>

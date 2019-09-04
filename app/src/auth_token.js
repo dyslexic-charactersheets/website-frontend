@@ -26,7 +26,7 @@ function updateTimedTokens() {
             hash.update(d);
             var token = hash.digest('hex').substring(0, 32);
 
-            console.log("[token]         Timed token:", token);
+            // console.log("[token]         Timed token:", token);
             tt.push(token);
         }
         timedTokens = tt;
@@ -38,12 +38,16 @@ module.exports = {
         auth = a;
 
         loginTokens = conf('login_tokens');
-        timedTokenBase = conf('timed_token_base');
-        console.log("[token]         Tokens:", loginTokens);
+        loginTokens.forEach(token => {
+            var url = conf('url')+'auth/token-login?token='+token;
+            console.log("[token]         Token login URL:        ", url);
+        });
+        // console.log("[token]         Tokens:", loginTokens);
 
+        timedTokenBase = conf('timed_token_base');
         updateTimedTokens();
         var url = conf('url')+'auth/token-login?token='+timedTokens[0];
-        console.log("[token]         Login URL:", url);
+        console.log("[token]         Timed token login URL:  ", url);
     },
 
     getTimedLoginToken: () => {

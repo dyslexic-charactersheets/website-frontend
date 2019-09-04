@@ -34,10 +34,10 @@ module.exports = {
         // console.log("[patreon] auth configured");
     
         patreonRedirectURL = conf('url')+'auth/patreon-redirect';
-        console.log("[patreon]       Redirect URL:", patreonRedirectURL);
+        // console.log("[patreon]       Redirect URL:", patreonRedirectURL);
         
         patreonLoginURL = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(patreonRedirectURL)}&state=login`;
-        console.log("[patreon]       Login URL:", patreonLoginURL);
+        console.log("[patreon]       Patreon login URL:      ", patreonLoginURL);
     },
 
     redirect: (req, res) => {

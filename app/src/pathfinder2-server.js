@@ -27,10 +27,47 @@ CharacterSheets.onCreate(function (request) {
 });
 
 module.exports = {
-    formData: function (data) {
+    formData: function (data, i18n, lang) {
         if (systemFormData === null) {
             console.log(" * No form data loaded :(");
             return data;
+        }
+
+        function translate(item) {
+            ["name", "group"].forEach(key => {
+                if (item.hasOwnProperty(key)) {
+                    item.name = i18n.apply(item.name, lang);
+                }
+            })
+
+            if (item.hasOwnProperty("values")) {
+                item.values = item.values.map(val => translate(val, i18n, lang));
+            }
+
+            if (item.hasOwnProperty("groups")) {
+                var groups = {};
+                Object.keys(item.groups).forEach(key => {
+                    var key_translated = i18n.apply(key);
+                    groups[key_translated] = item.groups[key];
+                });
+                item.groups = groups;
+            }
+
+            return item;
+        }
+
+        function sortItems(items) {
+            if (items === null || items === undefined) {
+                return items;
+            }
+            if (!Array.isArray(items)) {
+                console.log("[pathfinder2] What are you asking me to sort?", items);
+                return items;
+            }
+
+            return items.sort((a, b) => {
+                return a.name.localeCompare(b.name, lang);
+            });
         }
 
         function threeBlankColumns() {
@@ -111,6 +148,14 @@ module.exports = {
         data.options = systemFormData.options;
 
         if (systemFormData.hasOwnProperty("selects")) {
+            // translate and sort all the items first
+            systemFormData.selects = systemFormData.selects.map(sel => {
+                sel = translate(sel);
+                if (sel.hasOwnProperty("values"))
+                    sel.values = sortItems(sel.values);
+                return sel;
+            })
+
             let selectsByCode = {};
             systemFormData.selects.forEach(sel => {
                 selectsByCode[sel.select] = sel;
@@ -170,6 +215,11 @@ module.exports = {
                         break;
 
                     case "class":
+                        sel.values = sel.values.filter(value => {
+                            if (value.code == "generic") return false;
+                            return true;
+                        });
+
                         data.classes = sel.values;
                         var groups = selectGroups(sel);
                         data.classData = allocateToColumns(groups);

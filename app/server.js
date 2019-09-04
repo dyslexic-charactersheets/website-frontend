@@ -111,7 +111,7 @@ function renderBuildForm(req, res, lang) {
     // Pathfinder 2e-specific data
     if (game == "pathfinder2") {
         buildForm = "build-pathfinder2";
-        data = pathfinder2.formData(data);
+        data = pathfinder2.formData(data, i18n, lang);
         data.scriptFile = "charsheets2.js";
     }
 
