@@ -3,6 +3,7 @@ const _ = require('lodash');
 
 const games = [
     "pathfinder",
+    "pathfinder2",
     "starfinder",
     "dnd35"
 ];
@@ -27,6 +28,9 @@ games.forEach(game => {
                     case "pathfinder":
                         json.defaultLogo = "pathfinder-pathfinder";
                         break;
+                    case "pathfinder2":
+                        json.defaultLogo = "pathfinder-pathfinder-second-edition-pathfinder-2e";
+                        break;
                     case "starfinder":
                         json.defaultLogo = "starfinder-starfinder";
                         break;
@@ -34,6 +38,7 @@ games.forEach(game => {
                         json.defaultLogo = "dnd35-dnd35";
                         break;
                 }
+                // console.log(`[data] ${game} default logo:`, json.defaultLogo);
 
                 var books = {}
                 json.books.forEach((book) => { books[book.name] = book; });

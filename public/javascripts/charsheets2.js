@@ -89,9 +89,14 @@ $("#build-my-character").submit(function (e) {
         ancestry: "",
         class: "",
         archetypes: [],
+
         optionPermission: false,
         optionBuild: false,
+
+        printLarge: false,
         printHighContrast: false,
+        printDyslexic: false,
+        
         printColour: "#808080",
         accentColour: "#808080",
         printLogo: "logos/pathfinder2e.png",
@@ -121,25 +126,31 @@ $("#build-my-character").submit(function (e) {
   });
 
   // colours
+  var colour = $("input[type=radio][name=print-colour]:checked").attr('value');
+  if (colour == "custom")
+    colour = $("input#custom-colour").val();
+  else
+    colour = colourFromName(colour);
+  char.data.attributes.printColour = colour;
+
+  var accentColour = $("input[type=radio][name=accent-colour]:checked").attr('value');
+  char.data.attributes.accentColour = colourFromName(accentColour);
+
   if ($("input#option-high-contrast").is(":checked")) {
     char.data.attributes.printHighContrast = true;
   } else {
-    var colour = $("input[type=radio][name=print-colour]:checked").attr('value');
-    if (colour == "custom")
-      colour = $("input#custom-colour").val();
-    else
-      colour = colourFromName(colour);
-    char.data.attributes.printColour = colour;
-
-    var accentColour = $("input[type=radio][name=accent-colour]:checked").attr('value');
-    char.data.attributes.accentColour = colourFromName(accentColour);
-    
     // backgrounds
     char.data.attributes.printBackground = $("input[type=radio][name=print-background]:checked").attr('value');
     char.data.attributes.printWatermark = $("input#watermark").val();
   }
 
   // options
+  if ($("input#option-large-print").is(":checked")) {
+    char.data.attributes.printLarge = true;
+  }
+  if ($("input#option-dyslexic").is(":checked")) {
+    char.data.attributes.printDyslexic = true;
+  }
 
   $("input[type=checkbox][id^='option-']").each(function (n, cb) {
     var prop = $(cb).attr('id');
@@ -248,14 +259,14 @@ $(function() {
 
 
     // colour appearance
-    $("#option-high-contrast").change(function () {
-      if ($("#option-high-contrast").is(':checked')) {
-        $("#colour-row, #background-area").hide();
-      } else {
-        $("#colour-row, #background-area").show();
-      }
-    });
-
+    // $("#option-high-contrast").change(function () {
+    //   if ($("#option-high-contrast").is(':checked')) {
+    //     $("#colour-row, #background-area").hide();
+    //   } else {
+    //     $("#colour-row, #background-area").show();
+    //   }
+    // });
+    
     
     // iconics
     $("#select-iconic-button").click(function () {

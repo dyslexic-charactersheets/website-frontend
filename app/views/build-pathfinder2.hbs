@@ -185,14 +185,48 @@
     </section>
 
     <section class='tab' id='options-tab'>
-      <h2>Options</h2>
 
+      <h2>{{__ "Beginners"}}</h2>
+
+      <fieldset>
+        <p><input type='checkbox' name='build' id='option-build'> <label for='option-build'>{{__ "Build a character"}}</label></p>
+        <p class='info'>{{__ "A sheet to help beginners with the process of building their character."}}</p>
+      </fieldset>
+      
+      <h2>{{__ "Legal"}}</h2>
+      <fieldset id='legal'>
+        <p><label for='option-permission'><input type='checkbox' name='permission' id='option-permission'> {{__ "Permission to print"}}</label></p>
+        <p class='indent'>{{{__ "For detailed licensing information, see <a href='/legal'>Legal Info</a>"}}}.</p>
+      </fieldset>
+
+      <h2>{{__ "Pages"}}</h2>
+
+      <fieldset>
+        <p><label for="inventory-style">{{__ "Inventory style"}}</label>
+          <select name="inventory-style" id="inventory-style">
+            <option value="half" selected>{{__ "Half page"}}</option>
+            <option value="full">{{__ "Full page"}}</option>
+          </select>
+        </p>
+
+        <h3>{{__ "Additional pages"}}</h3>
+
+        <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
+        <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
+        <p class='indent'>Size:
+          <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
+          <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium"> {{__ "Medium"}}</label>
+          <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
+        </p>
+      </fieldset>
+
+      {{!-- <hr>
       {{#each baseOptions}}
         <p>
           <input type='checkbox' id='option-{{option}}' name='{{option}}'>
           <label for='option-{{option}}'>{{__ name}}</label>
         </p>
-      {{/each}}
+      {{/each}} --}}
       
       <nav class='wizardnav'>
         <a href='#class-tab'><img src='/images/wizprev.png'/></a>
@@ -214,7 +248,7 @@
             <p id='large-print'><input type='checkbox' id='option-large-print' name='option-large-print'> <label for='option-large-print'>{{__ "Large print"}}</label></p>    
           </div>
           <div class='yui3-u-1-3'>
-            <p id='dyslexic'><input type='checkbox' id='option-dyslexic' name='option-dyslexic'> <label for='otion-dyslexic'>{{__ "Dyslexic"}}</label></p>
+            <p id='dyslexic'><input type='checkbox' id='option-dyslexic' name='option-dyslexic'> <label for='option-dyslexic'>{{__ "Dyslexic style"}}</label></p>
           </div>
         </div>
         <p>{{__ "High contrast mode overrides all other colour choices."}}</p>
@@ -333,17 +367,16 @@
             <p><a class='button' href='javascript:void(0);' id='select-iconic-button'>{{__ "Select portrait"}}</a></p>
           </div>
           
-          <h3>{{__ "Animal Portrait"}}</h3>
+          {{!-- <h3>{{__ "Animal Portrait"}}</h3>
             
           <div class='well well-drop-zone' id='animal'>
             <input type='hidden' name='animal-portrait' id='animal-portrait' value='default'/>
-            {{!-- <img src='' id='iconic-generic' class='selected' /> --}}
             <img id='iconic-custom' class='custom' />
             {{#each iconics}}
               <img data-src='{{this.url}}' id='iconic-{{this.id}}'/>
             {{/each}}
             <p><a class='button' href='javascript:void(0);' id='select-animal-button'>{{__ "Select portrait"}}</a></p>
-          </div>
+          </div> --}}
         </div>
 
         <div class='yui3-u-3-5'>
@@ -367,7 +400,7 @@
 
           <h2>{{__ "Logo"}}</h2>
           <div class='well well-drop-zone' id='logo'>
-            <input type='hidden' name='logo' id='logo-select' />
+            <input type='hidden' name='logo' id='logo-select' value='pathfinder/Pathfinder Second Edition/Pathfinder 2e.png' />
             <img id='iconic-custom' class='custom' />
             {{#each logos}}
               <img src='{{url}}' data-id='{{id}}' id='logo-{{id}}' {{#ifEq id @root.gameData.defaultLogo}}class='selected'{{/ifEq}} />
@@ -385,12 +418,6 @@
     </section>
 
     <section class='tab' id='download-tab'>
-      
-      <h2>{{__ "Legal"}}</h2>
-      <fieldset id='legal'>
-        <p><label for='permission'><input type='checkbox' name='permission' id='permission'> {{__ "Permission to print"}}</label></p>
-        <p class='indent'>{{{__ "For detailed licensing information, see <a href='/legal'>Legal Info</a>"}}}.</p>
-      </fieldset>
 
       {{!-- Languages --}}
       {{!-- <h2>{{__ "Language"}}</h2> --}}
