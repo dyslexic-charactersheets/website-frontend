@@ -12,9 +12,10 @@ var gameData = {};
 
 games.forEach(game => {
     var filename = '../../assets/data/'+game+'.json';
-    fs.stat(filename, (err, stats) => {
-        if (!stats.isFile()) {
-            console.log("[data] File not found "+filename);
+    console.log("[data] Loading file:", filename);
+    fs.access(filename, fs.constants.R_OK, err => {
+        if (err) {
+            console.log("[data] File not found, or not readable:", filename, err);
         } else {
             fs.readFile(filename, 'utf-8', (err, data) => {
                 var json = JSON.parse(data);
