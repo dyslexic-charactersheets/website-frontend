@@ -1212,15 +1212,35 @@ form#build-my-character #print-backgrounds label {
   border: 3px solid transparent;
   border-radius: 5px;
   padding: 4px;
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
   min-width: 64px;
   overflow: hidden;
   display: inline-block;
+  position: relative;
+}
+form#build-my-character #print-backgrounds label img, u {
+  display: block;
+  width: 96px;
+  height: 96px;
+}
+form#build-my-character #print-backgrounds label span {
+  position: absolute;
+  bottom: 9px;
+  right: 9px;
+  color: black;
+  font-weight: bold;
+  text-shadow: 0 0 1px white;
 }
 form#build-my-character #print-backgrounds input[type=radio]:checked + label {
   border-color: white;
   background: rgba(255,255,255,0.2);
+}
+form#build-my-character label[for=print-background-none] u {
+  background: white;
+}
+form#build-my-character label[for=print-background-magnolia] u {
+  background: #F4E9D8;
 }
 
 form#build-my-character .reveal {

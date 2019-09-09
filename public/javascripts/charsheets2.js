@@ -138,11 +138,10 @@ $("#build-my-character").submit(function (e) {
 
   if ($("input#option-high-contrast").is(":checked")) {
     char.data.attributes.printHighContrast = true;
-  } else {
-    // backgrounds
-    char.data.attributes.printBackground = $("input[type=radio][name=print-background]:checked").attr('value');
-    char.data.attributes.printWatermark = $("input#watermark").val();
   }
+  // backgrounds
+  char.data.attributes.printBackground = $("input[type=radio][name=print-background]:checked").attr('value');
+  char.data.attributes.printWatermark = $("input#watermark").val();
 
   // options
   if ($("input#option-large-print").is(":checked")) {
