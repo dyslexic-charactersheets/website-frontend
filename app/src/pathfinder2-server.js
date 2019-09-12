@@ -32,6 +32,8 @@ module.exports = {
             console.log(" * No form data loaded :(");
             return data;
         }
+        
+        data.title = "Build my character: Pathfinder 2e";
 
         function translate(item) {
             ["name", "group"].forEach(key => {
@@ -267,6 +269,7 @@ module.exports = {
             res.set('Content-Length', result.data.length);
             res.set('Content-Disposition', 'attachment; filename="'+result.filename+'"');
             res.send(result.data);
+            console.log("                Done");
         });
     }
 };

@@ -151,6 +151,9 @@ $("#build-my-character").submit(function (e) {
     char.data.attributes.printDyslexic = true;
   }
 
+  // char.data.attributes.inventoryStyle = $("input[type=radio][name='inventory-style']:checked").attr('value');
+  char.data.attributes.inventoryStyle = $("#inventory-style option:selected").attr('value');
+
   $("input[type=checkbox][id^='option-']").each(function (n, cb) {
     var prop = $(cb).attr('id');
     prop = kebab2camel(prop);

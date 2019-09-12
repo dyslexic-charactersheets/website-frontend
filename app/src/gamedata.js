@@ -12,7 +12,7 @@ var gameData = {};
 
 games.forEach(game => {
     var filename = '../../assets/data/'+game+'.json';
-    console.log("[data] Loading file:", filename);
+    // console.log("[data] Loading file:", filename);
     fs.access(filename, fs.constants.R_OK, err => {
         if (err) {
             console.log("[data] File not found, or not readable:", filename, err);
