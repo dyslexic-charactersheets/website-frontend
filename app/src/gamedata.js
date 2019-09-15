@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
 
 const games = [
@@ -11,11 +12,11 @@ const games = [
 var gameData = {};
 
 games.forEach(game => {
-    var filename = '../../assets/data/'+game+'.json';
-    // console.log("[data] Loading file:", filename);
+    var filename = path.normalize(__dirname+'/../../../assets/data/'+game+'.json');
+    console.log("[data]          Loading file:", filename);
     fs.access(filename, fs.constants.R_OK, err => {
         if (err) {
-            console.log("[data] File not found, or not readable:", filename, err);
+            console.log("[data]          File not found, or not readable:", filename, err);
         } else {
             fs.readFile(filename, 'utf-8', (err, data) => {
                 var json = JSON.parse(data);
