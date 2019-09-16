@@ -1,6 +1,9 @@
 const fs = require('fs');
 const CharacterSheets = require('dyslexic-charactersheets');
 
+const puppeteer = require('puppeteer');
+var browser;
+
 let systemFormData = null;
 CharacterSheets.getFormData('pathfinder2', data => {
     console.log("[pathfinder2]   System form data loaded");
@@ -27,6 +30,14 @@ CharacterSheets.onCreate(function (request) {
 });
 
 module.exports = {
+    init: function(conf) {
+        (async () => {
+            browser = await puppeteer.launch({
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
+            console.log("Puppeteer browser loaded");
+        })();
+    },
     formData: function (data, i18n, lang) {
         if (systemFormData === null) {
             console.log(" * No form data loaded :(");
@@ -265,11 +276,30 @@ module.exports = {
                 return;
             }
 
-            res.set('Content-Type', result.mimeType);
-            res.set('Content-Length', result.data.length);
-            res.set('Content-Disposition', 'attachment; filename="'+result.filename+'"');
-            res.send(result.data);
-            console.log("                Done");
+            let pdf = data.hasOwnProperty("data") && data.data.hasOwnProperty("attributes") && data.data.attributes.hasOwnProperty("downloadPDF") && data.data.attributes.downloadPDF;
+            if (pdf) {
+                var paperSize = data.data.attributes.downloadPaperSize;
+                (async () => {
+                    console.log("Writing PDF...");
+                    // console.log("Browser:", browser);
+                    let page = await browser.newPage();
+                    // console.log("Page", page);
+                    await page.setContent(result.data);
+
+                    var pdfdata = await page.pdf({format: paperSize});
+                    res.set('Content-Type', 'application/pdf');
+                    res.set('Content-Length', pdfdata.length);
+                    res.set('Content-Disposition', 'attachment; filename="'+result.filename+'.pdf"');
+                    res.send(pdfdata);
+                    console.log("                Done");
+                })();
+            } else {
+                res.set('Content-Type', result.mimeType);
+                res.set('Content-Length', result.data.length);
+                res.set('Content-Disposition', 'attachment; filename="'+result.filename+'"');
+                res.send(result.data);
+                console.log("                Done");
+            }
         });
     }
 };

@@ -192,6 +192,11 @@ $("#build-my-character").submit(function (e) {
     char.data.attributes.printLogo = logo;
   }
 
+  // html or pdf
+  var downloadFormat = $("input[name=download-format]:checked").attr('value');
+  char.data.attributes.downloadPDF = downloadFormat == "pdf";
+  char.data.attributes.downloadPaperSize = $("input[name=download-paper]:checked").attr('value');
+
   // marshal and send
   if (charIncluded.length > 0) {
     char.included = charIncluded;

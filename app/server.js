@@ -43,6 +43,7 @@ app.use('/iconics', express.static(__dirname+'/../../assets/iconics/small'));
 const gameData = require('./src/gamedata.js');
 const iconicData = require('./src/iconicdata');
 const pathfinder2 = require('./src/pathfinder2-server.js');
+pathfinder2.init(conf);
 
 // login
 const auth = require('./src/auth')(conf);
