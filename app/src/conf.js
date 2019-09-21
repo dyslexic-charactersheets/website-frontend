@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
 const yaml = require('js-yaml');
 
@@ -7,7 +8,8 @@ const yaml = require('js-yaml');
 
 var config = {};
 
-fs.readFile('../data/config.yml', (err, data) => {
+const configFile = path.normalize(`${__dirname}/../../data/config.yml`);
+fs.readFile(configFile, (err, data) => {
     if (err) throw err;
     config = yaml.safeLoad(data);
 });

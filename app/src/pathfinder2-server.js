@@ -10,6 +10,8 @@ CharacterSheets.getFormData('pathfinder2', data => {
     systemFormData = data;
 });
 
+let chromePDF = false;
+
 // Assets
 var assetsDir = __dirname+'/../../../assets/iconics/large';
 CharacterSheets.addAssetsDir(assetsDir);
@@ -31,6 +33,7 @@ CharacterSheets.onCreate(function (request) {
 
 module.exports = {
     init: function(conf) {
+        chromePDF = conf('chrome_pdf');
         (async () => {
             browser = await puppeteer.launch({
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -260,6 +263,8 @@ module.exports = {
             });
         }
 
+        data.chromePDF = chromePDF;
+
         // console.log(" * Done processing form data");
         return data;
     },
@@ -277,7 +282,7 @@ module.exports = {
             }
 
             let pdf = data.hasOwnProperty("data") && data.data.hasOwnProperty("attributes") && data.data.attributes.hasOwnProperty("downloadPDF") && data.data.attributes.downloadPDF;
-            if (pdf) {
+            if (chromePDF && pdf) {
                 var paperSize = data.data.attributes.downloadPaperSize;
                 (async () => {
                     console.log("Writing PDF...");

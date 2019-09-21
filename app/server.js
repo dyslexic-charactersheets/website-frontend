@@ -43,7 +43,6 @@ app.use('/iconics', express.static(__dirname+'/../../assets/iconics/small'));
 const gameData = require('./src/gamedata.js');
 const iconicData = require('./src/iconicdata');
 const pathfinder2 = require('./src/pathfinder2-server.js');
-pathfinder2.init(conf);
 
 // login
 const auth = require('./src/auth')(conf);
@@ -129,6 +128,7 @@ app.post('/:lang/download/pathfinder2', (req, res) => loginGuard(req, res, req.p
 
 // go!
 setTimeout(() => {
+    pathfinder2.init(conf);
     var listen_port = conf('listen_port');
     app.listen(listen_port, () => console.log(`[server]        Listening on port ${listen_port}\n\n`));
 }, 500);
