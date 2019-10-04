@@ -786,6 +786,14 @@ p.comment {
 p.suboption {
   padding-left: 22px;
 }
+p.edition {
+  text-align: right;
+  padding-right: 5em;
+  margin: -6px 0 0 0;
+}
+p.edition img {
+  height: 30px;
+}
 #blanket {
   display: none;
   position: fixed;
