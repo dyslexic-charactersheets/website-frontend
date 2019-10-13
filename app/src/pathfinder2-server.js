@@ -38,7 +38,7 @@ module.exports = {
             browser = await puppeteer.launch({
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
-            console.log("Puppeteer browser loaded");
+            console.log("[pathfinder2]   Puppeteer browser launched");
         })();
     },
     formData: function (data, i18n, lang) {
@@ -269,7 +269,7 @@ module.exports = {
         return data;
     },
     render: function (req, res, lang) {
-        console.log("                Pathfinder 2e Character");
+        console.log("[pathfinder2]   Pathfinder 2e Character");
         var data = JSON.parse(req.body.request);
 
         var characterSheet = CharacterSheets.create(data);

@@ -1270,6 +1270,11 @@ form#build-my-character .well {
   overflow: auto;
   text-align: center;
 }
+form#build-my-character .well h4 {
+  margin-top: 0;
+  color: #405038;
+  text-transform: uppercase;
+}
 form#build-my-character .well#iconic {
   margin-bottom: 10px;
   width: 330px;
