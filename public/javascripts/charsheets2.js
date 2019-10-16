@@ -15,6 +15,11 @@ function kebab2camel(str) {
   return words.join("");
 }
 
+function initial(str) {
+  var letters = str.split('');
+  return letters[0].toUpperCase() + str.substr(1);
+}
+
 function colourFromName(colour) {
   switch(colour) {
     case 'none':      return '';
@@ -87,8 +92,11 @@ $("#build-my-character").submit(function (e) {
         name: "",
         language: "en-US",
         ancestry: "",
+        heritage: "",
+        background: "",
         class: "",
         archetypes: [],
+        feats: [],
 
         optionPermission: false,
         optionBuild: false,
@@ -109,10 +117,10 @@ $("#build-my-character").submit(function (e) {
   var charIncluded = [];
 
   // selectable things
-  var ancestry = char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
-  var heritage = char.data.attributes.heritage = $("input[type=radio][name='heritage-"+ancestry+"']:checked").attr("value");
+  char.data.ancestry = char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
+  char.data.heritage = char.data.attributes.heritage = $("input[type=radio][name='heritage-"+char.data.ancestry+"']:checked").attr("value");
   
-  var background = char.data.attributes.background = $("input[type=radio][name=background]:checked").attr("value");
+  char.data.background = char.data.attributes.background = $("input[type=radio][name=background]:checked").attr("value");
   
   var cls = char.data.attributes.class = $("input[type=radio][name=class]:checked").attr("value");
   var subclasses = unique($("#reveal-subclass-"+cls+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());
@@ -120,6 +128,11 @@ $("#build-my-character").submit(function (e) {
     var attrib = kebab2camel("class-"+subclass);
     char.data.attributes[attrib] = $("input[type=radio][name='"+subclass+"']:checked").attr("value");
   });
+
+  // $("input[type=checkbox][name^=option-]").each(function (input) {
+  //   var opt = $(input).attr('name');
+  //   char.data.attributes[opt] = $(input).is(':checked');
+  // });
 
   $("input[type=radio][name=archetypes]:checked").each(function (input) {
     char.data.attributes.archetypes.push($(input).attr('value'));
@@ -159,6 +172,25 @@ $("#build-my-character").submit(function (e) {
     prop = kebab2camel(prop);
     var checked = $(cb).is(':checked');
     char.data.attributes[prop] = checked;
+  });
+
+  var classFeatsKey = "class"+initial(char.data.attributes.class)+"Feats";
+  char.data.attributes[classFeatsKey] = [];
+  var classFeatsPrefix = "feat-"+char.data.attributes.class+'-';
+  $("input[type=checkbox][id^='feat-']").each(function (n, cb) {
+    var prop = $(cb).attr('id');
+    var checked = $(cb).is(':checked');
+    if (checked) {
+      if (prop.startsWith(classFeatsPrefix)) {
+        prop = prop.replace(classFeatsPrefix, '');
+        // prop = kebab2camel(prop);
+        char.data.attributes[classFeatsKey].push(prop);
+      } else {
+        prop = prop.replace('feat-', '');
+        // prop = kebab2camel(prop);
+        char.data.attributes.feats.push(prop);
+      }
+    }
   });
 
   // images

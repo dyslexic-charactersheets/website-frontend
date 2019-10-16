@@ -202,6 +202,7 @@ module.exports = {
                     });
                     if (sel.values.length == 0)
                         return null;
+                    sel.multiselect = sel.max > 1;
                     return sel;
                 } else {
                     return null;

@@ -133,7 +133,11 @@
                   {{#each values}}
                   <div class="yui3-u-1-3">
                     <ul>
-                      <li><label for='subclass-{{e ../select}}-{{e code}}'><input type='radio' id='subclass-{{e ../select}}-{{e code}}' name='{{e ../select}}' value='{{e code}}'> {{__ name}}</label></li>
+                      {{#if ../multiselect}}
+                        <li><label for='{{e ../select}}-{{e code}}'><input type='checkbox' id='{{e ../select}}-{{e code}}' name='{{e ../select}}-{{e code}}'> {{__ name}}</label></li>
+                      {{else}}
+                        <li><label for='subclass-{{e ../select}}-{{e code}}'><input type='radio' id='subclass-{{e ../select}}-{{e code}}' name='{{e ../select}}' value='{{e code}}'> {{__ name}}</label></li>
+                      {{/if}}
                     </ul>
                   </div>
                   {{/each}}
