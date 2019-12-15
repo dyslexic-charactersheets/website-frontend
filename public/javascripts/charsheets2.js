@@ -23,6 +23,7 @@ function initial(str) {
 function colourFromName(colour) {
   switch(colour) {
     case 'none':      return '';
+    case 'black':     return '#404040';
 
     case 'red':       return '#BF4C4C';
     case 'orange':    return '#CC843D';
@@ -120,7 +121,8 @@ $("#build-my-character").submit(function (e) {
   char.data.ancestry = char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
   char.data.heritage = char.data.attributes.heritage = $("input[type=radio][name='heritage-"+char.data.ancestry+"']:checked").attr("value");
   
-  char.data.background = char.data.attributes.background = $("input[type=radio][name=background]:checked").attr("value");
+  // char.data.background = char.data.attributes.background = $("input[type=radio][name=background]:checked").attr("value");
+  char.data.background = char.data.attributes.background = $("select#background option:selected").attr("value");
   
   var cls = char.data.attributes.class = $("input[type=radio][name=class]:checked").attr("value");
   var subclasses = unique($("#reveal-subclass-"+cls+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());

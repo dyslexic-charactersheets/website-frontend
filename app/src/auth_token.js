@@ -26,7 +26,7 @@ function updateTimedTokens() {
             hash.update(d);
             var token = hash.digest('hex').substring(0, 32);
 
-            // console.log("[token]         Timed token:", token);
+            // console.log(`[token]         Timed token (${i}):`, token);
             tt.push(token);
         }
         timedTokens = tt;
@@ -46,7 +46,7 @@ module.exports = {
 
         timedTokenBase = conf('timed_token_base');
         updateTimedTokens();
-        var url = conf('url')+'auth/token-login?token='+timedTokens[0];
+        var url = conf('url')+'auth/token-login?token='+timedTokens[2];
         console.log("[token]         Timed token login URL:  ", url);
     },
 

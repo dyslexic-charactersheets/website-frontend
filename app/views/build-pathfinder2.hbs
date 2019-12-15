@@ -83,8 +83,13 @@
     
 
         {{!-- Backgrounds --}}
-        {{!-- <h2>{{__ "Background"}}</h2>
-        <p>Not implemented yet.</p> --}}
+        <h2>{{__ "Background"}}</h2>
+        <p class='indent'><select id='background'>
+          <option value='' selected>{{__ "None"}}</option>
+          {{#each backgrounds}}
+          <option value='{{code}}'>{{__ name}}</option>
+          {{/each}}
+        </select></p>
 
         
         {{!-- Classes --}}
@@ -142,10 +147,12 @@
                   </div>
                   {{/each}}
                 </div>
-                
+
+                {{#unless multiselect}}
                 <ul>
                   <li><label for='subclass-{{e select}}-none'><input type='radio' id='subclass-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
                 </ul>
+                {{/unless}}
               </fieldset>
             {{/each}}
           </div>
@@ -182,6 +189,10 @@
           </div>
         </fieldset>
 
+        {{!-- <p class='center'>
+          <input type="submit" value="Random"/>
+        </p> --}}
+
         <nav class='wizardnav'>
           &nbsp;
           <a href='#options-tab'><img src='/images/wiznext.png'/></a>
@@ -204,6 +215,10 @@
       </fieldset>
 
       <h2>{{__ "Pages"}}</h2>
+      
+      <fieldset id='pfs'>
+        <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p>
+      </fieldset>
 
       <fieldset>
         <p><label for="inventory-style">{{__ "Inventory style"}}</label>
@@ -216,12 +231,12 @@
 
         <h3>{{__ "Additional pages"}}</h3>
 
-        <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
+        <p><input type='checkbox' name='minis' id='option-minis' disabled> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
         <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
         <p class='indent'>Size:
-          <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
-          <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium"> {{__ "Medium"}}</label>
-          <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
+          <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small" disabled> {{__ "Small"}}</label>
+          <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" disabled> {{__ "Medium"}}</label>
+          <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large" disabled> {{__ "Large"}}</label>
         </p>
       </fieldset>
 
@@ -257,6 +272,14 @@
           <div class='yui3-u-1-3'>
             <p id='dyslexic'><input type='checkbox' id='option-dyslexic' name='option-dyslexic'> <label for='option-dyslexic'>{{__ "Dyslexic fonts"}}</label></p>
             <p class='info'>{{__ "Uses easy-to-read fonts, disables all-caps."}}</p>
+            
+            {{!-- <p class='indent'>
+              <input type='radio' name='dyslexic-font' value='sans-serif' id='dyslexic-font-sans-serif' checked>
+              <label for='dyslexic-font-sans-serif'>Sans Serif</label>
+
+              <input type='radio' name='dyslexic-font' value='open-dyslexic' id='dyslexic-font-open-dyslexic'>
+              <label for='dyslexic-font-open-dyslexic'>Open Dyslexic</label>
+            </p> --}}
           </div>
         </div>
       </fieldset>
@@ -323,7 +346,14 @@
             <p>{{__ "You may need to adjust brightness to suit your printer."}}</p>
 
             <h3>{{__ "Accent Colour"}}</h3>
-            <p><input type='radio' id='accent-none' name='accent-colour' value='none' checked> <label for='accent-none'>{{__ "No accent colour"}}</label></p>
+            <div class='yui3-g'>
+              <div class='yui3-u-1-4'>
+                <p><input type='radio' id='accent-none' name='accent-colour' value='none' checked> <label for='accent-none'>{{__ "No accent colour"}}</label></p>
+              </div>
+              <div class='yui3-u-1-4'>
+                <p><input type='radio' id='accent-black' name='accent-colour' value='black'> <label class='colour-sample' for='accent-black'><span id='colour-black'></span> {{__ "Black"}}</label></p>
+              </div>
+            </div>
             <div class='yui3-g'>
               <div class='yui3-u-1-4'>
                 <ul>
@@ -463,6 +493,35 @@
         </div>
       </fieldset>
       {{/if}}
+
+      {{!-- <h2>{{__ "Page Arrangement"}}</h2>
+      <fieldset>
+        <div class='yui3-g'>
+          <div class='yui3-u-1-3'>
+            <p>
+              <input type='radio' name='download-pages' value='html' id='download-pages-simple' checked>
+              <label for='download-pages-simple'><b>Simple</b></label>
+            </p>
+            <p class='info'>{{__ "Just the pages"}}</p>
+          </div>
+          
+          <div class='yui3-u-1-3'>
+            <p>
+              <input type='radio' name='download-pages' value='html' id='download-pages-duplex'>
+              <label for='download-pages-duplex'><b>Duplex</b></label>
+            </p>
+            <p class='info'>{{__ "Arranged for printing double-sided"}}</p>
+          </div>
+          
+          <div class='yui3-u-1-3'>
+            <p>
+              <input type='radio' name='download-pages' value='html' id='download-pages-folio'>
+              <label for='download-pages-folio'><b>Folio</b></label>
+            </p>
+            <p class='info'>{{__ "Arranged for printing in booklet form"}}</p>
+          </div>
+        </div>
+      </fieldset> --}}
 
       <h2>{{__ "Download"}}</h2>
         <p class='center'>

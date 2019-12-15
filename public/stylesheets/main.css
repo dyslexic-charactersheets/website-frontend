@@ -1175,6 +1175,10 @@ form#build-my-character label.colour-sample span {
 #colour-darkest {
   background: #505050;
 }
+#colour-black {
+  background: #404040;
+  border-color: #c0c0c0 !important;
+}
 
 #colour-red {
   background: #BF4C4C;
