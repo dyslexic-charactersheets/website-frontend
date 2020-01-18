@@ -91,7 +91,7 @@ $("#build-my-character").submit(function (e) {
       attributes: {
         game: "pathfinder2",
         name: "",
-        language: "en-US",
+        language: "en",
         ancestry: "",
         heritage: "",
         background: "",
@@ -117,6 +117,8 @@ $("#build-my-character").submit(function (e) {
   };
   var charIncluded = [];
 
+  char.data.attributes.language = $("input[type=radio][name=language]:checked").attr("value");
+
   // selectable things
   char.data.ancestry = char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
   char.data.heritage = char.data.attributes.heritage = $("input[type=radio][name='heritage-"+char.data.ancestry+"']:checked").attr("value");
@@ -139,6 +141,11 @@ $("#build-my-character").submit(function (e) {
   $("input[type=radio][name=archetypes]:checked").each(function (input) {
     char.data.attributes.archetypes.push($(input).attr('value'));
   });
+
+
+  if ($("#option-minis").is(':checked')) {
+    char.data.attributes.miniSize = $("input[type=radio][name=mini-size]:checked").attr('value');
+  }
 
   // colours
   var colour = $("input[type=radio][name=print-colour]:checked").attr('value');

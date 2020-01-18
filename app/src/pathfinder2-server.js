@@ -32,7 +32,11 @@ CharacterSheets.onCreate(function (request) {
 });
 
 module.exports = {
-    init: function(conf) {
+    init: function(conf, i18n) {
+        CharacterSheets.addTranslator(function (message, language, meta) {
+            return i18n.translate(message, language);
+        });
+
         chromePDF = conf('chrome_pdf');
         (async () => {
             browser = await puppeteer.launch({

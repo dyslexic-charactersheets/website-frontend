@@ -71,10 +71,12 @@
 
     <section class='tab' id='class-tab'>
       {{#if gameData.isStarfinder}}
-        <div class='yui3-g'><div class='yui3-u-1-{{gameData.layout.length}}'>
+        <div class='yui3-g' style='padding-right: 60px'><div class='yui3-u-1-3'>
           <h2 id="class-tab-title">{{__ "Theme"}}</h2>
-        </div><div class='yui3-u-1-{{gameData.layout.length}}'>
+        </div><div class='yui3-u-1-3'>
           <h2 id="class-tab-title">{{__ "Class"}}</h2>
+        </div><div class='yui3-u-1-3'>
+          <h2 id="class-tab-title">{{__ "Archetype"}}</h2>
         </div></div>
       {{else}}
         <h2 id="class-tab-title">{{__ "Class"}}</h2>
@@ -85,7 +87,7 @@
         {{#each gameData.layout as |col colIndex|}}
           <div class='yui3-u-1-{{@root.gameData.layout.length}}'>
           {{#each col as |book bookIndex|}}
-            <h3>{{__ name}}</h3>
+            <h3>{{__ displayName}}</h3>
             <ul>
               {{#each classes as |class classIndex|}}
                 <li>
@@ -170,6 +172,12 @@
           </select></p>
     
           {{#if gameData.isStarfinder}}
+          <p><label for="inventory-style">{{__ "Inventory style"}}</label>
+            <select name="inventory-style" id="inventory-style">
+                <option value="normal" selected>{{__ "Normal (on the combat page)"}}</option>
+                <option value="expanded">{{__ "Expanded (separate page)"}}</option>
+            </select></p>
+          {{else}}
           <p><label for="inventory-style">{{__ "Inventory style"}}</label>
             <select name="inventory-style" id="inventory-style">
                 <option value="auto" selected>{{__ "Auto-detect"}}</option>

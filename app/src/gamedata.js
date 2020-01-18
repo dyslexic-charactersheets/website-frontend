@@ -52,6 +52,8 @@ games.forEach(game => {
                 json.layout = json.layout.map((col) => {
                     return col.map((bk) => {
                         var book = books[bk];
+                        if (!_.has(book, "displayName"))
+                            book.displayName = book.name;
                         book.classes = book.classes.map((cls) => {
                             if (!_.has(classes, cls)) {
                                 console.log("[data] Missing class: "+cls);

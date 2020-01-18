@@ -47,26 +47,8 @@ fs.readdir("../data/i18n", (err, files) => {
 
                 translations[lang] = parsePO(data);
 
-                /*
-                var lines = data.split(/\n/);
-                var current_msgid = "";
-                lines.forEach(line => {
-                    if (line.match(/^#/))
-                        return;
-                    
-                    var msgid = line.match(/^msgid \"(.*)\"/);
-                    if (msgid) {
-                        current_msgid = msgid[1];
-                    }
-                    var msgstr = line.match(/^msgstr \"(.*)\"/);
-                    if (msgstr) {
-                        var translation = msgstr[1];
-                        if (translation != "") {
-                            translations[lang][current_msgid] = translation;
-                        }
-                    }
-                });
-                */
+                // ...
+                console.log(`[i18n]          Loaded ${_.size(translations[lang])} translations for ${lang}`);
             });
         }
     });
@@ -76,8 +58,14 @@ fs.readdir("../data/i18n", (err, files) => {
 
 var i18n = {
     translateFixed: function (str, lang) {
-        if (_.has(translations, lang) && _.has(translations[lang], str)) {
-            return translations[lang][str];
+        // console.log(`[i18n]          Translate: "${str}" (${lang})`);
+        // console.log(`[i18n]          Known languages: ${_.keys(translations).join(", ")}`);
+        if (_.has(translations, lang)) {
+            // console.log(`[i18n]          - ${_.size(translations[lang])} translations`);
+            if (_.has(translations[lang], str)) {
+                // console.log(`[i18n]          - Translation: "${translations[lang][str]}"`);
+                return translations[lang][str];
+            }
         }
         return str;
     },

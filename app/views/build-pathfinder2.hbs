@@ -224,6 +224,10 @@
         <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p>
       </fieldset>
 
+      <fieldset id='cover'>
+        <p><label for='option-animal-companion'><input type='checkbox' name='animal-companion' id='option-companion' checked> {{__ "Animal Companion"}}</label></p>
+      </fieldset>
+
       <fieldset>
         <p><label for="inventory-style">{{__ "Inventory style"}}</label>
           <select name="inventory-style" id="inventory-style">
@@ -235,12 +239,12 @@
 
         <h3>{{__ "Additional pages"}}</h3>
 
-        <p><input type='checkbox' name='minis' id='option-minis' disabled> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
+        <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
         <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
         <p class='indent'>Size:
-          <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small" disabled> {{__ "Small"}}</label>
-          <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" disabled> {{__ "Medium"}}</label>
-          <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large" disabled> {{__ "Large"}}</label>
+          <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
+          <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" checked> {{__ "Medium"}}</label>
+          <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
         </p>
       </fieldset>
 
@@ -466,7 +470,11 @@
     <section class='tab' id='download-tab'>
 
       {{!-- Languages --}}
-      {{!-- <h2>{{__ "Language"}}</h2> --}}
+      <h2>{{__ "Language"}}</h2>
+      <fieldset>
+        <label><input type='radio' id='language-english' name='language' value='en' checked> English</label>
+        <label><input type='radio' id='language-italian' name='language' value='it'> Italian</label>
+      </fieldset>
 
       {{#if chromePDF}}
       <h2>{{__ "Format"}}</h2>
