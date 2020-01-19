@@ -173,6 +173,10 @@ $("#build-my-character").submit(function (e) {
     char.data.attributes.printDyslexic = true;
   }
 
+  if ($("input#underlay-no").is(":checked")) {
+    char.data.attributes.optionNoUnderlay = true;
+  }
+
   // char.data.attributes.inventoryStyle = $("input[type=radio][name='inventory-style']:checked").attr('value');
   char.data.attributes.inventoryStyle = $("#inventory-style option:selected").attr('value');
 

@@ -442,6 +442,17 @@
             <label for='print-background-frost'><img src='/images/print-background-frost.png'><span>Frost</span></label>
           </div>
 
+          <div>
+            <p style='display: flex; flex-direction: row; align-items: center;'>
+              <span>Field underlay: &nbsp;</span>
+              <label><input type='radio' name='underlay' value='yes' id='underlay-yes' checked> Show</label>
+              <span style="display: inline-block; height: 2em; font-size: 110%; line-height: 2em; width: 3em; background: white; border-bottom: 1px solid #555; text-align: center; color: #ddd; font-weight: bold;">DEX</span>
+              <span>&nbsp; &nbsp;</span>
+              <label><input type='radio' name='underlay' value='no' id='underlay-no'> Hide</label>
+              <span style="display: inline-block; height: 2em; width: 3em; background: white; border-bottom: 1px solid #555; text-align: center;"></span>
+            </p>
+          </div>
+
           <h2>{{__ "Watermark"}}</h2>
           <p><label for='has-watermark'><input type="checkbox" name="has-watermark" id="has-watermark" /> {{__ "Watermark every page"}}</label></p>
           <p><input type='text' name='watermark' id='watermark' class='well' placeholder='YOUR MESSAGE' /></p>
