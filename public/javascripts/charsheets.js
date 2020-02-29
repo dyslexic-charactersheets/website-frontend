@@ -252,27 +252,24 @@ $(function() {
     var message = form.find('#message').val();
     var author = form.find('#author').val();
     var email = form.find('#email').val();
+    var validation = form.find('#validation').val();
 
-    grecaptcha.execute('6Lc2B4YUAAAAAEDgooBVMupDoQGvF5kSHtel_M73', {action: 'message'})
-      .then(function(token) {
-        // Verify the token on the server.
-        $.post('/message', {
-          message: message,
-          author: author,
-          email: email,
-          token: token
-        }, function (data, status, xhr) {
-          if (status == "success") {
-            console.log("Message sent");
-            $("#message-form").hide();
-            $("#message-ok").show();
-          } else {
-            console.log("Error");
-            $("#message-form").hide();
-            $("#message-error").show();
-          }
-        });
-      });
+    $.post('/message', {
+      message: message,
+      author: author,
+      email: email,
+      validation: validation
+    }, function (data, status, xhr) {
+      if (status == "success") {
+        console.log("Message sent");
+        $("#message-form").hide();
+        $("#message-ok").show();
+      } else {
+        console.log("Error");
+        $("#message-form").hide();
+        $("#message-error").show();
+      }
+    });
     return false;
   });
 

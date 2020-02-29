@@ -8,8 +8,6 @@
         <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        
-        <script src='https://www.google.com/recaptcha/api.js?render=6Lc2B4YUAAAAAEDgooBVMupDoQGvF5kSHtel_M73'></script>
     </head>
 <body>
     {{{body}}}
@@ -31,12 +29,13 @@
           </form>
           
           <!-- AddThis Button BEGIN -->
-          <div class="addthis_toolbox addthis_default_style ">
+          <!-- <div class="addthis_toolbox addthis_default_style ">
           <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
           <a class="addthis_button_tweet"></a>
           <a class="addthis_counter addthis_pill_style"></a>
           </div>
           <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#username=xa-4d4b3a93222632b3"></script>
+          -->
           <!-- AddThis Button END -->
 
         </aside>
@@ -68,6 +67,8 @@
                   Optionally, your email address:
                   <input id="email" name="email" type="email" placeholder="But only if you feel like it" class="box">
                 </label>
+
+                <input id='validation' type='hidden' name='validation' value='{{ validationToken }}'/>
                 
                 <a id='message-send'>Send message</a>
               </div>
