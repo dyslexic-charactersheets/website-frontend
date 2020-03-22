@@ -16,6 +16,12 @@
         <div class="yui3-u-1-2">
             <h3>{{__ "Patreon"}}</h3>
             <p>{{{__ "Check the <a href='https://www.patreon.com/dyslexic_charactersheets/posts'>Dyslexic Character Sheets Patreon Blog</a> for a login link."}}}</p>
+
+            <h3>{{__ "Token"}}</h3>
+            <p>{{__ "Enter a login token:"}}</p>
+            <form action='/auth/token-login' method='get'>
+                <p><input name='token'></p>
+            </form>
         </div>
         <div class="yui3-u-1-2">
             <h3>{{__ "Translators"}}</h3>

@@ -15,23 +15,52 @@ function parsePO (data) {
 
     var lines = data.split(/\n/);
     var current_msgid = "";
+    var current_msgstr = "";
+    var current_msgctxt = "";
+    var lastLine = "";
+
+    function submit() {
+        if (current_msgstr != "") {
+            trans[current_msgid] = current_msgstr;
+        }
+        // reset for the next message
+        current_msgid = "";
+        current_msgstr = "";
+        current_msgctxt = "";
+        lastLine = "";
+    }
+
     lines.forEach(line => {
         if (line.match(/^#/))
             return;
         
         var msgid = line.match(/^msgid \"(.*)\"/);
         if (msgid) {
+            submit();
+            lastLine = "msgid";
             current_msgid = msgid[1];
         }
         var msgstr = line.match(/^msgstr \"(.*)\"/);
         if (msgstr) {
-            var translation = msgstr[1];
-            if (translation != "") {
-                trans[current_msgid] = translation;
+            lastLine = "msgstr";
+            current_msgstr = msgstr[1];
+        }
+        var msgctx = line.match(/^msgctxt \"(.*)\"/);
+        if (msgctx) {
+            lastLine = "msgctxt";
+            current_msgctxt = msgctxt[1];
+        }
+        var contstr = line.match(/^\"(.*)\"/);
+        if (contstr) {
+            switch (lastLine) {
+                case "msgid":   current_msgid   = current_msgid   + "\n" + contstr[1]; break;
+                case "msgstr":  current_msgstr  = current_msgstr  + "\n" + contstr[1]; break;
+                case "msgctxt": current_msgctxt = current_msgctxt + "\n" + contstr[1]; break;
             }
         }
     });
 
+    submit();
     return trans;
 }
 

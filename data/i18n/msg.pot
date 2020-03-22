@@ -1,28 +1,1511 @@
-#: app/views/build-pathfinder.hbs
-msgid "Build Pathfinder"
+# Dyslexic Character Sheets Website
+#. Game: Website
+#, fuzzy
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8"
+"Content-Transfer-Encoding: 8bit"
+"Project-Id-Version: dyslexic-charactersheets 0.12.1"
+"POT-Creation-Date: 2020-3-22 12:13+0000"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE"
+"Last-Translator: "
+"Language-Team: "
+"Language: "
+"MIME-Version: 1.0"
+
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "2D (flat)"
 msgstr ""
 
-#: app/views/layout.hbs
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "3D (perspective)"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "A sheet to help beginners with the process of building their character."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "A ship"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "A whole party"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Accent Colour"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Accessibility"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "accountant"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "act"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "actor"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Add to Party"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Additional pages"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "alchemy"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Allows values to be filled in"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Ancestry"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Animal companion"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Animal Companion"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Animal Portrait"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Appearance"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "archaeologist"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Archetype"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "architect"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "armour"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "armourer"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Arranged for printing double-sided"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Arranged for printing in booklet form"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "artist"
+msgstr ""
+
+#: app/views/legal.hbs
+#, javascript-format
+msgid "Artistic License 2.0"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Auto-detect"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Azure"
+msgstr ""
+
+#: app/views/login.hbs app/views/howto.hbs app/views/build-pathfinder2.hbs app/views/legal.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Back to intro"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Background"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "baker"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "barrister"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "baskets"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Beginners"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Best printed on A4 paper or card."
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Black"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "blacksmithing"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Blank"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Blank hex maps, isometric maps, city maps and more."
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Blue"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "bookbinding"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "books"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Both"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "bounty hunter"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "bowmaking"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "bows"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "brewer"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "brewery"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Brightness"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Build a character"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Build another character"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index - pf2.hbs app/views/index - pf2.hbs app/views/index - pf2.hbs app/views/index.hbs app/views/index.hbs app/views/index.hbs app/views/index.hbs
+#, javascript-format
+msgid "Build my character"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Build My Character: "
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "butcher"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "calligraphy"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Campaign Planning"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Cancel"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "carpentry"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "carver"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Character background"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs
+#, javascript-format
+msgid "Character Info"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Characters and NPCs"
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Check the <a href='https://www.patreon.com/dyslexic_charactersheets/posts'>Dyslexic Character Sheets Patreon Blog</a> for a login link."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "chemist"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Class"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs
+#, javascript-format
+msgid "Class-Specific Sheets"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "clerk"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Close"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "cloth"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "clothing"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Colour"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs
+#, javascript-format
+msgid "Combat"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "comedian"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "comedy"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "con artist"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Consolidated"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "cook"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "cooking"
+msgstr ""
+
+#: app/views/layout.hbs app/views/layouts/main.hbs
+#, javascript-format
 msgid "Copyright &copy; Marcus Downing. This product is released under the Artistic License 2.0, and uses properties covered by the Open Game License. I thank everyone who has helped out with feedback, fixes and contributions."
 msgstr ""
 
-#: app/views/layout.hbs
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "corporate"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "counselor"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "courtesan"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Cover Page"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Craft"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Custom picture"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Cyan"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "dance"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "dancer"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Darker"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "dockworker"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Download"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Download All"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Downloading..."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "driver"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Dungeon Master"
+msgstr ""
+
+#: app/views/login.hbs app/views/index - pf2.hbs app/views/index.hbs app/views/howto.hbs app/views/legal.hbs
+#, javascript-format
+msgid "Dyslexic Character Sheets"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Dyslexic fonts"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Dyslexic Studeos"
+msgstr ""
+
+#: app/views/howto.hbs
+#, javascript-format
+msgid "Edit pages"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "electrician"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "engineer"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Enjoy your character sheets."
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Enlarges text and fields, omits some elements to fit on the page."
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Enter a login token:"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Expanded (separate page)"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Exploration Maps"
+msgstr ""
+
+#: app/views/layout.hbs app/views/index - pf2.hbs app/views/index - pf2.hbs app/views/layouts/main.hbs app/views/index.hbs app/views/index.hbs
+#, javascript-format
 msgid "Facebook group"
 msgstr ""
 
-#: app/views/index.hbs
-msgid "Foo"
+#: app/views/index - pf2.hbs app/views/index.hbs
+#, javascript-format
+msgid "FAQ"
 msgstr ""
 
-#: app/views/layout.hbs
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "farmer"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "fisherman"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "For detailed licensing information, see <a href='/legal'>Legal Info</a>"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Format"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "founder"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Full page"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "gambler"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Game Master"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "gardener"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "general contractor"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "General purpose"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Generic"
+msgstr ""
+
+#: app/views/howto.hbs
+#, javascript-format
+msgid "Get the files here"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "glass"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "glassblowing"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Goes well with Kingmaker and Ultimate Campaign"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Green"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Half page"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "herbalist"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "High contrast"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "History timelines and other sheets for planning a game."
+msgstr ""
+
+#: app/views/howto.hbs
+#, javascript-format
+msgid "How to"
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "If you'd like to help translate, send me a message."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Include all knowledge skills"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Includes space for 7 classes rather than 5."
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Includes stand-up map figure and initiative tracker."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Includes stand-up map figure, square map token and stats card for initiative tracking."
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Indigo"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "innkeeper"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Intelligent item"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs
+#, javascript-format
+msgid "Inventory"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Inventory style"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "jeweler"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "jewellery"
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Just Login"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Just the pages"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "keyboard"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Kingdom and city sheets."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Kingdom Building"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "lab technician"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Language"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Large"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Large entries"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Large print"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "lawyer"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "leather"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "leatherworking"
+msgstr ""
+
+#: app/views/layout.hbs app/views/index - pf2.hbs app/views/index - pf2.hbs app/views/layouts/main.hbs app/views/index.hbs app/views/index.hbs
+#, javascript-format
 msgid "Leave a message"
 msgstr ""
 
-#: app/views/layout.hbs
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Legal"
+msgstr ""
+
+#: app/views/legal.hbs
+#, javascript-format
+msgid "Legal info"
+msgstr ""
+
+#: app/views/layout.hbs app/views/index - pf2.hbs app/views/layouts/main.hbs app/views/index.hbs
+#, javascript-format
 msgid "Legal Information"
 msgstr ""
 
-#: app/views/layout.hbs
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "librarian"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Lighter"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Lime"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "locks"
+msgstr ""
+
+#: app/views/layout.hbs app/views/layouts/main.hbs
+#, javascript-format
+msgid "Log In"
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Log into the translators' website then click the button on your dashboard to log in here."
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Logging in will set a cookie on your computer. We do not keep any personal information about you."
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Login"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Logo"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Lycanthrope"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Magenta"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "maintenance worker"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Makes colours darker, removes white text."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "manager"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Map figure sheet"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Map style"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "masonry"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "mathematician"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "mechanic"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Medium"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "mercenary"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "merchant"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "midwife"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "miller"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "miner"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "More classes"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "musician"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Name"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "No accent colour"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "None"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Normal"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Normal (on the combat page)"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Normal entries"
+msgstr ""
+
+#: app/views/legal.hbs
+#, javascript-format
+msgid "OGL"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "OK"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "One character"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs
+#, javascript-format
+msgid "Open source"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Options"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Orange"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "orator"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "oratory"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Other"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Page Arrangement"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Pages"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "painting"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "paintings"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Paper size:"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Party"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Party funds"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Party size"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Pathfinder Society"
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Patreon"
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Patrons and contributors to the project get early access to content on the dev site."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "percussion"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Perform"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Permission to print"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "personality"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "philosopher"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Pink"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "player characters"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "poet"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "politician"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "porter"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Portrait"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "pottery"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Printing Colour"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Profession"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "professional"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "professor"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "psychologist"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Purple"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Red"
+msgstr ""
+
+#: app/views/howto.hbs
+#, javascript-format
+msgid "Run the builder"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "sailor"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "scribe"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "sculpting"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "sculptures"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Select a character picture"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Select a logo"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Select logo"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Select portrait"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Settlement style"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Sheets for tracking the whole party, and NPCs."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "shepherd"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "ships"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "shoes"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Simpler version"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "sing"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Size"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Skills"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Skills list style"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Small"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Small entries"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "smuggler"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "soldier"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs
+#, javascript-format
+msgid "Spellbook"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Spellbook style"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Start"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "stone masonry"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "stonemasonry"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "string"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "tailor"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "tanner"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Teal"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "The simplified version does not have a separate sheet for inventory and equipment, instead merging these onto the core sheets. This is only recommended for low-level characters, and is not compatible with the Barbarian, Ranger or Psionic characters."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Theme"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "This reduces the space available for Craft, Profession and Perform skills. Bards get all knowledge skills anyway."
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Token"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs
+#, javascript-format
+msgid "Tour"
+msgstr ""
+
+#: app/views/layout.hbs app/views/layouts/main.hbs app/views/howto.hbs
+#, javascript-format
 msgid "Translate"
+msgstr ""
+
+#: app/views/login.hbs
+#, javascript-format
+msgid "Translators"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "trapper"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "traps"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Upload a picture"
+msgstr ""
+
+#: app/views/build-form.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Upload your own"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Use this if you have trouble printing HTML"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Uses easy-to-read fonts, disables all-caps."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "video"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "vidgamer"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Violet"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Want to take the whole set with you?"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Watermark"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs app/views/build-form.hbs
+#, javascript-format
+msgid "Watermark every page"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "weapons"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "weaving"
+msgstr ""
+
+#: app/views/index - pf2.hbs app/views/index.hbs
+#, javascript-format
+msgid "Wildshape"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "wind"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "winemaking"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "With wands, scrolls and potions"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Without map"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Without wands, scrolls and potions"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Wizards, Rangers, Witches etc get the animal companion automatically"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "woodcutter"
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "writer"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "Yellow"
+msgstr ""
+
+#: app/views/layout.hbs app/views/layouts/main.hbs
+#, javascript-format
+msgid "You are logged in!"
+msgstr ""
+
+#: app/views/build-pathfinder2.hbs
+#, javascript-format
+msgid "You may need to adjust brightness to suit your printer."
+msgstr ""
+
+#: app/views/build-form.hbs
+#, javascript-format
+msgid "Your party so far"
 msgstr ""
 
