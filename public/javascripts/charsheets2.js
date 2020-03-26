@@ -80,6 +80,31 @@ function imageAttachment(id, data) {
 }
 
 
+function quickLink(quick) {
+  return {
+    version: 0,
+    data: {
+      type: 'quick',
+      id: generateId(),
+      attributes: {
+        "game": "pathfinder2",
+        "quick": quick
+      }
+    }
+  };
+}
+
+$("#quick-link-build").click(function (e) {
+  e.preventDefault();
+  var char = quickLink('build');
+
+  var requestData = JSON.stringify(char);
+  $("#pf2-form #request").val(requestData);
+  $("#pf2-form").submit();
+  return false;
+});
+
+
 $("#build-my-character").submit(function (e) {
   e.preventDefault();
 
