@@ -864,6 +864,12 @@ form#build-my-character input.name {
   font-size: 16px;
 }
 
+form#build-my-character textarea {
+  width: 98%;
+  padding: 6px;
+  font-size: 13px;
+}
+
 form#build-my-character ul {
   padding: 0px;
   margin: 0px;

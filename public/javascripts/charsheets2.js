@@ -218,6 +218,7 @@ $("#build-my-character").submit(function (e) {
       attributes: {
         game: "pathfinder2",
         name: "",
+        description: "",
         language: "en",
         ancestry: "",
         heritage: "",
@@ -244,6 +245,8 @@ $("#build-my-character").submit(function (e) {
   };
   var charIncluded = [];
 
+  char.data.attributes.name = $("input#character-name").val();
+  char.data.attributes.description = $("input#character-description").val();
   char.data.attributes.language = $("input[type=radio][name=language]:checked").attr("value");
 
   // selectable things
