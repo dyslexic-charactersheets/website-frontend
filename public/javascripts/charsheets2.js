@@ -478,7 +478,7 @@ $(function() {
     });
 
     $(".dialog-close").click(function () {
-      $("#blanket, #iconic-select-dialog").fadeOut("fast");
+      $("#blanket, .dialog").fadeOut("fast");
     });
 
     $("#iconic-image-list a").click(function () {
