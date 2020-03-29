@@ -55,6 +55,108 @@ function colourFromName(colour) {
   }
 }
 
+// Colour functions from: 
+/**
+ * Converts an RGB color value to HSL. Conversion formula
+ * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+ * Assumes r, g, and b are contained in the set [0, 255] and
+ * returns h, s, and l in the set [0, 1].
+ *
+ * @param   Number  r       The red color value
+ * @param   Number  g       The green color value
+ * @param   Number  b       The blue color value
+ * @return  Array           The HSL representation
+ */
+function rgbToHsl(r, g, b){
+  r /= 255, g /= 255, b /= 255;
+  var max = Math.max(r, g, b), min = Math.min(r, g, b);
+  var h, s, l = (max + min) / 2;
+
+  if(max == min){
+      h = s = 0; // achromatic
+  }else{
+      var d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch(max){
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+      }
+      h /= 6;
+  }
+
+  return [h, s, l];
+}
+
+/**
+* Converts an HSL color value to RGB. Conversion formula
+* adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+* Assumes h, s, and l are contained in the set [0, 1] and
+* returns r, g, and b in the set [0, 255].
+*
+* @param   Number  h       The hue
+* @param   Number  s       The saturation
+* @param   Number  l       The lightness
+* @return  Array           The RGB representation
+*/
+function hslToRgb(h, s, l){
+  var r, g, b;
+
+  if(s == 0){
+      r = g = b = l; // achromatic
+  }else{
+      function hue2rgb(p, q, t){
+          if(t < 0) t += 1;
+          if(t > 1) t -= 1;
+          if(t < 1/6) return p + (q - p) * 6 * t;
+          if(t < 1/2) return q;
+          if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+          return p;
+      }
+
+      var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      var p = 2 * l - q;
+      r = hue2rgb(p, q, h + 1/3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1/3);
+  }
+
+  return [r * 255, g * 255, b * 255];
+}
+
+function hex(num) {
+  var hex = num.toString(16).replace(/\..*$/, '');
+  hex = '00'+hex;
+  return hex.substring(hex.length - 2);
+}
+
+function adjustIntensity(colour, intensity) {
+  colour = colourFromName(colour);
+
+  var factor = 0;
+  switch (intensity) {
+    case 'lightest': factor = 2; break;
+    case 'lighter': factor = 1; break;
+    case 'darker': factor = -1; break;
+    case 'darkest': factor = -2; break;
+    default: return colour;
+  }
+
+  var r = parseInt(colour.substr(1, 2), 16);
+  var g = parseInt(colour.substr(3, 2), 16);
+  var b = parseInt(colour.substr(5, 2), 16);
+
+  var [h, s, l] = rgbToHsl(r, g, b);
+  l += factor * 0.15;
+  if (l < 0) l = 0;
+  if (l > 1) l = 1;
+  [r, g, b] = hslToRgb(h, s, l);
+
+  colour = '#'+hex(r)+hex(g)+hex(b);
+  return colour;
+}
+
+
 var portraitData = null;
 var animalData = null;
 var logoData = null;
@@ -173,14 +275,26 @@ $("#build-my-character").submit(function (e) {
   }
 
   // colours
+  var intensity = $("input[type=radio][name=intensity]:checked").attr('value');
+  var printIntensity = 0;
+  switch (intensity) {
+    case 'lightest': printIntensity = 2; break;
+    case 'lighter': printIntensity = 1; break;
+    case 'darker': printIntensity = -1; break;
+    case 'darkest': printIntensity = -2; break;
+  }
+  char.data.attributes.printIntensity = printIntensity;
+
   var colour = $("input[type=radio][name=print-colour]:checked").attr('value');
   if (colour == "custom")
     colour = $("input#custom-colour").val();
   else
     colour = colourFromName(colour);
+  // colour = adjustIntensity(colour, intensity);
   char.data.attributes.printColour = colour;
 
   var accentColour = $("input[type=radio][name=accent-colour]:checked").attr('value');
+  // accentColour = adjustIntensity(accentColour, intensity);
   char.data.attributes.accentColour = colourFromName(accentColour);
 
   if ($("input#option-high-contrast").is(":checked")) {
@@ -361,6 +475,10 @@ $(function() {
       $("#"+setId+" img").each(function () {
         $(this).attr("src", $(this).data("src"));
       });
+    });
+
+    $(".dialog-close").click(function () {
+      $("#blanket, #iconic-select-dialog").fadeOut("fast");
     });
 
     $("#iconic-image-list a").click(function () {

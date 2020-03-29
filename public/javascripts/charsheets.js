@@ -360,6 +360,10 @@ $(function() {
     });
   });
 
+  $(".dialog-close").click(function () {
+    $("#blanket, #iconic-select-dialog").fadeOut("fast");
+  });
+
   $("#iconic-image-list a").click(function () {
     var iconic = $(this).data("id");
     if (iconic == "custom") {
