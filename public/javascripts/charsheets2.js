@@ -262,13 +262,22 @@ $("#build-my-character").submit(function (e) {
     var attrib = kebab2camel("class-"+subclass);
     char.data.attributes[attrib] = $("input[type=radio][name='"+subclass+"']:checked").attr("value");
   });
+  var classOptions = unique($("#reveal-subclass-"+cls+" input[type=checkbox]").map(function (i, elem) { return $(elem).data("class-option"); }).get());
+  classOptions.forEach(classOption => {
+    var attrib = kebab2camel("class-"+classOption);
+    var opts = [];
+    $("input[type=checkbox][data-class-option='"+classOption+"']:checked").each(function (i, input) {
+      opts.push($(input).attr("name"));
+    });
+    char.data.attributes[attrib] = opts;
+  });
 
   // $("input[type=checkbox][name^=option-]").each(function (input) {
   //   var opt = $(input).attr('name');
   //   char.data.attributes[opt] = $(input).is(':checked');
   // });
 
-  $("input[type=radio][name=archetypes]:checked").each(function (input) {
+  $("input[type=radio][name=archetypes]:checked").each(function (i, input) {
     char.data.attributes.archetypes.push($(input).attr('value'));
   });
 

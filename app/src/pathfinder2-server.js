@@ -5,38 +5,36 @@ const puppeteer = require('puppeteer');
 var browser;
 
 let systemFormData = null;
-CharacterSheets.getFormData('pathfinder2', data => {
+CharacterSheets.getFormData('pathfinder2').then((data) => {
     console.log("[pathfinder2]   System form data loaded");
     systemFormData = data;
 });
 
+CharacterSheets.loadDefaultTranslations();
+
 let chromePDF = false;
 
 // Assets
-var assetsDir = __dirname+'/../../../assets/iconics/large';
+var assetsDir = __dirname + '/../../../assets/iconics/large';
 CharacterSheets.addAssetsDir(assetsDir);
-var logosDir = __dirname+'/../../../assets/logos';
+var logosDir = __dirname + '/../../../assets/logos';
 CharacterSheets.addAssetsDir(logosDir);
 
 // Log
-var logStream = fs.createWriteStream(__dirname+'/../../../pathfinder2.log', {flags: 'a'});
+var logStream = fs.createWriteStream(__dirname + '/../../../pathfinder2.log', { flags: 'a' });
 CharacterSheets.onCreate(function (request) {
     var date = new Date();
     var ts = date.getTime();
     var isoDate = date.toISOString();
 
-    var data = Object.assign({date: isoDate, ts: ts}, request);
-    var line = JSON.stringify(data)+"\n";
+    var data = Object.assign({ date: isoDate, ts: ts }, request);
+    var line = JSON.stringify(data) + "\n";
 
     logStream.write(line);
 });
 
 module.exports = {
-    init: function(conf, i18n) {
-        CharacterSheets.addTranslator(function (message, language, meta) {
-            return i18n.translate(message, language);
-        });
-
+    init: function (conf, i18n) {
         chromePDF = conf('chrome_pdf');
         (async () => {
             browser = await puppeteer.launch({
@@ -50,7 +48,7 @@ module.exports = {
             console.log(" * No form data loaded :(");
             return data;
         }
-        
+
         data.title = "Build my character: Pathfinder 2e";
 
         function translate(item) {
@@ -91,7 +89,7 @@ module.exports = {
         }
 
         function threeBlankColumns() {
-            return [ { groups: [] }, { groups: [] }, { groups: [] } ];
+            return [{ groups: [] }, { groups: [] }, { groups: [] }];
         }
 
         function allocateToColumns(groups) {
@@ -106,7 +104,7 @@ module.exports = {
             // console.log(" * Column length:"+collen);
 
             var c = 0;
-            var lens = [0,0,0];
+            var lens = [0, 0, 0];
             groups.forEach(group => {
                 if (lens[c] >= collen && c < 2) c++;
                 columns[c].groups.push(group);
@@ -138,10 +136,10 @@ module.exports = {
         }
 
         function splitIntoColumns(values) {
-            var columns = [ { values: [] }, { values: [] }, { values: [] } ];
+            var columns = [{ values: [] }, { values: [] }, { values: [] }];
             var len = values.length;
             var collen = Math.ceil(len / 3.0);
-            
+
             columns[0].values = values.slice(0, collen);
             columns[1].values = values.slice(collen, collen * 2);
             columns[2].values = values.slice(collen * 2);
@@ -185,8 +183,10 @@ module.exports = {
             function fillInSelect(sel) {
                 if (sel === null)
                     return null;
-                    
+
                 if (sel.hasOwnProperty("values")) {
+                    let hasOrder = false;
+                    let hasLevel = false;
                     // console.log(" - Filling in select values for", sel.select);
                     sel.values = sel.values.map(v => {
                         // console.log("   "+JSON.stringify(v));
@@ -202,10 +202,43 @@ module.exports = {
                             });
                             v.selects = v.selects.filter(s => s !== null);
                         }
+                        if (v.hasOwnProperty('order')) {
+                            hasOrder = true;
+                        }
+                        if (v.hasOwnProperty('level')) {
+                            hasLevel = true;
+                        }
                         return v;
                     });
                     if (sel.values.length == 0)
                         return null;
+                    // show the values in the right order
+                    if (hasOrder || hasLevel) {
+                        sel.values = sel.values.sort((a, b) => {
+                            if (hasLevel) {
+                                let la = a.hasOwnProperty('level') ? a.level : 1;
+                                let lb = b.hasOwnProperty('level') ? b.level : 1;
+                                if (la != lb) {
+                                    return la - lb;
+                                }
+                            }
+                            if (hasOrder) {
+                                let oa = a.hasOwnProperty('order') ? a.order : 0;
+                                let ob = b.hasOwnProperty('order') ? b.order : 0;
+                                if (oa != ob) {
+                                    return oa - ob;
+                                }
+                            }
+                            return 0;
+                        });
+                        // console.log("[pathfinder2]   Sorted values for", sel.select, sel.values.map((v) => {
+                        //     return {
+                        //         code: v.code,
+                        //         level: v.level,
+                        //         order: v.order
+                        //     };
+                        // }));
+                    }
                     sel.multiselect = sel.max > 1;
                     return sel;
                 } else {
@@ -277,8 +310,7 @@ module.exports = {
         console.log("[pathfinder2]   Pathfinder 2e Character");
         var data = JSON.parse(req.body.request);
 
-        var characterSheet = CharacterSheets.create(data);
-        characterSheet.render(result => {
+         CharacterSheets.create(data).then(result => {
             if (result.err) {
                 console.log("Error:", result.err);
                 res.status(500);
@@ -296,17 +328,17 @@ module.exports = {
                     // console.log("Page", page);
                     await page.setContent(result.data);
 
-                    var pdfdata = await page.pdf({format: paperSize});
+                    var pdfdata = await page.pdf({ format: paperSize });
                     res.set('Content-Type', 'application/pdf');
                     res.set('Content-Length', pdfdata.length);
-                    res.set('Content-Disposition', 'attachment; filename="'+result.filename+'.pdf"');
+                    res.set('Content-Disposition', 'attachment; filename="' + result.filename + '.pdf"');
                     res.send(pdfdata);
                     console.log("                Done");
                 })();
             } else {
                 res.set('Content-Type', result.mimeType);
                 res.set('Content-Length', result.data.length);
-                res.set('Content-Disposition', 'attachment; filename="'+result.filename+'"');
+                res.set('Content-Disposition', 'attachment; filename="' + result.filename + '"');
                 res.send(result.data);
                 console.log("                Done");
             }

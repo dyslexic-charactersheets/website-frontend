@@ -38,6 +38,7 @@ app.engine('.hbs', xhbs);
 app.use(express.static(__dirname+'/../public'));
 app.use(express.static(__dirname+'/../../assets'));
 app.use('/iconics', express.static(__dirname+'/../../assets/iconics/small'));
+app.use('/docs', express.static(__dirname+'/../node_modules/dyslexic-charactersheets/docs'));
 
 // engines
 const gameData = require('./src/gamedata.js');
