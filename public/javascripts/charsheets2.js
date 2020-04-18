@@ -398,6 +398,11 @@ $("#build-my-character").submit(function (e) {
     char.included = charIncluded;
   }
 
+  // debug
+  if ($("#debug").is(':checked')) {
+    char.data.debug = true;
+  }
+
   var requestData = JSON.stringify(char);
   $("#pf2-form #request").val(requestData);
   $("#pf2-form").submit();

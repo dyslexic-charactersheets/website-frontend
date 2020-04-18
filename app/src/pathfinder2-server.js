@@ -22,7 +22,7 @@ CharacterSheets.addAssetsDir(logosDir);
 
 // Log
 var logStream = fs.createWriteStream(__dirname + '/../../../pathfinder2.log', { flags: 'a' });
-CharacterSheets.onCreate(function (request) {
+CharacterSheets.on('request', function (request) {
     var date = new Date();
     var ts = date.getTime();
     var isoDate = date.toISOString();
