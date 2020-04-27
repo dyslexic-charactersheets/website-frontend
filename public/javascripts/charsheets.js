@@ -229,22 +229,24 @@ $(function() {
         var margin = (outer - inner) / 2;
         lightbox.find("> *").css("margin-top", margin+"px");
       });
+      $("#blanket").fadeIn("fast");
       lightbox.fadeIn("fast");
       return false;
     }
     return true;
   });
 
-  $("div.lightbox").click(function () {
+  $("#blanket").click(function () {
     $(this).fadeOut("fast");
+    $("#blanket").fadeOut("fast");
   });
 
-  $("div.lightbox .note").click(function () {
-    $("#message-form").show();
-    $("#message-ok").hide();
-    $("#message-error").hide();
-    return false;
-  });
+  // $("div.lightbox .note").click(function () {
+  //   $("#message-form").show();
+  //   $("#message-ok").hide();
+  //   $("#message-error").hide();
+  //   return false;
+  // });
 
   $("#message-send").click(function () {
     console.log("Sending message...");
@@ -253,12 +255,14 @@ $(function() {
     var author = form.find('#author').val();
     var email = form.find('#email').val();
     var validation = form.find('#validation').val();
+    var verify = form.find('input[name=verify]:checked').attr('value');
 
     $.post('/message', {
       message: message,
       author: author,
       email: email,
-      validation: validation
+      validation: validation,
+      verify: verify
     }, function (data, status, xhr) {
       if (status == "success") {
         console.log("Message sent");
@@ -269,6 +273,10 @@ $(function() {
         $("#message-form").hide();
         $("#message-error").show();
       }
+    }).fail(function () {
+      console.log("Error");
+      $("#message-form").hide();
+      $("#message-error").show();
     });
     return false;
   });

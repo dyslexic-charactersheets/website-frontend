@@ -786,6 +786,16 @@ p.comment {
 p.suboption {
   padding-left: 22px;
 }
+#blanket {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  background: rgba(0, 0, 0, 0.5);
+}
 div.lightbox {
   display: none;
   position: fixed;
@@ -794,7 +804,6 @@ div.lightbox {
   left: 0px;
   right: 0px;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.5);
 }
 div.lightbox img {
   display: block;
@@ -1122,7 +1131,7 @@ form#build-my-character #flexi-skills select {
   display: block;
   margin-bottom: 4px;
 }
-#blanket {
+/* #blanket {
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -1132,7 +1141,7 @@ form#build-my-character #flexi-skills select {
   background: #aeb398;
   background: rgba(174, 179, 152, 0.6);
   z-index: 999;
-}
+} */
 .dialog {
   display: none;
   position: fixed;

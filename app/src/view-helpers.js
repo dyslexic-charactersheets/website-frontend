@@ -1,5 +1,7 @@
 const _ = require('lodash');
+const message = require('./message');
 module.exports = function (conf, i18n, quotes) {
+    var msg = message(conf);
     return {
         __: function(str) {
             return i18n.translate(str, this.lang);
@@ -32,6 +34,36 @@ module.exports = function (conf, i18n, quotes) {
                 <cite>&mdash; ${quote.author}</cite>
                 </aside>
             </aside>`;
+        },
+        
+        humanYes: function () {
+            var answers = [
+                "Yes, I am",
+                "I am indeed",
+                "Last time I checked",
+                "Definitely",
+                "One hundred percent",
+            ];
+            return answers[_.random(0, answers.length - 1)];
+        },
+
+        humanNo: function () {
+            var answers = [
+                "Actually, no",
+                "I'm afraid not",
+                "I don't think so",
+                "How insulting",
+                "Boop boop be-boop",
+            ];
+            return answers[_.random(0, answers.length - 1)];
+        },
+
+        verifyCodeHuman: function () {
+            return msg.getHumanToken();
+        },
+
+        verifyCodeFake: function () {
+            return msg.getFakeToken();
         },
 
         pdfUrl: function (game) {

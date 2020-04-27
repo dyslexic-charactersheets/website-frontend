@@ -54,6 +54,8 @@
           {{/if}}
         </aside>
 
+        <div id='blanket'></div>
+
         <div id='message-lightbox' class='lightbox'>
           <section class='note'>
             <form id='message-form' method='post' action='/message' class='rotate'>
@@ -67,6 +69,11 @@
                   Optionally, your email address:
                   <input id="email" name="email" type="email" placeholder="But only if you feel like it" class="box">
                 </label>
+
+                <p id='human-line'>Are you human?
+                  <label><input type='radio' name='verify' value='{{verifyCodeHuman}}'> {{humanYes}}</label>
+                  <label><input type='radio' name='verify' value='{{verifyCodeFake}}'> {{humanNo}}</label>
+                </p>
 
                 <input id='validation' type='hidden' name='validation' value='{{ validationToken }}'/>
                 
