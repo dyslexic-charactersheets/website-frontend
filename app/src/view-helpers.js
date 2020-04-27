@@ -43,19 +43,21 @@ module.exports = function (conf, i18n, quotes) {
                 "Last time I checked",
                 "Definitely",
                 "One hundred percent",
+                "That's right",
             ];
-            return answers[_.random(0, answers.length - 1)];
+            return answers[Math.floor(Math.random() * answers.length)];
         },
 
         humanNo: function () {
             var answers = [
                 "Actually, no",
+                "Not at all",
                 "I'm afraid not",
                 "I don't think so",
                 "How insulting",
                 "Boop boop be-boop",
             ];
-            return answers[_.random(0, answers.length - 1)];
+            return answers[Math.floor(Math.random() * answers.length)];
         },
 
         verifyCodeHuman: function () {
