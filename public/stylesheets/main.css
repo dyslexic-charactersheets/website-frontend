@@ -234,6 +234,10 @@ h3 {
   margin: 12px 0px 8px 0px;
   font-size: 18px;
 }
+h4 {
+  margin: 8px 0px 0px 0px;
+  font-size: 15px;
+}
 button,
 .button,
 input[type=button],
@@ -689,6 +693,9 @@ table#example a img {
   margin: 12px 0px 6px 0px;
   font-size: 18px;
 }
+#message-form .inner p label {
+  display: inline;
+}
 #message-form .inner #human-line {
   font-size: 18px;
   padding-left: 30px;
@@ -931,6 +938,10 @@ form#build-my-character #high-contrast input[type=checkbox] {
 }*/
 form#build-my-character #large-print label {
   font-size: 24px !important;
+}
+form#build-my-character #dyslexic label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }
 
 form#build-my-character #colours label {

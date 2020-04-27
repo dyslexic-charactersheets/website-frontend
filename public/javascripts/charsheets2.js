@@ -285,6 +285,7 @@ $("#build-my-character").submit(function (e) {
   if ($("#option-minis").is(':checked')) {
     char.data.attributes.miniSize = $("input[type=radio][name=mini-size]:checked").attr('value');
   }
+  char.data.attributes.skillActions = $("#skill-actions").is(":checked");
 
   // colours
   var intensity = $("input[type=radio][name=intensity]:checked").attr('value');
@@ -330,6 +331,7 @@ $("#build-my-character").submit(function (e) {
 
   // char.data.attributes.inventoryStyle = $("input[type=radio][name='inventory-style']:checked").attr('value');
   char.data.attributes.inventoryStyle = $("#inventory-style option:selected").attr('value');
+  char.data.attributes.classKit = $("#inventory-class-kit").is(":checked");
 
   $("input[type=checkbox][id^='option-']").each(function (n, cb) {
     var prop = $(cb).attr('id');

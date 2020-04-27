@@ -70,12 +70,20 @@
                   <input id="email" name="email" type="email" placeholder="But only if you feel like it" class="box">
                 </label>
 
+<<<<<<< HEAD
                 <p id='human-line'>Are you human?
                   <label><input type='radio' name='verify' value='{{verifyCodeHuman}}'> {{humanYes}}</label>
                   <label><input type='radio' name='verify' value='{{verifyCodeFake}}'> {{humanNo}}</label>
                 </p>
 
                 <input id='validation' type='hidden' name='validation' value='{{ validationToken }}'/>
+=======
+                <p>Are you human? 
+                  <label for='verify-a'><input type='radio' name='verify' value='{{ verifyCodeHuman }}' id='verify-a'> {{ humanYes }}</label>
+                  <label for='verify-b'><input type='radio' name='verify' value='{{ verifyCodeFake }}' id='verify-b'> {{ humanNo }}</label>
+                </p>
+                <input type='checkbox' name='third'>Third option
+>>>>>>> ccddf2b... PF2 stuff
                 
                 <a id='message-send'>Send message</a>
               </div>

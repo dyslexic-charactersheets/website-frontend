@@ -56,6 +56,7 @@ function renderLogin(req, res, lang) {
         translators_login_url: auth.translatorsLoginURL(),
         patreon_login_url: auth.patreonLoginURL(),
         allow_just_login: auth.allowJustLogin,
+        scriptFile: "charsheets.js",
     });
 }
 
@@ -92,6 +93,19 @@ app.post('/message', (req, res) => {
     message.sendMessage(req, res);
 });
 
+function renderPage(res, page, title, lang, data = {}) {
+    data = {
+        title: title,
+        lang: lang,
+        scriptFile: "charsheets.js",
+        verifyCodeHuman: message.verifyCodeHuman(),
+        verifyCodeFake: message.verifyCodeFake(),
+        humanYes: message.humanYes(),
+        humanNo: message.humanNo(),
+        ...data
+    };
+    res.render(page, data)
+}
 // character sheet builder forms
 function renderBuildForm(req, res, lang) {
     var game = req.params.game;
@@ -107,6 +121,10 @@ function renderBuildForm(req, res, lang) {
         logos: iconicData.logos(),
         logoGroups: iconicData.logoGroups(),
         scriptFile: "charsheets.js",
+        verifyCodeHuman: message.verifyCodeHuman(),
+        verifyCodeFake: message.verifyCodeFake(),
+        humanYes: message.humanYes(),
+        humanNo: message.humanNo(),
     };
 
     // Pathfinder 2e-specific data

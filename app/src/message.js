@@ -3,6 +3,7 @@ const path = require('path');
 const crypto = require('crypto');
 const moment = require('moment');
 const request = require('request');
+const _ = require('lodash');
 
 // const sendmail = require('sendmail')({});
 
@@ -111,40 +112,35 @@ function sendMessage(req, res) {
     });
 }
 
-function getHumanToken() {
-    var salt = (Math.floor(Math.random() * 999999999999).toString(16)+'0000').substr(0,10);
-    
-    var hash = crypto.createHash('sha256');
-    hash.update(timedTokenBase);
-    hash.update(salt);
-    var parity = hash.digest('hex').substring(0, 32);
 
-    console.log(`[message] Human token: salt = ${salt}, parity = ${parity}`);
-    return salt+parity;
+function humanYes() {
+    var answers = [
+        "Yes, I am",
+        "I am indeed",
+        "Last time I checked",
+        "Definitely",
+        "One hundred percent",
+    ];
+    return answers[_.random(0, answers.length - 1)];
 }
 
-function getFakeToken() {
-    var salt = (Math.floor(Math.random() * 999999999999).toString(16)+'0000').substr(0,10);
-    
-    var hash = crypto.createHash('sha256');
-    hash.update('12345678');
-    hash.update(salt);
-    var parity = hash.digest('hex').substring(0, 32);
-
-    return salt+parity;
+function humanNo() {
+    var answers = [
+        "Actually, no",
+        "I'm afraid not",
+        "I don't think so",
+        "How insulting",
+        "Boop boop be-boop",
+    ];
+    return answers[_.random(0, answers.length - 1)];
 }
 
-function verifyHumanToken(token) {
-    console.log("[message] Verify human:", token);
-    let salt = token.substr(0,10);
-    let parity = token.substr(10);
-    
-    var hash = crypto.createHash('sha256');
-    hash.update(timedTokenBase);
-    hash.update(salt);
-    var token = hash.digest('hex').substring(0, 32);
-    
-    return token == parity;
+function verifyCodeHuman() {
+    return "HUMAN";
+}
+
+function verifyCodeFake() {
+    return "FAKE";
 }
 
 module.exports = function (c) {
@@ -155,10 +151,10 @@ module.exports = function (c) {
     }
 
     return {
-        timedToken: timedToken,
-        getHumanToken: getHumanToken,
-        getFakeToken: getFakeToken,
-        verifyHumanToken: verifyHumanToken,
-        sendMessage: sendMessage
+        sendMessage: sendMessage,
+        humanYes: humanYes,
+        humanNo: humanNo,
+        verifyCodeHuman: verifyCodeHuman,
+        verifyCodeFake: verifyCodeFake,
     };
 };

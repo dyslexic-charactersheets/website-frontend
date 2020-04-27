@@ -207,60 +207,90 @@
 
     <section class='tab' id='options-tab'>
 
-      <h2>{{__ "Beginners"}}</h2>
+      <div class='yui3-g'>
+        <div class='yui3-u-1-2'>
 
-      <fieldset>
-        <p><input type='checkbox' name='build' id='option-build'> <label for='option-build'>{{__ "Build a character"}}</label></p>
-        <p class='info'>{{__ "A sheet to help beginners with the process of building their character."}}</p>
-      </fieldset>
-      
-      <h2>{{__ "Legal"}}</h2>
-      <fieldset id='legal'>
-        <p><label for='option-permission'><input type='checkbox' name='permission' id='option-permission'> {{__ "Permission to print"}}</label></p>
-        <p class='indent'>{{{__ "For detailed licensing information, see <a href='/legal'>Legal Info</a>"}}}.</p>
-      </fieldset>
+          <h2>{{__ "Beginners"}}</h2>
 
-      <h2>{{__ "Pages"}}</h2>
-      
-      <fieldset id='cover'>
-        <p><label for='option-cover'><input type='checkbox' name='cover' id='option-cover' checked> {{__ "Cover Page"}}</label></p>
-      </fieldset>
-      
-      <fieldset id='pfs'>
-        <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p>
-      </fieldset>
+          <fieldset>
+            <p><input type='checkbox' name='build' id='option-build'> <label for='option-build'>{{__ "Build a character"}}</label></p>
+            <p class='info'>{{__ "A page to help beginners with the process of building their character."}}</p>
+          </fieldset>
+          
+          <h2>{{__ "Legal"}}</h2>
+          <fieldset id='legal'>
+            <p><label for='option-permission'><input type='checkbox' name='permission' id='option-permission'> {{__ "Permission to print"}}</label></p>
+            <p class='info'>{{__ "A page stating that this document may be legally printed."}}</p>
+            <p class='info'>{{{__ "For detailed licensing information, see <a href='/legal'>Legal Info</a>."}}}</p>
+          </fieldset>
 
-      <fieldset id='cover'>
-        <p><label for='option-animal-companion'><input type='checkbox' name='animal-companion' id='option-animal-companion'> {{__ "Animal Companion"}}</label></p>
-      </fieldset>
+          <h2>{{__ "Options"}}</h2>
+          <fieldset>
+            <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p>
+            
+            <p><label for='debug'><input type='checkbox' name='debug' id='debug'> Debug layouts</label></p>
+          </fieldset>
+          
 
-      <fieldset>
-        <p><label for="inventory-style">{{__ "Inventory style"}}</label>
-          <select name="inventory-style" id="inventory-style">
-            <option value="half" selected>{{__ "Half page"}}</option>
-            <option value="full">{{__ "Full page"}}</option>
-            <option value="both">{{__ "Both"}}</option>
-          </select>
-        </p>
+        </div>
+        
 
-        <h3>{{__ "Additional pages"}}</h3>
+        <div class='yui3-u-1-2'>
+          
+          <h2>{{__ "Pages"}}</h2>
+          
+          <fieldset id='cover'>
+            <h4>Cover</h4>
+            <fieldset>
+              <p><label for='option-cover'><input type='checkbox' name='cover' id='option-cover' checked> {{__ "Cover Page"}}</label></p>
+            </fieldset>
+          </fieldset>
 
-        <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
-        <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
-        <p class='indent'>Size:
-          <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
-          <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" checked> {{__ "Medium"}}</label>
-          <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
-        </p>
-      </fieldset>
+          <fieldset id=''>
+            <h4>Skills</h4>
+            <fieldset>
+            <p><label for='skill-actions'><input type='checkbox' name='skill-actions' id='skill-actions' checked> {{__ "Skill actions"}}</label></p>
+            </fieldset>
+          </fieldset>
 
-      {{!-- <hr>
-      {{#each baseOptions}}
-        <p>
-          <input type='checkbox' id='option-{{option}}' name='{{option}}'>
-          <label for='option-{{option}}'>{{__ name}}</label>
-        </p>
-      {{/each}} --}}
+          {{!-- <fieldset id='cover'>
+            <p><label for='option-animal-companion'><input type='checkbox' name='animal-companion' id='option-animal-companion'> {{__ "Animal Companion"}}</label></p>
+          </fieldset> --}}
+
+          <fieldset>
+            <h4>Inventory</h4>
+            <fieldset>
+              <p><label for="inventory-style">{{__ "Inventory style"}}</label>
+                <select name="inventory-style" id="inventory-style">
+                  <option value="half" selected>{{__ "Half page"}}</option>
+                  <option value="full">{{__ "Full page"}}</option>
+                  <option value="both">{{__ "Both"}}</option>
+                </select>
+              </p>
+              <p>
+                <label for='inventory-class-kit'><input type='checkbox' name='inventory-class-kit' id='inventory-class-kit' checked> {{__ "Class kit"}} </label>
+              </p>
+            </fieldset>
+          </fieldset>
+
+        <h2>{{__ "Additional pages"}}</h2>
+          <fieldset>
+            <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
+            <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
+            <fieldset>
+              <p>Size:
+                <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
+                <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" checked> {{__ "Medium"}}</label>
+                <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
+              </p>
+            </fieldset>
+            
+            <p><input type='checkbox' name='reference' id='option-reference'> <label for='option-reference'>{{__ "Reference page"}}</label></p>
+            <p class='info'>{{__ "A sheet to clarify actions and traits."}}</p>
+          </fieldset>
+        </div>
+      </div>
+
       
       <nav class='wizardnav'>
         <a href='#class-tab'><img src='/images/wizprev.png'/></a>
@@ -553,9 +583,6 @@
       </fieldset> --}}
 
       <h2>{{__ "Download"}}</h2>
-        <p>
-          <label for='debug'><input type='checkbox' name='debug' id='debug'> Debug layouts</label>
-        </p>
         <p class='center'>
           <input type="submit" value="Download"/>
         </p>
