@@ -336,7 +336,13 @@ module.exports = {
                     console.log("                Done");
                 })();
             } else {
-                res.set('Content-Type', result.mimeType);
+                let mimeType = result.mimeType;
+                let userAgent = req.get('user-agent');
+                if (mimeType == 'text/html' && userAgent.match(/Android.*Chrome/)) {
+                    mimeType = 'text/plain';
+                }
+
+                res.set('Content-Type', mimeType);
                 res.set('Content-Length', result.data.length);
                 res.set('Content-Disposition', 'attachment; filename="' + result.filename + '"');
                 res.send(result.data);

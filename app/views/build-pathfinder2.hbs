@@ -166,6 +166,7 @@
         </fieldset>
 
         {{!-- Archetypes --}}
+        {{!--
         <h2>{{__ "Archetype"}}</h2>
 
         <fieldset id='classes'>
@@ -180,7 +181,7 @@
               </ul>
             </div>
           {{/each}}
-          {{!-- {{#each archetypeData}}
+          {{ !-- {{#each archetypeData}}
             <div class="yui3-u-1-3">
               {{#each groups}}
                 <h3>{{__ name}}</h3>
@@ -191,9 +192,10 @@
                 </ul>
               {{/each}}
             </div>
-          {{/each}} --}}
+          {{/each}} -- }}
           </div>
         </fieldset>
+        --}}
 
         {{!-- <p class='center'>
           <input type="submit" value="Random"/>
@@ -215,6 +217,9 @@
           <fieldset>
             <p><input type='checkbox' name='build' id='option-build'> <label for='option-build'>{{__ "Build a character"}}</label></p>
             <p class='info'>{{__ "A page to help beginners with the process of building their character."}}</p>
+            
+            <p><input type='checkbox' name='reference' id='option-reference'> <label for='option-reference'>{{__ "Reference"}}</label></p>
+            <p class='info'>{{__ "A sheet to explain actions and traits."}}</p>
           </fieldset>
           
           <h2>{{__ "Legal"}}</h2>
@@ -223,10 +228,15 @@
             <p class='info'>{{__ "A page stating that this document may be legally printed."}}</p>
             <p class='info'>{{{__ "For detailed licensing information, see <a href='/legal'>Legal Info</a>."}}}</p>
           </fieldset>
+          
+          <h2>{{__ "Organised Play"}}</h2>
+          <fieldset id='legal'>
+            <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p>
+          </fieldset>
 
           <h2>{{__ "Options"}}</h2>
           <fieldset>
-            <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p>
+            {{!-- <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p> --}}
             
             <p><label for='debug'><input type='checkbox' name='debug' id='debug'> Debug layouts</label></p>
           </fieldset>
@@ -285,8 +295,6 @@
               </p>
             </fieldset>
             
-            <p><input type='checkbox' name='reference' id='option-reference'> <label for='option-reference'>{{__ "Reference page"}}</label></p>
-            <p class='info'>{{__ "A sheet to clarify actions and traits."}}</p>
           </fieldset>
         </div>
       </div>
