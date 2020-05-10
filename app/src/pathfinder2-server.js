@@ -338,7 +338,7 @@ module.exports = {
             } else {
                 let mimeType = result.mimeType;
                 let userAgent = req.get('user-agent');
-                if (mimeType == 'text/html' && userAgent.match(/Android.*Chrome/)) {
+                if ((mimeType == 'text/html' || mimeType == 'text/html; charset=utf-8') && userAgent.match(/Android.*Chrome/)) {
                     mimeType = 'text/plain';
                 }
 
