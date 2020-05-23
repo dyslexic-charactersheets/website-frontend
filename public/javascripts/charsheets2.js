@@ -27,7 +27,7 @@ function colourFromName(colour) {
 
     case 'red':       return '#BF4C4C';
     case 'orange':    return '#CC843D';
-    case 'yellow':    return '#D9D941';
+    case 'yellow':    return '#CCB129';
     case 'lime':      return '#6CA632';
     case 'green':     return '#42A642';
     case 'teal':      return '#3AA66E';
@@ -40,7 +40,7 @@ function colourFromName(colour) {
 
     case 'red2':      return '#BF6969';
     case 'orange2':   return '#BF8A56';
-    case 'yellow2':   return '#CCCC66';
+    case 'yellow2':   return '#BFB169';
     case 'lime2':     return '#89B362';
     case 'green2':    return '#6BB36B';
     case 'teal2':     return '#62B389';
