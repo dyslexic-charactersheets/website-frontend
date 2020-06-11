@@ -997,17 +997,17 @@ form#build-my-character #colours label[for=colour-orange] {
 form#build-my-character #colours label[for=colour-orange] span {
   background: #b48732;
 }
-form#build-my-character #colours label[for=colour-yellow] {
-  color: #675900;
+form#build-my-character #colours label[for=colour-gold] {
+  color: #584a00;
 }
-form#build-my-character #colours label[for=colour-yellow] span {
-  background: #beaa28;
+form#build-my-character #colours label[for=colour-gold] span {
+  background: #ccaf1f;
 }
 form#build-my-character #colours label[for=colour-lime] {
-  color: #4f5d00;
+  color: #365c00;
 }
 form#build-my-character #colours label[for=colour-lime] span {
-  background: #a0b428;
+  background: #76a632;
 }
 form#build-my-character #colours label[for=colour-green] {
   color: #0d770d;
@@ -1062,7 +1062,7 @@ form#build-my-character #colour-wheel input[type=radio][value=orange] {
   top: 32px;
   left: 191px;
 }
-form#build-my-character #colour-wheel input[type=radio][value=yellow] {
+form#build-my-character #colour-wheel input[type=radio][value=gold] {
   top: 75px;
   left: 232px;
 }
@@ -1115,7 +1115,7 @@ form#build-my-character #colour-wheel input[type=radio][value=orange2] {
   top: 68px;
   left: 170px;
 }
-form#build-my-character #colour-wheel input[type=radio][value=yellow2] {
+form#build-my-character #colour-wheel input[type=radio][value=gold2] {
   top: 95px;
   left: 197px;
 }
@@ -1176,6 +1176,12 @@ form#build-my-character label.colour-sample span {
   border: 2px solid rgba(255,255,255,0.5);
   border-radius: 2px;
 }
+form#build-my-character label.colour-sample.colour-sample-rainbow span {
+  background-color: #7a7a7a;
+  background-color: rgba(128,128,128,0.5);
+  /* background-color: linear-gradient(-45deg, #c04040, #40c040, #4040c0, #c04040); */
+  background: linear-gradient(135deg, #c04040, #b0b020, #40c040, #20b0b0, #4040c0, #b020b0);
+}
 #colour-lightest {
   background: #b0b0b0;
 }
@@ -1203,11 +1209,11 @@ form#build-my-character label.colour-sample span {
 #colour-orange {
   background: #CC843D;
 }
-#colour-yellow {
-  background: #D9D941;
+#colour-gold {
+  background: #CCAF1F;
 }
 #colour-lime {
-  background: #6CA632;
+  background: #76a632;
 }
 #colour-green {
   background: #42A642;

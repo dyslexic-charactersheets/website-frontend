@@ -27,8 +27,8 @@ function colourFromName(colour) {
 
     case 'red':       return '#BF4C4C';
     case 'orange':    return '#CC843D';
-    case 'yellow':    return '#CCB129';
-    case 'lime':      return '#6CA632';
+    case 'gold':      return '#CCAF1F';
+    case 'lime':      return '#76A632';
     case 'green':     return '#42A642';
     case 'teal':      return '#3AA66E';
     case 'cyan':      return '#32A6A6';
@@ -40,8 +40,8 @@ function colourFromName(colour) {
 
     case 'red2':      return '#BF6969';
     case 'orange2':   return '#BF8A56';
-    case 'yellow2':   return '#BFB169';
-    case 'lime2':     return '#89B362';
+    case 'gold2':     return '#CCB952';
+    case 'lime2':     return '#91B362';
     case 'green2':    return '#6BB36B';
     case 'teal2':     return '#62B389';
     case 'cyan2':     return '#74B3B3';
@@ -300,13 +300,15 @@ $("#build-my-character").submit(function (e) {
 
   var colour = $("input[type=radio][name=print-colour]:checked").attr('value');
   if (colour == "custom")
-    colour = $("input#custom-colour").val();
+    colour = "#"+$("input[name=print-colour-custom]").val();
   else
     colour = colourFromName(colour);
   // colour = adjustIntensity(colour, intensity);
   char.data.attributes.printColour = colour;
 
   var accentColour = $("input[type=radio][name=accent-colour]:checked").attr('value');
+  if (accentColour == "custom")
+    accentColour = "#"+$("input[name=accent-colour-custom]").val();
   // accentColour = adjustIntensity(accentColour, intensity);
   char.data.attributes.accentColour = colourFromName(accentColour);
 
@@ -596,6 +598,18 @@ $(function() {
     });
 
 
+    $("input[name=print-colour-custom]").keyup(function () {
+      $("input[name=print-colour][value=custom]").prop('checked', true);
+      var colour = "#"+$("input[name=print-colour-custom]").val();
+      $("#print-colour-custom-preview").removeClass('colour-sample-rainbow').find("span").css('background-color', colour);
+    });
+    $("input[name=accent-colour-custom]").keyup(function () {
+      $("input[name=accent-colour][value=custom]").prop('checked', true);
+      var colour = "#"+$("input[name=accent-colour-custom]").val();
+      $("#accent-colour-custom-preview").removeClass('colour-sample-rainbow').find("span").css('background-color', colour);
+    });
+
+
     // turn the colour wheel into an image map
     // this gets a bit funky because we're crossing from one DOM into another
     document.getElementById("colour-wheel-svg").addEventListener('load', function () {
@@ -604,7 +618,7 @@ $(function() {
 
         wheel.find("[id=red]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-red").prop('checked', true); });
         wheel.find("[id=orange]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-orange").prop('checked', true); });
-        wheel.find("[id=yellow]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-yellow").prop('checked', true); });
+        wheel.find("[id=gold]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-gold").prop('checked', true); });
         wheel.find("[id=lime]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-lime").prop('checked', true); });
         wheel.find("[id=green]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-green").prop('checked', true); });
         wheel.find("[id=teal]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-teal").prop('checked', true); });
@@ -617,7 +631,7 @@ $(function() {
         
         wheel.find("[id=red2]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-red2").prop('checked', true); });
         wheel.find("[id=orange2]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-orange2").prop('checked', true); });
-        wheel.find("[id=yellow2]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-yellow2").prop('checked', true); });
+        wheel.find("[id=gold2]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-gold2").prop('checked', true); });
         wheel.find("[id=lime2]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-lime2").prop('checked', true); });
         wheel.find("[id=green2]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-green2").prop('checked', true); });
         wheel.find("[id=teal2]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-teal2").prop('checked', true); });

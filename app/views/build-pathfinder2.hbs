@@ -1,7 +1,7 @@
 <form id='build-my-character'>
 
     <header id='bodyheader'>
-        <h1>Build my character: Pathfinder 2nd Edition</h1>
+        <h1>{{__ "Build a character"}}: {{__ "Pathfinder 2nd Edition"}}</h1>
         
         <nav class='tabs'>
             <ul>
@@ -15,13 +15,13 @@
     </header>
 
     <section class='tab selected' id='class-tab'>
-        <p><a class='button' id='quick-link-build'>Build a character</a> &nbsp; Download the single page beginner's guide.</p>
+        <p><a class='button' id='quick-link-build'>{{__ ">Build a character"}}</a> &nbsp; {{__ "Download the single page beginner's guide."}}</p>
         <hr>
 
         <h2>{{__ "Name"}}</h2>
         <fieldset>
           <input id='character-name' class='name'>
-          <h3>Description</h3>
+          <h3>{{__ "Description"}}</h3>
           <textarea rows='4' id='character-description'></textarea>
         </fieldset>
         <hr>
@@ -236,9 +236,10 @@
 
           <h2>{{__ "Options"}}</h2>
           <fieldset>
+            <p><label for='debug'><input type='checkbox' name='diehard' id='diehard'> {{__ "Diehard"}}</label></p>
             {{!-- <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p> --}}
             
-            <p><label for='debug'><input type='checkbox' name='debug' id='debug'> Debug layouts</label></p>
+            <p><label for='debug'><input type='checkbox' name='debug' id='debug'> {{__ "Debug layouts"}}</label></p>
           </fieldset>
           
 
@@ -250,14 +251,14 @@
           <h2>{{__ "Pages"}}</h2>
           
           <fieldset id='cover'>
-            <h4>Cover</h4>
+            <h4>{{__ "Cover"}}</h4>
             <fieldset>
               <p><label for='option-cover'><input type='checkbox' name='cover' id='option-cover' checked> {{__ "Cover Page"}}</label></p>
             </fieldset>
           </fieldset>
 
           <fieldset id=''>
-            <h4>Skills</h4>
+            <h4>{{__ "Skills"}}</h4>
             <fieldset>
             <p><label for='skill-actions'><input type='checkbox' name='skill-actions' id='skill-actions' checked> {{__ "Skill actions"}}</label></p>
             </fieldset>
@@ -268,18 +269,18 @@
           </fieldset> --}}
 
           <fieldset>
-            <h4>Inventory</h4>
+            <h4>{{__ "Inventory"}}</h4>
             <fieldset>
               <p><label for="inventory-style">{{__ "Inventory style"}}</label>
                 <select name="inventory-style" id="inventory-style">
-                  <option value="half" selected>{{__ "Half page"}}</option>
-                  <option value="full">{{__ "Full page"}}</option>
+                  <option value="half">{{__ "Half page"}}</option>
+                  <option value="full" selected>{{__ "Full page"}}</option>
                   <option value="both">{{__ "Both"}}</option>
                 </select>
               </p>
-              <p>
+              {{!-- <p>
                 <label for='inventory-class-kit'><input type='checkbox' name='inventory-class-kit' id='inventory-class-kit' checked> {{__ "Class kit"}} </label>
-              </p>
+              </p> --}}
             </fieldset>
           </fieldset>
 
@@ -288,7 +289,7 @@
             <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
             <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
             <fieldset>
-              <p>Size:
+              <p>{{__ "Size"}}:
                 <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
                 <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" checked> {{__ "Medium"}}</label>
                 <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
@@ -348,7 +349,7 @@
 
               <input type='radio' name='print-colour' value='red' id='colour-wheel-red'>
               <input type='radio' name='print-colour' value='orange' id='colour-wheel-orange'>
-              <input type='radio' name='print-colour' value='yellow' id='colour-wheel-yellow'>
+              <input type='radio' name='print-colour' value='gold' id='colour-wheel-gold'>
               <input type='radio' name='print-colour' value='lime' id='colour-wheel-lime'>
               <input type='radio' name='print-colour' value='green' id='colour-wheel-green'>
               <input type='radio' name='print-colour' value='teal' id='colour-wheel-teal'>
@@ -361,7 +362,7 @@
 
               <input type='radio' name='print-colour' value='red2' id='colour-wheel-red2'>
               <input type='radio' name='print-colour' value='orange2' id='colour-wheel-orange2'>
-              <input type='radio' name='print-colour' value='yellow2' id='colour-wheel-yellow2'>
+              <input type='radio' name='print-colour' value='gold2' id='colour-wheel-gold2'>
               <input type='radio' name='print-colour' value='lime2' id='colour-wheel-lime2'>
               <input type='radio' name='print-colour' value='green2' id='colour-wheel-green2'>
               <input type='radio' name='print-colour' value='teal2' id='colour-wheel-teal2'>
@@ -373,7 +374,8 @@
               <input type='radio' name='print-colour' value='magenta2' id='colour-wheel-magenta2'>
             </div>
             <p><input type='radio' name='print-colour' value='custom' id='print-colour-custom'> <label for='print-colour-custom'>Custom:</label> 
-              <span class='colour-input'># <input type='text' size='6'></span>
+              <span class='colour-input'># <input type='text' name='print-colour-custom' size='6'></span>
+              <label class='colour-sample colour-sample-rainbow' id='print-colour-custom-preview'><span></span></span>
             </p>
           </div>
           <div class='yui3-u-2-3'>
@@ -411,7 +413,7 @@
                 <ul>
                   <li><input type='radio' id='accent-red' name='accent-colour' value='red'> <label class='colour-sample' for='accent-red'><span id='colour-red'></span> {{__ "Red"}}</label></li>
                   <li><input type='radio' id='accent-orange' name='accent-colour' value='orange'> <label class='colour-sample' for='accent-orange'><span id='colour-orange'></span> {{__ "Orange"}}</label></li>
-                  <li><input type='radio' id='accent-yellow' name='accent-colour' value='yellow'> <label class='colour-sample' for='accent-yellow'><span id='colour-yellow'></span> {{__ "Yellow"}}</label></li>
+                  <li><input type='radio' id='accent-gold' name='accent-colour' value='gold'> <label class='colour-sample' for='accent-gold'><span id='colour-gold'></span> {{__ "Gold"}}</label></li>
                 </ul>              
               </div>
               <div class='yui3-u-1-4'>
@@ -436,6 +438,10 @@
                 </ul>
               </div>
             </div>
+            <p><input type='radio' name='accent-colour' value='custom' id='accent-colour-custom'> <label for='accent-colour-custom'>Custom:</label> 
+              <span class='colour-input'># <input type='text' name='accent-colour-custom' size='6'></span>
+              <label class='colour-sample colour-sample-rainbow' id='accent-colour-custom-preview'><span></span></span>
+            </p>
 
           </div>
         </div>
@@ -447,7 +453,7 @@
           <h2>{{__ "Portrait"}}</h2>
             
           <div class='well well-drop-zone' id='iconic'>
-            <h4>Drag image here</h4>
+            <h4>{{__ "Drag image here"}}</h4>
             <input type='hidden' name='iconic-portrait' id='iconic-portrait' value='default'/>
             <img src='/iconics/generic.png' id='iconic-generic' class='selected' />
             <img id='iconic-custom' class='custom' />
@@ -474,25 +480,25 @@
           <h2>{{__ "Background"}}</h2>
           <div id='print-backgrounds'>
             <input type='radio' name='print-background' value='none' id='print-background-none' checked>
-            <label for='print-background-none'><u></u><span>White</span></label>
+            <label for='print-background-none'><u></u><span>{{__ "White"}}</span></label>
 
             <input type='radio' name='print-background' value='magnolia' id='print-background-magnolia'>
-            <label for='print-background-magnolia'><u></u><span>Magnolia</span></label>
+            <label for='print-background-magnolia'><u></u><span>{{__ "Magnolia"}}</span></label>
 
             <input type='radio' name='print-background' value='backgrounds/paper3.jpg' id='print-background-parchment'>
-            <label for='print-background-parchment'><img src='/images/print-background-parchment.png'><span>Parchment</span></label>
+            <label for='print-background-parchment'><img src='/images/print-background-parchment.png'><span>{{__ "Parchment"}}</span></label>
 
             <input type='radio' name='print-background' value='backgrounds/frost1.jpg' id='print-background-frost'>
-            <label for='print-background-frost'><img src='/images/print-background-frost.png'><span>Frost</span></label>
+            <label for='print-background-frost'><img src='/images/print-background-frost.png'><span>{{__ "Frost"}}</span></label>
           </div>
 
           <div>
             <p style='display: flex; flex-direction: row; align-items: center;'>
-              <span>Field underlay: &nbsp;</span>
-              <label><input type='radio' name='underlay' value='yes' id='underlay-yes' checked> Show</label>
+              <span>{{__ "Field underlay"}}: &nbsp;</span>
+              <label><input type='radio' name='underlay' value='yes' id='underlay-yes' checked> {{__ "Show"}}</label>
               <span style="display: inline-block; height: 2em; font-size: 110%; line-height: 2em; width: 3em; background: white; border-bottom: 1px solid #555; text-align: center; color: #ddd; font-weight: bold;">DEX</span>
               <span>&nbsp; &nbsp;</span>
-              <label><input type='radio' name='underlay' value='no' id='underlay-no'> Hide</label>
+              <label><input type='radio' name='underlay' value='no' id='underlay-no'> {{__ "Hide"}}</label>
               <span style="display: inline-block; height: 2em; width: 3em; background: white; border-bottom: 1px solid #555; text-align: center;"></span>
             </p>
           </div>
@@ -504,7 +510,7 @@
 
           <h2>{{__ "Logo"}}</h2>
           <div class='well well-drop-zone' id='logo'>
-            <h4>Drag image here</h4>
+            <h4>{{__ "Drag image here"}}</h4>
             <input type='hidden' name='logo' id='logo-select' value='pathfinder/Pathfinder Second Edition/Pathfinder 2e.png' />
             <img id='iconic-custom' class='custom' />
             {{#each logos}}
@@ -527,8 +533,8 @@
       {{!-- Languages --}}
       <h2>{{__ "Language"}}</h2>
       <fieldset>
-        <label><input type='radio' id='language-english' name='language' value='en' checked> English</label>
-        <label><input type='radio' id='language-italian' name='language' value='it'> Italian</label>
+        <label><input type='radio' id='language-english' name='language' value='en' checked> {{__ "English"}}</label>
+        <label><input type='radio' id='language-italian' name='language' value='it'> {{__ "Italian"}}</label>
       </fieldset>
 
       {{#if chromePDF}}
@@ -538,7 +544,7 @@
           <div class='yui3-u-1-3'>
             <p>
               <input type='radio' name='download-format' value='html' id='download-format-html' checked>
-              <label for='download-format-html'><b>HTML</b></label>
+              <label for='download-format-html'><b>{{__ "HTML"}}</b></label>
             </p>
             <p class='info'>{{__ "Allows values to be filled in"}}</p>
             <p class='info'>{{__ "Adjusts to fit your paper size"}}</p>
@@ -547,16 +553,16 @@
           <div class='yui3-u-2-3'>
             <p>
               <input type='radio' name='download-format' value='pdf' id='download-format-pdf'>
-              <label for='download-format-pdf'><b>PDF</b></label>
+              <label for='download-format-pdf'><b>{{__ "PDF"}}</b></label>
             </p>
             <p class='info'>{{__ "Use this if you have trouble printing HTML"}}</p>
             <p class='info'>{{__ "Recommended for Chrome on Android"}}</p>
             <p class='indent'><b>{{__ "Paper size:"}}</b>
               <input type='radio' name='download-paper' value='Letter' id='download-letter' checked>
-              <label for='download-letter'>US Letter</label>
+              <label for='download-letter'>{{__ "US Letter"}}</label>
 
               <input type='radio' name='download-paper' value='A4' id='download-a4'>
-              <label for='download-a4'>A4</label>
+              <label for='download-a4'>{{__ "A4"}}</label>
             </p>
           </div>
         </div>
