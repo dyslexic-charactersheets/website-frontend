@@ -27,15 +27,17 @@ CharacterSheets.on('request', function (request) {
     var ts = date.getTime();
     var isoDate = date.toISOString();
 
-    if (data.hasOwnProperty("included")) {
-        data.included.forEach(inc => {
-            if (inc.type == "image" && inc.hasOwnProperty("attributes") && inc.attributes.has("data")) {
+    var data = Object.assign({ date: isoDate, ts: ts }, request);
+
+    // truncate embedded data like images
+    if (data.request.hasOwnProperty("included")) {
+        data.request.included.forEach(inc => {
+            if (inc.type == "image" && inc.hasOwnProperty("attributes") && inc.attributes.hasOwnProperty("data")) {
                 inc.attributes.data = "...";
             }
         });
     }
-
-    var data = Object.assign({ date: isoDate, ts: ts }, request);
+    
     var line = JSON.stringify(data) + "\n";
 
     logStream.write(line);
