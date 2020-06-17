@@ -98,10 +98,6 @@ function renderPage(res, page, title, lang, data = {}) {
         title: title,
         lang: lang,
         scriptFile: "charsheets.js",
-        verifyCodeHuman: message.verifyCodeHuman(),
-        verifyCodeFake: message.verifyCodeFake(),
-        humanYes: message.humanYes(),
-        humanNo: message.humanNo(),
         ...data
     };
     res.render(page, data)
@@ -121,10 +117,6 @@ function renderBuildForm(req, res, lang) {
         logos: iconicData.logos(),
         logoGroups: iconicData.logoGroups(),
         scriptFile: "charsheets.js",
-        verifyCodeHuman: message.verifyCodeHuman(),
-        verifyCodeFake: message.verifyCodeFake(),
-        humanYes: message.humanYes(),
-        humanNo: message.humanNo(),
     };
 
     // Pathfinder 2e-specific data
