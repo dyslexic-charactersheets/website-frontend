@@ -27,6 +27,14 @@ CharacterSheets.on('request', function (request) {
     var ts = date.getTime();
     var isoDate = date.toISOString();
 
+    if (data.hasOwnProperty("included")) {
+        data.included.forEach(inc => {
+            if (inc.type == "image" && inc.hasOwnProperty("attributes") && inc.attributes.has("data")) {
+                inc.attributes.data = "...";
+            }
+        });
+    }
+
     var data = Object.assign({ date: isoDate, ts: ts }, request);
     var line = JSON.stringify(data) + "\n";
 
