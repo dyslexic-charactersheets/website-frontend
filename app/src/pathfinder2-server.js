@@ -164,6 +164,7 @@ module.exports = {
         data.baseOptions = [];
         data.selects = systemFormData.selects;
         data.options = systemFormData.options;
+        data.languages = systemFormData.languages;
 
         if (systemFormData.hasOwnProperty("selects")) {
             // translate and sort all the items first

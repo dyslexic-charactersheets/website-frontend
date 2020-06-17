@@ -533,8 +533,19 @@
       {{!-- Languages --}}
       <h2>{{__ "Language"}}</h2>
       <fieldset>
-        <label><input type='radio' id='language-english' name='language' value='en' checked> {{__ "English"}}</label>
-        <label><input type='radio' id='language-italian' name='language' value='it'> {{__ "Italian"}}</label>
+        <div class='yui3-g'>
+          {{#each languages}}
+            <div class='yui3-u-1-3'>
+              <label for='language-{{code}}'>
+                <input type='radio' id='language-{{code}}' name='language' value='{{code}}' {{#ifEq code 'en'}}checked{{/ifEq}}>
+                <img class="flag" src="/images/flags/{{flag}}.png"/>&nbsp;
+                {{name}}
+              </label>
+            </div>
+          {{/each}}
+        </div>
+        {{!-- <label><input type='radio' id='language-english' name='language' value='en' checked> {{__ "English"}}</label>
+        <label><input type='radio' id='language-italian' name='language' value='it'> {{__ "Italian"}}</label> --}}
       </fieldset>
 
       {{#if chromePDF}}
