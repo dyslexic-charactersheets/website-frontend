@@ -20,6 +20,44 @@ CharacterSheets.addAssetsDir(assetsDir);
 var logosDir = __dirname + '/../../../assets/logos';
 CharacterSheets.addAssetsDir(logosDir);
 
+
+// Utility funcitons
+function isNull(val) {
+    return val === null || val === undefined;
+}
+
+function isArray(val) {
+    return Array.isArray(val);
+}
+
+function isObject(val) {
+    return val instanceof Object;
+}
+
+function cloneDeep(original) {
+    if (isNull(original)) {
+        return null;
+    }
+
+    if (isArray(original)) {
+        let product = [];
+        for (let i = 0; i < original.length; ++i) {
+        product.push(cloneDeep(original[i]));
+        }
+        return product;
+    }
+
+    if (isObject(original)) {
+        let product = {};
+        for (const key in original) {
+        product[cloneDeep(key)] = cloneDeep(original[key]);
+        }
+        return product;
+    }
+
+    return original;
+}
+
 // Log
 var logStream = fs.createWriteStream(__dirname + '/../../../pathfinder2.log', { flags: 'a' });
 CharacterSheets.on('request', function (request) {
@@ -27,7 +65,7 @@ CharacterSheets.on('request', function (request) {
     var ts = date.getTime();
     var isoDate = date.toISOString();
 
-    var data = Object.assign({ date: isoDate, ts: ts }, request);
+    var data = Object.assign({ date: isoDate, ts: ts }, cloneDeep(request));
 
     // truncate embedded data like images
     if (data.request.hasOwnProperty("included")) {
