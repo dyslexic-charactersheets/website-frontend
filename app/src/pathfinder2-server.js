@@ -383,6 +383,7 @@ module.exports = {
                     res.set('Content-Disposition', 'attachment; filename="' + result.filename + '.pdf"');
                     res.send(pdfdata);
                     console.log("                Done");
+                    page.close();
                 })();
             } else {
                 let mimeType = result.mimeType;
