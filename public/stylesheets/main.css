@@ -1497,6 +1497,17 @@ form#build-my-character #flexi-skills select {
   -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
+.start-hidden {
+  display: none;
+}
+p.icon {
+  margin-top: 1em;
+}
+p.icon img.icon {
+  float: left;
+  margin-top: -8px;
+  margin-right: 6px;
+}
 #download-thanks-dialog {
   top: 50%;
   bottom: 0;

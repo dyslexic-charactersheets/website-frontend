@@ -397,6 +397,10 @@ $("#build-my-character").submit(function (e) {
   char.data.attributes.downloadPDF = downloadFormat == "pdf";
   char.data.attributes.downloadPaperSize = $("input[name=download-paper]:checked").attr('value');
 
+  if (downloadFormat == "pdf") {
+    $("#pdf-warning").show();
+  }
+
   // marshal and send
   if (charIncluded.length > 0) {
     char.included = charIncluded;
