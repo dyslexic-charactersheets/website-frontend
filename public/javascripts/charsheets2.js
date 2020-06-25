@@ -32,10 +32,10 @@ function colourFromName(colour) {
     case 'green':     return '#42A642';
     case 'teal':      return '#3AA66E';
     case 'cyan':      return '#32A6A6';
-    case 'azure':     return '#3F78B3';
-    case 'blue':      return '#4848B3';
-    case 'indigo':    return '#793FB3';
-    case 'violet':    return '#B33FB3';
+    case 'azure':     return '#3f83b3';
+    case 'blue':      return '#485ab3';
+    case 'indigo':    return '#663fb3';
+    case 'violet':    return '#a03fb3';
     case 'magenta':   return '#B33F7A';
 
     case 'red2':      return '#BF6969';
@@ -45,10 +45,10 @@ function colourFromName(colour) {
     case 'green2':    return '#6BB36B';
     case 'teal2':     return '#62B389';
     case 'cyan2':     return '#74B3B3';
-    case 'azure2':    return '#6993BF';
-    case 'blue2':     return '#7373BF';
-    case 'indigo2':   return '#9469BF';
-    case 'violet2':   return '#BF69BF';
+    case 'azure2':    return '#699bbf';
+    case 'blue2':     return '#7380bf';
+    case 'indigo2':   return '#8669bf';
+    case 'violet2':   return '#b169bf';
     case 'magenta2':  return '#BF6994';
 
     default:          return colour;
