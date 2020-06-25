@@ -830,6 +830,7 @@ div.lightbox img {
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.8);
 }
 div.lightbox section.note {
+  position: relative;
   width: 1024px;
   height: 768px;
   background-image: url(/images/note-big.svg);
@@ -837,6 +838,11 @@ div.lightbox section.note {
   background-position: center;
   background-repeat: no-repeat;
 }
+div.lightbox section.note .dialog-close {
+  top: 4px;
+  right: 178px;
+}
+
 div.lightbox section.note h1 {
   margin-top: 10px;
 }
@@ -1464,14 +1470,14 @@ form#build-my-character #flexi-skills select {
   position: fixed;
   z-index: 1000;
 }
-.dialog .dialog-close {
+.dialog .dialog-close, .lightbox .dialog-close {
   position: absolute;
   top: -8px;
   right: -8px;
   width: 28px;
   height: 28px;
   border-radius: 14px;
-  background: #a00000;
+  background: #902010;
   z-index: 1000;
   box-shadow: 0 1px 2px rgba(0,0,0,0.6);
 
@@ -1496,6 +1502,12 @@ form#build-my-character #flexi-skills select {
   -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.lightbox .inner {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
 }
 .start-hidden {
   display: none;

@@ -361,7 +361,7 @@ $(function() {
   });
 
   $(".dialog-close").click(function () {
-    $("#blanket, .dialog").fadeOut("fast");
+    $("#blanket, div.lightbox, .dialog").fadeOut("fast");
   });
 
   $("#iconic-image-list a").click(function () {
