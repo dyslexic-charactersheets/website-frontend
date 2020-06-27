@@ -300,7 +300,7 @@ $("#build-my-character").submit(function (e) {
 
   var colour = $("input[type=radio][name=print-colour]:checked").attr('value');
   if (colour == "custom")
-    colour = "#"+$("input[name=print-colour-custom]").val();
+    colour = "#"+$("input[name=print-colour-custom]").val().trim();
   else
     colour = colourFromName(colour);
   // colour = adjustIntensity(colour, intensity);
@@ -308,7 +308,7 @@ $("#build-my-character").submit(function (e) {
 
   var accentColour = $("input[type=radio][name=accent-colour]:checked").attr('value');
   if (accentColour == "custom")
-    accentColour = "#"+$("input[name=accent-colour-custom]").val();
+    accentColour = "#"+$("input[name=accent-colour-custom]").val().trim();
   // accentColour = adjustIntensity(accentColour, intensity);
   char.data.attributes.accentColour = colourFromName(accentColour);
 
@@ -604,12 +604,12 @@ $(function() {
 
     $("input[name=print-colour-custom]").keyup(function () {
       $("input[name=print-colour][value=custom]").prop('checked', true);
-      var colour = "#"+$("input[name=print-colour-custom]").val();
+      var colour = "#"+$("input[name=print-colour-custom]").val().trim();
       $("#print-colour-custom-preview").removeClass('colour-sample-rainbow').find("span").css('background-color', colour);
     });
     $("input[name=accent-colour-custom]").keyup(function () {
       $("input[name=accent-colour][value=custom]").prop('checked', true);
-      var colour = "#"+$("input[name=accent-colour-custom]").val();
+      var colour = "#"+$("input[name=accent-colour-custom]").val().trim();
       $("#accent-colour-custom-preview").removeClass('colour-sample-rainbow').find("span").css('background-color', colour);
     });
 
