@@ -134,8 +134,10 @@ app.get('/:lang/build/:game', (req, res) => loginGuard(req, res, req.params.lang
 
 // let's build a character sheet
 app.post('/download/pathfinder2', (req, res) => loginGuard(req, res, 'en', () => pathfinder2.render(req, res, 'en')));
+app.get('/download/pathfinder2', (req, res) => loginGuard(req, res, 'en', () => pathfinder2.render(req, res, 'en')));
 
 app.post('/:lang/download/pathfinder2', (req, res) => loginGuard(req, res, req.params.lang, () => pathfinder2.render(req, res, req.params.lang)));
+app.get('/:lang/download/pathfinder2', (req, res) => loginGuard(req, res, req.params.lang, () => pathfinder2.render(req, res, req.params.lang)));
 
 // go!
 setTimeout(() => {
