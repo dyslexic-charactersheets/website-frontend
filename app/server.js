@@ -33,6 +33,7 @@ var xhbs = express_hbs({
   });
 // layouts = require('handlebars-layouts');
 // hbs.registerHelper(hbs_layouts(xhbs));
+
 app.engine('.hbs', xhbs);
 
 app.use(express.static(__dirname+'/../public'));

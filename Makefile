@@ -1,6 +1,9 @@
 setup:
 	@cd app; npm install
 
+build:
+	@cd app; nodejs build.js
+
 run:
 	@cd app; nodejs server.js
 

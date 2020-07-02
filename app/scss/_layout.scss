@@ -1,0 +1,134 @@
+
+// layouts
+.layout_track {
+    .layout__pane--main {
+        padding-right: 20vw;
+        .layout__pane__inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    }
+
+    .layout__pane--track {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 20vw;
+        background: $background2;
+        border-left: 1px solid $edge;
+        box-shadow: inset 5px 0 5px $shadow-light;
+    }
+}
+
+.layout_2e {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.layout_3e {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.layout_23 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1rem;
+}
+
+.track-scroll {
+    .track-scroll__pane {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &__inner {
+            border: 1px solid $edge;
+            border-radius: 4px;
+            background: $background2-light;
+            padding: 1rem 2rem;
+        }
+    }
+}
+
+.next-page {
+    margin-left: 90%;
+}
+
+.slide-in {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -80vw;
+    width: 75vw;
+
+    transition: right 0.5s;
+
+    background: $background2;
+    border-left: 1px solid $edge;
+    box-shadow: 0 0 10px $shadow;
+
+    .slide-in__inner {
+        padding: 1rem 4rem;
+    }
+
+    &.slide-in--active {
+        right: 0;
+        z-index: 10;
+    }
+
+    .slide-in__close {
+        width: 0;
+        height: 0;
+
+        &:before {
+            $button-size: 2rem;
+
+            content: "×";
+            position: absolute;
+            top: 1rem;
+            left: -0.5rem;
+
+            width: $button-size;
+            height: $button-size;
+            line-height: $button-size - 0.2rem;
+            border-radius: $button-size;
+            text-align: center;
+
+            background: $background;
+            border: 1px solid $edge;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: -5px 0 5px $shadow-light;
+
+            cursor: pointer;
+        }
+    }
+}
+
+
+.row {
+    display: flex;
+    flex-direction: row;
+
+    .row__block {
+        padding-right: 1rem;
+
+        h2, h3 {
+            line-height: 2rem;
+            margin: 0 0 1rem 0;
+        }
+    }
+}
+
+.reveal {
+    display: none;
+
+    &.reveal--show {
+        display: block;
+    }
+}

@@ -1,695 +1,585 @@
-<form id='build-my-character'>
+<div class='layout layout_track'>
+  <div class="layout__pane layout__pane--main">
+    <div class="layout__pane__inner">
 
-    <header id='bodyheader'>
-        <h1>{{__ "Build a character"}}: {{__ "Pathfinder 2nd Edition"}}</h1>
-        
-        <nav class='tabs'>
-            <ul>
-                <li><a href='/'>&laquo; {{__ "Back to intro"}}</a></li>
-                <li><a rel='#class-tab' class='selected'>{{__ "Class"}}</a></li>
-                <li><a rel='#options-tab' id='options-tab-link'>{{__ "Options"}}</a></li>
-                <li><a rel='#appearance-tab' id='appearance-tab-link'>{{__ "Appearance"}}</a></li>
-                <li><a rel='#download-tab' id='download-tab-link'>{{__ "Download"}}</a></li>
-            </ul>
-        </nav>
-    </header>
+      <div class="track-scroll">
+        <div class="track-scroll__pane" id="pane-character">
+          <div class="track-scroll__pane__inner">
 
-    <section class='tab selected' id='class-tab'>
-        <p><a class='button' id='quick-link-build'>{{__ "Build a character"}}</a> &nbsp; {{__ "Download the single page beginner's guide."}}</p>
-        <hr>
+            <div class="row">
+              <div class="row__block">
+                <h2>{{__ "Ancestry"}}</h2>
 
-        <h2>{{__ "Name"}}</h2>
-        <fieldset>
-          <input id='character-name' class='name'>
-          <h3>{{__ "Description"}}</h3>
-          <textarea rows='4' id='character-description'></textarea>
-        </fieldset>
-        <hr>
+                <div class='field' id='field-ancestry'>
+                  <input type='hidden' name='ancestry'>
+                  <button class='btn-slide-in' rel='options-pane-ancestry'>
+                    <span class='field__default'>{{__ "Select..."}}</span><span class='field__readout'></span>
+                  </button>
+                </div>
+              </div>
 
-        {{!-- Ancestries --}}
-        <h2>{{__ "Ancestry"}}</h2>
+              {{#each ancestries}}
+              <div class="row__block reveal reveal-heritage" id="reveal-heritage-{{e code}}">
+                <h3>{{__ "Heritage"}}</h3>
 
-        <fieldset id='ancestries'>
-          <div class="yui3-g">
-          {{#each ancestryColumns}}
-            <div class="yui3-u-1-3">
-              <ul>
-                {{#each values}}
-                  <li><label for='ancestry-{{e code}}'><input type='radio' id='ancestry-{{e code}}' name='ancestry' value='{{e code}}'> {{__ name}}</label></li>
-                {{/each}}
-              </ul>
-            </div>
-          {{/each}}
-
-          {{!-- {{#each ancestryData}}
-            <div class="yui3-u-1-3">
-              {{#each groups}}
-                <h3>{{__ name}}</h3>
-                <ul>
-                  {{#each values}}
-                    <li><label for='ancestry-{{id}}'><input type='radio' id='ancestry-{{id}}' name='ancestry' value='{{id}}'> {{__ name}}</label></li>
-                  {{/each}}
-                </ul>
+                <div class='field' id='field-heritage-{{e code}}'>
+                  <input type='hidden' name='heritage'>
+                  <button class='btn-slide-in' rel='options-pane-heritage-{{e code}}'>
+                    <span class='field__default'>{{__ "Select..."}}</span><span class='field__readout'></span>
+                  </button>
+                </div>
+              </div>
               {{/each}}
             </div>
-          {{/each}} --}}
-          </div>
-          <div class='yui3-g'>
-            <div class="yui3-u-1-3">
-              <ul>
-                <li><label for='ancestry-other'><input type='radio' id='ancestry-other' name='ancestry' value='' checked> {{__ "Other"}}</label></li>
-              </ul>
+
+            <h2>{{__ "Background"}}</h2>
+
+            <div class='field' id='field-background'>
+              <input type='hidden' name='background'>
+              <button class='btn-slide-in' rel='options-pane-background'>
+                <span class='field__default'>{{__ "Select..."}}</span><span class='field__readout'></span>
+              </button>
+            </div>
+            
+            <div class="row">
+              <div class="row__block">
+                <h2>{{__ "Class"}}</h2>
+
+                <div class='field' id='field-class'>
+                  <input type='hidden' name='class'>
+                  <button class='btn-slide-in' rel='options-pane-class'>
+                    <span class='field__default'>{{__ "Select..."}}</span><span class='field__readout'></span>
+                  </button>
+                </div>
+              </div>
+            
+              {{#each classes}}
+              <div class="row__block reveal reveal-class" id="reveal-class-{{e code}}">
+                {{#each selects}}
+                <h3>{{__ name}}</h3>
+                <div class='field' id='field-class-{{e select}}'>
+                  <input type='hidden' name='class-{{e select}}'>
+                  <button class='btn-slide-in' rel='options-pane-class-{{e select}}'>
+                    <span class='field__default'>{{__ "Select..."}}</span><span class='field__readout'></span>
+                  </button>
+                </div>
+                {{/each}}
+              </div>
+              {{/each}}
+            </div>
+
+            <h2>{{__ "Archetypes"}}</h2>
+
+            <div class='field field--multi' id='field-archetype'>
+              <input type='hidden' name='archetypes'>
+              <button class='btn-slide-in' rel='options-pane-archetypes'>
+                <span class='field__default'>{{__ "Select..."}}</span><span class='field__readout'></span>
+              </button>
             </div>
           </div>
-          
-          {{!-- Heritages --}}
-          {{#each ancestries}}
-          <div class='reveal reveal-heritage' id='reveal-heritage-{{e code}}'>
-            {{#each selects}}
-              <h3>{{__ name}}</h3>
-              <fieldset>
-                <div class="yui3-g">
-                  {{#each values}}
-                  <div class="yui3-u-1-3">
-                    <ul>
-                      <li><label for='heritage-{{e ../select}}-{{e code}}'><input type='radio' id='heritage-{{e ../select}}-{{e code}}' name='{{e ../select}}' value='{{code}}'> {{__ name}}</label></li>
-                    </ul>
+          <button class='next-page scroll-to' rel='pane-options'>
+            <img src='/images/down-arrow.png'>
+          </button>
+        </div>
+        
+
+
+        <div class="track-scroll__pane" id="pane-options">
+          <div class="track-scroll__pane__inner">
+            <h2>{{__ "Options"}}</h2>
+            
+            <div class="layout layout_2e">
+              <div class="layout__pane">
+
+                <h3>{{__ "Beginners"}}</h3>
+                <p><input type='checkbox' name='build' id='option-build'> <label for='option-build'>{{__ "Build a character"}}</label></p>
+                <p class='info'>{{__ "A page to help beginners with the process of building their character."}}</p>
+                
+                <p><input type='checkbox' name='reference' id='option-reference'> <label for='option-reference'>{{__ "Reference"}}</label></p>
+                <p class='info'>{{__ "A sheet to explain actions and traits."}}</p>
+                
+                <h3>{{__ "Legal"}}</h3>
+                <p><label for='option-permission'><input type='checkbox' name='permission' id='option-permission'> {{__ "Permission to print"}}</label></p>
+                <p class='info'>{{__ "A page stating that this document may be legally printed."}}</p>
+                <p class='info'>{{{__ "For detailed licensing information, see <a href='/legal'>Legal Info</a>."}}}</p>
+                
+                <h3>{{__ "Organised Play"}}</h3>
+                <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p>
+
+                <h3>{{__ "Options"}}</h3>
+                <p><label for='feat-diehard'><input type='checkbox' name='feat-diehard' id='feat-diehard'> {{__ "Diehard"}}</label></p>
+                <p><label for='debug'><input type='checkbox' name='debug' id='debug'> {{__ "Debug layouts"}}</label></p>
+              </div>
+              <div class="layout__pane">
+            
+                <h3>{{__ "Pages"}}</h3>
+                
+                <h4>{{__ "Cover"}}</h4>
+                <p><label for='option-cover'><input type='checkbox' name='cover' id='option-cover' checked> {{__ "Cover Page"}}</label></p>
+
+                <h4>{{__ "Skills"}}</h4>
+                <p><label for='skill-actions'><input type='checkbox' name='skill-actions' id='skill-actions' checked> {{__ "Skill actions"}}</label></p>
+
+                <h4>{{__ "Inventory"}}</h4>
+                <p><label for="inventory-style">{{__ "Inventory style"}}</label>
+                  <select name="inventory-style" id="inventory-style">
+                    <option value="half">{{__ "Half page"}}</option>
+                    <option value="full" selected>{{__ "Full page"}}</option>
+                    <option value="both">{{__ "Both"}}</option>
+                  </select>
+                </p>
+                {{!-- <p>
+                  <label for='inventory-class-kit'><input type='checkbox' name='inventory-class-kit' id='inventory-class-kit' checked> {{__ "Class kit"}} </label>
+                </p> --}}
+
+                <h4>{{__ "Additional pages"}}</h4>
+                <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
+                <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
+                
+                <p>{{__ "Size"}}:
+                  <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
+                  <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" checked> {{__ "Medium"}}</label>
+                  <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
+                </p>
+
+              </div>
+            </div>
+          </div>
+          <button class='next-page scroll-to' rel='pane-appearance'>
+            <img src='/images/down-arrow.png'>
+          </button>
+        </div>
+        
+
+
+        <div class="track-scroll__pane" id="pane-appearance">
+          <div class="track-scroll__pane__inner">
+            <h2>{{__ "Appearance"}}</h2>
+
+            <h3>{{__ "Accessibility"}}</h3>
+            <div class='layout_3e'>
+              <div>
+                <p id='high-contrast'><span><input type='checkbox' id='option-high-contrast' name='option-high-contrast'> <label for='option-high-contrast'>{{__ "High contrast"}}</label><span></span></p>
+                <p class='info'>{{__ "Makes colours darker, removes white text."}}</p>
+              </div>
+              <div>
+                <p id='large-print'><input type='checkbox' id='option-large-print' name='option-large-print'> <label for='option-large-print'>{{__ "Large print"}}</label></p>    
+                <p class='info'>{{__ "Enlarges text and fields, omits some elements to fit on the page."}}</p>
+              </div>
+              <div>
+                <p id='dyslexic'><input type='checkbox' id='option-dyslexic' name='option-dyslexic'> <label for='option-dyslexic'>{{__ "Dyslexic fonts"}}</label></p>
+                <p class='info'>{{__ "Uses easy-to-read fonts, disables all-caps."}}</p>
+              </div>
+            </div>
+
+            <div id='colour-row'>
+            <h3>{{__ "Colour"}}</h3>
+            <fieldset>
+              <div class='layout_23'>
+                <div>
+                  <div id='colour-wheel'>
+                    <object data="/images/colour-wheel.svg" type="image/svg+xml" id="colour-wheel-svg" width="280" height="280"></object>
+                    {{!-- <img src='/images/colour-wheel.svg' width="280" height="280" usemap="#colour-wheel-map"/> --}}
+                    <input type='radio' name='print-colour' value='grey' id='colour-wheel-grey' checked>
+
+                    <input type='radio' name='print-colour' value='red' id='colour-wheel-red'>
+                    <input type='radio' name='print-colour' value='orange' id='colour-wheel-orange'>
+                    <input type='radio' name='print-colour' value='gold' id='colour-wheel-gold'>
+                    <input type='radio' name='print-colour' value='lime' id='colour-wheel-lime'>
+                    <input type='radio' name='print-colour' value='green' id='colour-wheel-green'>
+                    <input type='radio' name='print-colour' value='teal' id='colour-wheel-teal'>
+                    <input type='radio' name='print-colour' value='cyan' id='colour-wheel-cyan'>
+                    <input type='radio' name='print-colour' value='azure' id='colour-wheel-azure'>
+                    <input type='radio' name='print-colour' value='blue' id='colour-wheel-blue'>
+                    <input type='radio' name='print-colour' value='indigo' id='colour-wheel-indigo'>
+                    <input type='radio' name='print-colour' value='violet' id='colour-wheel-violet'>
+                    <input type='radio' name='print-colour' value='magenta' id='colour-wheel-magenta'>
+
+                    <input type='radio' name='print-colour' value='red2' id='colour-wheel-red2'>
+                    <input type='radio' name='print-colour' value='orange2' id='colour-wheel-orange2'>
+                    <input type='radio' name='print-colour' value='gold2' id='colour-wheel-gold2'>
+                    <input type='radio' name='print-colour' value='lime2' id='colour-wheel-lime2'>
+                    <input type='radio' name='print-colour' value='green2' id='colour-wheel-green2'>
+                    <input type='radio' name='print-colour' value='teal2' id='colour-wheel-teal2'>
+                    <input type='radio' name='print-colour' value='cyan2' id='colour-wheel-cyan2'>
+                    <input type='radio' name='print-colour' value='azure2' id='colour-wheel-azure2'>
+                    <input type='radio' name='print-colour' value='blue2' id='colour-wheel-blue2'>
+                    <input type='radio' name='print-colour' value='indigo2' id='colour-wheel-indigo2'>
+                    <input type='radio' name='print-colour' value='violet2' id='colour-wheel-violet2'>
+                    <input type='radio' name='print-colour' value='magenta2' id='colour-wheel-magenta2'>
                   </div>
-                  {{/each}}
+                  <p><input type='radio' name='print-colour' value='custom' id='print-colour-custom'> <label for='print-colour-custom'>Custom:</label> 
+                    <span class='colour-input'># <input type='text' name='print-colour-custom' size='6'></span>
+                    <label class='colour-sample colour-sample-rainbow' id='print-colour-custom-preview'><span></span></span>
+                  </p>
                 </div>
+                <div>
+                  <h3>{{__ "Brightness"}}</h3>
+                  <div class='yui3-g'>
+                    <div class='yui3-u-1-5'>
+                      <input type='radio' id='intensity-lightest' name='intensity' value='lightest'> <label class='colour-sample' for='intensity-lightest'><span id='colour-lightest'></span></label>
+                    </div>
+                    <div class='yui3-u-1-5'>
+                      <input type='radio' id='intensity-lighter' name='intensity' value='lighter'> <label class='colour-sample' for='intensity-lighter'><span id='colour-lighter'></span></label>
+                    </div>
+                    <div class='yui3-u-1-5'>
+                      <input type='radio' id='intensity-normal' name='intensity' value='normal' checked> <label class='colour-sample' for='intensity-normal'><span id='colour-normal'></span></label>
+                    </div>
+                    <div class='yui3-u-1-5'>
+                      <input type='radio' id='intensity-darker' name='intensity' value='darker'> <label class='colour-sample' for='intensity-darker'><span id='colour-darker'></span></label>
+                    </div>
+                    <div class='yui3-u-1-5'>
+                      <input type='radio' id='intensity-darkest' name='intensity' value='darkest'> <label class='colour-sample' for='intensity-darkest'><span id='colour-darkest'></span></label>
+                    </div>
+                  </div>
+                  <p>{{__ "You may need to adjust brightness to suit your printer."}}</p>
+
+                  <h3>{{__ "Accent Colour"}}</h3>
+                  <div class='yui3-g'>
+                    <div class='yui3-u-1-4'>
+                      <p><input type='radio' id='accent-none' name='accent-colour' value='none' checked> <label for='accent-none'>{{__ "No accent colour"}}</label></p>
+                    </div>
+                    <div class='yui3-u-1-4'>
+                      <p><input type='radio' id='accent-black' name='accent-colour' value='black'> <label class='colour-sample' for='accent-black'><span id='colour-black'></span> {{__ "Black"}}</label></p>
+                    </div>
+                  </div>
+                  <div class='yui3-g'>
+                    <div class='yui3-u-1-4'>
+                      <ul>
+                        <li><input type='radio' id='accent-red' name='accent-colour' value='red'> <label class='colour-sample' for='accent-red'><span id='colour-red'></span> {{__ "Red"}}</label></li>
+                        <li><input type='radio' id='accent-orange' name='accent-colour' value='orange'> <label class='colour-sample' for='accent-orange'><span id='colour-orange'></span> {{__ "Orange"}}</label></li>
+                        <li><input type='radio' id='accent-gold' name='accent-colour' value='gold'> <label class='colour-sample' for='accent-gold'><span id='colour-gold'></span> {{__ "Gold"}}</label></li>
+                      </ul>              
+                    </div>
+                    <div class='yui3-u-1-4'>
+                      <ul>
+                        <li><input type='radio' id='accent-lime' name='accent-colour' value='lime'> <label class='colour-sample' for='accent-lime'><span id='colour-lime'></span> {{__ "Lime"}}</label></li>
+                        <li><input type='radio' id='accent-green' name='accent-colour' value='green'> <label class='colour-sample' for='accent-green'><span id='colour-green'></span> {{__ "Green"}}</label></li>
+                        <li><input type='radio' id='accent-teal' name='accent-colour' value='teal'> <label class='colour-sample' for='accent-teal'><span id='colour-teal'></span> {{__ "Teal"}}</label></li>
+                      </ul>
+                    </div>
+                    <div class='yui3-u-1-4'>
+                      <ul>
+                        <li><input type='radio' id='accent-cyan' name='accent-colour' value='cyan'> <label class='colour-sample' for='accent-cyan'><span id='colour-cyan'></span> {{__ "Cyan"}}</label></li>
+                        <li><input type='radio' id='accent-azure' name='accent-colour' value='azure'> <label class='colour-sample' for='accent-azure'><span id='colour-azure'></span> {{__ "Azure"}}</label></li>
+                        <li><input type='radio' id='accent-blue' name='accent-colour' value='blue'> <label class='colour-sample' for='accent-blue'><span id='colour-blue'></span> {{__ "Blue"}}</label></li>
+                      </ul>
+                    </div>
+                    <div class='yui3-u-1-4'>
+                      <ul>
+                        <li><input type='radio' id='accent-indigo' name='accent-colour' value='indigo'> <label class='colour-sample' for='accent-indigo'><span id='colour-indigo'></span> {{__ "Indigo"}}</label></li>
+                        <li><input type='radio' id='accent-violet' name='accent-colour' value='violet'> <label class='colour-sample' for='accent-violet'><span id='colour-violet'></span> {{__ "Violet"}}</label></li>
+                        <li><input type='radio' id='accent-magenta' name='accent-colour' value='magenta'> <label class='colour-sample' for='accent-magenta'><span id='colour-magenta'></span> {{__ "Magenta"}}</label></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <p><input type='radio' name='accent-colour' value='custom' id='accent-colour-custom'> <label for='accent-colour-custom'>Custom:</label> 
+                    <span class='colour-input'># <input type='text' name='accent-colour-custom' size='6'></span>
+                    <label class='colour-sample colour-sample-rainbow' id='accent-colour-custom-preview'><span></span></span>
+                  </p>
+
+                </div>
+              </div>
+
+              <div class='layout_23'>
+                <div>
+                  <h2>{{__ "Portrait"}}</h2>
+                    
+                  <div class='well well-drop-zone' id='iconic'>
+                    <h4>{{__ "Drag image here"}}</h4>
+                    <input type='hidden' name='iconic-portrait' id='iconic-portrait' value='default'/>
+                    <img src='/iconics/generic.png' id='iconic-generic' class='selected' />
+                    <img id='iconic-custom' class='custom' />
+                    {{#each iconics}}
+                      <img data-src='{{this.url}}' id='iconic-{{this.id}}'/>
+                    {{/each}}
+                    <p><a class='button' href='javascript:void(0);' id='select-iconic-button'>{{__ "Select portrait"}}</a></p>
+                  </div>
+                  
+                  {{!-- <h3>{{__ "Animal Portrait"}}</h3>
+                    
+                  <div class='well well-drop-zone' id='animal'>
+                    <input type='hidden' name='animal-portrait' id='animal-portrait' value='default'/>
+                    <img id='iconic-custom' class='custom' />
+                    {{#each iconics}}
+                      <img data-src='{{this.url}}' id='iconic-{{this.id}}'/>
+                    {{/each}}
+                    <p><a class='button' href='javascript:void(0);' id='select-animal-button'>{{__ "Select portrait"}}</a></p>
+                  </div> --}}
+                </div>
+
+                <div>
+                  <div id='background-area'>
+                  <h2>{{__ "Background"}}</h2>
+                  <div id='print-backgrounds'>
+                    <input type='radio' name='print-background' value='none' id='print-background-none' checked>
+                    <label for='print-background-none'><u></u><span>{{__ "White"}}</span></label>
+
+                    <input type='radio' name='print-background' value='magnolia' id='print-background-magnolia'>
+                    <label for='print-background-magnolia'><u></u><span>{{__ "Magnolia"}}</span></label>
+
+                    <input type='radio' name='print-background' value='backgrounds/paper3.jpg' id='print-background-parchment'>
+                    <label for='print-background-parchment'><img src='/images/print-background-parchment.png'><span>{{__ "Parchment"}}</span></label>
+
+                    <input type='radio' name='print-background' value='backgrounds/frost1.jpg' id='print-background-frost'>
+                    <label for='print-background-frost'><img src='/images/print-background-frost.png'><span>{{__ "Frost"}}</span></label>
+                  </div>
+
+                  <div>
+                    <p style='display: flex; flex-direction: row; align-items: center;'>
+                      <span>{{__ "Field underlay"}}: &nbsp;</span>
+                      <label><input type='radio' name='underlay' value='yes' id='underlay-yes' checked> {{__ "Show"}}</label>
+                      <span style="display: inline-block; height: 2em; font-size: 110%; line-height: 2em; width: 3em; background: white; border-bottom: 1px solid #555; text-align: center; color: #ddd; font-weight: bold;">DEX</span>
+                      <span>&nbsp; &nbsp;</span>
+                      <label><input type='radio' name='underlay' value='no' id='underlay-no'> {{__ "Hide"}}</label>
+                      <span style="display: inline-block; height: 2em; width: 3em; background: white; border-bottom: 1px solid #555; text-align: center;"></span>
+                    </p>
+                  </div>
+
+                  <h2>{{__ "Watermark"}}</h2>
+                  <p><label for='has-watermark'><input type="checkbox" name="has-watermark" id="has-watermark" /> {{__ "Watermark every page"}}</label></p>
+                  <p><input type='text' name='watermark' id='watermark' class='well' placeholder='YOUR MESSAGE' /></p>
+                  </div>
+
+                  <h2>{{__ "Logo"}}</h2>
+                  <div class='well well-drop-zone' id='logo'>
+                    <h4>{{__ "Drag image here"}}</h4>
+                    <input type='hidden' name='logo' id='logo-select' value='pathfinder/Pathfinder Second Edition/Pathfinder 2e.png' />
+                    <img id='iconic-custom' class='custom' />
+                    {{#each logos}}
+                      <img src='{{url}}' data-id='{{id}}' id='logo-{{id}}' {{#ifEq id @root.gameData.defaultLogo}}class='selected'{{/ifEq}} />
+                    {{/each}}
+                    <p><a class='button' href='javascript:void(0);' id='select-logo-button'>{{__ "Select logo"}}</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <button class='next-page scroll-to' rel='pane-download'>
+            <img src='/images/down-arrow.png'>
+          </button>
+        </div>
+        
+
+
+        <div class="track-scroll__pane" id="pane-download">
+          <div class="track-scroll__pane__inner">
+            <h2>{{__ "Download"}}</h2>
+
+            <h3>{{__ "Language"}}</h3>
+            <fieldset>
+              <div class='layout_3e'>
+                {{#each languages}}
+                  <div>
+                    <label for='language-{{code}}'>
+                      <input type='radio' id='language-{{code}}' name='language' value='{{code}}' {{#ifEq code 'en'}}checked{{/ifEq}}>
+                      <img class="flag" src="/images/flags/{{flag}}.png"/>&nbsp;
+                      {{name}}
+                    </label>
+                  </div>
+                {{/each}}
+              </div>
+            </fieldset>
+
+            {{#if chromePDF}}
+            <h3>{{__ "Format"}}</h3>
+            <div class='layout_3e'>
+              <div>
+                <p>
+                  <input type='radio' name='download-format' value='html' id='download-format-html' checked>
+                  <label for='download-format-html'><b>{{__ "HTML"}}</b></label>
+                </p>
+                <p class='info'>{{__ "Allows values to be filled in"}}</p>
+                <p class='info'>{{__ "Adjusts to fit your paper size"}}</p>
+              </div>
               
-                <ul>
-                  <li><label for='heritage-{{e select}}-none'><input type='radio' id='heritage-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
-                </ul>
-              </fieldset>
-            {{/each}}
-          </div>
-          {{/each}}
-        </fieldset>
-    
+              <div>
+                <p>
+                  <input type='radio' name='download-format' value='pdf' id='download-format-pdf'>
+                  <label for='download-format-pdf'><b>{{__ "PDF"}}</b></label>
+                </p>
+                <p class='info'>{{__ "Use this if you have trouble printing HTML"}}</p>
+                <p class='indent'><b>{{__ "Paper size:"}}</b>
+                  <input type='radio' name='download-paper' value='Letter' id='download-letter' checked>
+                  <label for='download-letter'>{{__ "US Letter"}}</label>
 
-        {{!-- Backgrounds --}}
-        <h2>{{__ "Background"}}</h2>
-        <p class='indent'><select id='background'>
-          <option value='' selected>{{__ "None"}}</option>
-          {{#each backgrounds}}
-          <option value='{{code}}'>{{__ name}}</option>
-          {{/each}}
-        </select></p>
-
-        
-        {{!-- Classes --}}
-        <h2>{{__ "Class"}}</h2>
-
-        <fieldset id='classes'>
-          <div class="yui3-g">
-          {{#each classColumns}}
-            <div class="yui3-u-1-3">
-              <ul>
-                {{#each values}}
-                  <li><label for='class-{{e code}}'><input type='radio' id='class-{{code}}' name='class' value='{{code}}'> {{__ name}}</label></li>
-                {{/each}}
-              </ul>
+                  <input type='radio' name='download-paper' value='A4' id='download-a4'>
+                  <label for='download-a4'>{{__ "A4"}}</label>
+                </p>
+              </div>
             </div>
-          {{/each}}
-          {{!-- {{#each classData}}
-            <div class="yui3-u-1-3">
-              {{#each groups}}
-                <h3>{{__ name}}</h3>
-                <ul>
-                  {{#each values}}
-                    <li><label for='class-{{id}}'><input type='radio' id='class-{{id}}' name='class' value='{{id}}'> {{__ name}}</label></li>
-                  {{/each}}
-                </ul>
-              {{/each}}
-            </div>
-          {{/each}} --}}
-          </div>
-          
-          <div class="yui3-g">
-            <div class="yui3-u-1-3">
-              <ul>
-                <li><label for='class-generic'><input type='radio' id='class-generic' name='class' value='generic' checked> {{__ "Other"}}</label></li>
-              </ul>
-            </div>
-          </div>
+            {{/if}}
 
-          {{!-- Subclasses --}}
-          {{#each classes}}
-          <div class='reveal reveal-subclass' id='reveal-subclass-{{code}}'>
-            {{#each selects}}
-              <h3>{{__ name}}</h3>
-              <fieldset>
-                <div class="yui3-g">
-                  {{#each values}}
-                  <div class="yui3-u-1-3">
-                    <ul>
-                      {{#if ../multiselect}}
-                        <li><label for='{{e ../select}}-{{e code}}'><input type='checkbox' id='{{e ../select}}-{{e code}}' data-class-option='{{e ../select}}' name='{{e code}}'> {{__ name}}</label></li>
-                      {{else}}
-                        <li><label for='subclass-{{e ../select}}-{{e code}}'><input type='radio' id='subclass-{{e ../select}}-{{e code}}' name='{{e ../select}}' value='{{e code}}'> {{__ name}}</label></li>
-                      {{/if}}
-                    </ul>
+            {{!-- <h3>{{__ "Page Arrangement"}}</h3>
+            <div class='layout_3e'>
+              <div>
+                <p>
+                  <input type='radio' name='download-pages' value='html' id='download-pages-simple' checked>
+                  <label for='download-pages-simple'><b>Simple</b></label>
+                </p>
+                <p class='info'>{{__ "Just the pages"}}</p>
+              </div>
+              
+              <div>
+                <p>
+                  <input type='radio' name='download-pages' value='html' id='download-pages-duplex'>
+                  <label for='download-pages-duplex'><b>Duplex</b></label>
+                </p>
+                <p class='info'>{{__ "Arranged for printing double-sided"}}</p>
+              </div>
+              
+              <div>
+                <p>
+                  <input type='radio' name='download-pages' value='html' id='download-pages-folio'>
+                  <label for='download-pages-folio'><b>Folio</b></label>
+                </p>
+                <p class='info'>{{__ "Arranged for printing in booklet form"}}</p>
+              </div>
+            </div> --}}
+
+            <h3>{{__ "Download"}}</h3>
+              <p class='center'>
+                <button type="submit">Download</button>
+              </p>
+              <div id='pdf-warning' class='warning start-hidden'>
+                <div class='yui3-g'>
+                  <div class='yui3-u-1-3'></div>
+                  <div class='yui3-u-1-3'>
+                    <p class='icon'><img src='/images/warning.png' class='icon'> {{__ "PDFs are slow to make, so be patient."}}</p>
                   </div>
-                  {{/each}}
                 </div>
+              </div>
 
-                {{#unless multiselect}}
-                <ul>
-                  <li><label for='subclass-{{e select}}-none'><input type='radio' id='subclass-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
-                </ul>
-                {{/unless}}
-              </fieldset>
-            {{/each}}
           </div>
-          {{/each}}
-        </fieldset>
-
-        {{!-- Archetypes --}}
-        {{!--
-        <h2>{{__ "Archetype"}}</h2>
-
-        <fieldset id='classes'>
-          <div class="yui3-g">
-            
-          {{#each archetypeColumns}}
-            <div class="yui3-u-1-3">
-              <ul>
-                {{#each values}}
-                  <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' name='archetype-{{e code}}'> {{__ name}}</label></li>
-                {{/each}}
-              </ul>
-            </div>
-          {{/each}}
-          {{ !-- {{#each archetypeData}}
-            <div class="yui3-u-1-3">
-              {{#each groups}}
-                <h3>{{__ name}}</h3>
-                <ul>
-                  {{#each values}}
-                    <li><label for='archetype-{{id}}'><input type='checkbox' id='archetype-{{id}}' name='archetype-{{id}}'> {{__ name}}</label></li>
-                  {{/each}}
-                </ul>
-              {{/each}}
-            </div>
-          {{/each}} -- }}
-          </div>
-        </fieldset>
-        --}}
-
-        {{!-- <p class='center'>
-          <input type="submit" value="Random"/>
-        </p> --}}
-
-        <nav class='wizardnav'>
-          &nbsp;
-          <a href='#options-tab'><img src='/images/wiznext.png'/></a>
-        </nav>
-    </section>
-
-    <section class='tab' id='options-tab'>
-
-      <div class='yui3-g'>
-        <div class='yui3-u-1-2'>
-
-          <h2>{{__ "Beginners"}}</h2>
-
-          <fieldset>
-            <p><input type='checkbox' name='build' id='option-build'> <label for='option-build'>{{__ "Build a character"}}</label></p>
-            <p class='info'>{{__ "A page to help beginners with the process of building their character."}}</p>
-            
-            <p><input type='checkbox' name='reference' id='option-reference'> <label for='option-reference'>{{__ "Reference"}}</label></p>
-            <p class='info'>{{__ "A sheet to explain actions and traits."}}</p>
-          </fieldset>
-          
-          <h2>{{__ "Legal"}}</h2>
-          <fieldset id='legal'>
-            <p><label for='option-permission'><input type='checkbox' name='permission' id='option-permission'> {{__ "Permission to print"}}</label></p>
-            <p class='info'>{{__ "A page stating that this document may be legally printed."}}</p>
-            <p class='info'>{{{__ "For detailed licensing information, see <a href='/legal'>Legal Info</a>."}}}</p>
-          </fieldset>
-          
-          <h2>{{__ "Organised Play"}}</h2>
-          <fieldset id='legal'>
-            <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p>
-          </fieldset>
-
-          <h2>{{__ "Options"}}</h2>
-          <fieldset>
-            <p><label for='feat-diehard'><input type='checkbox' name='feat-diehard' id='feat-diehard'> {{__ "Diehard"}}</label></p>
-            {{!-- <p><label for='option-pfs'><input type='checkbox' name='pfs' id='option-pfs'> {{__ "Pathfinder Society"}}</label></p> --}}
-            
-            <p><label for='debug'><input type='checkbox' name='debug' id='debug'> {{__ "Debug layouts"}}</label></p>
-          </fieldset>
-          
-
         </div>
-        
 
-        <div class='yui3-u-1-2'>
-          
-          <h2>{{__ "Pages"}}</h2>
-          
-          <fieldset id='cover'>
-            <h4>{{__ "Cover"}}</h4>
-            <fieldset>
-              <p><label for='option-cover'><input type='checkbox' name='cover' id='option-cover' checked> {{__ "Cover Page"}}</label></p>
-            </fieldset>
-          </fieldset>
-
-          <fieldset id=''>
-            <h4>{{__ "Skills"}}</h4>
-            <fieldset>
-            <p><label for='skill-actions'><input type='checkbox' name='skill-actions' id='skill-actions' checked> {{__ "Skill actions"}}</label></p>
-            </fieldset>
-          </fieldset>
-
-          {{!-- <fieldset id='cover'>
-            <p><label for='option-animal-companion'><input type='checkbox' name='animal-companion' id='option-animal-companion'> {{__ "Animal Companion"}}</label></p>
-          </fieldset> --}}
-
-          <fieldset>
-            <h4>{{__ "Inventory"}}</h4>
-            <fieldset>
-              <p><label for="inventory-style">{{__ "Inventory style"}}</label>
-                <select name="inventory-style" id="inventory-style">
-                  <option value="half">{{__ "Half page"}}</option>
-                  <option value="full" selected>{{__ "Full page"}}</option>
-                  <option value="both">{{__ "Both"}}</option>
-                </select>
-              </p>
-              {{!-- <p>
-                <label for='inventory-class-kit'><input type='checkbox' name='inventory-class-kit' id='inventory-class-kit' checked> {{__ "Class kit"}} </label>
-              </p> --}}
-            </fieldset>
-          </fieldset>
-
-        <h2>{{__ "Additional pages"}}</h2>
-          <fieldset>
-            <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
-            <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
-            <fieldset>
-              <p>{{__ "Size"}}:
-                <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
-                <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" checked> {{__ "Medium"}}</label>
-                <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
-              </p>
-            </fieldset>
-            
-          </fieldset>
-        </div>
       </div>
 
+    </div>
+  </div>
+
+  <div class="layout__pane layout__pane--track">
+    <div class="layout__pane__inner">
+      <picture>
+        <img src='/images/pathfinder2e.png'/>
+      </picture>
       
-      <nav class='wizardnav'>
-        <a href='#class-tab'><img src='/images/wizprev.png'/></a>
-        &nbsp;
-        <a href='#appearance-tab'><img src='/images/wiznext.png'/></a>
-      </nav>
-    </section>
-
-    <section class='tab' id='appearance-tab'>
-
-      <h2>{{__ "Accessibility"}}</h2>
-
-      <fieldset>
-        <div class='yui3-g'>
-          <div class='yui3-u-1-3'>
-            <p id='high-contrast'><span><input type='checkbox' id='option-high-contrast' name='option-high-contrast'> <label for='option-high-contrast'>{{__ "High contrast"}}</label><span></span></p>
-            <p class='info'>{{__ "Makes colours darker, removes white text."}}</p>
-          </div>
-          <div class='yui3-u-1-3'>
-            <p id='large-print'><input type='checkbox' id='option-large-print' name='option-large-print'> <label for='option-large-print'>{{__ "Large print"}}</label></p>    
-            <p class='info'>{{__ "Enlarges text and fields, omits some elements to fit on the page."}}</p>
-          </div>
-          <div class='yui3-u-1-3'>
-            <p id='dyslexic'><input type='checkbox' id='option-dyslexic' name='option-dyslexic'> <label for='option-dyslexic'>{{__ "Dyslexic fonts"}}</label></p>
-            <p class='info'>{{__ "Uses easy-to-read fonts, disables all-caps."}}</p>
-            
-            {{!-- <p class='indent'>
-              <input type='radio' name='dyslexic-font' value='sans-serif' id='dyslexic-font-sans-serif' checked>
-              <label for='dyslexic-font-sans-serif'>Sans Serif</label>
-
-              <input type='radio' name='dyslexic-font' value='open-dyslexic' id='dyslexic-font-open-dyslexic'>
-              <label for='dyslexic-font-open-dyslexic'>Open Dyslexic</label>
-            </p> --}}
-          </div>
-        </div>
-      </fieldset>
-
-      <div id='colour-row'>
-      <h2>{{__ "Colour"}}</h2>
-      <fieldset>
-        <div class='yui3-g'>
-          <div class='yui3-u-1-3'>
-            <div id='colour-wheel'>
-              <object data="/images/colour-wheel.svg" type="image/svg+xml" id="colour-wheel-svg" width="280" height="280"></object>
-              {{!-- <img src='/images/colour-wheel.svg' width="280" height="280" usemap="#colour-wheel-map"/> --}}
-              <input type='radio' name='print-colour' value='grey' id='colour-wheel-grey' checked>
-
-              <input type='radio' name='print-colour' value='red' id='colour-wheel-red'>
-              <input type='radio' name='print-colour' value='orange' id='colour-wheel-orange'>
-              <input type='radio' name='print-colour' value='gold' id='colour-wheel-gold'>
-              <input type='radio' name='print-colour' value='lime' id='colour-wheel-lime'>
-              <input type='radio' name='print-colour' value='green' id='colour-wheel-green'>
-              <input type='radio' name='print-colour' value='teal' id='colour-wheel-teal'>
-              <input type='radio' name='print-colour' value='cyan' id='colour-wheel-cyan'>
-              <input type='radio' name='print-colour' value='azure' id='colour-wheel-azure'>
-              <input type='radio' name='print-colour' value='blue' id='colour-wheel-blue'>
-              <input type='radio' name='print-colour' value='indigo' id='colour-wheel-indigo'>
-              <input type='radio' name='print-colour' value='violet' id='colour-wheel-violet'>
-              <input type='radio' name='print-colour' value='magenta' id='colour-wheel-magenta'>
-
-              <input type='radio' name='print-colour' value='red2' id='colour-wheel-red2'>
-              <input type='radio' name='print-colour' value='orange2' id='colour-wheel-orange2'>
-              <input type='radio' name='print-colour' value='gold2' id='colour-wheel-gold2'>
-              <input type='radio' name='print-colour' value='lime2' id='colour-wheel-lime2'>
-              <input type='radio' name='print-colour' value='green2' id='colour-wheel-green2'>
-              <input type='radio' name='print-colour' value='teal2' id='colour-wheel-teal2'>
-              <input type='radio' name='print-colour' value='cyan2' id='colour-wheel-cyan2'>
-              <input type='radio' name='print-colour' value='azure2' id='colour-wheel-azure2'>
-              <input type='radio' name='print-colour' value='blue2' id='colour-wheel-blue2'>
-              <input type='radio' name='print-colour' value='indigo2' id='colour-wheel-indigo2'>
-              <input type='radio' name='print-colour' value='violet2' id='colour-wheel-violet2'>
-              <input type='radio' name='print-colour' value='magenta2' id='colour-wheel-magenta2'>
-            </div>
-            <p><input type='radio' name='print-colour' value='custom' id='print-colour-custom'> <label for='print-colour-custom'>Custom:</label> 
-              <span class='colour-input'># <input type='text' name='print-colour-custom' size='6'></span>
-              <label class='colour-sample colour-sample-rainbow' id='print-colour-custom-preview'><span></span></span>
-            </p>
-          </div>
-          <div class='yui3-u-2-3'>
-            <h3>{{__ "Brightness"}}</h3>
-            <div class='yui3-g'>
-              <div class='yui3-u-1-5'>
-                <input type='radio' id='intensity-lightest' name='intensity' value='lightest'> <label class='colour-sample' for='intensity-lightest'><span id='colour-lightest'></span></label>
-              </div>
-              <div class='yui3-u-1-5'>
-                <input type='radio' id='intensity-lighter' name='intensity' value='lighter'> <label class='colour-sample' for='intensity-lighter'><span id='colour-lighter'></span></label>
-              </div>
-              <div class='yui3-u-1-5'>
-                <input type='radio' id='intensity-normal' name='intensity' value='normal' checked> <label class='colour-sample' for='intensity-normal'><span id='colour-normal'></span></label>
-              </div>
-              <div class='yui3-u-1-5'>
-                <input type='radio' id='intensity-darker' name='intensity' value='darker'> <label class='colour-sample' for='intensity-darker'><span id='colour-darker'></span></label>
-              </div>
-              <div class='yui3-u-1-5'>
-                <input type='radio' id='intensity-darkest' name='intensity' value='darkest'> <label class='colour-sample' for='intensity-darkest'><span id='colour-darkest'></span></label>
-              </div>
-            </div>
-            <p>{{__ "You may need to adjust brightness to suit your printer."}}</p>
-
-            <h3>{{__ "Accent Colour"}}</h3>
-            <div class='yui3-g'>
-              <div class='yui3-u-1-4'>
-                <p><input type='radio' id='accent-none' name='accent-colour' value='none' checked> <label for='accent-none'>{{__ "No accent colour"}}</label></p>
-              </div>
-              <div class='yui3-u-1-4'>
-                <p><input type='radio' id='accent-black' name='accent-colour' value='black'> <label class='colour-sample' for='accent-black'><span id='colour-black'></span> {{__ "Black"}}</label></p>
-              </div>
-            </div>
-            <div class='yui3-g'>
-              <div class='yui3-u-1-4'>
-                <ul>
-                  <li><input type='radio' id='accent-red' name='accent-colour' value='red'> <label class='colour-sample' for='accent-red'><span id='colour-red'></span> {{__ "Red"}}</label></li>
-                  <li><input type='radio' id='accent-orange' name='accent-colour' value='orange'> <label class='colour-sample' for='accent-orange'><span id='colour-orange'></span> {{__ "Orange"}}</label></li>
-                  <li><input type='radio' id='accent-gold' name='accent-colour' value='gold'> <label class='colour-sample' for='accent-gold'><span id='colour-gold'></span> {{__ "Gold"}}</label></li>
-                </ul>              
-              </div>
-              <div class='yui3-u-1-4'>
-                <ul>
-                  <li><input type='radio' id='accent-lime' name='accent-colour' value='lime'> <label class='colour-sample' for='accent-lime'><span id='colour-lime'></span> {{__ "Lime"}}</label></li>
-                  <li><input type='radio' id='accent-green' name='accent-colour' value='green'> <label class='colour-sample' for='accent-green'><span id='colour-green'></span> {{__ "Green"}}</label></li>
-                  <li><input type='radio' id='accent-teal' name='accent-colour' value='teal'> <label class='colour-sample' for='accent-teal'><span id='colour-teal'></span> {{__ "Teal"}}</label></li>
-                </ul>
-              </div>
-              <div class='yui3-u-1-4'>
-                <ul>
-                  <li><input type='radio' id='accent-cyan' name='accent-colour' value='cyan'> <label class='colour-sample' for='accent-cyan'><span id='colour-cyan'></span> {{__ "Cyan"}}</label></li>
-                  <li><input type='radio' id='accent-azure' name='accent-colour' value='azure'> <label class='colour-sample' for='accent-azure'><span id='colour-azure'></span> {{__ "Azure"}}</label></li>
-                  <li><input type='radio' id='accent-blue' name='accent-colour' value='blue'> <label class='colour-sample' for='accent-blue'><span id='colour-blue'></span> {{__ "Blue"}}</label></li>
-                </ul>
-              </div>
-              <div class='yui3-u-1-4'>
-                <ul>
-                  <li><input type='radio' id='accent-indigo' name='accent-colour' value='indigo'> <label class='colour-sample' for='accent-indigo'><span id='colour-indigo'></span> {{__ "Indigo"}}</label></li>
-                  <li><input type='radio' id='accent-violet' name='accent-colour' value='violet'> <label class='colour-sample' for='accent-violet'><span id='colour-violet'></span> {{__ "Violet"}}</label></li>
-                  <li><input type='radio' id='accent-magenta' name='accent-colour' value='magenta'> <label class='colour-sample' for='accent-magenta'><span id='colour-magenta'></span> {{__ "Magenta"}}</label></li>
-                </ul>
-              </div>
-            </div>
-            <p><input type='radio' name='accent-colour' value='custom' id='accent-colour-custom'> <label for='accent-colour-custom'>Custom:</label> 
-              <span class='colour-input'># <input type='text' name='accent-colour-custom' size='6'></span>
-              <label class='colour-sample colour-sample-rainbow' id='accent-colour-custom-preview'><span></span></span>
-            </p>
-
-          </div>
-        </div>
-      </fieldset>
-      </div>
-
-      <div class='yui3-g'>
-        <div class='yui3-u-2-5'>
-          <h2>{{__ "Portrait"}}</h2>
-            
-          <div class='well well-drop-zone' id='iconic'>
-            <h4>{{__ "Drag image here"}}</h4>
-            <input type='hidden' name='iconic-portrait' id='iconic-portrait' value='default'/>
-            <img src='/iconics/generic.png' id='iconic-generic' class='selected' />
-            <img id='iconic-custom' class='custom' />
-            {{#each iconics}}
-              <img data-src='{{this.url}}' id='iconic-{{this.id}}'/>
-            {{/each}}
-            <p><a class='button' href='javascript:void(0);' id='select-iconic-button'>{{__ "Select portrait"}}</a></p>
-          </div>
-          
-          {{!-- <h3>{{__ "Animal Portrait"}}</h3>
-            
-          <div class='well well-drop-zone' id='animal'>
-            <input type='hidden' name='animal-portrait' id='animal-portrait' value='default'/>
-            <img id='iconic-custom' class='custom' />
-            {{#each iconics}}
-              <img data-src='{{this.url}}' id='iconic-{{this.id}}'/>
-            {{/each}}
-            <p><a class='button' href='javascript:void(0);' id='select-animal-button'>{{__ "Select portrait"}}</a></p>
-          </div> --}}
+      <div class='track'>
+        <div class='track__point'>
+          <button class='scroll-to' rel='pane-character'>
+            Class
+          </button>
         </div>
 
-        <div class='yui3-u-3-5'>
-          <div id='background-area'>
-          <h2>{{__ "Background"}}</h2>
-          <div id='print-backgrounds'>
-            <input type='radio' name='print-background' value='none' id='print-background-none' checked>
-            <label for='print-background-none'><u></u><span>{{__ "White"}}</span></label>
+        <div class='track__point'>
+          <button class='scroll-to' rel='pane-options'>
+            Options
+          </button>
+        </div>
 
-            <input type='radio' name='print-background' value='magnolia' id='print-background-magnolia'>
-            <label for='print-background-magnolia'><u></u><span>{{__ "Magnolia"}}</span></label>
+        <div class='track__point'>
+          <button class='scroll-to' rel='pane-appearance'>
+            Appearance
+          </button>
+        </div>
 
-            <input type='radio' name='print-background' value='backgrounds/paper3.jpg' id='print-background-parchment'>
-            <label for='print-background-parchment'><img src='/images/print-background-parchment.png'><span>{{__ "Parchment"}}</span></label>
-
-            <input type='radio' name='print-background' value='backgrounds/frost1.jpg' id='print-background-frost'>
-            <label for='print-background-frost'><img src='/images/print-background-frost.png'><span>{{__ "Frost"}}</span></label>
-          </div>
-
-          <div>
-            <p style='display: flex; flex-direction: row; align-items: center;'>
-              <span>{{__ "Field underlay"}}: &nbsp;</span>
-              <label><input type='radio' name='underlay' value='yes' id='underlay-yes' checked> {{__ "Show"}}</label>
-              <span style="display: inline-block; height: 2em; font-size: 110%; line-height: 2em; width: 3em; background: white; border-bottom: 1px solid #555; text-align: center; color: #ddd; font-weight: bold;">DEX</span>
-              <span>&nbsp; &nbsp;</span>
-              <label><input type='radio' name='underlay' value='no' id='underlay-no'> {{__ "Hide"}}</label>
-              <span style="display: inline-block; height: 2em; width: 3em; background: white; border-bottom: 1px solid #555; text-align: center;"></span>
-            </p>
-          </div>
-
-          <h2>{{__ "Watermark"}}</h2>
-          <p><label for='has-watermark'><input type="checkbox" name="has-watermark" id="has-watermark" /> {{__ "Watermark every page"}}</label></p>
-          <p><input type='text' name='watermark' id='watermark' class='well' placeholder='YOUR MESSAGE' /></p>
-          </div>
-
-          <h2>{{__ "Logo"}}</h2>
-          <div class='well well-drop-zone' id='logo'>
-            <h4>{{__ "Drag image here"}}</h4>
-            <input type='hidden' name='logo' id='logo-select' value='pathfinder/Pathfinder Second Edition/Pathfinder 2e.png' />
-            <img id='iconic-custom' class='custom' />
-            {{#each logos}}
-              <img src='{{url}}' data-id='{{id}}' id='logo-{{id}}' {{#ifEq id @root.gameData.defaultLogo}}class='selected'{{/ifEq}} />
-            {{/each}}
-            <p><a class='button' href='javascript:void(0);' id='select-logo-button'>{{__ "Select logo"}}</a></p>
-          </div>
+        <div class='track__point'>
+          <button class='scroll-to' rel='pane-download'>
+            Download
+          </button>
         </div>
       </div>
-
-      <nav class='wizardnav'>
-        <a href='#options-tab'><img src='/images/wizprev.png'/></a>
-        &nbsp;
-        <a href='#download-tab'><img src='/images/wiznext.png'/></a>
-      </nav>
-    </section>
-
-    <section class='tab' id='download-tab'>
-
-      {{!-- Languages --}}
-      <h2>{{__ "Language"}}</h2>
-      <fieldset>
-        <div class='yui3-g'>
-          {{#each languages}}
-            <div class='yui3-u-1-3'>
-              <label for='language-{{code}}'>
-                <input type='radio' id='language-{{code}}' name='language' value='{{code}}' {{#ifEq code 'en'}}checked{{/ifEq}}>
-                <img class="flag" src="/images/flags/{{flag}}.png"/>&nbsp;
-                {{name}}
-              </label>
-            </div>
-          {{/each}}
-        </div>
-        {{!-- <label><input type='radio' id='language-english' name='language' value='en' checked> {{__ "English"}}</label>
-        <label><input type='radio' id='language-italian' name='language' value='it'> {{__ "Italian"}}</label> --}}
-      </fieldset>
-
-      {{#if chromePDF}}
-      <h2>{{__ "Format"}}</h2>
-      <fieldset>
-        <div class='yui3-g'>
-          <div class='yui3-u-1-3'>
-            <p>
-              <input type='radio' name='download-format' value='html' id='download-format-html' checked>
-              <label for='download-format-html'><b>{{__ "HTML"}}</b></label>
-            </p>
-            <p class='info'>{{__ "Allows values to be filled in"}}</p>
-            <p class='info'>{{__ "Adjusts to fit your paper size"}}</p>
-          </div>
-          
-          <div class='yui3-u-2-3'>
-            <p>
-              <input type='radio' name='download-format' value='pdf' id='download-format-pdf'>
-              <label for='download-format-pdf'><b>{{__ "PDF"}}</b></label>
-            </p>
-            <p class='info'>{{__ "Use this if you have trouble printing HTML"}}</p>
-            <p class='indent'><b>{{__ "Paper size:"}}</b>
-              <input type='radio' name='download-paper' value='Letter' id='download-letter' checked>
-              <label for='download-letter'>{{__ "US Letter"}}</label>
-
-              <input type='radio' name='download-paper' value='A4' id='download-a4'>
-              <label for='download-a4'>{{__ "A4"}}</label>
-            </p>
-          </div>
-        </div>
-      </fieldset>
-      {{/if}}
-
-      {{!-- <h2>{{__ "Page Arrangement"}}</h2>
-      <fieldset>
-        <div class='yui3-g'>
-          <div class='yui3-u-1-3'>
-            <p>
-              <input type='radio' name='download-pages' value='html' id='download-pages-simple' checked>
-              <label for='download-pages-simple'><b>Simple</b></label>
-            </p>
-            <p class='info'>{{__ "Just the pages"}}</p>
-          </div>
-          
-          <div class='yui3-u-1-3'>
-            <p>
-              <input type='radio' name='download-pages' value='html' id='download-pages-duplex'>
-              <label for='download-pages-duplex'><b>Duplex</b></label>
-            </p>
-            <p class='info'>{{__ "Arranged for printing double-sided"}}</p>
-          </div>
-          
-          <div class='yui3-u-1-3'>
-            <p>
-              <input type='radio' name='download-pages' value='html' id='download-pages-folio'>
-              <label for='download-pages-folio'><b>Folio</b></label>
-            </p>
-            <p class='info'>{{__ "Arranged for printing in booklet form"}}</p>
-          </div>
-        </div>
-      </fieldset> --}}
-
-      <h2>{{__ "Download"}}</h2>
-        <p class='center'>
-          <input type="submit" value="Download"/>
-        </p>
-        <div id='pdf-warning' class='warning start-hidden'>
-          <div class='yui3-g'>
-            <div class='yui3-u-1-3'></div>
-            <div class='yui3-u-1-3'>
-              <p class='icon'><img src='/images/warning.png' class='icon'> {{__ "PDFs are slow to make, so be patient."}}</p>
-            </div>
-          </div>
-        </div>
-      
-      <nav class='wizardnav'>
-        <a href='#appearance-tab'><img src='/images/wizprev.png'/></a>
-        &nbsp;
-      </nav>
-    </section>
+    </div>
+  </div>
+</div>
 
 
-    <section class='dialog select-dialog' id='iconic-select-dialog'>
-      <a class='dialog-close'>&times;</a>
-      <div class='inner'>
-      <h2>{{__ "Select a character picture"}}</h2>
-      <div id='iconic-set-list' class='set-list'>
-        <a id='iconic-select-generic' data-set-id='iconic-image-list-generic' class='selected'>
-          <span class='group'>{{__ "Dyslexic Studeos"}}</span>
-          <span class='name'>{{__ "General purpose"}}</span>
-        </a>
-        {{#each iconicGroups}}
-          <a id='iconic-select-{{id}}' data-set-id='iconic-image-list-{{id}}'>
-            <span class='group'>{{folder}}</span>
-            <span class='name'>{{name}}</span>
-          </a>
-        {{/each}}
-      </div>
-      <div id='iconic-image-list' class='image-list well'>
-        <div id='iconic-image-list-generic' class='image-select-set selected'>
-          <a data-id='generic'><img src='/iconics/generic.png'/>{{__ "Generic"}}</a>
-          <a data-id='none'><img src='/iconics/none.png'/>{{__ "None"}}</a>
-        </div>
-        {{#each iconicGroups}}
-          <div id='iconic-image-list-{{id}}' class='image-select-set'>
-            {{#each assets}}
-              <a data-id='{{id}}' data-value='{{value}}'><img src='/images/progress.gif' data-src='{{url}}'>{{name}}</a>
-            {{/each}}
-          </div>
-        {{/each}}
-      </div>
-    </div></section>
+<div class='slide-in' id='options-pane-ancestry'><div class='slide-in__inner'>
+  <button class='slide-in__close'></button>
+  <h2>{{__ "Ancestry"}}</h2>
+  
+  <div class='options-pane options-pane--portraits'>
+  {{#each ancestries}}
+    <button class='option option--{{portraitSize code}}' data-key='ancestry' data-value='{{e code}}' data-reveal='heritage' data-next='heritage-{{e code}}'>
+      <img src='/images/pathfinder-{{e code}}.png'>
+      <span>{{__ name}}</span>
+    </button>
+  {{/each}}
+    <button class='options-pane__other' data-key='ancestry'>Other</button>
+  </div>
+</div></div>
 
-    <section class='dialog select-dialog' id='logo-select-dialog'>
-      <a class='dialog-close'>&times;</a>
-      <div class='inner'>
-      <h2>{{__ "Select a logo"}}</h2>
-      <div id='logo-set-list' class='set-list'>
-        <a id='logo-select-generic' data-set-id='logo-list-generic' class='selected'>
-          <span class='group'>{{__ "Dyslexic Studeos"}}</span>
-          <span class='name'>{{__ "General purpose"}}</span>
-        </a>
-        {{#each logoGroups}}
-          <a id='logo-select-{{id}}' data-set-id='logo-list-{{id}}'>
-            <span class='group'>{{folderName}}</span>
-            <span class='name'>{{name}}</span>
-          </a>
-        {{/each}}
-      </div>
-      <div id='logo-list' class='image-list well'>
-        <div id='logo-list-generic' class='image-select-set selected'>
-          <a data-id='none' data-code='none'><img src='/iconics/none.png'/>{{__ "None"}}</a>
-        </div>
-        {{#each logoGroups}}
-          <div id='logo-list-{{id}}' class='image-select-set'>
-            {{#each assets}}
-            <a data-id='{{id}}' data-value='{{value}}'><img src='/images/progress.gif' data-src='{{url}}'/></a>
-            {{/each}}
-          </div>
-        {{/each}}
-      </div>
-    </div></section>
-</form>
+{{#each ancestries}}
+<div class='slide-in' id='options-pane-heritage-{{e code}}' rel='heritage'><div class='slide-in__inner'>
+  <button class='slide-in__close'></button>
+  
+  {{#each selects}}
+    <h3>{{__ name}}</h3>
+    <div class='options-pane options-pane--list'>
+      {{#each values}}
+      <button class='option' data-key='{{e ../select}}' data-value='{{e code}}'>{{__ name}}</button>
+      {{/each}}
+    </div>
+  {{/each}}
 
-<form id='pf2-form' style='display: none;' method='post' action='/download/pathfinder2' enctype='application/x-www-form-urlencoded'>
-    <input type='hidden' id='request' name='request'/>
-</form>
+  <button class='options-pane__other' data-key='heritage'>Other</button>
+
+</div></div>
+{{/each}}
+
+<div class='slide-in' id='options-pane-background'><div class='slide-in__inner'>
+  <button class='slide-in__close'></button>
+  <h2>{{__ "Background"}}</h2>
+  
+  <div class='options-pane options-pane--list'>
+  {{#each backgrounds}}
+    <button class='option' data-key='background' data-value='{{e code}}'>{{__ name}}</button>
+  {{/each}}
+    <button class='options-pane__other' data-key='background'>Other</button>
+  </div>
+</div></div>
+
+<div class='slide-in' id='options-pane-class' rel='class'><div class='slide-in__inner'>
+  <button class='slide-in__close'></button>
+  <h2>{{__ "Class"}}</h2>
+
+  <div class='options-pane options-pane--portraits'>
+  {{#each classes}}
+    <button class='option option--{{portraitSize code}}'  data-key='class' data-value='{{e code}}' data-reveal='class' data-next='class-{{e code}}'>
+      <img src='/images/pathfinder-{{e code}}.png'>
+      <span>{{__ name}}</span>
+    </button>
+  {{/each}}
+    <button class='options-pane__other' data-key='class'>Other</button>
+  </div>
+</div></div>
+
+{{#each classes}}
+{{#each selects}}
+<div class='slide-in' id='options-pane-class-{{e select}}'><div class='slide-in__inner'>
+  <button class='slide-in__close'></button>
+
+  <h3>{{__ name}}</h3>
+  <div class='options-pane options-pane--list'>
+    {{#each values}}
+    <button class='option' data-key='class-{{e ../select}}' data-value='{{e code}}'>{{__ name}}</button>
+    {{/each}}
+  </div>
+
+  <button class='options-pane__other' data-key='subclass'>Other</button>
+</div></div>
+{{/each}}
+{{/each}}
+
+<div class='slide-in' id='options-pane-archetypes' class='archetypes'><div class='slide-in__inner'>
+  <button class='slide-in__close'></button>
+  <h2>{{__ "Archetypes"}}</h2>
+  
+  <div class='options-pane options-pane--list'>
+  {{#each archetypes}}
+    <button class='option' data-key='archetype' data-value='{{e code}}'>{{__ name}}</button>
+  {{/each}}
+    <button class='options-pane__other' data-key='archetype'>Close</button>
+  </div>
+</div></div>

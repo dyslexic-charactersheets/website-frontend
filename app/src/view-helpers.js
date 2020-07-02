@@ -18,6 +18,9 @@ module.exports = function (conf, i18n, quotes) {
         },
 
         e: function(str) {
+            if (str === undefined || str === null) {
+                return '';
+            }
             str = str.replace(/\//g, '-');
             return str;
         },
@@ -91,6 +94,21 @@ module.exports = function (conf, i18n, quotes) {
 
         bar: function() {
             return "BAR!";
+        },
+
+        portraitSize: function (code) {
+            switch (code) {
+                case 'halfling':
+                case 'goblin':
+                case 'gnome':
+                case 'alchemist':
+                case 'bard':
+                case 'druid':
+                    return 'small';
+
+                default:
+                    return 'medium';
+            }
         }
     };
 };

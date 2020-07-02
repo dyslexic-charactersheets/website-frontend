@@ -1,0 +1,151 @@
+.track {
+    max-width: 100px;
+    margin: 1rem auto;
+
+    .track__point {
+        margin: 1rem 0;
+
+        button {
+            display: flex;
+            flex-direction: row;
+            font-size: 1.6rem;
+            line-height: 3rem;
+            height: 3rem;
+
+            &:before {
+                content: "×";
+                font-size: 3rem;
+                font-weight: bold;
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+
+        &:after {
+            content: "";
+            display: block;
+            border-left: 4px solid $text;
+            height: 4rem;
+            margin-left: 1.7rem;
+            margin-top: 1rem;
+        }
+
+        &:last-child:after {
+            display: none;
+        }
+    }
+}
+
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+}
+
+h4 {
+    font-size: 1.3rem;
+}
+
+h2, h3 {
+    line-height: 2rem;
+    margin: 0 0 1rem 0;
+}
+
+picture {
+    display: block;
+    margin: 1rem auto;
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.field {
+    margin: 1rem 0;
+    button {
+        min-width: 20rem;
+        min-height: 2rem;
+        line-height: 2rem;
+        font-size: 1.5rem;
+        border: 1px solid $edge;
+        border-radius: 0.5rem;
+        background: $background;
+    }
+}
+
+.options-pane__other {
+    display: block;
+    margin: 1rem auto;
+
+    width: 20rem;
+    line-height: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid $edge;
+    background: $background;
+    text-align: center;
+    cursor: pointer;
+}
+
+.options-pane {
+    &.options-pane--list {
+        button.option {
+            cursor: pointer;
+            display: inline-block;
+            line-height: 2rem;
+            margin: 0.3rem 0;
+            font-size: 1.3rem;
+            min-width: 10em;
+        }
+    }
+
+    &.options-pane--portraits {
+        button.option {
+            margin: 0 1rem;
+            display: inline-block;
+            background: $lightbg;
+            border: 1px solid $edge;
+            border-radius: 4px;
+            padding: 0.5rem;
+
+            img {
+                filter: grayscale(100%);
+                mix-blend-mode: multiply;
+                display: block;
+                margin: 0 auto;
+                height: 300px;
+                max-height: 80vh;
+            }
+
+            &.option--medium img {
+                height: 300px;
+            }
+
+            &.option--small img {
+                height: 230px;
+            }
+
+            span {
+                width: 100%;
+                font-size: 1.3rem;
+                line-height: 2rem;
+                color: $background;
+            }
+        }
+    }
+}
+
+p {
+    font-size: 1.1rem;
+    margin: 0 0 0.4rem 0;
+    &.info {
+        padding-left: 1.6rem;
+    }
+}
