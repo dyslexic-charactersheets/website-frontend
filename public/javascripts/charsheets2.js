@@ -277,8 +277,9 @@ $("#build-my-character").submit(function (e) {
   //   char.data.attributes[opt] = $(input).is(':checked');
   // });
 
-  $("input[type=radio][name=archetypes]:checked").each(function (i, input) {
-    char.data.attributes.archetypes.push($(input).attr('value'));
+  $("input[type=checkbox][name^=archetype-]:checked").each(function (i, input) {
+    var archetype = $(input).attr('name').replace(/^archetype-/, '');
+    char.data.attributes.archetypes.push(archetype);
   });
 
 
