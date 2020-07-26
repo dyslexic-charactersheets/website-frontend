@@ -359,6 +359,8 @@ module.exports = {
         console.log("[pathfinder2]   Pathfinder 2e Character");
         var data = JSON.parse(req.body.request);
 
+        console.log("[pathfinder2]   Request", data);
+
          CharacterSheets.create(data).then(result => {
             if (result.err) {
                 console.log("Error:", result.err);
