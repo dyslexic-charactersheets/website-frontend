@@ -22,6 +22,14 @@ module.exports = function (conf, i18n, quotes) {
             return str;
         },
 
+        slug: function(str) {
+            str = str.replace(/_\{(.*?)\}/, '$1');
+            str = str.replace('\'', '');
+            str = str.replace(/[^A-Za-z0-9]+/g, '-');
+            str = str.toLowerCase();
+            return str;
+        },
+
         ifEnglish: function(code, options) {
             if (code == "english") {
                 return options.fn(this);

@@ -882,6 +882,77 @@ form#build-my-character textarea {
   font-size: 13px;
 }
 
+form#build-my-character a.reveal-group {
+  padding: 3px 5px;
+  margin-right: 10px;
+
+  background: #E0F0C8;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+
+  color: black;
+  font-weight: bold;
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+form#build-my-character .reveal-subclass, form#build-my-character .reveal-heritage {
+  padding: 2px 5px 12px 15px;
+  background: rgba(240,250,220,0.3);
+  border-radius: 4px;
+}
+
+form#build-my-character span.plus, form#build-my-character a.minus {
+  display: inline-block;
+  margin-left: 10px;
+  
+  width: 18px;
+  height: 18px;
+  border-radius: 20px;
+  background: rgb(120,50,40);
+
+  font-size: 18px;
+  line-height: 15px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+form#build-my-character a.minus {
+  cursor: pointer;
+}
+
+form#build-my-character .select-group {
+  display: none;
+}
+
+form#build-my-character .select-group.select-group--reveal {
+  display: block;
+}
+
+form#build-my-character .select-group.select-group--extra {
+  background: rgba(240,255,225,0.3);
+  padding: 1px 9px 3px;
+  border-radius: 2px;
+  margin: 4px 0 4px -9px;
+}
+
+form#build-my-character .select-group ul.wide {
+  columns: 4;
+  column-fill: balance;
+}
+form#build-my-character .yui3-u-1-2 .select-group ul.wide {
+  columns: 2;
+}
+form#build-my-character .select-group ul li {
+  break-inside: avoid;
+}
+form#build-my-character .select-group ul li label {
+  padding-left: 25px;
+  text-indent: -25px;
+}
+
 form#build-my-character ul {
   padding: 0px;
   margin: 0px;

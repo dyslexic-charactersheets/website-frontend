@@ -58,6 +58,14 @@ function cloneDeep(original) {
     return original;
 }
 
+function slugify(str) {
+    str = str.replace(/_\{(.*?)\}/, '$1');
+    str = str.replace('\'', '');
+    str = str.replace(/[^A-Za-z0-9]+/g, '-');
+    str = str.toLowerCase();
+    return str;
+}
+
 // Log
 var logStream = fs.createWriteStream(__dirname + '/../../../pathfinder2.log', { flags: 'a' });
 CharacterSheets.on('request', function (request) {
@@ -136,78 +144,61 @@ module.exports = {
             });
         }
 
-        function threeBlankColumns() {
-            return [{ groups: [] }, { groups: [] }, { groups: [] }];
+        const paizoProducts = [
+            'advanced-players-guide',
+            'lost-omens'
+        ]
+
+        function partition(array, check) {
+            return array.reduce(([pass, fail], elem) => {
+                return check(elem) ? [[...pass, elem], fail] : [pass, [...fail, elem]];
+            }, [[], []]);
         }
 
-        function allocateToColumns(groups) {
-            var columns = threeBlankColumns();
-            var len = 0;
-            groups.forEach(group => {
-                len += group.values.length;
+        function groupItems(items) {
+            let groups = {};
+            items.forEach(item => {
+                let groupName = item.hasOwnProperty("group") ? item.group : "_{Other}";
+                let groupId = slugify(groupName);
+                if (!groups.hasOwnProperty(groupId)) {
+                    groups[groupId] = {id: groupId, name: groupName, items: [], core: groupName == '_{Core Rulebook}'};
+                }
+                groups[groupId].items.push(item);
             });
-            // console.log(" * Total length:"+len);
+            let hasCore = groups.hasOwnProperty("core-rulebook");
+            groups = Object.values(groups);
+            // groups.forEach(group => console.log("Group:", group.name ));
 
-            var collen = Math.ceil(len / 3.0);
-            // console.log(" * Column length:"+collen);
-
-            var c = 0;
-            var lens = [0, 0, 0];
-            groups.forEach(group => {
-                if (lens[c] >= collen && c < 2) c++;
-                columns[c].groups.push(group);
+            // Sort the groups: Core Rulebook first, then Paizo products, then third parties, then extras
+            let sorted = [];
+            [
+                group => group.id == "core-rulebook", // Core Rulebook
+                group => group.core, // other "core" items
+                group => paizoProducts.includes(group.id) // Paizo Products
+            ].forEach(check => {
+                let [match, other] = partition(groups, check);
+                sorted = sorted.concat(match);
+                groups = other;
             });
+            let [extra, other] = partition(groups, group => group.id == "other" || group.id == "none");
+            sorted = sorted.concat(other).concat(extra);
+            if (!hasCore && sorted.length > 0)
+                sorted[0].core = true;
 
-            // console.log(" * Allocated groups:"+JSON.stringify(columns));
-            return columns;
-        }
-
-        function selectGroups(sel) {
-            if (sel.hasOwnProperty("groups")) {
-                return Object.keys(sel.groups).map(groupname => {
-                    var values = [];
-                    sel.groups[groupname].forEach(value => {
-                        if (sel.values.hasOwnProperty(value)) {
-                            values.push(sel.values[value]);
-                        }
-                    });
-                    var group = {
-                        name: groupname,
-                        values: values
-                    };
-                    return group;
-                });
-            }
-
-            // console.log(" * Reconciled groups: "+JSON.stringify(sel.groups));
-            return [];
-        }
-
-        function splitIntoColumns(values) {
-            var columns = [{ values: [] }, { values: [] }, { values: [] }];
-            var len = values.length;
-            var collen = Math.ceil(len / 3.0);
-
-            columns[0].values = values.slice(0, collen);
-            columns[1].values = values.slice(collen, collen * 2);
-            columns[2].values = values.slice(collen * 2);
-
-            return columns;
+            // sorted.forEach(group => console.log("Sorted:", group.name ));
+            return sorted;
         }
 
         // blank data
         data.isPathfinder2 = true;
         data.ancestries = [];
-        data.ancestryData = threeBlankColumns();
-        data.ancestryColumns = [];
+        data.ancestryGroups = [];
         data.backgrounds = [];
-        data.backgroundData = threeBlankColumns();
+        data.backgroundGroups = [];
         data.classes = [];
-        data.classData = threeBlankColumns();
-        data.classColumns = [];
+        data.classGroups = [];
         data.archetypes = [];
-        data.archetypeData = threeBlankColumns();
-        data.archetypeColumns = [];
+        data.archetypeGroups = [];
         data.baseSelects = [];
         data.baseOptions = [];
         data.selects = systemFormData.selects;
@@ -301,20 +292,18 @@ module.exports = {
                     return;
                 }
 
+                // console.log("Select:", sel.select);
                 // console.log(" * Sel: "+JSON.stringify(sel));
 
                 switch (sel.select) {
                     case "ancestry":
                         data.ancestries = sel.values;
-                        var groups = selectGroups(sel);
-                        data.ancestryData = allocateToColumns(groups);
-                        data.ancestryColumns = splitIntoColumns(Object.values(sel.values));
+                        data.ancestryGroups = groupItems(data.ancestries);
                         break;
 
                     case "background":
                         data.backgrounds = sel.values;
-                        var groups = selectGroups(sel);
-                        data.backgroundData = allocateToColumns(groups);
+                        data.backgroundGroups = groupItems(data.backgrounds);
                         break;
 
                     case "class":
@@ -324,21 +313,22 @@ module.exports = {
                         });
 
                         data.classes = sel.values;
-                        var groups = selectGroups(sel);
-                        data.classData = allocateToColumns(groups);
-                        data.classColumns = splitIntoColumns(Object.values(sel.values));
+                        data.classGroups = groupItems(data.classes);
                         break;
 
                     case "archetype":
                         data.archetypes = sel.values;
-                        var groups = selectGroups(sel);
-                        data.archetypeData = allocateToColumns(groups);
-                        data.archetypeColumns = splitIntoColumns(Object.values(sel.values));
+                        data.archetypeGroups = groupItems(data.archetypes);
                         break;
 
                     default:
-                        if (sel.base)
+                        if (sel.hasOwnProperty("values") && isArray(sel.values)) {
+                            sel.valueGroups = groupItems(sel.values);
+                        }
+                        if (sel.base) {
                             data.baseSelects.push(sel);
+                        }
+                        console.og
                 }
             });
         }

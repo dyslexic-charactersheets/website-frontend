@@ -256,7 +256,8 @@ $("#build-my-character").submit(function (e) {
   // char.data.background = char.data.attributes.background = $("input[type=radio][name=background]:checked").attr("value");
   char.data.background = char.data.attributes.background = $("select#background option:selected").attr("value");
   
-  var cls = char.data.attributes.class = $("input[type=radio][name=class]:checked").attr("value");
+  char.data.attributes.class = $("input[type=radio][name=class]:checked").attr("value");
+  var cls = $("input[type=radio][name=class]:checked").data("reveal");
   var subclasses = unique($("#reveal-subclass-"+cls+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());
   subclasses.forEach(subclass => {
     var attrib = kebab2camel("class-"+subclass);
@@ -462,15 +463,29 @@ $(function() {
         return true;
     });
 
+    $("a.reveal-group").click(function (evt) {
+      var $btn = $(this);
+      var id = $btn.data('reveal');
+      $("#"+id).addClass('select-group--reveal');
+      $btn.hide();
+    });
+
+    $("a.unreveal").click(function (evt) {
+      var $btn = $(this);
+      var id = $btn.data('unreveal');
+      $("#"+id).removeClass('select-group--reveal');
+      $(".btn[data-reveal="+id+"]").show();
+    });
+
     $("input[type=radio][name=ancestry]").change(function () {
       $(".reveal-heritage").removeClass("reveal-show");
-      ancestry = $("input[type=radio][name=ancestry]:checked").attr('value');
+      ancestry = $("input[type=radio][name=ancestry]:checked").data('reveal');
       $("#reveal-heritage-"+ancestry).addClass("reveal-show");
     });
 
     $("input[type=radio][name=class]").change(function () {
       $(".reveal-subclass").removeClass("reveal-show");
-      cls = $("input[type=radio][name=class]:checked").attr('value');
+      cls = $("input[type=radio][name=class]:checked").data('reveal');
       $("#reveal-subclass-"+cls).addClass("reveal-show");
     });
 
