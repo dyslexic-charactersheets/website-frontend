@@ -250,8 +250,9 @@ $("#build-my-character").submit(function (e) {
   char.data.attributes.language = $("input[type=radio][name=language]:checked").attr("value");
 
   // selectable things
-  char.data.ancestry = char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
-  char.data.heritage = char.data.attributes.heritage = $("input[type=radio][name='heritage-"+char.data.ancestry+"']:checked").attr("value");
+  char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
+  var ancestry = $("input[type=radio][name=ancestry]:checked").data("reveal");
+  char.data.attributes.heritage = $("input[type=radio][name='heritage-"+ancestry+"']:checked").attr("value");
   
   // char.data.background = char.data.attributes.background = $("input[type=radio][name=background]:checked").attr("value");
   char.data.background = char.data.attributes.background = $("select#background option:selected").attr("value");
@@ -283,6 +284,12 @@ $("#build-my-character").submit(function (e) {
     char.data.attributes.archetypes.push(archetype);
   });
 
+  if ($("#option-animal-companion").is(':checked')) {
+    char.data.attributes.animalCompanion = true;
+  }
+  if ($("#option-minis").is(':checked')) {
+    char.data.attributes.familiar = true;
+  }
 
   if ($("#option-minis").is(':checked')) {
     char.data.attributes.miniSize = $("input[type=radio][name=mini-size]:checked").attr('value');

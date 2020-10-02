@@ -16,6 +16,7 @@ function setupAuth() {
         return;
     baseURL = conf('url');
     
+    console.log("[auth]          Base URL:  ", baseURL);
     sessionKey = conf('session_key');
     auth.allowJustLogin = conf('allow_just_login');
     auth_patreon.setupAuth(conf, auth);

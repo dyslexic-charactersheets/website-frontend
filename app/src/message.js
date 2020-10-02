@@ -14,7 +14,7 @@ var mailer = nodemailer.createTransport('direct:?name=hostname');
 var conf;
 
 var maildir = path.resolve('../mail');
-console.log("[message] Mail dir:", maildir);
+console.log("[message]       Mail dir:", maildir);
 fs.mkdir(maildir, { recursive: true }, (err) => {
     
 });
@@ -69,14 +69,14 @@ function sendMessage(req, res) {
     var validationToken = req.body.validation;
     if (!validateToken(validationToken)) {
         res.status(403).end();
-        console.log("[message] Message failed validation:", validationToken);
+        console.log("[message]       Message failed validation:", validationToken);
         return;
     }
 
     var humanToken = req.body.verify;
     if (!verifyHumanToken(humanToken)) {
         res.status(403).end();
-        console.log("[message] Message failed validation:", humanToken);
+        console.log("[message]       Message failed validation:", humanToken);
         return;
     }
 
@@ -103,9 +103,9 @@ function sendMessage(req, res) {
     mailer.sendMail(mailOptions, (error, info) => {
         if (error) {
             res.status(500).end();
-            console.log("[message] Error sending mail:", error, error.stack);
+            console.log("[message]       Error sending mail:", error, error.stack);
         } else {
-            console.log("[message] Message sent");
+            console.log("[message]       Message sent");
             res.status(200).end();
         }
     });
@@ -119,7 +119,7 @@ function getHumanToken() {
     hash.update(salt);
     var parity = hash.digest('hex').substring(0, 32);
 
-    console.log(`[message] Human token: salt = ${salt}, parity = ${parity}`);
+    console.log(`[message]       Human token: salt = ${salt}, parity = ${parity}`);
     return salt+parity;
 }
 
@@ -135,7 +135,7 @@ function getFakeToken() {
 }
 
 function verifyHumanToken(token) {
-    console.log("[message] Verify human:", token);
+    console.log("[message]       Verify human:", token);
     let salt = token.substr(0,10);
     let parity = token.substr(10);
     

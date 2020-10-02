@@ -41,7 +41,7 @@
                 <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal="select-group-{{id}}">&ndash;</a>{{/unless}}</h4>
                 <ul class='wide'>
                   {{#each items}}
-                    <li><label for='ancestry-{{e code}}'><input type='radio' id='ancestry-{{e code}}' name='ancestry' value='{{e code}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                    <li><label for='ancestry-{{e code}}'><input type='radio' id='ancestry-{{e code}}' name='ancestry' value='{{code}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
                   {{/each}}
                 </ul>
               </div>
@@ -296,7 +296,7 @@
             </fieldset>
           </fieldset>
 
-          <fieldset id=''>
+          <fieldset id='skills'>
             <h4>{{__ "Skills"}}</h4>
             <fieldset>
             <p><label for='skill-actions'><input type='checkbox' name='skill-actions' id='skill-actions' checked> {{__ "Skill actions"}}</label></p>
@@ -307,14 +307,14 @@
             <p><label for='option-animal-companion'><input type='checkbox' name='animal-companion' id='option-animal-companion'> {{__ "Animal Companion"}}</label></p>
           </fieldset> --}}
 
-          <fieldset>
+          <fieldset id='inventory'>
             <h4>{{__ "Inventory"}}</h4>
             <fieldset>
               <p><label for="inventory-style">{{__ "Inventory style"}}</label>
                 <select name="inventory-style" id="inventory-style">
                   <option value="half">{{__ "Half page"}}</option>
                   <option value="full" selected>{{__ "Full page"}}</option>
-                  <option value="both">{{__ "Both"}}</option>
+                  <option value="double">{{__ "Two pages"}}</option>
                 </select>
               </p>
               {{!-- <p>
@@ -323,16 +323,26 @@
             </fieldset>
           </fieldset>
 
-        <h2>{{__ "Additional pages"}}</h2>
-          <fieldset>
-            <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map figure sheet"}}</label></p>
-            <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
+          <fieldset id='companions'>
+            <h4>Companions</h4>
             <fieldset>
-              <p>{{__ "Size"}}:
-                <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
-                <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" checked> {{__ "Medium"}}</label>
-                <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
-              </p>
+              <p><input type='checkbox' name='animal-companion' id='option-animal-companion'> <label for='option-animal-companion'>{{__ "Animal companion"}}</label></p>
+              <p><input type='checkbox' name='familiar' id='option-familiar'> <label for='option-familiar'>{{__ "Familiar"}}</label></p>
+            </fieldset>
+          </fieldset>
+
+          <fieldset id='maps'>
+            <h4>Maps</h4>
+            <fieldset>
+              <p><input type='checkbox' name='minis' id='option-minis'> <label for='option-minis'>{{__ "Map token page"}}</label></p>
+              <p class='info'>{{__ "Includes stand-up map figure and initiative tracker."}}</p>
+              <fieldset>
+                <p>{{__ "Size"}}:
+                  <label for="mini-small"><input type="radio" name="mini-size" value="small" id="mini-small"> {{__ "Small"}}</label>
+                  <label for="mini-medium"><input type="radio" name="mini-size" value="medium" id="mini-medium" checked> {{__ "Medium"}}</label>
+                  <label for="mini-large"><input type="radio" name="mini-size" value="large" id="mini-large"> {{__ "Large"}}</label>
+                </p>
+              </fieldset>
             </fieldset>
             
           </fieldset>
