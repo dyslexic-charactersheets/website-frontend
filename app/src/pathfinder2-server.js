@@ -155,13 +155,14 @@ module.exports = {
             }, [[], []]);
         }
 
-        function groupItems(items) {
+        function groupItems(items, altCore = "") {
             let groups = {};
             items.forEach(item => {
                 let groupName = item.hasOwnProperty("group") ? item.group : "_{Other}";
                 let groupId = slugify(groupName);
                 if (!groups.hasOwnProperty(groupId)) {
-                    groups[groupId] = {id: groupId, name: groupName, items: [], core: groupName == '_{Core Rulebook}'};
+                    let isCore = groupName == '_{Core Rulebook}' || groupName == altCore;
+                    groups[groupId] = {id: groupId, name: groupName, items: [], core: isCore};
                 }
                 groups[groupId].items.push(item);
             });
@@ -286,6 +287,30 @@ module.exports = {
                 }
             }
 
+            // store some data we'll need later
+            let versatileHeritages = [];
+            let selBases = {};
+            systemFormData.selects.forEach(sel => {
+                // store the versatile heritages so we can add them to all ancestries
+                if (sel.select == "heritage/versatile") {
+                    versatileHeritages = sel.values;
+                }
+
+                // store the ancestry group
+                if (sel.select == "ancestry") {
+                    sel.values.forEach(ancestry => {
+                        if (ancestry.hasOwnProperty("selects")) {
+                            ancestry.selects.forEach(sel2 => {
+                                if (sel2.match(/^heritage\//)) {
+                                    selBases[sel2] = ancestry.group;
+                                }
+                            })
+                        }
+                    });
+                }
+            });
+
+            // group the items for each selectable
             systemFormData.selects.forEach(sel => {
                 sel = fillInSelect(sel);
                 if (sel === null) {
@@ -323,7 +348,12 @@ module.exports = {
 
                     default:
                         if (sel.hasOwnProperty("values") && isArray(sel.values)) {
-                            sel.valueGroups = groupItems(sel.values);
+                            // add the versatile heritages to every ancestry
+                            if (sel.select.match(/^heritage\//)) {
+                                sel.values = sel.values.concat(versatileHeritages);
+                            }
+                            let selBase = selBases.hasOwnProperty(sel.select) ? selBases[sel.select] : '';
+                            sel.valueGroups = groupItems(sel.values, selBase);
                         }
                         if (sel.base) {
                             data.baseSelects.push(sel);
@@ -331,6 +361,15 @@ module.exports = {
                         console.og
                 }
             });
+
+            // // add the versatile heritages to every ancestry
+            // data.ancestries.forEach(ancestry => {
+            //     ancestry.selects.forEach(sel => {
+            //         if (sel.select.match(/^heritage\//)) {
+
+            //         }
+            //     })
+            // });
         }
 
         if (systemFormData.hasOwnProperty("options")) {
