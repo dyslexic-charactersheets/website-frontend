@@ -155,6 +155,19 @@ module.exports = {
             }, [[], []]);
         }
 
+        function excludeItems(items, select) {
+            return items.filter(item => {
+                if (item.hasOwnProperty("exclude-from")) {
+                    let ok = true;
+                    if (item['exclude-from'].includes(select)) {
+                        return false;
+                    }
+                    return ok;
+                }
+                return true;
+            });
+        }
+
         function groupItems(items, altCore = "") {
             let groups = {};
             items.forEach(item => {
@@ -350,7 +363,7 @@ module.exports = {
                         if (sel.hasOwnProperty("values") && isArray(sel.values)) {
                             // add the versatile heritages to every ancestry
                             if (sel.select.match(/^heritage\//)) {
-                                sel.values = sel.values.concat(versatileHeritages);
+                                sel.values = sel.values.concat(excludeItems(versatileHeritages, sel.select));
                             }
                             let selBase = selBases.hasOwnProperty(sel.select) ? selBases[sel.select] : '';
                             sel.valueGroups = groupItems(sel.values, selBase);
