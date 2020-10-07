@@ -279,7 +279,7 @@ $("#build-my-character").submit(function (e) {
   //   char.data.attributes[opt] = $(input).is(':checked');
   // });
 
-  $("input[type=checkbox][name^=archetype-]:checked").each(function (i, input) {
+  $("input[type=checkbox][name^='archetype/']:checked").each(function (i, input) {
     var archetype = $(input).attr('name').replace(/^archetype-/, '');
     char.data.attributes.archetypes.push(archetype);
   });
@@ -351,7 +351,7 @@ $("#build-my-character").submit(function (e) {
     char.data.attributes[prop] = checked;
   });
 
-  var classFeatsKey = "class"+initial(char.data.attributes.class)+"Feats";
+  var classFeatsKey = "class"+initial(cls)+"Feats";
   char.data.attributes[classFeatsKey] = [];
   var classFeatsPrefix = "feat-"+char.data.attributes.class+'-';
   $("input[type=checkbox][id^='feat-']").each(function (n, cb) {

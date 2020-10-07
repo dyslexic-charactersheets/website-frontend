@@ -307,6 +307,7 @@ module.exports = {
                 // store the versatile heritages so we can add them to all ancestries
                 if (sel.select == "heritage/versatile") {
                     versatileHeritages = sel.values;
+                    console.log("Versatile heritages:", versatileHeritages);
                 }
 
                 // store the ancestry group

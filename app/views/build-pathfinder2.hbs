@@ -41,7 +41,7 @@
                 <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal="select-group-{{id}}">&ndash;</a>{{/unless}}</h4>
                 <ul class='wide'>
                   {{#each items}}
-                    <li><label for='ancestry-{{e code}}'><input type='radio' id='ancestry-{{e code}}' name='ancestry' value='{{code}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                    <li><label for='ancestry-{{e code}}'><input type='radio' id='ancestry-{{e code}}' name='ancestry' value='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
                   {{/each}}
                 </ul>
               </div>
@@ -81,9 +81,9 @@
                     <ul class="wide">
                       {{#each items}}
                         {{#if ../../multiselect}}
-                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{e code}}'> {{__ name}}</label></li>
+                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}</label></li>
                         {{else}}
-                          <li><label for='heritage-{{e ../../select}}-{{e code}}'><input type='radio' id='heritage-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{e code}}'> {{__ name}}</label></li>
+                          <li><label for='heritage-{{e ../../select}}-{{e code}}'><input type='radio' id='heritage-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}</label></li>
                         {{/if}}
                       {{/each}}
                     </ul>
@@ -116,7 +116,7 @@
         <p class='indent'><select id='background'>
           <option value='' selected>{{__ "None"}}</option>
           {{#each backgrounds}}
-          <option value='{{code}}'>{{__ name}}</option>
+          <option value='{{id}}'>{{__ name}}</option>
           {{/each}}
         </select></p>
 
@@ -135,7 +135,7 @@
                 <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal="select-group-class-{{id}}">&ndash;</a>{{/unless}}</h4>
                 <ul class='wide'>
                   {{#each items}}
-                    <li><label for='class-{{e code}}'><input type='radio' id='class-{{e code}}' name='class' value='{{code}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                    <li><label for='class-{{e code}}'><input type='radio' id='class-{{e code}}' name='class' value='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
                   {{/each}}
                 </ul>
               </div>
@@ -173,9 +173,9 @@
                     <ul class="wide">
                       {{#each items}}
                         {{#if ../../multiselect}}
-                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{e code}}'> {{__ name}}</label></li>
+                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}</label></li>
                         {{else}}
-                          <li><label for='subclass-{{e ../../select}}-{{e code}}'><input type='radio' id='subclass-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{e code}}'> {{__ name}}</label></li>
+                          <li><label for='subclass-{{e ../../select}}-{{e code}}'><input type='radio' id='subclass-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}</label></li>
                         {{/if}}
                       {{/each}}
                     </ul>
@@ -216,7 +216,7 @@
                 <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal='select-group-archetype-{{id}}'>&ndash;</a>{{/unless}}</h4>
                 <ul class='wide'>
                   {{#each items}}
-                    <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' name='archetype-{{e code}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                    <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' name='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
                   {{/each}}
                 </ul>
               </div>
