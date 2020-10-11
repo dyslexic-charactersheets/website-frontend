@@ -105,6 +105,8 @@ module.exports = {
             return data;
         }
 
+        let formData = cloneDeep(systemFormData);
+
         data.title = "Build my character: Pathfinder 2e";
 
         function translate(item) {
@@ -215,21 +217,21 @@ module.exports = {
         data.archetypeGroups = [];
         data.baseSelects = [];
         data.baseOptions = [];
-        data.selects = systemFormData.selects;
-        data.options = systemFormData.options;
-        data.languages = systemFormData.languages;
+        data.selects = formData.selects;
+        data.options = formData.options;
+        data.languages = formData.languages;
 
-        if (systemFormData.hasOwnProperty("selects")) {
+        if (formData.hasOwnProperty("selects")) {
             // translate and sort all the items first
-            systemFormData.selects = systemFormData.selects.map(sel => {
+            let selects = formData.selects.map(sel => {
                 sel = translate(sel);
                 if (sel.hasOwnProperty("values"))
                     sel.values = sortItems(sel.values);
                 return sel;
-            })
+            });
 
             let selectsByCode = {};
-            systemFormData.selects.forEach(sel => {
+            selects.forEach(sel => {
                 selectsByCode[sel.select] = sel;
             });
 
@@ -303,7 +305,7 @@ module.exports = {
             // store some data we'll need later
             let versatileHeritages = [];
             let selBases = {};
-            systemFormData.selects.forEach(sel => {
+            selects.forEach(sel => {
                 // store the versatile heritages so we can add them to all ancestries
                 if (sel.select == "heritage/versatile") {
                     versatileHeritages = sel.values;
@@ -325,7 +327,7 @@ module.exports = {
             });
 
             // group the items for each selectable
-            systemFormData.selects.forEach(sel => {
+            selects.forEach(sel => {
                 sel = fillInSelect(sel);
                 if (sel === null) {
                     return;
@@ -386,8 +388,8 @@ module.exports = {
             // });
         }
 
-        if (systemFormData.hasOwnProperty("options")) {
-            systemFormData.options.forEach(opt => {
+        if (formData.hasOwnProperty("options")) {
+            formData.options.forEach(opt => {
                 if (opt.base)
                     data.baseOptions.push(opt);
             });
