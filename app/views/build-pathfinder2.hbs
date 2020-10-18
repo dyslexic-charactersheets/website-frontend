@@ -81,9 +81,9 @@
                     <ul class="wide">
                       {{#each items}}
                         {{#if ../../multiselect}}
-                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}</label></li>
+                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{else}}
-                          <li><label for='heritage-{{e ../../select}}-{{e code}}'><input type='radio' id='heritage-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}</label></li>
+                          <li><label for='heritage-{{e ../../select}}-{{e code}}'><input type='radio' id='heritage-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{/if}}
                       {{/each}}
                     </ul>
@@ -173,9 +173,9 @@
                     <ul class="wide">
                       {{#each items}}
                         {{#if ../../multiselect}}
-                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}</label></li>
+                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{else}}
-                          <li><label for='subclass-{{e ../../select}}-{{e code}}'><input type='radio' id='subclass-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}</label></li>
+                          <li><label for='subclass-{{e ../../select}}-{{e code}}'><input type='radio' id='subclass-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{/if}}
                       {{/each}}
                     </ul>

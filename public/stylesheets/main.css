@@ -952,6 +952,15 @@ form#build-my-character .select-group ul li label {
   padding-left: 25px;
   text-indent: -25px;
 }
+form#build-my-character ul .badge {
+  margin-left: 10px;
+  padding: 1px 4px;
+  background: rgb(36,54,42,0.8);
+  color: white;
+  border-radius: 2px;
+  font-weight: bold;
+  white-space: nowrap;
+}
 
 form#build-my-character ul {
   padding: 0px;
