@@ -42,7 +42,7 @@ function cloneDeep(original) {
     if (isArray(original)) {
         let product = [];
         for (let i = 0; i < original.length; ++i) {
-        product.push(cloneDeep(original[i]));
+            product.push(cloneDeep(original[i]));
         }
         return product;
     }
@@ -50,7 +50,7 @@ function cloneDeep(original) {
     if (isObject(original)) {
         let product = {};
         for (const key in original) {
-        product[cloneDeep(key)] = cloneDeep(original[key]);
+            product[cloneDeep(key)] = cloneDeep(original[key]);
         }
         return product;
     }

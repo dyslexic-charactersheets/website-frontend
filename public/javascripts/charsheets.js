@@ -254,6 +254,7 @@ $(function() {
     var message = form.find('#message').val();
     var author = form.find('#author').val();
     var email = form.find('#email').val();
+    var game = form.find('input[name="game"]:checked').val();
     var validation = form.find('#validation').val();
     var verify = form.find('input[name=verify]:checked').attr('value');
 
@@ -261,6 +262,7 @@ $(function() {
       message: message,
       author: author,
       email: email,
+      game: game,
       validation: validation,
       verify: verify
     }, function (data, status, xhr) {

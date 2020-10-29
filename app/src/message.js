@@ -80,6 +80,19 @@ function sendMessage(req, res) {
         return;
     }
 
+    var game = req.body.game;
+    if (!verifyGameToken(game)) {
+        res.status(403).end();
+        console.log("[message]       Message failed game validation:", humanToken);
+        return;
+    }
+    switch (game.substr(0, 3)) {
+        case "pf1": game = "Pathfinder 1e"; break;
+        case "pf2": game = "Pathfinder 2e"; break;
+        case "sfr": game = "Starfinder"; break;
+        case "d35": game = "D&D 3.5"; break;
+    }
+
     // save it to a file first
     var date = moment().format('YYYY-MM-DD_HH-mm-ss');
     var mailfile = maildir+'/'+date+'.msg';
@@ -94,8 +107,8 @@ function sendMessage(req, res) {
         from: `"${author}" <noreply@dyslexic-charactersheets.com>`, // sender address
         to: maildest, // list of receivers
         subject: `Dyslexic Character Sheets: Message from ${author}`, // Subject line
-        text: message, // plain text body
-        html: message // html body
+        text: message+"\n\nGame: "+game, // plain text body
+        html: message+"<p>Game: "+game+"</p>" // html body
     };
     if (email) {
         mailOptions.replyTo = email;
@@ -147,6 +160,37 @@ function verifyHumanToken(token) {
     return token == parity;
 }
 
+function getGameToken(game) {
+    var salt = (Math.floor(Math.random() * 999999999999).toString(16)+'0000').substr(0,10);
+    
+    var hash = crypto.createHash('sha256');
+    hash.update(timedTokenBase);
+    hash.update(game);
+    hash.update(salt);
+    var parity = hash.digest('hex').substring(0, 32);
+
+    console.log(`[message]       Game token: game = ${game}, salt = ${salt}, parity = ${parity}`);
+    return game+salt+parity;
+}
+
+function verifyGameToken(token) {
+    console.log("[message]       Verify game:", token);
+
+    let game = token.substr(0,3);
+    let salt = token.substr(3,10);
+    let parity = token.substr(13);
+    
+    console.log(`[message]       Verify game token: game = ${game}, salt = ${salt}, parity = ${parity}`);
+    
+    var hash = crypto.createHash('sha256');
+    hash.update(timedTokenBase);
+    hash.update(game);
+    hash.update(salt);
+    var token = hash.digest('hex').substring(0, 32);
+    
+    return token == parity;
+}
+
 module.exports = function (c) {
     conf = c;
     timedTokenBase = conf('timed_token_base');
@@ -159,6 +203,8 @@ module.exports = function (c) {
         getHumanToken: getHumanToken,
         getFakeToken: getFakeToken,
         verifyHumanToken: verifyHumanToken,
+        getGameToken: getGameToken,
+        verifyGameToken: verifyGameToken,
         sendMessage: sendMessage
     };
 };

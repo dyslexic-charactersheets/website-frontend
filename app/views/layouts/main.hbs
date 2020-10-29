@@ -62,6 +62,15 @@
             <form id='message-form' method='post' action='/message' class='rotate'>
               <div class='inner'>
                 <textarea id='message' name='message'></textarea>
+
+                <label for='game'>Which game is this about?</label>
+                <p>
+                  <label><input type='radio' name='game' value='{{verifyGamePf2e}}'> Pathfinder 2e</label>
+                  <label><input type='radio' name='game' value='{{verifyGamePf1e}}'> Pathfinder 1e</label>
+                  <label><input type='radio' name='game' value='{{verifyGameSf}}'> Starfinder</label>
+                  <label><input type='radio' name='game' value='{{verifyGameDnd35}}'> D&amp;D 3.5</label>
+                </p>
+
                 <label for='author'>
                   Your name:
                   <input id="author" name="author" type="text" placeholder="The Internet" class="box">

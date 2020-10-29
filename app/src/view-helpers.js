@@ -91,6 +91,22 @@ module.exports = function (conf, i18n, quotes) {
             return msg.getFakeToken();
         },
 
+        verifyGamePf2e: function () {
+            return msg.getGameToken('pf2');
+        },
+
+        verifyGamePf1e: function () {
+            return msg.getGameToken('pf1');
+        },
+
+        verifyGameSf: function () {
+            return msg.getGameToken('sfr');
+        },
+
+        verifyGameDnd35: function () {
+            return msg.getGameToken('d35');
+        },
+
         pdfUrl: function (game) {
             var url = conf('build_url');
             if (_.isNull(url)) url = conf('url');
