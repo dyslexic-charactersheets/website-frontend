@@ -47,7 +47,7 @@
               </div>
               {{/each}}
               
-              <div class='select-group select-group--reveal'>
+              <div class='select-group-more'>
                 <h4>{{__ "Other"}}</h4>
                 <div class="yui3-g">
                   <div class="yui3-u-1-3">
@@ -90,7 +90,7 @@
                   </div>
                   {{/each}}
 
-                  <div class="select-group select-group--reveal">
+                  <div class="select-group-more">
                     {{#unless multiselect}}
                     <ul>
                       <li><label for='heritage-{{e select}}-none'><input type='radio' id='heritage-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
@@ -141,7 +141,7 @@
               </div>
               {{/each}}
               
-              <div class='select-group select-group--reveal'>
+              <div class='select-group-more'>
                 <h4>{{__ "Other"}}</h4>
                 <div class="yui3-g">
                   <div class="yui3-u-1-3">
@@ -182,7 +182,7 @@
                   </div>
                   {{/each}}
 
-                  <div class="select-group select-group--reveal">
+                  <div class="select-group-more">
                     {{#unless multiselect}}
                     <ul>
                       <li><label for='subclass-{{e select}}-none'><input type='radio' id='subclass-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
@@ -221,7 +221,7 @@
               </div>
               {{/each}}
               
-              <div class='select-group select-group--reveal'>
+              <div class='select-group-more'>
                 <h4>{{__ "Other"}}</h4>
                 {{#each multiclassGroups}}{{#unless core}}
                 <a class='btn reveal-group' data-reveal="select-group-multiclass-{{id}}">{{__ name}}<span class='plus'>+</span></a>
@@ -254,7 +254,7 @@
                   </div>
                   {{/each}}
 
-                  <div class="select-group select-group--reveal">
+                  <div class="select-group-more">
                     {{#unless multiselect}}
                     <ul>
                       <li><label for='subarch-{{e select}}-none'><input type='radio' id='subarch-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
@@ -293,7 +293,7 @@
               </div>
               {{/each}}
               
-              <div class='select-group select-group--reveal'>
+              <div class='select-group-more'>
                 <h4>{{__ "Other"}}</h4>
                 {{#each archetypeGroups}}{{#unless core}}
                 <a class='btn reveal-group' data-reveal="select-group-archetype-{{id}}">{{__ name}}<span class='plus'>+</span></a>
@@ -326,7 +326,7 @@
                   </div>
                   {{/each}}
 
-                  <div class="select-group select-group--reveal">
+                  <div class="select-group-more">
                     {{#unless multiselect}}
                     <ul>
                       <li><label for='subarch-{{e select}}-none'><input type='radio' id='subarch-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>

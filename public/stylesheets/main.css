@@ -944,6 +944,14 @@ form#build-my-character .select-group ul.wide {
   columns: 4;
   column-fill: balance;
 }
+form#build-my-character .select-group-more {
+  line-height: 30px;
+  display: block;
+}
+form#build-my-character .select-group-more h4 {
+  display: inline;
+}
+
 form#build-my-character .yui3-u-1-2 .select-group ul.wide {
   columns: 2;
 }
