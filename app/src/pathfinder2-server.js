@@ -170,7 +170,7 @@ module.exports = {
             });
         }
 
-        function groupItems(items, altCore = "") {
+        function groupItems(items, altCore = "", expandFirst = true) {
             let groups = {};
             items.forEach(item => {
                 let groupName = item.hasOwnProperty("group") ? item.group : "_{Other}";
@@ -198,7 +198,7 @@ module.exports = {
             });
             let [extra, other] = partition(groups, group => group.id == "other" || group.id == "none");
             sorted = sorted.concat(other).concat(extra);
-            if (!hasCore && sorted.length > 0)
+            if (expandFirst && !hasCore && sorted.length > 0)
                 sorted[0].core = true;
 
             // sorted.forEach(group => console.log("Sorted:", group.name ));
@@ -213,6 +213,8 @@ module.exports = {
         data.backgroundGroups = [];
         data.classes = [];
         data.classGroups = [];
+        data.multiclass = [];
+        data.multiclassGroups = [];
         data.archetypes = [];
         data.archetypeGroups = [];
         data.baseSelects = [];
@@ -358,8 +360,11 @@ module.exports = {
                         break;
 
                     case "archetype":
-                        data.archetypes = sel.values;
-                        data.archetypeGroups = groupItems(data.archetypes);
+                        data.multiclass = sel.values.filter(a => a.multiclass);
+                        data.multiclassGroups = groupItems(data.multiclass);
+
+                        data.archetypes = sel.values.filter(a => !a.multiclass);
+                        data.archetypeGroups = groupItems(data.archetypes, "", false);
                         break;
 
                     default:

@@ -486,14 +486,22 @@ $(function() {
 
     $("input[type=radio][name=ancestry]").change(function () {
       $(".reveal-heritage").removeClass("reveal-show");
-      ancestry = $("input[type=radio][name=ancestry]:checked").data('reveal');
+      var ancestry = $("input[type=radio][name=ancestry]:checked").data('reveal');
       $("#reveal-heritage-"+ancestry).addClass("reveal-show");
     });
 
     $("input[type=radio][name=class]").change(function () {
       $(".reveal-subclass").removeClass("reveal-show");
-      cls = $("input[type=radio][name=class]:checked").data('reveal');
+      var cls = $("input[type=radio][name=class]:checked").data('reveal');
       $("#reveal-subclass-"+cls).addClass("reveal-show");
+    });
+
+    $("input[type=checkbox].archetype").change(function () {
+      $(".reveal-subarchetype").removeClass("reveal-show");
+      $("input[type=checkbox].archetype:checked").each(function (i, cb) {
+        var arch = $(cb).data('reveal');
+        $("#reveal-subarchetype-"+arch).addClass("reveal-show");
+      });
     });
 
 

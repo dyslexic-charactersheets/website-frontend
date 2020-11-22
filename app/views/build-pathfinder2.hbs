@@ -204,6 +204,77 @@
         <hr>
 
 
+        {{!-- Multiclass --}}
+        <h2>{{__ "Multiclass"}}</h2>
+        <div class="yui3-g">
+          <div class="yui3-u-1-2">
+
+            <fieldset id='classes'>
+              {{#each multiclassGroups}}
+              <div class='select-group{{#if core}} select-group--reveal{{else}} select-group--extra{{/if}}' id='select-group-multiclass-{{id}}'>
+                <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal='select-group-multiclass-{{id}}'>&ndash;</a>{{/unless}}</h4>
+                <ul class='wide'>
+                  {{#each items}}
+                    <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' class='archetype' name='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                  {{/each}}
+                </ul>
+              </div>
+              {{/each}}
+              
+              <div class='select-group select-group--reveal'>
+                <h4>{{__ "Other"}}</h4>
+                {{#each multiclassGroups}}{{#unless core}}
+                <a class='btn reveal-group' data-reveal="select-group-multiclass-{{id}}">{{__ name}}<span class='plus'>+</span></a>
+                {{/unless}}{{/each}}
+              </div>
+            </fieldset>
+
+          </div>
+          <div class="yui3-u-1-2">
+
+            {{!-- Sub-archetypes --}}
+            {{#each multiclass}}
+            <div class='reveal reveal-subarchetype' id='reveal-subarchetype-{{e code}}'>
+              {{#each selects}}
+                <h3>{{__ name}}</h3>
+
+                <fieldset>
+                  {{#each valueGroups}}
+                  <div class='select-group{{#if core}} select-group--reveal{{else}} select-group--extra{{/if}}' id='select-group-subarch-{{e ../../code}}-{{slug ../name}}-{{id}}'>
+                    <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal="select-group-{{e ../../code}}-{{slug ../name}}-{{id}}">&ndash;</a>{{/unless}}</h4>
+                    <ul class="wide">
+                      {{#each items}}
+                        {{#if ../../multiselect}}
+                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='checkbox' id='subarch-{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                        {{else}}
+                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='radio' id='subarch-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                        {{/if}}
+                      {{/each}}
+                    </ul>
+                  </div>
+                  {{/each}}
+
+                  <div class="select-group select-group--reveal">
+                    {{#unless multiselect}}
+                    <ul>
+                      <li><label for='subarch-{{e select}}-none'><input type='radio' id='subarch-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
+                    </ul>
+                    {{/unless}}
+                    {{#each valueGroups}}{{#unless core}}
+                    <a class='btn reveal-group' data-reveal="select-group-subarch-{{e ../../code}}-{{slug ../name}}-{{id}}">{{__ name}}<span class='plus'>+</span></a>
+                    {{/unless}}{{/each}}
+                  </div>
+                </fieldset>
+              {{/each}}
+            </div>
+            {{/each}}
+          </div>
+        </div>
+
+
+        <hr>
+
+
         {{!-- Archetypes --}}
         <h2>{{__ "Archetype"}}</h2>
         
@@ -216,7 +287,7 @@
                 <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal='select-group-archetype-{{id}}'>&ndash;</a>{{/unless}}</h4>
                 <ul class='wide'>
                   {{#each items}}
-                    <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' name='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                    <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' class='archetype' name='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
                   {{/each}}
                 </ul>
               </div>
@@ -233,6 +304,42 @@
           </div>
           <div class="yui3-u-1-2">
 
+            {{!-- Sub-archetypes --}}
+            {{#each archetypes}}
+            <div class='reveal reveal-subarchetype' id='reveal-subarchetype-{{e code}}'>
+              {{#each selects}}
+                <h3>{{__ name}}</h3>
+
+                <fieldset>
+                  {{#each valueGroups}}
+                  <div class='select-group{{#if core}} select-group--reveal{{else}} select-group--extra{{/if}}' id='select-group-subarch-{{e ../../code}}-{{slug ../name}}-{{id}}'>
+                    <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal="select-group-{{e ../../code}}-{{slug ../name}}-{{id}}">&ndash;</a>{{/unless}}</h4>
+                    <ul class="wide">
+                      {{#each items}}
+                        {{#if ../../multiselect}}
+                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='checkbox' id='subarch-{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                        {{else}}
+                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='radio' id='subarch-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                        {{/if}}
+                      {{/each}}
+                    </ul>
+                  </div>
+                  {{/each}}
+
+                  <div class="select-group select-group--reveal">
+                    {{#unless multiselect}}
+                    <ul>
+                      <li><label for='subarch-{{e select}}-none'><input type='radio' id='subarch-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
+                    </ul>
+                    {{/unless}}
+                    {{#each valueGroups}}{{#unless core}}
+                    <a class='btn reveal-group' data-reveal="select-group-subarch-{{e ../../code}}-{{slug ../name}}-{{id}}">{{__ name}}<span class='plus'>+</span></a>
+                    {{/unless}}{{/each}}
+                  </div>
+                </fieldset>
+              {{/each}}
+            </div>
+            {{/each}}
           </div>
         </div>
 
