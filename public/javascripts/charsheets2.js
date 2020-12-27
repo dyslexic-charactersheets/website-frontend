@@ -351,7 +351,9 @@ $("#build-my-character").submit(function (e) {
     char.data.attributes[prop] = checked;
   });
 
-  var classFeatsKey = "class"+initial(cls)+"Feats";
+  if (cls) {
+    var classFeatsKey = "class"+initial(cls)+"Feats";
+  }
   char.data.attributes[classFeatsKey] = [];
   var classFeatsPrefix = "feat-"+char.data.attributes.class+'-';
   $("input[type=checkbox][id^='feat-']").each(function (n, cb) {
@@ -408,6 +410,7 @@ $("#build-my-character").submit(function (e) {
 
   if (downloadFormat == "pdf") {
     $("#pdf-warning").show();
+    char.data.attributes.browserTarget = "pdf";
   }
 
   // marshal and send
@@ -514,6 +517,9 @@ $(function() {
     //   }
     // });
     
+    $("button#dyslexic-preset").click(function () {
+      
+    });
     
     // iconics
     $("#select-iconic-button").click(function () {
