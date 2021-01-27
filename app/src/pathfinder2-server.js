@@ -352,7 +352,7 @@ module.exports = {
 
                     case "background":
                         data.backgrounds = sel.values;
-                        data.backgroundGroups = groupItems(data.backgrounds);
+                        data.backgroundGroups = groupItems(data.backgrounds, "", false);
                         break;
 
                     case "class":

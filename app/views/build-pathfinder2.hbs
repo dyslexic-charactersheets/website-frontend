@@ -113,12 +113,41 @@
 
         {{!-- Backgrounds --}}
         <h2>{{__ "Background"}}</h2>
-        <p class='indent'><select id='background'>
+        {{!-- <p class='indent'><select id='background'>
           <option value='' selected>{{__ "None"}}</option>
           {{#each backgrounds}}
           <option value='{{id}}'>{{__ name}}</option>
           {{/each}}
-        </select></p>
+        </select></p> --}}
+
+        <fieldset id='backgrounds'>
+          {{#each backgroundGroups}}
+          <div class='select-group select-group--extra' id='select-group-background-{{id}}'>
+            <h4>{{__ name}}<a class='minus unreveal' data-unreveal="select-group-background-{{id}}">&ndash;</a></h4>
+            <ul class='wide'>
+              {{#each items}}
+                <li><label for='background-{{e code}}'><input type='radio' id='background-{{e code}}' name='background' value='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+              {{/each}}
+            </ul>
+          </div>
+          {{/each}}
+          
+          <div class='select-group-more'>
+            <h4>{{__ "Other"}}</h4>
+            <div class="yui3-g">
+              <div class="yui3-u-1-3">
+                <ul>
+                  <li><label for='background-other'><input type='radio' id='background-other' name='background' value='other' checked> {{__ "Other"}}</label></li>
+                </ul>
+              </div>
+              <div class="yui3-u-2-3">
+                {{#each backgroundGroups}}
+                <a class='btn reveal-group' data-reveal="select-group-background-{{id}}">{{__ name}}<span class='plus'>+</span></a>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </fieldset>
 
 
         <hr>
