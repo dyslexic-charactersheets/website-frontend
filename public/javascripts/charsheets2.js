@@ -259,20 +259,22 @@ $("#build-my-character").submit(function (e) {
   
   char.data.attributes.class = $("input[type=radio][name=class]:checked").attr("value");
   var cls = $("input[type=radio][name=class]:checked").data("reveal");
-  var subclasses = unique($("#reveal-subclass-"+cls+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());
-  subclasses.forEach(subclass => {
-    var attrib = kebab2camel("class-"+subclass);
-    char.data.attributes[attrib] = $("input[type=radio][name='"+subclass+"']:checked").attr("value");
-  });
-  var classOptions = unique($("#reveal-subclass-"+cls+" input[type=checkbox]").map(function (i, elem) { return $(elem).data("class-option"); }).get());
-  classOptions.forEach(classOption => {
-    var attrib = kebab2camel("class-"+classOption);
-    var opts = [];
-    $("input[type=checkbox][data-class-option='"+classOption+"']:checked").each(function (i, input) {
-      opts.push($(input).attr("name"));
+  if (cls !== undefined) {
+    var subclasses = unique($("#reveal-subclass-"+cls+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());
+    subclasses.forEach(subclass => {
+      var attrib = kebab2camel("class-"+subclass);
+      char.data.attributes[attrib] = $("input[type=radio][name='"+subclass+"']:checked").attr("value");
     });
-    char.data.attributes[attrib] = opts;
-  });
+    var classOptions = unique($("#reveal-subclass-"+cls+" input[type=checkbox]").map(function (i, elem) { return $(elem).data("class-option"); }).get());
+    classOptions.forEach(classOption => {
+      var attrib = kebab2camel("class-"+classOption);
+      var opts = [];
+      $("input[type=checkbox][data-class-option='"+classOption+"']:checked").each(function (i, input) {
+        opts.push($(input).attr("name"));
+      });
+      char.data.attributes[attrib] = opts;
+    });
+  }
 
   // $("input[type=checkbox][name^=option-]").each(function (input) {
   //   var opt = $(input).attr('name');
@@ -351,26 +353,26 @@ $("#build-my-character").submit(function (e) {
     char.data.attributes[prop] = checked;
   });
 
-  if (cls) {
+  if (cls !== undefined) {
     var classFeatsKey = "class"+initial(cls)+"Feats";
-  }
-  char.data.attributes[classFeatsKey] = [];
-  var classFeatsPrefix = "feat-"+char.data.attributes.class+'-';
-  $("input[type=checkbox][id^='feat-']").each(function (n, cb) {
-    var prop = $(cb).attr('id');
-    var checked = $(cb).is(':checked');
-    if (checked) {
-      if (prop.startsWith(classFeatsPrefix)) {
-        prop = prop.replace(classFeatsPrefix, '');
-        // prop = kebab2camel(prop);
-        char.data.attributes[classFeatsKey].push(prop);
-      } else {
-        prop = prop.replace('feat-', '');
-        // prop = kebab2camel(prop);
-        char.data.attributes.feats.push(prop);
+    char.data.attributes[classFeatsKey] = [];
+    var classFeatsPrefix = "feat-"+char.data.attributes.class+'-';
+    $("input[type=checkbox][id^='feat-']").each(function (n, cb) {
+      var prop = $(cb).attr('id');
+      var checked = $(cb).is(':checked');
+      if (checked) {
+        if (prop.startsWith(classFeatsPrefix)) {
+          prop = prop.replace(classFeatsPrefix, '');
+          // prop = kebab2camel(prop);
+          char.data.attributes[classFeatsKey].push(prop);
+        } else {
+          prop = prop.replace('feat-', '');
+          // prop = kebab2camel(prop);
+          char.data.attributes.feats.push(prop);
+        }
       }
-    }
-  });
+    });
+  }
 
   // images
   var portrait = $("input#iconic-portrait").val();
