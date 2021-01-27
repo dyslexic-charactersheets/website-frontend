@@ -92,12 +92,18 @@ CharacterSheets.on('request', function (request) {
 module.exports = {
     init: function (conf, i18n) {
         chromePDF = conf('chrome_pdf');
-        (async () => {
-            browser = await puppeteer.launch({
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
-            });
-            console.log("[pathfinder2]   Puppeteer browser launched");
-        })();
+        if (chromePDF) {
+            (async () => {
+                try {
+                    browser = await puppeteer.launch({
+                        args: ['--no-sandbox', '--disable-setuid-sandbox']
+                    });
+                    console.log("[pathfinder2]   Puppeteer browser launched");
+                } catch (err) {
+                    console.log("[pathfinder2]   Puppeteer browser error:", err);
+                }
+            })();
+        }
     },
     formData: function (data, i18n, lang) {
         if (systemFormData === null) {
