@@ -125,7 +125,7 @@ function renderBuildForm(req, res, lang) {
         data = pathfinder2.formData(data, i18n, lang);
         data.scriptFile = "charsheets2.js";
     }
-
+    // console.log("Form data", data);
     res.render(buildForm, data);
 }
 

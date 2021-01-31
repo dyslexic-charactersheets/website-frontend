@@ -6,15 +6,41 @@
         <nav class='tabs'>
             <ul>
                 <li><a href='/'>&laquo; {{__ "Back to intro"}}</a></li>
-                <li><a rel='#class-tab' class='selected'>{{__ "Class"}}</a></li>
-                <li><a rel='#options-tab' id='options-tab-link'>{{__ "Options"}}</a></li>
-                <li><a rel='#appearance-tab' id='appearance-tab-link'>{{__ "Appearance"}}</a></li>
-                <li><a rel='#download-tab' id='download-tab-link'>{{__ "Download"}}</a></li>
+                <li><a rel='#start-tab' class='selected' id='start-tab-link'>{{__ "Start"}}</a></li>
+                <li><a rel='#class-tab' class='start-hidden' id='class-tab-link'>{{__ "Class"}}</a></li>
+                <li><a rel='#options-tab' class='start-hidden' id='options-tab-link'>{{__ "Options"}}</a></li>
+                <li><a rel='#gm-start-tab' class='start-hidden' id='gm-start-tab-link'>{{__ "Game Master"}}</a></li>
+                <li><a rel='#gm-options-tab' class='start-hidden' id='gm-options-tab-link'>{{__ "Options"}}</a></li>
+                <li><a rel='#appearance-tab' class='start-hidden' id='appearance-tab-link'>{{__ "Appearance"}}</a></li>
+                <li><a rel='#download-tab' class='start-hidden' id='download-tab-link'>{{__ "Download"}}</a></li>
             </ul>
         </nav>
     </header>
+    
 
-    <section class='tab selected' id='class-tab'>
+    <section class='tab selected' id='start-tab'>
+      <h2 id='start-tab-title'>{{gameData.name}}</h2>
+      
+      <div id='start-options'>
+        <a id='start-single'>
+          <img src='/images/single.png'/>
+          {{__ "One character"}}
+        </a>
+        {{!-- <a id='start-party'>
+          <img src='/images/{{#if gameData.isStarfinder}}starfinder-party.png{{else}}party.png{{/if}}'/>
+          {{__ "A whole party"}}
+        </a> --}}
+        <a id='start-gm'>
+          <img src='/images/gm.png'/>
+          {{__ "Dungeon Master"}}
+        </a>
+      </div>
+
+      <input type='hidden' id='start-type' name='start-type'/>
+    </section>
+
+
+    <section class='tab' id='class-tab'>
         <p><a class='button' id='quick-link-build'>{{__ "Build a character"}}</a> &nbsp; {{__ "Download the single page beginner's guide."}}</p>
         <hr>
 
@@ -509,6 +535,145 @@
       </nav>
     </section>
 
+
+
+    {{!-- GM Tabs --}}
+    
+    <section class='tab' id='gm-start-tab'>
+      <h2>{{__ "Game Master"}}</h2>
+
+      <div id='gm-start-options'>
+        <input type='hidden' id='gm-start-type' name='gm-start-type'/>
+
+        <div class='yui3-g'>
+          <div class='yui3-u-1-2'><div class='col left'>
+            <p><a id='gm-start-characters' rel='#gm-characters-options' data-gm-type='characters'>
+              <img src='/images/gm-characters.png'/>
+            </a></p>
+
+            {{!-- <p><a id='gm-start-campaign' rel='#gm-campaign-options' data-gm-type='campaign'>
+              <img src='/images/gm-campaign.png'/>
+            </a></p> --}}
+          </div></div>
+
+          <div class='yui3-u-1-2'><div class='col right'>
+            <p><a id='gm-start-maps' rel='#gm-maps-options' data-gm-type='maps'>
+              <img src='/images/gm-maps.png'/>
+            </a></p>
+
+            {{!-- {{#if gameData.isPathfinder}}
+            <p><a id='gm-start-kingdom' rel='#gm-kingdom-options' data-gm-type='kingdom'>
+              <img src='/images/gm-kingdom.png'/>
+            </a></p>
+            {{/if}} --}}
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class='tab' id='gm-options-tab'>
+
+      <div id='gm-characters-options' class='gm-options-section'>
+        <img src='/images/gm-characters.png' class='float'/>
+
+        <h2>{{__ "Characters and NPCs"}}</h2>
+        <p>{{__ "Sheets for tracking the whole party, and NPCs."}}</p>
+
+        <fieldset>
+          <h3>Pages</h3>
+          <p><label for='option-gm-party'><input type='checkbox' checked name='option-gm-party' id='option-gm-party'> {{__ "Party"}}</label></p>
+          <p class='info'>{{__ "A summary of up to 9 party members."}}</p>
+          <p><label for='option-gm-npc-party'><input type='checkbox' checked name='option-gm-npc-party' id='option-gm-npc-party'> {{__ "NPC group"}}</label>
+          <p class='info'>{{__ "A summary of up to 9 NPCs."}}</p>
+          <p><label for='option-gm-npc'><input type='checkbox' checked name='option-gm-npc' id='option-gm-npc'> {{__ "NPC"}}</label>
+          <p class='info'>{{__ "Character sheet for an NPC."}}</p>
+        </fieldset>
+
+
+        {{!-- <h3>{{__ "Party"}}</h3>
+        <p><label for='num-pcs'>{{__ "Party size"}}:&nbsp; 
+          <select name='num-pcs' id='num-pcs' style='width: 60px; text-align: right;'>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
+            <option value='6'>6</option>
+            <option value='7'>7</option>
+            <option value='8'>8</option>
+            <option value='9'>9</option>
+            <option value='10'>10</option>
+          </select> 
+          &nbsp;{{__ "player characters"}}</label></p> --}}
+      </div>
+
+      <div id='gm-campaign-options' class='gm-options-section'>
+        <img src='/images/gm-campaign.png' class='float'/>
+
+        <h2>{{__ "Campaign Planning"}}</h2>
+        <p>{{__ "History timelines and other sheets for planning a game."}}</p>
+      </div>
+
+      <div id='gm-maps-options' class='gm-options-section'>
+        <img src='/images/gm-maps.png' class='float'/>
+
+        <h2>{{__ "Exploration Maps"}}</h2>
+        <p>{{__ "Blank hex maps, isometric maps, city maps and more."}}
+          {{#if gameData.isPathfinder}} <span>{{__ "Goes well with Kingmaker and Ultimate Campaign"}}</span> {{/if}}</p>
+
+        {{#unless gameData.isStarfinder}}
+        <h3>{{__ "Map style"}}</h3>
+          <p><label for="maps-view-3d"><input type="radio" name="maps-view" value="3d" id="maps-view-3d" checked />
+              {{__ "3D (perspective)"}}</label></p>
+          <p><label for="maps-view-2d"><input type="radio" name="maps-view" value="2d" id="maps-view-2d"/>
+              {{__ "2D (flat)"}}</label></p>
+        {{/unless}}
+      </div>
+
+      <div id='gm-kingdom-options' class='gm-options-section'>
+        <img src='/images/gm-kingdom.png' class='float'/>
+        <h2>{{__ "Kingdom Building"}}</h2>
+        <p>{{__ "Kingdom and city sheets."}}</p>
+
+        {{#if gameData.isPathfinder}}
+          <h3>{{__ "Settlement style"}}</h3>
+            <p><label for="settlement-style-normal"><input type="radio" name="settlement-style" value="normal" id="settlement-style-normal" checked />
+              {{__ "Normal"}}</label></p>
+            <p><label for="settlement-style-large"><input type="radio" name="settlement-style" value="large" id="settlement-style-large" />
+              {{__ "Large"}}</label></p>
+            <p><label for="settlement-style-plain"><input type="radio" name="settlement-style" value="plain" id="settlement-style-plain" />
+              {{__ "Without map"}}</label></p>
+        {{/if}}
+      </div>
+
+      {{!-- <div id='gm-logo-section'>
+        <h3>{{__ "Logo"}}</h3>
+
+          <div class='well' id='gm-logo'>
+            {{#each logos}}
+              <img src='{{url}}' id='gm-logo-{{id}}' {{#ifEq code gameData.game}}class='selected'{{/ifEq}} />
+            {{/each}}
+            <p><a class='button' href='javascript:void(0);' id='select-gm-logo-button'>{{__ "Select logo"}}</a></p>
+          </div>
+      </div> --}}
+
+      <h2>{{__ "Legal"}}</h2>
+      <fieldset id='legal'>
+        <p><label for='option-gm-permission'><input type='checkbox' name='permission' id='option-gm-permission'> {{__ "Permission to print"}}</label></p>
+        <p class='info'>{{__ "A page stating that this document may be legally printed."}}</p>
+        {{!--             
+        <p><label for='option-license'><input type='checkbox' name='license' id='option-license'> {{__ "Licensing"}}</label></p>
+        <p class='info'>{{__ "A full copy of the Artistic License 2.0, the Open Game License and other legal terms and conditions."}}</p>
+        --}}
+        
+        <p class='info'>{{{__ "For detailed licensing information, see <a href='/legal'>Legal Info</a>."}}}</p>
+      </fieldset>
+
+      <nav class='wizardnav'>
+        &nbsp;
+        <a href='#appearance-tab'><img src='/images/wiznext.png'/></a>
+      </nav>
+    </section>
+
+
+
     <section class='tab' id='appearance-tab'>
 
       <h2>{{__ "Accessibility"}}</h2>
@@ -725,11 +890,12 @@
       </div>
 
       <nav class='wizardnav'>
-        <a href='#options-tab'><img src='/images/wizprev.png'/></a>
+        <a href='#options-tab' id='appearance-tab-back-link'><img src='/images/wizprev.png'/></a>
         &nbsp;
         <a href='#download-tab'><img src='/images/wiznext.png'/></a>
       </nav>
     </section>
+
 
     <section class='tab' id='download-tab'>
 
@@ -829,6 +995,8 @@
         &nbsp;
       </nav>
     </section>
+
+
 
 
     <section class='dialog select-dialog' id='iconic-select-dialog'>

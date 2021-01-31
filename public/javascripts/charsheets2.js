@@ -207,9 +207,34 @@ $("#quick-link-build").click(function (e) {
 });
 
 
+/* SUBMIT */
+
 $("#build-my-character").submit(function (e) {
   e.preventDefault();
 
+  var startType = $("#start-type").val();
+  var request = null;
+  switch (startType) {
+    case 'character':
+      request = submitCharacter();
+      break;
+    case 'gm':
+      request = submitGM();
+      break;
+    default:
+      return;
+  }
+
+  submitAppearance(request);
+
+  var requestData = JSON.stringify(request);
+  $("#pf2-form #request").val(requestData);
+  $("#pf2-form").submit();
+  return false;
+});
+
+
+function submitCharacter() {
   var char = {
     version: 0,
     data: {
@@ -298,49 +323,6 @@ $("#build-my-character").submit(function (e) {
   }
   char.data.attributes.skillActions = $("#skill-actions").is(":checked");
 
-  // colours
-  var intensity = $("input[type=radio][name=intensity]:checked").attr('value');
-  var printIntensity = 0;
-  switch (intensity) {
-    case 'lightest': printIntensity = 2; break;
-    case 'lighter': printIntensity = 1; break;
-    case 'darker': printIntensity = -1; break;
-    case 'darkest': printIntensity = -2; break;
-  }
-  char.data.attributes.printIntensity = printIntensity;
-
-  var colour = $("input[type=radio][name=print-colour]:checked").attr('value');
-  if (colour == "custom")
-    colour = "#"+$("input[name=print-colour-custom]").val().trim();
-  else
-    colour = colourFromName(colour);
-  // colour = adjustIntensity(colour, intensity);
-  char.data.attributes.printColour = colour;
-
-  var accentColour = $("input[type=radio][name=accent-colour]:checked").attr('value');
-  if (accentColour == "custom")
-    accentColour = "#"+$("input[name=accent-colour-custom]").val().trim();
-  // accentColour = adjustIntensity(accentColour, intensity);
-  char.data.attributes.accentColour = colourFromName(accentColour);
-
-  if ($("input#option-high-contrast").is(":checked")) {
-    char.data.attributes.printHighContrast = true;
-  }
-  // backgrounds
-  char.data.attributes.printBackground = $("input[type=radio][name=print-background]:checked").attr('value');
-  char.data.attributes.printWatermark = $("input#watermark").val();
-
-  // options
-  if ($("input#option-large-print").is(":checked")) {
-    char.data.attributes.printLarge = true;
-  }
-  if ($("input#option-dyslexic").is(":checked")) {
-    char.data.attributes.printDyslexic = true;
-  }
-
-  if ($("input#underlay-no").is(":checked")) {
-    char.data.attributes.optionNoUnderlay = true;
-  }
 
   // char.data.attributes.inventoryStyle = $("input[type=radio][name='inventory-style']:checked").attr('value');
   char.data.attributes.inventoryStyle = $("#inventory-style option:selected").attr('value');
@@ -374,69 +356,196 @@ $("#build-my-character").submit(function (e) {
     });
   }
 
+  // marshal and send
+  if (charIncluded.length > 0) {
+    char.included = charIncluded;
+  }
+
+  return char;
+}
+
+
+function submitGM() {
+  var gm = {
+    version: 0,
+    data: {
+      type: "gm",
+      id: generateId(),
+      attributes: {
+        game: "pathfinder2",
+        language: "en",
+        gm: "party",
+
+        optionPermission: false,
+        optionBuild: false,
+
+        printLarge: false,
+        printHighContrast: false,
+        printDyslexic: false,
+        
+        printColour: "#808080",
+        accentColour: "#808080",
+        printLogo: "logos/pathfinder2e.png",
+        printPortrait: "",
+        printBackground: ""
+      }
+    }
+  };
+
+  var gmStartType = $("#gm-start-type").val();
+  gm.data.attributes.gm = gmStartType;
+  switch (gmStartType) {
+    case 'characters':
+      ["option-gm-party", "option-gm-npc-party", "option-gm-npc"].forEach(option => {
+        gm.data.attributes[option] = $(option).is(':checked')
+      });
+      break;
+
+    case 'maps':
+      gm.data.attributes.mapView = $("maps-view").val();
+      break;
+  }
+
+  return gm;
+}
+
+function submitAppearance(request) {
+  
+  // colours
+  var intensity = $("input[type=radio][name=intensity]:checked").attr('value');
+  var printIntensity = 0;
+  switch (intensity) {
+    case 'lightest': printIntensity = 2; break;
+    case 'lighter': printIntensity = 1; break;
+    case 'darker': printIntensity = -1; break;
+    case 'darkest': printIntensity = -2; break;
+  }
+  request.data.attributes.printIntensity = printIntensity;
+
+  var colour = $("input[type=radio][name=print-colour]:checked").attr('value');
+  if (colour == "custom")
+    colour = "#"+$("input[name=print-colour-custom]").val().trim();
+  else
+    colour = colourFromName(colour);
+  // colour = adjustIntensity(colour, intensity);
+  request.data.attributes.printColour = colour;
+
+  var accentColour = $("input[type=radio][name=accent-colour]:checked").attr('value');
+  if (accentColour == "custom")
+    accentColour = "#"+$("input[name=accent-colour-custom]").val().trim();
+  // accentColour = adjustIntensity(accentColour, intensity);
+  request.data.attributes.accentColour = colourFromName(accentColour);
+
+  // backgrounds
+  request.data.attributes.printBackground = $("input[type=radio][name=print-background]:checked").attr('value');
+  request.data.attributes.printWatermark = $("input#watermark").val();
+
+  // options
+  if ($("input#option-large-print").is(":checked")) {
+    request.data.attributes.printLarge = true;
+  }
+  if ($("input#option-dyslexic").is(":checked")) {
+    request.data.attributes.printDyslexic = true;
+  }
+  if ($("input#option-high-contrast").is(":checked")) {
+    request.data.attributes.printHighContrast = true;
+  }
+
+  if ($("input#underlay-no").is(":checked")) {
+    request.data.attributes.optionNoUnderlay = true;
+  }
+
   // images
   var portrait = $("input#iconic-portrait").val();
   if (portrait == "custom") {
     var portraitID = generateId();
     var attachment = imageAttachment(portraitID, portraitData);
-    char.data.attributes.printPortrait = portraitID;
+    request.data.attributes.printPortrait = portraitID;
     charIncluded.push(attachment);
   } else {
-    char.data.attributes.printPortrait = portrait;
+    request.data.attributes.printPortrait = portrait;
   }
 
   var animal = $("input#animal-portrait").val();
   if (animal == "custom") {
     var animalID = generateId();
     var attachment = imageAttachment(animalID, animalData);
-    char.data.attributes.animalPortraint = animalID;
+    request.data.attributes.animalPortraint = animalID;
     charIncluded.push(attachment);
   } else {
-    char.data.attributes.animalPortraint = animal;
+    request.data.attributes.animalPortraint = animal;
   }
 
   var logo = $("input#logo-select").val();
   if (logo == "custom") {
     var logoID = generateId();
     var attachment = imageAttachment(logoID, logoData);
-    char.data.attributes.printLogo = logoID;
+    request.data.attributes.printLogo = logoID;
     charIncluded.push(attachment);
   } else {
-    char.data.attributes.printLogo = logo;
+    request.data.attributes.printLogo = logo;
   }
 
   // html or pdf
   var downloadFormat = $("input[name=download-format]:checked").attr('value');
-  char.data.attributes.downloadPDF = downloadFormat == "pdf";
-  char.data.attributes.downloadPaperSize = $("input[name=download-paper]:checked").attr('value');
+  request.data.attributes.downloadPDF = downloadFormat == "pdf";
+  request.data.attributes.downloadPaperSize = $("input[name=download-paper]:checked").attr('value');
 
   if (downloadFormat == "pdf") {
     $("#pdf-warning").show();
-    char.data.attributes.browserTarget = "pdf";
-  }
-
-  // marshal and send
-  if (charIncluded.length > 0) {
-    char.included = charIncluded;
+    request.data.attributes.browserTarget = "pdf";
   }
 
   // debug
   if ($("#debug").is(':checked')) {
-    char.data.debug = true;
+    request.data.debug = true;
   }
-
-  var requestData = JSON.stringify(char);
-  $("#pf2-form #request").val(requestData);
-  $("#pf2-form").submit();
-  return false;
-});
+}
 
 
+
+/* FORM BEHAVIOUR */
 
 $(function() {
     $("html, body").addClass("postload");
 
     // tabs
+    $("#start-single").click(function () {
+      $("#class-tab-link, #options-tab-link, #appearance-tab-link, #download-tab-link").show();
+      $("#start-tab-link, #party-tab-link, #gm-tab-link").hide();
+      $("#class-tab-link").show().click();
+      // $("#add-to-party").hide();
+      // $("#party-readout").hide();
+      $("#start-type").val('single');
+      return false;
+    });
+
+    $("#start-gm").click(function () {
+      $("#gm-start-tab-link").show();
+      $("#start-tab-link, #party-tab-link, #class-tab-link, #options-tab-link, #download-tab-link").hide();
+      $("#gm-start-tab-link").click();
+      // $("#add-to-party").hide();
+      // $("#party-readout").hide();
+      $("#start-type").val('gm');
+      $("#appearance-tab-back-link").attr('href', '#gm-options-tab');
+    });
+
+    $("#gm-start-options a").click(function () {
+      $("#gm-options-tab-link, #appearance-tab-link, #download-tab-link").show();
+      $("#gm-options-tab-link").click();
+  
+      var rel = $(this).attr('rel');
+      var gmType = $(this).data('gm-type');
+      $("#gm-start-type").val(gmType);
+      $(".gm-options-section").hide();
+      $(rel).show();
+      if (gmType == "maps" || gmType == "kingdom") {
+        $("#gm-logo-section").show();
+      } else {
+        $("#gm-logo-section").hide();
+      }
+    });
+    
     $("nav.tabs a").click(function () {
         var rel = $(this).attr('rel');
         var target = $(rel);
