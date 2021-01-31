@@ -377,7 +377,6 @@ function submitGM() {
         gm: "party",
 
         optionPermission: false,
-        optionBuild: false,
 
         printLarge: false,
         printHighContrast: false,
@@ -402,9 +401,11 @@ function submitGM() {
       break;
 
     case 'maps':
-      gm.data.attributes.mapView = $("maps-view").val();
+      gm.data.attributes.mapView = $("input[name=maps-view]:checked").val();
       break;
   }
+
+  gm.data.attributes.optionPermission = $("#option-gm-permission").is(':checked');
 
   return gm;
 }
