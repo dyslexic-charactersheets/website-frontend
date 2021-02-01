@@ -683,6 +683,11 @@
           <div class='yui3-u-1-3'>
             <p id='dyslexic'><input type='checkbox' id='option-dyslexic' name='option-dyslexic'> <label for='option-dyslexic'>{{__ "Dyslexic fonts"}}</label></p>
             <p class='info'>{{__ "Uses easy-to-read fonts, disables all-caps."}}</p>
+
+            {{#if hasDyslexie}}
+            <p class='indent'><label for='option-dyslexie-yes'><input type='radio' name='option-dyslexie' value='yes' id='option-dyslexie-yes' checked> Dyslexie</label></p>
+            <p class='indent'><label for='option-dyslexie-no'><input type='radio' name='option-dyslexie' value='no' id='option-dyslexie-no'> Sans-serif</label></p>
+            {{/if}}
             
             {{!-- <p class='indent'>
               <input type='radio' name='dyslexic-font' value='sans-serif' id='dyslexic-font-sans-serif' checked>

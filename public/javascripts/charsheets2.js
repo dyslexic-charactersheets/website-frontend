@@ -215,7 +215,7 @@ $("#build-my-character").submit(function (e) {
   var startType = $("#start-type").val();
   var request = null;
   switch (startType) {
-    case 'character':
+    case 'single':
       request = submitCharacter();
       break;
     case 'gm':
@@ -258,6 +258,7 @@ function submitCharacter() {
         printLarge: false,
         printHighContrast: false,
         printDyslexic: false,
+        printDyslexie: false,
         
         printColour: "#808080",
         accentColour: "#808080",
@@ -381,6 +382,7 @@ function submitGM() {
         printLarge: false,
         printHighContrast: false,
         printDyslexic: false,
+        printDyslexie: false,
         
         printColour: "#808080",
         accentColour: "#808080",
@@ -447,6 +449,7 @@ function submitAppearance(request) {
   }
   if ($("input#option-dyslexic").is(":checked")) {
     request.data.attributes.printDyslexic = true;
+    request.data.attributes.printDyslexie = $("input#option-dyslexie-yes").is(":checked");
   }
   if ($("input#option-high-contrast").is(":checked")) {
     request.data.attributes.printHighContrast = true;
@@ -630,7 +633,9 @@ $(function() {
     // });
     
     $("button#dyslexic-preset").click(function () {
+      e.preventDefault();
       
+      // ...
     });
     
     // iconics

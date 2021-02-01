@@ -228,6 +228,7 @@ module.exports = {
         data.selects = formData.selects;
         data.options = formData.options;
         data.languages = formData.languages;
+        data.hasDyslexie = true;
 
         if (formData.hasOwnProperty("selects")) {
             // translate and sort all the items first
