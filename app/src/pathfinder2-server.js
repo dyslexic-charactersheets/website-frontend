@@ -2,12 +2,17 @@ const fs = require('fs');
 const CharacterSheets = require('dyslexic-charactersheets');
 
 const puppeteer = require('puppeteer');
+const formdata = require('../../../lib-charactersheets/src/make/formdata');
 var browser;
 
 let systemFormData = null;
 CharacterSheets.getFormData('pathfinder2').then((data) => {
     console.log("[pathfinder2]   System form data loaded");
     systemFormData = data;
+});
+CharacterSheets.getFormData('premium').then((data) => {
+    console.log("[pathfinder2]   Premium form data loaded");
+    premiumFormData = data;
 });
 
 CharacterSheets.loadDefaultTranslations();
@@ -112,6 +117,8 @@ module.exports = {
         }
 
         let formData = cloneDeep(systemFormData);
+        let formData2 = cloneDeep(premiumFormData);
+        formData.options = formData.options.concat(formData2.options);
 
         data.title = "Build my character: Pathfinder 2e";
 
@@ -228,7 +235,7 @@ module.exports = {
         data.selects = formData.selects;
         data.options = formData.options;
         data.languages = formData.languages;
-        data.hasDyslexie = true;
+        data.hasDyslexie = false;
 
         if (formData.hasOwnProperty("selects")) {
             // translate and sort all the items first
@@ -402,8 +409,12 @@ module.exports = {
 
         if (formData.hasOwnProperty("options")) {
             formData.options.forEach(opt => {
-                if (opt.base)
+                if (opt.base) {
                     data.baseOptions.push(opt);
+                }
+                if (opt.option == 'dyslexie') {
+                    data.hasDyslexie = true;
+                }
             });
         }
 
