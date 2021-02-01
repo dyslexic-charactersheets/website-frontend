@@ -612,6 +612,11 @@ $(function() {
       $(".reveal-subclass").removeClass("reveal-show");
       var cls = $("input[type=radio][name=class]:checked").data('reveal');
       $("#reveal-subclass-"+cls).addClass("reveal-show");
+      
+      // prevent double-classing (ie Monk + Monk archetype)
+      $("#multiclass input[type=checkbox]").prop('disabled', false);
+      $("#multiclass #archetype-"+cls).prop('disabled', true).prop('checked', false);
+      $("#reveal-subarchetype-"+cls).removeClass("reveal-show");
     });
 
     $("input[type=checkbox].archetype").change(function () {
@@ -632,10 +637,13 @@ $(function() {
     //   }
     // });
     
-    $("button#dyslexic-preset").click(function () {
+    $("button#dyslexic-preset").click(function (e) {
       e.preventDefault();
       
-      // ...
+      $("#colour-wheel-azure2").prop('checked', true);
+      $("#accent-magenta").prop('checked', true);
+      $("#print-background-magnolia").prop('checked', true);
+      $("#underlay-no").prop('checked', true);
     });
     
     // iconics
