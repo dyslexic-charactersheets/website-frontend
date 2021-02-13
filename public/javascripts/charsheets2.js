@@ -15,6 +15,11 @@ function kebab2camel(str) {
   return words.join("");
 }
 
+function slash2kebab(str) {
+  var words = str.split(/\//);
+  return words.join("-");
+}
+
 function initial(str) {
   var letters = str.split('');
   return letters[0].toUpperCase() + str.substr(1);
@@ -271,35 +276,60 @@ function submitCharacter() {
   };
   var charIncluded = [];
 
+  function addCharacterOptions(unit) {
+    var singleOptionCodes = unique($("input[data-option-for='"+unit+"'].option-single").map( (i, elem) => $(elem).attr("data-option") ));
+    singleOptionCodes.forEach(code => {
+      var value = $("input[data-option='"+code+"']:checked").val();
+      if (value !== undefined && value !== null && value != "none") {
+        char.data.attributes[code] = value;
+      }
+    });
+
+    var multiOptionCodes = unique($("input[data-option-for='"+unit+"'].option-multi").map( (i, elem) => $(elem).attr("data-option") ));
+    multiOptionCodes.forEach(code => {
+      var values = unique($("input[data-option='"+code+"']:checked").map( (i, elem) => $(elem).attr("name") ));
+      if (values.length > 0) {
+        char.data.attributes[code] = values;
+      }
+    });
+  }
+
   char.data.attributes.name = $("input#character-name").val();
   char.data.attributes.description = $("input#character-description").val();
   char.data.attributes.language = $("input[type=radio][name=language]:checked").attr("value");
 
   // selectable things
-  char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
-  var ancestry = $("input[type=radio][name=ancestry]:checked").data("reveal");
-  char.data.attributes.heritage = $("input[type=radio][name='heritage-"+ancestry+"']:checked").attr("value");
+  var ancestry = char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
+  // var ancestry = $("input[type=radio][name=ancestry]:checked").data("reveal");
+  if (ancestry !== undefined) {
+    addCharacterOptions(ancestry);
+    // char.data.attributes.heritage = $("input[type=radio][name='heritage-"+ancestry+"']:checked").attr("value");
+  }
   
   // char.data.background = char.data.attributes.background = $("input[type=radio][name=background]:checked").attr("value");
   char.data.background = char.data.attributes.background = $("select#background option:selected").attr("value");
   
-  char.data.attributes.class = $("input[type=radio][name=class]:checked").attr("value");
-  var cls = $("input[type=radio][name=class]:checked").data("reveal");
+  var cls = char.data.attributes.class = $("input[type=radio][name=class]:checked").attr("value");
+  // var cls = $("input[type=radio][name=class]:checked").data("reveal");
   if (cls !== undefined) {
-    var subclasses = unique($("#reveal-subclass-"+cls+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());
-    subclasses.forEach(subclass => {
-      var attrib = kebab2camel("class-"+subclass);
-      char.data.attributes[attrib] = $("input[type=radio][name='"+subclass+"']:checked").attr("value");
-    });
-    var classOptions = unique($("#reveal-subclass-"+cls+" input[type=checkbox]").map(function (i, elem) { return $(elem).data("class-option"); }).get());
-    classOptions.forEach(classOption => {
-      var attrib = kebab2camel("class-"+classOption);
-      var opts = [];
-      $("input[type=checkbox][data-class-option='"+classOption+"']:checked").each(function (i, input) {
-        opts.push($(input).attr("name"));
-      });
-      char.data.attributes[attrib] = opts;
-    });
+    addCharacterOptions(cls);
+    // // single options
+    // var subclasses = unique($("#reveal-subclass-"+cls+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());
+    // subclasses.forEach(subclass => {
+    //   // var attrib = kebab2camel("class-"+subclass);
+    //   char.data.attributes[subclass] = $("input[type=radio][name='"+subclass+"']:checked").attr("value");
+    // });
+
+    // // multi options
+    // var classOptions = unique($("#reveal-subclass-"+cls+" input[type=checkbox]").map(function (i, elem) { return $(elem).data("class-option"); }).get());
+    // classOptions.forEach(classOption => {
+    //   // var attrib = kebab2camel("class-"+classOption);
+    //   var opts = [];
+    //   $("input[type=checkbox][data-class-option='"+classOption+"']:checked").each(function (i, input) {
+    //     opts.push($(input).attr("name"));
+    //   });
+    //   char.data.attributes[classOption] = opts;
+    // });
   }
 
   // $("input[type=checkbox][name^=option-]").each(function (input) {
@@ -308,8 +338,29 @@ function submitCharacter() {
   // });
 
   $("input[type=checkbox][name^='archetype/']:checked").each(function (i, input) {
-    var archetype = $(input).attr('name').replace(/^archetype-/, '');
+    var archetype = $(input).attr('name').replace(/^archetype\//, '');
     char.data.attributes.archetypes.push(archetype);
+    addCharacterOptions($(input).attr('name'));
+
+    // var archkey = slash2kebab(archetype);
+    // 
+    // // single options
+    // var subarchetypes = unique($("#reveal-subarchetype-"+archkey+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());
+    // subarchetypes.forEach(subarchetype => {
+    //   // var attrib = kebab2camel("archetype-"+subarchetype);
+    //   char.data.attributes[subarchetype] = $("input[type=radio][name='"+subclass+"']:checked").attr("value");
+    // });
+
+    // // multi options
+    // var archetypeOptions = unique($("#reveal-subarchetype-"+archkey+" input[type=checkbox]").map(function (i, elem) { return $(elem).data("archetype-option"); }).get());
+    // archetypeOptions.forEach(archetypeOption => {
+    //   // var attrib = kebab2camel("archetype-"+archetypeOption);
+    //   var opts = [];
+    //   $("input[type=checkbox][data-archetype-option='"+archetypeOption+"']:checked").each(function (i, input) {
+    //     opts.push($(input).attr("name"));
+    //   });
+    //   char.data.attributes[archetypeOption] = opts;
+    // });
   });
 
   if ($("#option-animal-companion").is(':checked')) {
@@ -640,7 +691,7 @@ $(function() {
     $("button#dyslexic-preset").click(function (e) {
       e.preventDefault();
       
-      $("#colour-wheel-azure2").prop('checked', true);
+      $("#colour-wheel-blue2").prop('checked', true);
       $("#accent-magenta").prop('checked', true);
       $("#print-background-magnolia").prop('checked', true);
       $("#underlay-no").prop('checked', true);

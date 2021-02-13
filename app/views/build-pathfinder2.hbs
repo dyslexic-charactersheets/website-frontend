@@ -107,9 +107,9 @@
                     <ul class="wide">
                       {{#each items}}
                         {{#if ../../multiselect}}
-                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='heritage-{{e ../../select}}-{{e code}}'><input type='checkbox' class='option-multi' id='heritage-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{else}}
-                          <li><label for='heritage-{{e ../../select}}-{{e code}}'><input type='radio' id='heritage-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='heritage-{{e ../../select}}-{{e code}}'><input type='radio' class='option-single' id='heritage-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{/if}}
                       {{/each}}
                     </ul>
@@ -119,7 +119,7 @@
                   <div class="select-group-more">
                     {{#unless multiselect}}
                     <ul>
-                      <li><label for='heritage-{{e select}}-none'><input type='radio' id='heritage-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
+                      <li><label for='heritage-{{e select}}-none'><input type='radio' class='option-single' id='heritage-{{e select}}-none' name='{{select}}' value='none' checked> {{__ "None"}}</label></li>
                     </ul>
                     {{/unless}}
                     {{#each valueGroups}}{{#unless core}}
@@ -139,12 +139,6 @@
 
         {{!-- Backgrounds --}}
         <h2>{{__ "Background"}}</h2>
-        {{!-- <p class='indent'><select id='background'>
-          <option value='' selected>{{__ "None"}}</option>
-          {{#each backgrounds}}
-          <option value='{{id}}'>{{__ name}}</option>
-          {{/each}}
-        </select></p> --}}
 
         <fieldset id='backgrounds'>
           {{#each backgroundGroups}}
@@ -228,9 +222,9 @@
                     <ul class="wide">
                       {{#each items}}
                         {{#if ../../multiselect}}
-                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' id='{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='subclass-{{e ../../select}}-{{e code}}'><input type='checkbox' class='option-multi' id='subclass-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{else}}
-                          <li><label for='subclass-{{e ../../select}}-{{e code}}'><input type='radio' id='subclass-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='subclass-{{e ../../select}}-{{e code}}'><input type='radio' class='option-single' id='subclass-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{/if}}
                       {{/each}}
                     </ul>
@@ -240,7 +234,7 @@
                   <div class="select-group-more">
                     {{#unless multiselect}}
                     <ul>
-                      <li><label for='subclass-{{e select}}-none'><input type='radio' id='subclass-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
+                      <li><label for='subclass-{{e select}}-none'><input type='radio' id='subclass-{{e select}}-none' name='{{select}}' value='none' checked> {{__ "None"}}</label></li>
                     </ul>
                     {{/unless}}
                     {{#each valueGroups}}{{#unless core}}
@@ -300,9 +294,9 @@
                     <ul class="wide">
                       {{#each items}}
                         {{#if ../../multiselect}}
-                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='checkbox' id='subarch-{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='checkbox' class='option-multi' id='subarch-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{else}}
-                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='radio' id='subarch-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='radio' class='option-single' id='subarch-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{/if}}
                       {{/each}}
                     </ul>
@@ -312,7 +306,7 @@
                   <div class="select-group-more">
                     {{#unless multiselect}}
                     <ul>
-                      <li><label for='subarch-{{e select}}-none'><input type='radio' id='subarch-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
+                      <li><label for='subarch-{{e select}}-none'><input type='radio' id='subarch-{{e select}}-none' name='{{select}}' value='none' checked> {{__ "None"}}</label></li>
                     </ul>
                     {{/unless}}
                     {{#each valueGroups}}{{#unless core}}
@@ -372,9 +366,9 @@
                     <ul class="wide">
                       {{#each items}}
                         {{#if ../../multiselect}}
-                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='checkbox' id='subarch-{{e ../../select}}-{{e code}}' data-class-option='{{e ../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='checkbox' class='option-multi' id='subarch-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{else}}
-                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='radio' id='subarch-{{e ../../select}}-{{e code}}' name='{{e ../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='subarch-{{e ../../select}}-{{e code}}'><input type='radio' class='option-single' id='subarch-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{/if}}
                       {{/each}}
                     </ul>
@@ -384,7 +378,7 @@
                   <div class="select-group-more">
                     {{#unless multiselect}}
                     <ul>
-                      <li><label for='subarch-{{e select}}-none'><input type='radio' id='subarch-{{e select}}-none' name='{{e select}}' value='none' checked> {{__ "None"}}</label></li>
+                      <li><label for='subarch-{{e select}}-none'><input type='radio' id='subarch-{{e select}}-none' name='{{select}}' value='none' checked> {{__ "None"}}</label></li>
                     </ul>
                     {{/unless}}
                     {{#each valueGroups}}{{#unless core}}
@@ -685,7 +679,7 @@
             <p class='info'>{{__ "Uses easy-to-read fonts, disables all-caps."}}</p>
 
             {{#if hasDyslexie}}
-            <p class='indent'><label for='option-dyslexie-yes'><input type='radio' name='option-dyslexie' value='yes' id='option-dyslexie-yes' checked> Dyslexie</label></p>
+            <p class='indent'><label for='option-dyslexie-yes'><input type='radio' name='option-dyslexie' value='yes' id='option-dyslexie-yes' checked> Dyslexie</label> (<a href='https://dyslexiefont.com/'>dyslexiefont.com</a>)</p>
             <p class='indent'><label for='option-dyslexie-no'><input type='radio' name='option-dyslexie' value='no' id='option-dyslexie-no'> Sans-serif</label></p>
             {{/if}}
             
