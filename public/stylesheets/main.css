@@ -888,7 +888,8 @@ form#build-my-character a.reveal-group {
   padding: 3px 5px;
   margin-right: 10px;
 
-  background: #E0F0C8;
+  /* background: #E0F0C8; */
+  background: rgb(230,240,200);
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.4);
 
@@ -897,6 +898,47 @@ form#build-my-character a.reveal-group {
   white-space: nowrap;
 
   cursor: pointer;
+}
+
+/* Tiers */
+form#build-my-character .select-group--extra.select-group--rulebooks h4 {
+  color: rgb(120,50,40);
+}
+
+form#build-my-character a.reveal-group--rulebooks {
+  background: rgb(230,210,190);
+}
+
+form#build-my-character a.reveal-group--rulebooks .plus, form#build-my-character .select-group--rulebooks .minus {
+  background: rgb(120,50,40);
+}
+
+form#build-my-character a.reveal-group--lost-omens {
+  background: rgb(230,230,210);
+}
+
+form#build-my-character .select-group--extra.select-group--lost-omens h4 {
+  color: rgb(40,50,120);
+}
+
+form#build-my-character a.reveal-group--lost-omens .plus, form#build-my-character .select-group--lost-omens .minus {
+  background: rgb(40,50,120);
+}
+
+form#build-my-character .select-group--extra.select-group--adventures h4 {
+  color: rgb(40,100,50);
+}
+
+form#build-my-character a.reveal-group--adventures .plus, form#build-my-character .select-group--adventures .minus {
+  background: rgb(40,100,50);
+}
+
+form#build-my-character .select-group--extra.select-group--third-party h4 {
+  background: rgb(100,40,100);
+}
+
+form#build-my-character a.reveal-group--third-party .plus, form#build-my-character .select-group--third-party .minus {
+  background: rgb(100,40,100);
 }
 
 form#build-my-character .reveal-subclass, form#build-my-character .reveal-heritage {

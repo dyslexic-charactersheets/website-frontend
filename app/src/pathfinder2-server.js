@@ -183,14 +183,41 @@ module.exports = {
             });
         }
 
+        function group2tier(group) {
+            group = group.replace(/_\{(.*)\}/g, '$1');
+            console.log("Group:", group);
+
+            switch (group) {
+                case "Core Rulebook":
+                case "Advanced Player's Guide":
+                case "Gamemastery Guide":
+                    return "rulebooks";
+
+                case "Lost Omens Ancestry Guide":
+                case "Lost Omens Character Guide":
+                case "Lost Omens World Guide":
+                case "Lost Omens Legends":
+                case "Lost Omens Gods & Magic":
+                case "Lost Omens Pathfinder Society Guide":
+                    return "lost-omens"
+
+                case "Kingmaker":
+                    return "adventures";
+
+                default:
+                    return "third-party";
+            }
+        }
+
         function groupItems(items, altCore = "", expandFirst = true) {
             let groups = {};
             items.forEach(item => {
+                item.tier = group2tier(item.group);
                 let groupName = item.hasOwnProperty("group") ? item.group : "_{Other}";
                 let groupId = slugify(groupName);
                 if (!groups.hasOwnProperty(groupId)) {
                     let isCore = groupName == '_{Core Rulebook}' || groupName == altCore;
-                    groups[groupId] = {id: groupId, name: groupName, items: [], core: isCore};
+                    groups[groupId] = {id: groupId, name: groupName, items: [], core: isCore, tier: item.tier};
                 }
                 groups[groupId].items.push(item);
             });
@@ -396,15 +423,6 @@ module.exports = {
                         console.og
                 }
             });
-
-            // // add the versatile heritages to every ancestry
-            // data.ancestries.forEach(ancestry => {
-            //     ancestry.selects.forEach(sel => {
-            //         if (sel.select.match(/^heritage\//)) {
-
-            //         }
-            //     })
-            // });
         }
 
         if (formData.hasOwnProperty("options")) {
