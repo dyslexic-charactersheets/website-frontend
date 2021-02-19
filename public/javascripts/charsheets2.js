@@ -272,9 +272,9 @@ function submitCharacter() {
         animalPortraint: "",
         printBackground: ""
       }
-    }
+    },
+    included: []
   };
-  var charIncluded = [];
 
   function addCharacterOptions(unit) {
     var singleOptionCodes = unique($("input[data-option-for='"+unit+"'].option-single").map( (i, elem) => $(elem).attr("data-option") ));
@@ -300,67 +300,21 @@ function submitCharacter() {
 
   // selectable things
   var ancestry = char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
-  // var ancestry = $("input[type=radio][name=ancestry]:checked").data("reveal");
   if (ancestry !== undefined) {
     addCharacterOptions(ancestry);
-    // char.data.attributes.heritage = $("input[type=radio][name='heritage-"+ancestry+"']:checked").attr("value");
   }
   
-  // char.data.background = char.data.attributes.background = $("input[type=radio][name=background]:checked").attr("value");
   char.data.background = char.data.attributes.background = $("select#background option:selected").attr("value");
   
   var cls = char.data.attributes.class = $("input[type=radio][name=class]:checked").attr("value");
-  // var cls = $("input[type=radio][name=class]:checked").data("reveal");
   if (cls !== undefined) {
     addCharacterOptions(cls);
-    // // single options
-    // var subclasses = unique($("#reveal-subclass-"+cls+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());
-    // subclasses.forEach(subclass => {
-    //   // var attrib = kebab2camel("class-"+subclass);
-    //   char.data.attributes[subclass] = $("input[type=radio][name='"+subclass+"']:checked").attr("value");
-    // });
-
-    // // multi options
-    // var classOptions = unique($("#reveal-subclass-"+cls+" input[type=checkbox]").map(function (i, elem) { return $(elem).data("class-option"); }).get());
-    // classOptions.forEach(classOption => {
-    //   // var attrib = kebab2camel("class-"+classOption);
-    //   var opts = [];
-    //   $("input[type=checkbox][data-class-option='"+classOption+"']:checked").each(function (i, input) {
-    //     opts.push($(input).attr("name"));
-    //   });
-    //   char.data.attributes[classOption] = opts;
-    // });
   }
-
-  // $("input[type=checkbox][name^=option-]").each(function (input) {
-  //   var opt = $(input).attr('name');
-  //   char.data.attributes[opt] = $(input).is(':checked');
-  // });
 
   $("input[type=checkbox][name^='archetype/']:checked").each(function (i, input) {
     var archetype = $(input).attr('name').replace(/^archetype\//, '');
     char.data.attributes.archetypes.push(archetype);
     addCharacterOptions($(input).attr('name'));
-
-    // var archkey = slash2kebab(archetype);
-    // 
-    // // single options
-    // var subarchetypes = unique($("#reveal-subarchetype-"+archkey+" input[type=radio]").map(function (i, elem) { return $(elem).attr("name"); }).get());
-    // subarchetypes.forEach(subarchetype => {
-    //   // var attrib = kebab2camel("archetype-"+subarchetype);
-    //   char.data.attributes[subarchetype] = $("input[type=radio][name='"+subclass+"']:checked").attr("value");
-    // });
-
-    // // multi options
-    // var archetypeOptions = unique($("#reveal-subarchetype-"+archkey+" input[type=checkbox]").map(function (i, elem) { return $(elem).data("archetype-option"); }).get());
-    // archetypeOptions.forEach(archetypeOption => {
-    //   // var attrib = kebab2camel("archetype-"+archetypeOption);
-    //   var opts = [];
-    //   $("input[type=checkbox][data-archetype-option='"+archetypeOption+"']:checked").each(function (i, input) {
-    //     opts.push($(input).attr("name"));
-    //   });
-    //   char.data.attributes[archetypeOption] = opts;
-    // });
   });
 
   if ($("#option-animal-companion").is(':checked')) {
@@ -375,8 +329,6 @@ function submitCharacter() {
   }
   char.data.attributes.skillActions = $("#skill-actions").is(":checked");
 
-
-  // char.data.attributes.inventoryStyle = $("input[type=radio][name='inventory-style']:checked").attr('value');
   char.data.attributes.inventoryStyle = $("#inventory-style option:selected").attr('value');
   char.data.attributes.classKit = $("#inventory-class-kit").is(":checked");
 
@@ -397,20 +349,13 @@ function submitCharacter() {
       if (checked) {
         if (prop.startsWith(classFeatsPrefix)) {
           prop = prop.replace(classFeatsPrefix, '');
-          // prop = kebab2camel(prop);
           char.data.attributes[classFeatsKey].push(prop);
         } else {
           prop = prop.replace('feat-', '');
-          // prop = kebab2camel(prop);
           char.data.attributes.feats.push(prop);
         }
       }
     });
-  }
-
-  // marshal and send
-  if (charIncluded.length > 0) {
-    char.included = charIncluded;
   }
 
   return char;
@@ -516,7 +461,7 @@ function submitAppearance(request) {
     var portraitID = generateId();
     var attachment = imageAttachment(portraitID, portraitData);
     request.data.attributes.printPortrait = portraitID;
-    charIncluded.push(attachment);
+    request.included.push(attachment);
   } else {
     request.data.attributes.printPortrait = portrait;
   }
@@ -526,7 +471,7 @@ function submitAppearance(request) {
     var animalID = generateId();
     var attachment = imageAttachment(animalID, animalData);
     request.data.attributes.animalPortraint = animalID;
-    charIncluded.push(attachment);
+    request.included.push(attachment);
   } else {
     request.data.attributes.animalPortraint = animal;
   }
@@ -536,7 +481,7 @@ function submitAppearance(request) {
     var logoID = generateId();
     var attachment = imageAttachment(logoID, logoData);
     request.data.attributes.printLogo = logoID;
-    charIncluded.push(attachment);
+    request.included.push(attachment);
   } else {
     request.data.attributes.printLogo = logo;
   }
