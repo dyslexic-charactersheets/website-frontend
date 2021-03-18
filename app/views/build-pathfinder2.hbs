@@ -7,7 +7,7 @@
             <ul>
                 <li><a href='/'>&laquo; {{__ "Back to intro"}}</a></li>
                 <li><a rel='#start-tab' class='selected' id='start-tab-link'>{{__ "Start"}}</a></li>
-                <li><a rel='#class-tab' class='start-hidden' id='class-tab-link'>{{__ "Class"}}</a></li>
+                <li><a rel='#class-tab' class='start-hidden' id='class-tab-link'>{{__ "Character"}}</a></li>
                 <li><a rel='#options-tab' class='start-hidden' id='options-tab-link'>{{__ "Options"}}</a></li>
                 <li><a rel='#gm-start-tab' class='start-hidden' id='gm-start-tab-link'>{{__ "Game Master"}}</a></li>
                 <li><a rel='#gm-options-tab' class='start-hidden' id='gm-options-tab-link'>{{__ "Options"}}</a></li>
@@ -36,14 +36,15 @@
         </a>
       </div>
 
+      <hr>
+      
+      <p><a class='button' id='quick-link-build'>{{__ "Build a character"}}</a> &nbsp; {{__ "Download the single page beginner's guide."}}</p>
+
       <input type='hidden' id='start-type' name='start-type'/>
     </section>
 
 
     <section class='tab' id='class-tab'>
-        <p><a class='button' id='quick-link-build'>{{__ "Build a character"}}</a> &nbsp; {{__ "Download the single page beginner's guide."}}</p>
-        <hr>
-
         <h2>{{__ "Name"}}</h2>
         <fieldset>
           <input id='character-name' class='name'>
@@ -76,12 +77,12 @@
               <div class='select-group-more'>
                 <h4>{{__ "Other"}}</h4>
                 <div class="yui3-g">
-                  <div class="yui3-u-1-3">
+                  <div class="yui3-u-1-4">
                     <ul>
                       <li><label for='ancestry-other'><input type='radio' id='ancestry-other' name='ancestry' value='other' checked> {{__ "Other"}}</label></li>
                     </ul>
                   </div>
-                  <div class="yui3-u-2-3">
+                  <div class="yui3-u-3-4">
                     {{#each ancestryGroups}}{{#unless core}}
                     <a class='btn reveal-group reveal-group--{{tier}}' data-reveal="select-group-{{id}}">{{__ name}}<span class='plus'>+</span></a>
                     {{/unless}}{{/each}}
@@ -96,6 +97,7 @@
         
             {{!-- Heritages --}}
             {{#each ancestries}}
+            {{#if selects}}
             <div class='reveal reveal-heritage' id='reveal-heritage-{{e code}}'>
               {{#each selects}}
                 <h3>{{__ name}}</h3>
@@ -129,6 +131,7 @@
                 </fieldset>
               {{/each}}
             </div>
+            {{/if}}
             {{/each}}
           </div>
         </div>
@@ -155,12 +158,12 @@
           <div class='select-group-more'>
             <h4>{{__ "Other"}}</h4>
             <div class="yui3-g">
-              <div class="yui3-u-1-3">
+              <div class="yui3-u-1-8">
                 <ul>
                   <li><label for='background-other'><input type='radio' id='background-other' name='background' value='other' checked> {{__ "Other"}}</label></li>
                 </ul>
               </div>
-              <div class="yui3-u-2-3">
+              <div class="yui3-u-7-8">
                 {{#each backgroundGroups}}
                 <a class='btn reveal-group reveal-group--{{tier}}' data-reveal="select-group-background-{{id}}">{{__ name}}<span class='plus'>+</span></a>
                 {{/each}}
@@ -193,12 +196,12 @@
               <div class='select-group-more'>
                 <h4>{{__ "Other"}}</h4>
                 <div class="yui3-g">
-                  <div class="yui3-u-1-3">
+                  <div class="yui3-u-1-4">
                     <ul>
                       <li><label for='class-generic'><input type='radio' id='class-generic' name='class' value='generic' checked> {{__ "Other"}}</label></li>
                     </ul>
                   </div>
-                  <div class="yui3-u-2-3">
+                  <div class="yui3-u-3-4">
                     {{#each classGroups}}{{#unless core}}
                     <a class='btn reveal-group reveal-group--{{tier}}' data-reveal="select-group-class-{{id}}">{{__ name}}<span class='plus'>+</span></a>
                     {{/unless}}{{/each}}
@@ -211,6 +214,7 @@
           <div class="yui3-u-1-2">
             {{!-- Subclasses --}}
             {{#each classes}}
+            {{#if selects}}
             <div class='reveal reveal-subclass' id='reveal-subclass-{{e code}}'>
               {{#each selects}}
                 <h3>{{__ name}}</h3>
@@ -244,6 +248,7 @@
                 </fieldset>
               {{/each}}
             </div>
+            {{/if}}
             {{/each}}
 
           </div>
@@ -271,7 +276,6 @@
               {{/each}}
               
               <div class='select-group-more'>
-                <h4>{{__ "Other"}}</h4>
                 {{#each multiclassGroups}}{{#unless core}}
                 <a class='btn reveal-group reveal-group--{{tier}}' data-reveal="select-group-multiclass-{{id}}">{{__ name}}<span class='plus'>+</span></a>
                 {{/unless}}{{/each}}
@@ -283,6 +287,7 @@
 
             {{!-- Sub-archetypes --}}
             {{#each multiclass}}
+            {{#if selects}}
             <div class='reveal reveal-subarchetype' id='reveal-subarchetype-{{e code}}'>
               {{#each selects}}
                 <h3>{{__ name}}</h3>
@@ -316,6 +321,7 @@
                 </fieldset>
               {{/each}}
             </div>
+            {{/if}}
             {{/each}}
           </div>
         </div>
@@ -343,7 +349,6 @@
               {{/each}}
               
               <div class='select-group-more'>
-                <h4>{{__ "Other"}}</h4>
                 {{#each archetypeGroups}}{{#unless core}}
                 <a class='btn reveal-group reveal-group--{{tier}}' data-reveal="select-group-archetype-{{id}}">{{__ name}}<span class='plus'>+</span></a>
                 {{/unless}}{{/each}}
@@ -355,6 +360,7 @@
 
             {{!-- Sub-archetypes --}}
             {{#each archetypes}}
+            {{#if selects}}
             <div class='reveal reveal-subarchetype' id='reveal-subarchetype-{{e code}}'>
               {{#each selects}}
                 <h3>{{__ name}}</h3>
@@ -388,6 +394,7 @@
                 </fieldset>
               {{/each}}
             </div>
+            {{/if}}
             {{/each}}
           </div>
         </div>
@@ -679,8 +686,9 @@
             <p class='info'>{{__ "Uses easy-to-read fonts, disables all-caps."}}</p>
 
             {{#if hasDyslexie}}
-            <p class='indent'><label for='option-dyslexie-yes'><input type='radio' name='option-dyslexie' value='yes' id='option-dyslexie-yes' checked> Dyslexie</label> (<a href='https://dyslexiefont.com/'>dyslexiefont.com</a>)</p>
-            <p class='indent'><label for='option-dyslexie-no'><input type='radio' name='option-dyslexie' value='no' id='option-dyslexie-no'> Sans-serif</label></p>
+            <p class='indent'><label for='option-dyslexic-font-dyslexie' id='font-dyslexie'><input type='radio' name='option-dyslexic-font' value='dyslexie' id='option-dyslexic-font-dyslexie' checked> Dyslexie</label> (<a href='https://dyslexiefont.com/'>dyslexiefont.com</a>)</p>
+            <p class='indent'><label for='option-dyslexic-font-lexend' id='font-lexend'><input type='radio' name='option-dyslexic-font' value='lexend' id='option-dyslexic-font-lexend'> Lexend Deca</label> (<a href='https://www.lexend.com/'>lexend.com</a>)</p>
+            <p class='indent'><label for='option-dyslexic-font-sans' id='font-sans'><input type='radio' name='option-dyslexic-font' value='sans' id='option-dyslexic-font-sans'> Sans-serif</label></p>
             {{/if}}
             
             {{!-- <p class='indent'>

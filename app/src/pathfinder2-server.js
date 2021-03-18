@@ -185,7 +185,7 @@ module.exports = {
 
         function group2tier(group) {
             group = group.replace(/_\{(.*)\}/g, '$1');
-            console.log("Group:", group);
+            // console.log("Group:", group);
 
             switch (group) {
                 case "Core Rulebook":
@@ -199,9 +199,11 @@ module.exports = {
                 case "Lost Omens Legends":
                 case "Lost Omens Gods & Magic":
                 case "Lost Omens Pathfinder Society Guide":
+                case "Absalom, City of Lost Omens":
                     return "lost-omens"
 
                 case "Kingmaker":
+                case "Extinction Curse":
                     return "adventures";
 
                 default:

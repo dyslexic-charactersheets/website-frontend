@@ -263,7 +263,7 @@ function submitCharacter() {
         printLarge: false,
         printHighContrast: false,
         printDyslexic: false,
-        printDyslexie: false,
+        printDyslexicFont: false,
         
         printColour: "#808080",
         accentColour: "#808080",
@@ -378,7 +378,7 @@ function submitGM() {
         printLarge: false,
         printHighContrast: false,
         printDyslexic: false,
-        printDyslexie: false,
+        printDyslexicFont: false,
         
         printColour: "#808080",
         accentColour: "#808080",
@@ -445,7 +445,11 @@ function submitAppearance(request) {
   }
   if ($("input#option-dyslexic").is(":checked")) {
     request.data.attributes.printDyslexic = true;
-    request.data.attributes.printDyslexie = $("input#option-dyslexie-yes").is(":checked");
+    if ($("input#option-dyslexic-font-dyslexie").is(":checked")) {
+      request.data.attributes.printDyslexicFont = 'dyslexie';
+    } else if ($("input#option-dyslexic-font-lexend").is(":checked")) {
+      request.data.attributes.printDyslexicFont = 'lexend';
+    }
   }
   if ($("input#option-high-contrast").is(":checked")) {
     request.data.attributes.printHighContrast = true;
