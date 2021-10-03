@@ -304,7 +304,7 @@ function submitCharacter() {
     addCharacterOptions(ancestry);
   }
   
-  char.data.background = char.data.attributes.background = $("select#background option:selected").attr("value");
+  char.data.background = char.data.attributes.background = $("input[type=radio][name=background]:checked").attr("value");
   
   var cls = char.data.attributes.class = $("input[type=radio][name=class]:checked").attr("value");
   if (cls !== undefined) {
