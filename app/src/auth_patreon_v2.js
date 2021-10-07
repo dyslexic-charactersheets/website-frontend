@@ -55,7 +55,7 @@ module.exports = {
             grant_type: 'authorization_code',
             client_id: client_id,
             client_secret: client_secret,
-            redirectURL: patreonRedirectURL,
+            redirect_uri: patreonRedirectURL,
         };
         console.log("[patreon]       Retrieving auth token");
         console.log("[patreon]       Token URL:", tokenURL);
@@ -63,35 +63,28 @@ module.exports = {
 
         request.post({ url: tokenURL, formData: formData }, function (err, httpResponse, body) {
             if (err) {
-                console.log('[patreon]       Rrror', err);
+                console.log('[patreon]       Error', err);
             }
             console.log('[patreon]       OAuth response status', httpResponse.statusCode);
             console.log('[patreon]       OAuth response', httpResponse.headers);
             console.log('[patreon]       OAuth response body', body);
+
+            if (httpResponse.statusCode == 200) {
+                var responseData = JSON.parse(body);
+                var accessCode = responseData.access_token;
+
+                var query = "fields[user]=full_name";
+                var identityURL = `https://www.patreon.com/api/oauth2/v2/identity?access_code=${encodeURIComponent(accessCode)}&${encodeURIComponent(query)}`;
+                console.log('[patreon]       Identity URL', identityURL);
+                request.get(identityURL, function (err, httpResponse, body) {
+                    console.log('[patreon]       Identity response status', httpResponse.statusCode);
+                    console.log('[patreon]       Identity response body', body);
+                });
+            } else {
+                
+            }
         });
 
-
-
-
-
-
-
-
-        // patreonOAuthClient
-        //     .getTokens(oauthGrantCode, auth.patreonRedirectURL)
-        //     .then(function(tokensResponse) {
-        //         console.log("[patreon] Tokens response:", tokensResponse);
-
-        //         var access_token = tokensResponse.access_token;
-        //         request('https://www.patreon.com/api/oauth2/v2/identity')
-        //             .on('error', function(err) {
-        //                 console.log('[patreon] Error', err);
-        //             })
-        //             .on('response', function(response) {
-        //                 console.log('[patreon] Response', response);
-        //                 console.log(response.statusCode) // 200
-        //                 console.log(response.headers['content-type']) // 'image/png'
-        //             });
-        //     });
+        
     }
 };

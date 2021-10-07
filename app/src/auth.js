@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const _ = require('lodash');
 
-const auth_patreon = require('./auth_patreon_v2');
+const auth_patreon = require('./auth_patreon_api');
 const auth_translators = require('./auth_translators');
 const auth_token = require('./auth_token');
 
@@ -71,7 +71,11 @@ var auth = {
         var signature = hash.digest('hex');
 
         var cookie = loginToken+":"+signature;
-        res.cookie('login', cookie, { maxAge: loginDur, httpOnly: true }).redirect('/');
+        res.cookie('login', cookie, { maxAge: loginDur, httpOnly: true }).redirect('/?new_login=true');
+    },
+
+    failLogin: (res) => {
+        res.redirect('/auth/login?no_login=true');
     },
 
     patreonLoginURL: () => auth_patreon.loginURL(),

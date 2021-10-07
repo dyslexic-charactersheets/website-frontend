@@ -247,6 +247,8 @@ function submitCharacter() {
       id: generateId(),
       attributes: {
         game: "pathfinder2",
+        isLoggedIn: isLoggedIn,
+        
         name: "",
         description: "",
         language: "en",

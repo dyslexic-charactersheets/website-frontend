@@ -1,5 +1,7 @@
 #!/usr/bin/env nodejs
 
+const url = require('url');
+
 // my own data
 const conf = require('./src/conf');
 const message = require('./src/message')(conf);
@@ -50,13 +52,16 @@ const auth = require('./src/auth')(conf);
 
 function renderLogin(req, res, lang) {
     auth.setup();
+    var no_login = !!url.parse(req.url, true).query.no_login;
     return res.render('login', {
-        title: 'Dyslexic Character Sheets',
+        title: 'Login - Dyslexic Character Sheets',
         lang: lang,
         translators_login_url: auth.translatorsLoginURL(),
         patreon_login_url: auth.patreonLoginURL(),
         allow_just_login: auth.allowJustLogin,
         scriptFile: "charsheets.js",
+        no_login: no_login,
+        isLoggedIn: auth.isLoggedIn(req),
     });
 }
 
@@ -77,17 +82,17 @@ var loginGuard = function (req, res, lang, fn) {
 };
 
 // ordinary pages
-app.get('/howto', (req, res) => loginGuard(req, res, 'en', () => res.render('howto', { title: 'How to', lang: 'en', scriptFile: "charsheets.js" })));
-app.get('/:lang/howto', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('howto', { title: 'How to', lang: req.params.lang, scriptFile: "charsheets.js" })));
+app.get('/howto', (req, res) => loginGuard(req, res, 'en', () => res.render('howto', { title: 'How to', lang: 'en', isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
+app.get('/:lang/howto', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('howto', { title: 'How to', lang: req.params.lang, isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
 
-app.get('/legal', (req, res) => loginGuard(req, res, 'en', () => res.render('legal', { title: 'Legal information', lang: 'en', scriptFile: "charsheets.js" })));
-app.get('/:lang/legal', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('legal', { title: 'Legal information', lang: req.params.lang, scriptFile: "charsheets.js" })));
+app.get('/legal', (req, res) => loginGuard(req, res, 'en', () => res.render('legal', { title: 'Legal information', lang: 'en', isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
+app.get('/:lang/legal', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('legal', { title: 'Legal information', lang: req.params.lang, isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
 
-app.get('/opensource', (req, res) => loginGuard(req, res, 'en', () => res.render('opensource', { title: 'Open source', lang: 'en', scriptFile: "charsheets.js" })));
-app.get('/:lang/opensource', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('opensource', { title: 'Open source', lang: req.params.lang, scriptFile: "charsheets.js" })));
+app.get('/opensource', (req, res) => loginGuard(req, res, 'en', () => res.render('opensource', { title: 'Open source', lang: 'en', isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
+app.get('/:lang/opensource', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('opensource', { title: 'Open source', lang: req.params.lang, isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
 
 app.get('/', (req, res) => loginGuard(req, res, 'en', () => res.render('index', { title: 'Dyslexic Character Sheets', lang: 'en', isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js", validationToken: message.timedToken() })));
-app.get('/:lang', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('index', { title: 'Dyslexic Character Sheets', lang: req.params.lang, scriptFile: "charsheets.js", validationToken: message.timedToken() })));
+app.get('/:lang', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('index', { title: 'Dyslexic Character Sheets', lang: req.params.lang, isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js", validationToken: message.timedToken() })));
 
 app.post('/message', (req, res) => {
     message.sendMessage(req, res);
@@ -117,6 +122,7 @@ function renderBuildForm(req, res, lang) {
         logos: iconicData.logos(),
         logoGroups: iconicData.logoGroups(),
         scriptFile: "charsheets.js",
+        isLoggedIn: auth.isLoggedIn(req),
     };
 
     // Pathfinder 2e-specific data
