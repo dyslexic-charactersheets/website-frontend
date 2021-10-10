@@ -68,7 +68,7 @@
                 <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal="select-group-{{id}}">&ndash;</a>{{/unless}}</h4>
                 <ul class='wide'>
                   {{#each items}}
-                    <li><label for='ancestry-{{e code}}'><input type='radio' id='ancestry-{{e code}}' name='ancestry' value='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                    <li><label for='ancestry-{{e code}}'><input type='radio' id='ancestry-{{e code}}' name='ancestry' value='{{id}}' data-reveal="{{e code}}"> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                   {{/each}}
                 </ul>
               </div>
@@ -149,7 +149,7 @@
             <h4>{{__ name}}<a class='minus unreveal' data-unreveal="select-group-background-{{id}}">&ndash;</a></h4>
             <ul class='wide'>
               {{#each items}}
-                <li><label for='background-{{e code}}'><input type='radio' id='background-{{e code}}' name='background' value='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                <li><label for='background-{{e code}}'><input type='radio' id='background-{{e code}}' name='background' value='{{id}}' data-reveal="{{e code}}"> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
               {{/each}}
             </ul>
           </div>
@@ -187,7 +187,7 @@
                 <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal="select-group-class-{{id}}">&ndash;</a>{{/unless}}</h4>
                 <ul class='wide'>
                   {{#each items}}
-                    <li><label for='class-{{e code}}'><input type='radio' id='class-{{e code}}' name='class' value='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                    <li><label for='class-{{e code}}'><input type='radio' id='class-{{e code}}' name='class' value='{{id}}' data-reveal="{{e code}}"> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                   {{/each}}
                 </ul>
               </div>
@@ -269,7 +269,7 @@
                 <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal='select-group-multiclass-{{id}}'>&ndash;</a>{{/unless}}</h4>
                 <ul class='wide'>
                   {{#each items}}
-                    <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' class='archetype' name='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                    <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' class='archetype' name='{{id}}' data-reveal="{{e code}}"> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                   {{/each}}
                 </ul>
               </div>
@@ -342,7 +342,7 @@
                 <h4>{{__ name}}{{#unless core}}<a class='minus unreveal' data-unreveal='select-group-archetype-{{id}}'>&ndash;</a>{{/unless}}</h4>
                 <ul class='wide'>
                   {{#each items}}
-                    <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' class='archetype' name='{{id}}' data-reveal="{{e code}}"> {{__ name}}</label></li>
+                    <li><label for='archetype-{{e code}}'><input type='checkbox' id='archetype-{{e code}}' class='archetype' name='{{id}}' data-reveal="{{e code}}"> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                   {{/each}}
                 </ul>
               </div>
