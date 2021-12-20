@@ -159,11 +159,16 @@ module.exports = {
             });
         }
 
-        const paizoProducts = [
+        const rulebooks = [
             'advanced-players-guide',
             'secrets-of-magic',
             'guns-and-gears',
+        ]
+        const paizoProducts = [
             'lost-omens'
+        ]
+        const paizoAdventures = [
+            'extinction-curse'
         ]
 
         function partition(array, check) {
@@ -204,6 +209,7 @@ module.exports = {
                 case "Lost Omens Gods & Magic":
                 case "Lost Omens Pathfinder Society Guide":
                 case "Absalom, City of Lost Omens":
+                case "Lost Omens Grand Bazaar":
                     return "lost-omens"
 
                 case "Kingmaker":
@@ -236,7 +242,9 @@ module.exports = {
             [
                 group => group.id == "core-rulebook", // Core Rulebook
                 group => group.core, // other "core" items
-                group => paizoProducts.includes(group.id) // Paizo Products
+                group => rulebooks.includes(group.id), // main rulebooks
+                group => paizoProducts.includes(group.id) || group.id.match(/lost-omens/), // Paizo Products
+                group => paizoAdventures.includes(group.id),
             ].forEach(check => {
                 let [match, other] = partition(groups, check);
                 sorted = sorted.concat(match);
@@ -352,12 +360,12 @@ module.exports = {
             }
 
             // store some data we'll need later
-            let versatileHeritages = [];
+            let versatileHeritagesSelect = null;
             let selBases = {};
             selects.forEach(sel => {
                 // store the versatile heritages so we can add them to all ancestries
                 if (sel.select == "heritage/versatile") {
-                    versatileHeritages = sel.values;
+                    versatileHeritagesSelect = sel;
                     // console.log("Versatile heritages:", versatileHeritages);
                 }
 
@@ -417,9 +425,9 @@ module.exports = {
                     default:
                         if (sel.hasOwnProperty("values") && isArray(sel.values)) {
                             // add the versatile heritages to every ancestry
-                            if (sel.select.match(/^heritage\//)) {
-                                sel.values = sel.values.concat(excludeItems(versatileHeritages, sel.select));
-                            }
+                            // if (sel.select.match(/^heritage\//)) {
+                            //     sel.values = sel.values.concat(excludeItems(versatileHeritages, sel.select));
+                            // }
                             let selBase = selBases.hasOwnProperty(sel.select) ? selBases[sel.select] : '';
                             sel.valueGroups = groupItems(sel.values, selBase);
                         }
@@ -429,6 +437,18 @@ module.exports = {
                         console.og
                 }
             });
+
+            // Add versatile heritages
+            if (versatileHeritagesSelect !== null) {
+                versatileHeritagesSelect.versatile = true;
+                // versatileHeritagesSelect.valueGroups = groupItems(versatileHeritagesSelect.values, '');
+                // console.log("Versatile heritage select:", versatileHeritagesSelect);
+                data.ancestries.forEach((ancestry) => {
+                    let sel = cloneDeep(versatileHeritagesSelect);
+                    sel.select = 'heritage/'+ancestry.code.replace('ancestry/', '');
+                    ancestry.selects.push(sel);
+                });
+            }
         }
 
         if (formData.hasOwnProperty("options")) {
