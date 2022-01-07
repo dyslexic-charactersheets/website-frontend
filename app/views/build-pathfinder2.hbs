@@ -150,19 +150,14 @@
           </div>
           {{/each}}
           
+          <ul>
+            <li><label for='background-other'><input type='radio' id='background-other' name='background' value='other' checked> {{__ "Other"}}</label></li>
+          </ul>
+
           <div class='select-group-more'>
-            <div class="yui3-g">
-              <div class="yui3-u-1-8">
-                <ul>
-                  <li><label for='background-other'><input type='radio' id='background-other' name='background' value='other' checked> {{__ "Other"}}</label></li>
-                </ul>
-              </div>
-              <div class="yui3-u-7-8">
-                {{#each backgroundGroups}}
-                <a class='btn reveal-group reveal-group--{{tier}}' data-reveal="select-group-background-{{id}}">{{__ name}}<span class='plus'>+</span></a>
-                {{/each}}
-              </div>
-            </div>
+            {{#each backgroundGroups}}
+            <a class='btn reveal-group reveal-group--{{tier}}' data-reveal="select-group-background-{{id}}">{{__ name}}<span class='plus'>+</span></a>
+            {{/each}}
           </div>
         </fieldset>
 

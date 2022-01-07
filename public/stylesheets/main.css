@@ -660,6 +660,14 @@ aside#messageme .button {
   width: 200px;
   padding: 5px;
 }
+aside#messageme .now-logged-in {
+  margin: 10px 5px;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 4px;
+  text-align: center;
+  background: rgba(255,255,255,0.5);
+}
 table#example {
   width: 100%;
 }

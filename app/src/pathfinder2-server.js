@@ -168,7 +168,10 @@ module.exports = {
             'lost-omens'
         ]
         const paizoAdventures = [
-            'extinction-curse'
+            'age-of-ashes',
+            'extinction-curse',
+            'agents-of-edgewatch',
+            'strength-of-thousands',
         ]
 
         function partition(array, check) {
@@ -206,14 +209,19 @@ module.exports = {
                 case "Lost Omens Character Guide":
                 case "Lost Omens World Guide":
                 case "Lost Omens Legends":
-                case "Lost Omens Gods & Magic":
+                case "Lost Omens Gods and Magic":
                 case "Lost Omens Pathfinder Society Guide":
                 case "Absalom, City of Lost Omens":
                 case "Lost Omens Grand Bazaar":
                     return "lost-omens"
 
+                case "Pathfinder Beginner Box":
                 case "Kingmaker":
+                case "Age of Ashes":
                 case "Extinction Curse":
+                case "Agents of Edgewatch":
+                case "Little Trouble in Big Absalom":
+                case "Pathfinder Society":
                     return "adventures";
 
                 default:

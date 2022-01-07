@@ -2,10 +2,10 @@ setup:
 	@cd app; npm install
 
 run:
-	@cd app; nodejs server.js
+	@cd app; node server.js
 
 pot:
-	@nodejs bin/make-pot.js
+	@node bin/make-pot.js
 	@# @bin/make-pot.sh
 	@# @find app/views/ -iname '*.hbs' -exec xgettext --from-code=utf-8 --keyword=__ --language=JavaScript --add-comments --sort-output --force-po -o data/msg.pot {} +
 

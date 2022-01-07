@@ -108,6 +108,7 @@ module.exports = {
                 console.error('[patreon]       Error!', err);
                 auth.failLogin(res);
             });
+
         }).catch((err) => {
             console.error('[patreon]       Error!', err);
             auth.failLogin(res);

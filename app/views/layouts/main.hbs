@@ -48,7 +48,7 @@
           <p><a class='button' href='/howto#translate'>{{__ "Translate"}}</a></p>
 
           {{#if isLoggedIn}}
-          {{__ "You are logged in!"}}
+          <p class="now-logged-in">{{__ "You are logged in!"}}</p>
           {{else}}
           <p><a class='button login-button' href='/auth/login'>{{__ "Login"}}</a></p>
           {{/if}}

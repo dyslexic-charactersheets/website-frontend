@@ -16,12 +16,15 @@
         <p>Either you aren't a patron, or something went wrong.</p>
     </div>
     {{/if}}
-    <p>{{__ "Patrons and contributors to the project get extra features, like the ability to save their values."}}</p>
+    <p>{{__ "Patrons and contributors to the project get extra features, like automatic calculations and the ability to save character sheets."}}</p>
+    
+    <p class='center'><a class='button button-patreon-login' href='{{patreon_login_url}}'>Login with Patreon</a></p>
     
     <div class="yui3-g">
         <div class="yui3-u-1-2">
-            <h3>{{__ "Patreon"}}</h3>
-            <p class='center'><a class='button' href='{{patreon_login_url}}'>Connect with Patreon</a></p>
+            <h4>Cookies</h4>
+            <p>{{__ "Logging in will set a cookie on your computer."}}</p>
+            <p>{{__ "We do not keep any personal information about you."}}</p>
         </div>
         <div class="yui3-u-1-2">
             <h3>{{__ "Translators"}}</h3>
@@ -29,9 +32,6 @@
             <p>{{__ "If you'd like to help translate, send me a message."}}</p>
         </div>
     </div>
-
-    <h4>Cookies</h4>
-    <p>{{__ "Logging in will set a cookie on your computer. We do not keep any personal information about you."}}</p>
 
     {{#if allowJustLogin}}
     <a class='button' href='/auth/just-login'>{{__ "Just Login"}}</a>
