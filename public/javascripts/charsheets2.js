@@ -214,8 +214,20 @@ $("#quick-link-build").click(function (e) {
 
 /* SUBMIT */
 
+var downloadDisabled = false;
+var downloadTimeout = false;
 $("#build-my-character").submit(function (e) {
   e.preventDefault();
+  if (downloadDisabled) {
+    return;
+  }
+  $("#download-button").attr('disabled', true);
+  downloadDisabled = true;
+  downloadTimeout = setTimeout(function () {
+    downloadDisabled = false;
+    $("#download-button").removeAttr('disabled');
+    clearTimeout(downloadTimeout);
+  });
 
   var startType = $("#start-type").val();
   var request = null;
@@ -252,6 +264,8 @@ function submitCharacter() {
         name: "",
         description: "",
         language: "en",
+        units: "",
+
         ancestry: "",
         heritage: "",
         background: "",
@@ -299,6 +313,7 @@ function submitCharacter() {
   char.data.attributes.name = $("input#character-name").val();
   char.data.attributes.description = $("input#character-description").val();
   char.data.attributes.language = $("input[type=radio][name=language]:checked").attr("value");
+  char.data.attributes.units = $("select[name=units] option:selected").attr("value");
 
   // selectable things
   var ancestry = char.data.attributes.ancestry = $("input[type=radio][name=ancestry]:checked").attr("value");
@@ -373,6 +388,7 @@ function submitGM() {
       attributes: {
         game: "pathfinder2",
         language: "en",
+        units: "",
         gm: "party",
 
         optionPermission: false,
@@ -810,6 +826,34 @@ $(function() {
         wheel.find("[id=violet2]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-violet2").prop('checked', true); });
         wheel.find("[id=magenta2]").click(function () { $("input[type=radio][name='print-colour']").prop('checked', false); $("#colour-wheel-magenta2").prop('checked', true); });
         
+    });
+
+    $("input[type=radio][name=language]").change(function () {
+      var language = $("input[type=radio][name=language]:checked").attr('value');
+      var units = "Default";
+      switch (language) {
+        case 'en':
+        case 'jp':
+          units = "Default (feet)";
+          break;
+        
+        case 'fr':
+        case 'it':
+        case 'pl':
+        case 'pt':
+        case 'de':
+        case 'es':
+        case 'ru':
+        case 'nl':
+        case 'no':
+          units = "Default (metres)";
+          break;
+
+        case 'zh':
+          units = "Default (步)";
+          break;
+      }
+      $("#units-default").text(units);
     });
 });
 

@@ -487,6 +487,7 @@
             <fieldset>
             <p><label for='option-character-background'><input type='checkbox' name='character-background' id='option-character-background'> {{__ "Character background"}}</label></p>
             <p class='info'>{{__ "A sheet for tracking social relationships."}}</p>
+            <p><label for='option-archetype-generic'><input type='checkbox' name='archetype-generic' id='option-archetype-generic'> {{__ "Blank Archetype"}}</label></p>
             </fieldset>
           </fieldset>
 
@@ -908,8 +909,14 @@
             </div>
           {{/each}}
         </div>
-        {{!-- <label><input type='radio' id='language-english' name='language' value='en' checked> {{__ "English"}}</label>
-        <label><input type='radio' id='language-italian' name='language' value='it'> {{__ "Italian"}}</label> --}}
+
+        <h3>{{__ "Measurement Units"}}</h3>
+        <select name="units">
+          <option selected id='units-default'>{{__ "Default"}} ({{__ "feet"}})</option>
+          <option value="imperial">{{__ "Imperial"}} ({{__ "feet"}})</option>
+          <option value="metric">{{__ "Metric"}} ({{__ "metres"}})</option>
+          {{!-- <option value="chinese">{{__ "Chinese"}} ({{__ "步"}})</option> --}}
+        </select>
       </fieldset>
 
       {{#if chromePDF}}
@@ -974,7 +981,7 @@
 
       <h2>{{__ "Download"}}</h2>
         <p class='center'>
-          <input type="submit" value="Download"/>
+          <input type="submit" value="Download" id="download-button"/>
         </p>
         <div id='pdf-warning' class='warning start-hidden'>
           <div class='yui3-g'>
