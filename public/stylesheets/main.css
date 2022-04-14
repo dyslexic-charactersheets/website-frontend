@@ -348,6 +348,10 @@ button.facebook,
 .button.facebook,
 input[type=button].facebook,
 input[type=submit].facebook {
+  /* position: absolute;
+  top: 0;
+  right: 14px;
+  width: 200px; */
   background: #4267b2;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #29487d), color-stop(1, #4267b2));
   background: -ms-linear-gradient(bottom, #29487d, #4267b2);
@@ -890,6 +894,20 @@ div.lightbox section.note form input[type=password] {
   padding: 4px;
   width: 560px;
 }
+div.lightbox section.dialog-lightbox {
+  position: relative;
+  margin-top: 30px;
+  width: 700px;
+  background: rgba(160, 180, 150, 0.95);
+  border-radius: 3px;
+  box-shadow: 0 8px 12px rgb(0 0 0 / 60%);
+  padding: 25px;
+}
+div.lightbox section.dialog-lightbox .yui3-u-1-2 {
+  padding-right: 20px;
+  width: 46%;
+}
+
 form#build-my-character input.name {
   display: block;
   width: 98%;

@@ -12,7 +12,6 @@
 <body>
     {{{body}}}
 
-
         <aside class="linkbar">
           <a class="patreon-link" href="https://www.patreon.com/dyslexic_charactersheets"></a>
 
@@ -27,16 +26,6 @@
             <input type="image" src="/images/paypal_btn_donate_SM.gif" border="0" name="submit" alt="PayPal" style="vertical-align: middle;">
             <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
           </form>
-          
-          <!-- AddThis Button BEGIN -->
-          <!-- <div class="addthis_toolbox addthis_default_style ">
-          <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-          <a class="addthis_button_tweet"></a>
-          <a class="addthis_counter addthis_pill_style"></a>
-          </div>
-          <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#username=xa-4d4b3a93222632b3"></script>
-          -->
-          <!-- AddThis Button END -->
 
         </aside>
 
@@ -50,7 +39,7 @@
           {{#if isLoggedIn}}
           <p class="now-logged-in">{{__ "You are logged in!"}}</p>
           {{else}}
-          <p><a class='button login-button' href='/auth/login'>{{__ "Login"}}</a></p>
+          <p><a class='button lightbox login-button' rel='#login-lightbox'>{{__ "Login"}}</a></p>
           {{/if}}
         </aside>
 
@@ -101,6 +90,30 @@
               <div class='inner'>
                 <h2>Error &nbsp; :(</h2>
               </div>
+            </div>
+          </section>
+        </div>
+
+        <div id='login-lightbox' class='lightbox'>
+          <section class='dialog-lightbox'>
+            <a class='dialog-close'>&times;</a>
+            <h3>LOGIN</h3>
+            <p>{{__ "Patrons and contributors to the project get extra features, like automatic calculations and the ability to save character sheets."}}</p>
+            
+            <p class='center'><a class='button button-patreon-login' href='{{patreon_login_url}}'>Login with Patreon</a></p>
+            
+            <div class="yui3-g">
+                <div class="yui3-u-1-2">
+                    <h4>Cookies</h4>
+                    <p>{{__ "Logging in will set a cookie on your computer."}}</p>
+                    <p>{{__ "We do not keep any personal information about you."}}</p>
+                </div>
+                <div class="yui3-u-1-2">
+                    <h3>{{__ "Translators"}}</h3>
+                    <p>{{__ "Translators get free access to patron features."}}</p>
+                    <p>{{__ "Log into the translators' website and click the button on your dashboard."}}</p>
+                    <p>{{__ "If you'd like to help translate, send me a message."}}</p>
+                </div>
             </div>
           </section>
         </div>

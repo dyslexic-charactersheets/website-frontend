@@ -212,6 +212,70 @@ $("#quick-link-build").click(function (e) {
 });
 
 
+/* Dialog boxes */
+
+$("a.lightbox").click(function () {
+  var id = $(this).attr('rel');
+  var lightbox = $(id);
+  if (lightbox) {
+    var img = lightbox.find("img");
+    var src = img.attr('src');
+    img.attr('src', '');
+    img.attr('src', src).load(function () {
+      console.log("image loaded!");
+      var outer = lightbox.innerHeight();
+      var inner = img.outerHeight();
+      var margin = (outer - inner) / 2;
+      lightbox.find("> *").css("margin-top", margin+"px");
+    });
+    $("#blanket").fadeIn("fast");
+    lightbox.fadeIn("fast");
+    return false;
+  }
+  return true;
+});
+
+$("#blanket").click(function () {
+  $(this).fadeOut("fast");
+  $("#blanket").fadeOut("fast");
+});
+
+$("#message-send").click(function () {
+  console.log("Sending message...");
+  var form = $("#message-form");
+  var message = form.find('#message').val();
+  var author = form.find('#author').val();
+  var email = form.find('#email').val();
+  var game = form.find('input[name="game"]:checked').val();
+  var validation = form.find('#validation').val();
+  var verify = form.find('input[name=verify]:checked').attr('value');
+
+  $.post('/message', {
+    message: message,
+    author: author,
+    email: email,
+    game: game,
+    validation: validation,
+    verify: verify
+  }, function (data, status, xhr) {
+    if (status == "success") {
+      console.log("Message sent");
+      $("#message-form").hide();
+      $("#message-ok").show();
+    } else {
+      console.log("Error");
+      $("#message-form").hide();
+      $("#message-error").show();
+    }
+  }).fail(function () {
+    console.log("Error");
+    $("#message-form").hide();
+    $("#message-error").show();
+  });
+  return false;
+});
+
+
 /* SUBMIT */
 
 var downloadDisabled = false;
