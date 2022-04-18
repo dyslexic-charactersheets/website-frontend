@@ -37,7 +37,10 @@
           <p><a class='button' href='/howto#translate'>{{__ "Translate"}}</a></p>
 
           {{#if isLoggedIn}}
-          <p class="now-logged-in">{{__ "You are logged in!"}}</p>
+          <div class="now-logged-in">
+            <p>{{__ "You are logged in!"}}</p>
+            <p><a class='button' href='/auth/logout'>{{__ "Logout"}}</a></p>
+          </div>
           {{else}}
           <p><a class='button lightbox login-button' rel='#login-lightbox'>{{__ "Login"}}</a></p>
           {{/if}}

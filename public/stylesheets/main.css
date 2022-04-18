@@ -665,7 +665,7 @@ aside#messageme .button {
   padding: 5px;
 }
 aside#messageme .now-logged-in {
-  margin: 10px 5px;
+  margin: 10px -5px;
   border: 1px solid white;
   border-radius: 4px;
   padding: 4px;

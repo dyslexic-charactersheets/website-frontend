@@ -71,12 +71,15 @@ var auth = {
         var signature = hash.digest('hex');
 
         var cookie = loginToken+":"+signature;
-        res.cookie('login', cookie, { maxAge: loginDur, httpOnly: true }).redirect('/?new_login=true');
-        res.redirect('#login_success');
+        res.cookie('login', cookie, { maxAge: loginDur, httpOnly: true }).redirect('#login_success');
     },
 
     failLogin: (res) => {
         res.redirect('#login_fail');
+    },
+
+    logout: (res) => {
+        res.clearCookie('login').redirect('/#logged_out');
     },
 
     patreonLoginURL: () => auth_patreon.loginURL(),

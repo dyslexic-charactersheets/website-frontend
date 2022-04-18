@@ -74,6 +74,8 @@ app.get('/:lang/auth/login', (req, res) => renderLogin(req, res, req.params.lang
 app.get('/auth/translators-login', auth.translatorsLogin);
 app.get('/auth/token-login', auth.tokenLogin);
 
+app.get('/auth/logout', (req, res) => auth.logout(res));
+
 var loginGuard = function (req, res, lang, fn) {
     if (conf('require_login') && !auth.isLoggedIn(req)) {
         return renderLogin(req, res, lang);
