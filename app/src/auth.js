@@ -71,7 +71,7 @@ var auth = {
         var signature = hash.digest('hex');
 
         var cookie = loginToken+":"+signature;
-        res.cookie('login', cookie, { maxAge: loginDur, httpOnly: true }).redirect('#login_success');
+        res.cookie('login', cookie, { maxAge: loginDur, httpOnly: true }).redirect('/#login_success');
     },
 
     failLogin: (res) => {
