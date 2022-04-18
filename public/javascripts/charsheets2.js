@@ -211,13 +211,25 @@ $("#quick-link-build").click(function (e) {
   return false;
 });
 
+/* Login */
+
+$(function () {
+  if (window.location.hash) {
+    var hash = window.location.hash;
+    if (hash == "#login_success" && isLoggedIn) {
+      showDialog("#login-success-lightbox");
+    } else if (hash == "#login_fail" && !isLoggedIn) {
+      showDialog("#login-fail-lightbox");
+    }
+  }
+});
+
 
 /* Dialog boxes */
 
-$("a.lightbox").click(function () {
-  var id = $(this).attr('rel');
+function showDialog(id) {
   var lightbox = $(id);
-  if (lightbox) {
+  if (lightbox.length > 0) {
     var img = lightbox.find("img");
     var src = img.attr('src');
     img.attr('src', '');
@@ -233,6 +245,11 @@ $("a.lightbox").click(function () {
     return false;
   }
   return true;
+}
+
+$("a.lightbox").click(function () {
+  var id = $(this).attr('rel');
+  return showDialog(id);
 });
 
 $("#blanket").click(function () {

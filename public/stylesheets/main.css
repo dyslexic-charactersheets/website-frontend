@@ -896,12 +896,12 @@ div.lightbox section.note form input[type=password] {
 }
 div.lightbox section.dialog-lightbox {
   position: relative;
-  margin-top: 30px;
+  margin-top: 15%;
   width: 700px;
   background: rgba(160, 180, 150, 0.95);
   border-radius: 3px;
   box-shadow: 0 8px 12px rgb(0 0 0 / 60%);
-  padding: 25px;
+  padding: 10px 25px 25px;
 }
 div.lightbox section.dialog-lightbox .yui3-u-1-2 {
   padding-right: 20px;
@@ -1696,10 +1696,11 @@ form#build-my-character #flexi-skills select {
   right: -8px;
   width: 28px;
   height: 28px;
-  border-radius: 14px;
+  border-radius: 16px;
   background: #902010;
   z-index: 1000;
   box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  border: 2px solid white;
 
   color: white;
   font-weight: bold;
