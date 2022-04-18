@@ -59,7 +59,7 @@ var auth = {
         return false;
     },
 
-    setLogin: (res) => {
+    setLogin: (res, redirect = false) => {
         var loginDur = 3600*24*30*1000; // 30 days
         var now = Date.now();
 
@@ -71,11 +71,11 @@ var auth = {
         var signature = hash.digest('hex');
 
         var cookie = loginToken+":"+signature;
-        res.cookie('login', cookie, { maxAge: loginDur, httpOnly: true }).redirect('/#login_success');
+        res.cookie('login', cookie, { maxAge: loginDur, httpOnly: true }).redirect((redirect ? '/' : '')+'#login_success');
     },
 
-    failLogin: (res) => {
-        res.redirect('#login_fail');
+    failLogin: (res, redirect = false) => {
+        res.redirect((redirect ? '/' : '')+'#login_fail');
     },
 
     logout: (res) => {

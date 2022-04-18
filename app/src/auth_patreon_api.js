@@ -95,24 +95,24 @@ module.exports = {
             getCurrentPledge(api).then((pledge) => {
                 console.log("[patreon]       Pledge:", pledge);
                 if (pledge === null) {
-                    auth.failLogin(res);
+                    auth.failLogin(res, true);
                     return;
                 }
                 
                 var pledgeValue = pledge.amount_cents;
                 if (pledgeValue === null || pledgeValue == 0) {
-                    auth.failLogin(res);
+                    auth.failLogin(res, true);
                     return;
                 }
-                auth.setLogin(res);
+                auth.setLogin(res, true);
             }).catch((err) => {
                 console.error('[patreon]       Error!', err);
-                auth.failLogin(res);
+                auth.failLogin(res, true);
             });
 
         }).catch((err) => {
             console.error('[patreon]       Error!', err);
-            auth.failLogin(res);
+            auth.failLogin(res, true);
         });
     }
 };
