@@ -81,10 +81,11 @@ module.exports = {
         // var creator_access_token = conf('patreon_v1_creator_access_token');
         
         patreonOAuthClient = patreon.oauth(client_id, client_secret);
-        console.log("[patreon]       Patreon OAuth Client", patreonOAuthClient);
+        // console.log("[patreon]       Patreon OAuth Client", patreonOAuthClient);
         
         patreonRedirectURL = conf('url')+'auth/patreon-redirect';
         patreonLoginURL = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${encodeURIComponent(client_id)}&redirect_uri=${encodeURIComponent(patreonRedirectURL)}`;
+        console.log("[patreon]       Patron URL:              "+patreonLoginURL);
     },
 
     redirect: (req, res) => {

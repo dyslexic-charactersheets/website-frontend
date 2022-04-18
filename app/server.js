@@ -53,16 +53,46 @@ const auth = require('./src/auth')(conf);
 function renderLogin(req, res, lang) {
     auth.setup();
     var no_login = !!url.parse(req.url, true).query.no_login;
+    var patreon_login_url = auth.patreonLoginURL();
+    var translators_login_url = auth.translatorsLoginURL();
+    console.log("[server]        Patreon URL:              "+patreon_login_url);
+
     return res.render('login', {
         title: 'Login - Dyslexic Character Sheets',
         lang: lang,
-        translators_login_url: auth.translatorsLoginURL(),
-        patreon_login_url: auth.patreonLoginURL(),
+        translators_login_url: translators_login_url,
+        patreon_login_url: patreon_login_url,
         allow_just_login: auth.allowJustLogin,
         scriptFile: "charsheets.js",
         no_login: no_login,
         isLoggedIn: auth.isLoggedIn(req),
     });
+}
+
+function renderParams(req, title, lang, data = {}) {
+    auth.setup();
+
+    var patreon_login_url = auth.patreonLoginURL();
+    var translators_login_url = auth.translatorsLoginURL();
+    console.log("[server]        Patreon URL:              "+patreon_login_url);
+
+    data = {
+        title: title,
+        lang: lang,
+        translators_login_url: translators_login_url,
+        patreon_login_url: patreon_login_url,
+        allow_just_login: auth.allowJustLogin,
+        scriptFile: "charsheets.js",
+        isLoggedIn: auth.isLoggedIn(req),
+        ...data,
+    };
+    return data;
+}
+
+function renderPage(req, res, page, title, lang = 'en', data = {}) {
+    // console.log("Merged render params", data);
+    var data = renderParams(req, title, lang, data);
+    res.render(page, data)
 }
 
 // app.get('/oauth/redirect', auth.oauthRedirect);
@@ -84,31 +114,22 @@ var loginGuard = function (req, res, lang, fn) {
 };
 
 // ordinary pages
-app.get('/howto', (req, res) => loginGuard(req, res, 'en', () => res.render('howto', { title: 'How to', lang: 'en', isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
-app.get('/:lang/howto', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('howto', { title: 'How to', lang: req.params.lang, isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
+app.get('/howto', (req, res) => loginGuard(req, res, 'en', () => renderPage(req, res, 'howto', 'How to', 'en')));
+app.get('/:lang/howto', (req, res) => loginGuard(req, res, req.params.lang, () => renderPage(req, res, 'howto', 'How to', req.params.lang)));
 
-app.get('/legal', (req, res) => loginGuard(req, res, 'en', () => res.render('legal', { title: 'Legal information', lang: 'en', isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
-app.get('/:lang/legal', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('legal', { title: 'Legal information', lang: req.params.lang, isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
+app.get('/legal', (req, res) => loginGuard(req, res, 'en', () => renderPage(req, res, 'legal', 'Legal information', 'en')));
+app.get('/:lang/legal', (req, res) => loginGuard(req, res, req.params.lang, () => renderPage(req, res, 'legal', 'Legal information', req.params.lang)));
 
-app.get('/opensource', (req, res) => loginGuard(req, res, 'en', () => res.render('opensource', { title: 'Open source', lang: 'en', isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
-app.get('/:lang/opensource', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('opensource', { title: 'Open source', lang: req.params.lang, isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js" })));
+app.get('/opensource', (req, res) => loginGuard(req, res, 'en', () => renderPage(req, res, 'opensource', 'Open source', 'en')));
+app.get('/:lang/opensource', (req, res) => loginGuard(req, res, req.params.lang, () => renderPage(req, res, 'opensource', 'Open source', req.params.lang)));
 
-app.get('/', (req, res) => loginGuard(req, res, 'en', () => res.render('index', { title: 'Dyslexic Character Sheets', lang: 'en', isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js", validationToken: message.timedToken() })));
-app.get('/:lang', (req, res) => loginGuard(req, res, req.params.lang, () => res.render('index', { title: 'Dyslexic Character Sheets', lang: req.params.lang, isLoggedIn: auth.isLoggedIn(req), scriptFile: "charsheets.js", validationToken: message.timedToken() })));
+app.get('/', (req, res) => loginGuard(req, res, 'en', () => renderPage(req, res, 'index', 'Dyslexic Character Sheets', 'en', { validationToken: message.timedToken() })));
+app.get('/:lang', (req, res) => loginGuard(req, res, req.params.lang, () => renderPage(req, res, 'index', 'Dyslexic Character Sheets', req.params.lang, { validationToken: message.timedToken() })));
 
 app.post('/message', (req, res) => {
     message.sendMessage(req, res);
 });
 
-function renderPage(res, page, title, lang, data = {}) {
-    data = {
-        title: title,
-        lang: lang,
-        scriptFile: "charsheets.js",
-        ...data
-    };
-    res.render(page, data)
-}
 // character sheet builder forms
 function renderBuildForm(req, res, lang) {
     var game = req.params.game;
@@ -116,15 +137,12 @@ function renderBuildForm(req, res, lang) {
 
     var buildForm = "build-form";
     var data = {
-        title: "Build my character: "+gamedata.name,
-        lang: lang,
         gameData: gamedata,
         iconics: iconicData.iconics(),
         iconicGroups: iconicData.iconicGroups(),
         logos: iconicData.logos(),
         logoGroups: iconicData.logoGroups(),
-        scriptFile: "charsheets.js",
-        isLoggedIn: auth.isLoggedIn(req),
+        ...renderParams(req, "Build my character: "+gamedata.name, lang)
     };
 
     // Pathfinder 2e-specific data

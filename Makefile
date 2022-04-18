@@ -4,6 +4,9 @@ setup:
 run:
 	@cd app; node server.js
 
+debug:
+	@cd app; node --inspect server.js
+
 pot:
 	@node bin/make-pot.js
 	@# @bin/make-pot.sh
