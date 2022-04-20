@@ -120,6 +120,9 @@ app.get('/:lang/howto', (req, res) => loginGuard(req, res, req.params.lang, () =
 app.get('/legal', (req, res) => loginGuard(req, res, 'en', () => renderPage(req, res, 'legal', 'Legal information', 'en')));
 app.get('/:lang/legal', (req, res) => loginGuard(req, res, req.params.lang, () => renderPage(req, res, 'legal', 'Legal information', req.params.lang)));
 
+app.get('/patrons', (req, res) => loginGuard(req, res, 'en', () => renderPage(req, res, 'patrons', 'Patrons', 'en')));
+app.get('/:lang/patrons', (req, res) => loginGuard(req, res, req.params.lang, () => renderPage(req, res, 'patrons', 'Patrons', req.params.lang)));
+
 app.get('/opensource', (req, res) => loginGuard(req, res, 'en', () => renderPage(req, res, 'opensource', 'Open source', 'en')));
 app.get('/:lang/opensource', (req, res) => loginGuard(req, res, req.params.lang, () => renderPage(req, res, 'opensource', 'Open source', req.params.lang)));
 

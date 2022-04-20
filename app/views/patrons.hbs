@@ -1,0 +1,86 @@
+<header id='bodyheader'>
+    <h1>{{__ "Dyslexic Character Sheets"}}</h1>
+
+    <nav class='tabs'>
+    <ul>
+        <li><a href='/'>&laquo; {{__ "Back to intro"}}</a></li>
+        <li><a rel='#legal-tab' class='selected'>{{__ "Patrons"}}</a></li>
+    </ul>
+    </nav>
+</header>
+
+<section class='tab selected' id='legal-tab'>
+
+<h2>Patrons</h2>
+
+
+
+<div class='yui3-g'>
+    <div class='yui3-u-1-2'><div class='col left'>
+        <h4>These character sheets are free, but patrons get extra features.</h4>
+
+        <p>Subscribe at any tier (from a minimum of just $1/month) to get early access to new content as I work on it.</p>
+
+        <p>Patrons who log in also get the ability to edit their character sheet in the browser, with automatic calculations and the ability to save your character sheet with all its information.</p>
+
+        <hr>
+
+        {{#if isLoggedIn}}
+        <p>{{__ "You are logged in. Thank you!"}}</p>
+        <p class="center"><a class='button' href='/auth/logout'>{{__ "Logout"}}</a></p>
+        </div>
+        {{else}}
+        <p>{{__ "Become a patron here:"}}</p>
+        <p class="center"><a class='button lightbox login-button' href='https://www.patreon.com/dyslexic_charactersheets'>{{__ "Patreon"}}</a></p>
+        <p>{{__ "Then login with Patreon to unlock your features"}}</p>
+        <p class="center"><a class='button lightbox login-button' rel='#login-lightbox'>{{__ "Login"}}</a></p>
+        {{/if}}
+        
+    </div></div>
+    <div class='yui3-u-1-4'><div class='col right'>
+        <h3 class="center">Everyone</h3>
+        <ul class="features">
+            <li>All RPG content
+                <ul>
+                    <li>All classes</li>
+                    <li>All races</li>
+                    <li>All archetypes</li>
+                    <li>All supported options</li>
+                </ul>
+            </li>
+            <li>Fully customisable
+                <ul>
+                    <li>Colours</li>
+                    <li>Pictures</li>
+                    <li>Logos</li>
+                </ul>
+            </li>
+            <li>Accessibility
+                <ul>
+                    <li>Dyslexic fonts</li>
+                    <li>High contrast</li>
+                    <li>Large print</li>
+                </ul>
+            </li>
+            <li>Translations</li>
+        </ul>
+    </div></div>
+    <div class='yui3-u-1-4'><div class='col right'>
+        <h3 class="center">Patrons</h3>
+        <ul class="features">
+            <li>Early access</li>
+            <li><span class="footnote">*</span>Fully editable
+            <ul>
+                <li>Automatic calculations</li>
+                <li>Save your character sheet</li>
+            </ul>
+            </li>
+            {{!-- <li><span class="footnote">*</span>Automatic calculations</li>
+            <li><span class="footnote">*</span>Save your character sheet</li> --}}
+            <li>Good feelings</li>
+        </ul>
+        <p class="footnote-detail"><span class="footnote">*</span> Only available for Pathfinder Second Edition</p>
+    </div></div>
+</div>
+
+</section>

@@ -249,6 +249,7 @@ module.exports = {
             let sorted = [];
             [
                 group => group.id == "core-rulebook", // Core Rulebook
+                group => group.id == "advanced-players-guide",
                 group => group.core, // other "core" items
                 group => rulebooks.includes(group.id), // main rulebooks
                 group => paizoProducts.includes(group.id) || group.id.match(/lost-omens/), // Paizo Products
