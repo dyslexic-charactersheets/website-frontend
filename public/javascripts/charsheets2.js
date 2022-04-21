@@ -425,6 +425,7 @@ function submitCharacter() {
   if ($("#option-minis").is(':checked')) {
     char.data.attributes.miniSize = $("input[type=radio][name=mini-size]:checked").attr('value');
   }
+  char.data.attributes.skillGroup = $("#skills-group").is(":checked");
   char.data.attributes.skillActions = $("#skill-actions").is(":checked");
 
   char.data.attributes.inventoryStyle = $("#inventory-style option:selected").attr('value');
