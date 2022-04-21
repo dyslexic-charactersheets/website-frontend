@@ -63,7 +63,7 @@ module.exports = {
             // static tokens
             if (loginTokens.indexOf(token) != -1) {
                 console.log("[token]         Login now");
-                auth.setLogin(res);
+                auth.setLogin(res, true);
                 return;
             }
 
@@ -71,15 +71,15 @@ module.exports = {
             updateTimedTokens();
             if (timedTokens.indexOf(token) != -1) {
                 console.log("[token]         Login now");
-                auth.setLogin(res);
+                auth.setLogin(res, true);
                 return;
             }
 
             // Nope.
-            res.redirect('/login');
+            auth.failLogin(res, true);
         } catch (e) {
             console.log("[token]         Error:", e);
-            res.redirect('/login');
+            auth.failLogin(res, true);
         }
     }
 };
