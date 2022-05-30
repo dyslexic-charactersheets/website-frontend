@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const _ = require('lodash');
 
-// const auth_patreon = require('./auth_patreon_api');
+const auth_patreon = require('./auth_patreon_api');
 const auth_translators = require('./auth_translators');
 const auth_token = require('./auth_token');
 
