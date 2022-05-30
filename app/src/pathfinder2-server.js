@@ -454,7 +454,8 @@ module.exports = {
                 // console.log("Versatile heritage select:", versatileHeritagesSelect);
                 data.ancestries.forEach((ancestry) => {
                     let sel = cloneDeep(versatileHeritagesSelect);
-                    sel.select = 'heritage/'+ancestry.code.replace('ancestry/', '');
+                    console.log("Versatile heritages for ancestry:", ancestry);
+                    sel.select = 'heritage/'+ancestry.id.replace('ancestry/', '');
                     ancestry.selects.push(sel);
                 });
             }

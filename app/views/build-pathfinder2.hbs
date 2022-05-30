@@ -103,22 +103,22 @@
                     <ul class="wide">
                       {{#each items}}
                         {{#if ../../multiselect}}
-                          <li><label for='heritage-{{e ../../select}}-{{e code}}'><input type='checkbox' class='option-multi' id='heritage-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='{{e ../../select}}-{{e code}}'><input type='checkbox' class='option-multi' id='{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{else}}
-                          <li><label for='heritage-{{e ../../select}}-{{e code}}'><input type='radio' class='option-single' id='heritage-{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
+                          <li><label for='{{e ../../select}}-{{e code}}'><input type='radio' class='option-single' id='{{e ../../select}}-{{e code}}' data-option-for='{{../../../id}}' data-option='{{../../select}}' name='{{../../select}}' value='{{id}}'> {{__ name}}{{#if badge}}<span class='badge'>{{__ badge}}</span>{{/if}}</label></li>
                         {{/if}}
                       {{/each}}
                     </ul>
                   </div>
                   {{/each}}
 
+                  {{#unless multiselect}}{{#unless versatile}}
                   <ul>
                     <li><label for='heritage-{{e select}}-none'><input type='radio' class='option-single' id='heritage-{{e select}}-none' name='{{select}}' value='none' checked> {{__ "None"}}</label></li>
                   </ul>
+                  {{/unless}}{{/unless}}
 
                   <div class="select-group-more">
-                    {{#unless multiselect}}{{#unless versatile}}
-                    {{/unless}}{{/unless}}
                     {{#each valueGroups}}{{#unless core}}
                     <a class='btn reveal-group reveal-group--{{tier}}' data-reveal="select-group-{{e ../../code}}-{{slug ../name}}-{{id}}">{{__ name}}<span class="plus">+</span></span></a>
                     {{/unless}}{{/each}}
