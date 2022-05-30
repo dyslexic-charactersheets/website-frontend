@@ -603,6 +603,19 @@ dl dt {
   background: url(/images/patreon-button.png);
   background-repeat: no-repeat;
 }
+.patreon-banner {
+  clear: both;
+
+  background: rgba(255,255,255,0.7);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
+  border-radius: 3px;
+  padding: 4px 8px;
+  margin-bottom: 1em;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 aside.linkbar {
   position: fixed;
   z-index: 2;
