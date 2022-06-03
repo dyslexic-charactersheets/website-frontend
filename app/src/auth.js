@@ -97,7 +97,7 @@ var auth = {
 
     translatorsLoginURL: () => auth_translators.loginURL(),
 
-    translatorsLogin: (req, res) => {    
+    translatorsLogin: (req, res) => {
         setupAuth();
         auth_translators.login(req, res);
     },

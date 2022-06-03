@@ -55,7 +55,6 @@ function renderLogin(req, res, lang) {
     var no_login = !!url.parse(req.url, true).query.no_login;
     var patreon_login_url = auth.patreonLoginURL();
     var translators_login_url = auth.translatorsLoginURL();
-    console.log("[server]        Patreon URL:              "+patreon_login_url);
 
     return res.render('login', {
         title: 'Login - Dyslexic Character Sheets',
@@ -74,7 +73,8 @@ function renderParams(req, title, lang, data = {}) {
 
     var patreon_login_url = auth.patreonLoginURL();
     var translators_login_url = auth.translatorsLoginURL();
-    console.log("[server]        Patreon URL:              "+patreon_login_url);
+    console.log("[server]        Patreon URL:             "+patreon_login_url);
+    console.log("[server]        Translators URL:         "+translators_login_url);
 
     data = {
         title: title,

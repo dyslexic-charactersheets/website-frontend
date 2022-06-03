@@ -85,7 +85,6 @@ module.exports = {
         
         patreonRedirectURL = conf('url')+'auth/patreon-redirect';
         patreonLoginURL = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${encodeURIComponent(client_id)}&redirect_uri=${encodeURIComponent(patreonRedirectURL)}`;
-        console.log("[patreon]       Patron URL:              "+patreonLoginURL);
     },
 
     redirect: (req, res) => {
