@@ -616,6 +616,9 @@ dl dt {
   flex-direction: row;
   justify-content: space-between;
 }
+.patreon-banner p {
+  font-size: 18px;
+}
 aside.linkbar {
   position: fixed;
   z-index: 2;
