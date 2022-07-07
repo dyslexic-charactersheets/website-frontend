@@ -29,7 +29,7 @@
     "hbs": "^4.1.2",
     "js-yaml": "^3.14.1",
     "lodash": "^4.17.21",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "nodemailer": "^2.7.2",
     "patreon": "^0.4.1",
     "puppeteer": "^1.20.0",
