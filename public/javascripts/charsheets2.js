@@ -842,6 +842,7 @@ $(function() {
           switch (file.type) {
             case 'image/png':
             case 'image/jpeg':
+            case 'image/webp':
               var reader = new FileReader();
               reader.onload = function(e) {
                 var data = e.target.result;
