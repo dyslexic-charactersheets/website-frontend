@@ -469,6 +469,8 @@ function submitGM() {
       id: generateId(),
       attributes: {
         game: "pathfinder2",
+        isLoggedIn: isLoggedIn,
+        
         language: "en",
         units: "",
         gm: "party",
@@ -494,7 +496,7 @@ function submitGM() {
   switch (gmStartType) {
     case 'characters':
       ["option-gm-party", "option-gm-npc-party", "option-gm-npc"].forEach(option => {
-        gm.data.attributes[option] = $(option).is(':checked')
+        gm.data.attributes[option] = $("#"+option).is(':checked')
       });
       break;
 

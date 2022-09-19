@@ -163,6 +163,7 @@ module.exports = {
             'advanced-players-guide',
             'secrets-of-magic',
             'guns-and-gears',
+            'dark-archive',
         ]
         const paizoProducts = [
             'lost-omens'
@@ -202,6 +203,7 @@ module.exports = {
                 case "Advanced Player's Guide":
                 case "Secrets of Magic":
                 case "Guns and Gears":
+                case "Dark Archive":
                 case "Gamemastery Guide":
                     return "rulebooks";
 

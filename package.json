@@ -1,7 +1,7 @@
 {
   "name": "website2",
   "version": "1.0.0",
-  "description": "New website",
+  "description": "Website frontend for Dyslexic Character Sheets",
   "main": "server.js",
   "scripts": {
     "main": "cd app; node server.js",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/dyslexic-charactersheets/website2.git"
   },
-  "author": "",
+  "author": "Marcus Downing <marcus.downing@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dyslexic-charactersheets/website2/issues"
