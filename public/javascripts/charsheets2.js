@@ -415,6 +415,8 @@ function submitCharacter() {
     addCharacterOptions($(input).attr('name'));
   });
 
+  char.data.attributes.archetypeStyle = $("select[name=archetype-style] option:selected").attr("value");
+
   if ($("#option-animal-companion").is(':checked')) {
     char.data.attributes.animalCompanion = true;
   }

@@ -405,10 +405,16 @@
 
     <section class='tab' id='options-tab'>
 
+      {{#if isLoggedIn}}
+      <div class='patreon-banner'>
+        <p>You are logged in!</p>
+      </div>
+      {{else}}
       <div class='patreon-banner'>
         <p>Character sheets are free, but patrons get more.</p>
         <a class="button lightbox login-button" rel="#login-lightbox">More Info</a>
       </div>
+      {{/if}}
 
       <div class='yui3-g'>
         <div class='yui3-u-1-2'>
@@ -503,7 +509,11 @@
             <fieldset>
             <p><label for='option-character-background'><input type='checkbox' name='character-background' id='option-character-background'> {{__ "Character background"}}</label></p>
             <p class='info'>{{__ "A sheet for tracking social relationships."}}</p>
-            <p><label for='option-archetype-generic'><input type='checkbox' name='archetype-generic' id='option-archetype-generic'> {{__ "Blank Archetype"}}</label></p>
+            <p><label for='option-archetype-generic'><input type='checkbox' name='archetype-generic' id='option-archetype-generic'> {{__ "Blank Archetype"}}</label>
+                <select name="archetype-style" id="archetype-style">
+                  <option value="half" selected>{{__ "Half page"}}</option>
+                  <option value="full">{{__ "Full page"}}</option>
+                </select></p>
             </fieldset>
           </fieldset>
 
