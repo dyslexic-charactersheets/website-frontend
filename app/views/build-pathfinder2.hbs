@@ -11,6 +11,7 @@
                 <li><a rel='#options-tab' class='start-hidden' id='options-tab-link'>{{__ "Options"}}</a></li>
                 <li><a rel='#gm-start-tab' class='start-hidden' id='gm-start-tab-link'>{{__ "Game Master"}}</a></li>
                 <li><a rel='#gm-options-tab' class='start-hidden' id='gm-options-tab-link'>{{__ "Options"}}</a></li>
+                <li><a rel='#kingmaker-start-tab' class='start-hidden' id='kingmaker-start-tab-link'>{{__ "Kingdom"}}</a></li>
                 <li><a rel='#appearance-tab' class='start-hidden' id='appearance-tab-link'>{{__ "Appearance"}}</a></li>
                 <li><a rel='#download-tab' class='start-hidden' id='download-tab-link'>{{__ "Download"}}</a></li>
             </ul>
@@ -39,7 +40,15 @@
           <img src='/images/gm.png'/>
           {{__ "Dungeon Master"}}
         </a>
+
+        <div id='more-start-options'>
+          <a id='start-kingmaker'>
+            <img src='/images/kingmaker-logo2.png'/>
+            {{__ "Kingmaker"}}
+          </a>
+        </div>
       </div>
+
 
       <hr>
       
@@ -247,7 +256,7 @@
 
           </div>
         </div>
-        
+
 
         <hr>
 
@@ -522,6 +531,7 @@
             <fieldset>
               <p><input type='checkbox' name='animal-companion' id='option-animal-companion'> <label for='option-animal-companion'>{{__ "Animal companion"}}</label></p>
               <p><input type='checkbox' name='familiar' id='option-familiar'> <label for='option-familiar'>{{__ "Familiar"}}</label></p>
+              <p><input type='checkbox' name='construct' id='option-construct'> <label for='option-construct'>{{__ "Construct"}}</label></p>
             </fieldset>
           </fieldset>
 
@@ -697,6 +707,37 @@
         &nbsp;
         <a href='#appearance-tab'><img src='/images/wiznext.png'/></a>
       </nav>
+    </section>
+
+
+    {{!-- Kingdom --}}
+    
+    <section class='tab' id='kingmaker-start-tab'>
+
+      <div class='patreon-banner'>
+        <p>Character sheets are free, but patrons get more.</p>
+        <a class="button lightbox login-button" rel="#login-lightbox">More Info</a>
+      </div>
+
+      <h2>{{__ "Kingmaker"}}</h2>
+
+      <fieldset>
+        <p><label for='kingmaker-sheet-kingdom'><input type='radio' name='kingmaker-sheet' value='kingdom' id='kingmaker-sheet-kingdom' checked>{{__ "Kingdom"}}</label></p>
+        {{!-- <fieldset>
+          <p><label for='kingmaker-kingdom-action-reference'><input type='checkbox' id='kingmaker-kingdom-action-reference'>{{__ "Action Reference"}}</label></p>
+        </fieldset> --}}
+        <p><label for='kingmaker-sheet-settlement'><input type='radio' name='kingmaker-sheet' value='settlement' id='kingmaker-sheet-settlement'>{{__ "Settlement"}}</label></p>
+        {{!-- <fieldset>
+          <p><label for='kingmaker-settlement-building-reference'><input type='checkbox' id='kingmaker-settlement-building-reference'>{{__ "Building Reference"}}</label></p>
+        </fieldset> --}}
+        {{!-- <p><label for='kingmaker-sheet-army'><input type='radio' name='kingmaker-sheet' value='army' id='kingmaker-sheet-army'>{{__ "Army"}}</label></p> --}}
+      </fieldset>
+
+      <nav class='wizardnav'>
+        &nbsp;
+        <a href='#appearance-tab'><img src='/images/wiznext.png'/></a>
+      </nav>
+
     </section>
 
 

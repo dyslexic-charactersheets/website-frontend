@@ -319,6 +319,9 @@ $("#build-my-character").submit(function (e) {
     case 'gm':
       request = submitGM();
       break;
+    case 'kingmaker':
+      request = submitKingmaker();
+      break;
     default:
       return;
   }
@@ -512,6 +515,50 @@ function submitGM() {
   return gm;
 }
 
+function submitKingmaker() {
+  var kingmaker = {
+    version: 0,
+    data: {
+      type: "kingmaker",
+      id: generateId(),
+      attributes: {
+        game: "pathfinder2",
+        isLoggedIn: isLoggedIn,
+        
+        language: "en",
+        units: "",
+        sheet: "kingdom",
+
+        optionPermission: false,
+
+        printLarge: false,
+        printHighContrast: false,
+        printDyslexic: false,
+        printDyslexicFont: false,
+        
+        printColour: "#808080",
+        accentColour: "#808080",
+        printLogo: "logos/pathfinder2e.png",
+        printPortrait: "",
+        printBackground: ""
+      }
+    }
+  };
+
+  var kingmakerSheet = $("input[name=kingmaker-sheet]:checked").val();
+  kingmaker.data.attributes.sheet = kingmakerSheet;
+  // switch (kingmakerSheet) {
+  //   case 'kingdom':
+  //     break;
+  //   case 'settlement':
+  //     break;
+  // }
+
+  // gm.data.attributes.optionPermission = $("#option-kingdom-permission").is(':checked');
+
+  return kingmaker;
+}
+
 function submitAppearance(request) {
   
   // colours
@@ -635,6 +682,14 @@ $(function() {
       // $("#add-to-party").hide();
       // $("#party-readout").hide();
       $("#start-type").val('gm');
+      $("#appearance-tab-back-link").attr('href', '#gm-options-tab');
+    });
+
+    $("#start-kingmaker").click(function () {
+      $("#start-tab-link, #party-tab-link, #class-tab-link, #options-tab-link, #gm-start-tab-link").hide();
+      $("#kingmaker-start-tab-link, #appearance-tab-link, #download-tab-link").show();
+      $("#kingmaker-start-tab-link").click();
+      $("#start-type").val('kingmaker');
       $("#appearance-tab-back-link").attr('href', '#gm-options-tab');
     });
 

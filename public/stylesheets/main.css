@@ -1694,6 +1694,12 @@ form#build-my-character #start-options a img {
   display: block;
   margin-bottom: 10px;
 }
+form#build-my-character #more-start-options {
+  margin-top: 20px;
+}
+form#build-my-character #more-start-options a img {
+  max-width: 200px;
+}
 form#build-my-character #gm-start-options a {
   cursor: pointer;
 }
