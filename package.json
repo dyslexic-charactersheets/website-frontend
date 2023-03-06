@@ -24,7 +24,7 @@
     "cookie-parser": "^1.4.5",
     "dyslexic-charactersheets": "^1.8.4",
     "express": "^4.17.1",
-    "express-handlebars": "^3.1.0",
+    "express-handlebars": "^5.3.1",
     "file": "^0.2.2",
     "hbs": "^4.1.2",
     "js-yaml": "^3.14.1",
