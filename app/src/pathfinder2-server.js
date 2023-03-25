@@ -508,7 +508,7 @@ module.exports = {
                     var pdfdata = await page.pdf({ format: paperSize });
                     res.set('Content-Type', 'application/pdf');
                     res.set('Content-Length', pdfdata.length);
-                    res.set('Content-Disposition', 'attachment; filename="' + result.filename + '.pdf"');
+                    res.set('Content-Disposition', 'attachment; filename="' + result.filename.replace(/\.html$/, '') + '.pdf"');
                     res.send(pdfdata);
                     console.log("                Done");
                     page.close();

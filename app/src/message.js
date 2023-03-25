@@ -113,6 +113,7 @@ function sendMessage(req, res) {
     if (email) {
         mailOptions.replyTo = email;
     }
+    console.log("[message]       Sending message");
     mailer.sendMail(mailOptions, (error, info) => {
         if (error) {
             res.status(500).end();
@@ -149,6 +150,10 @@ function getFakeToken() {
 
 function verifyHumanToken(token) {
     console.log("[message]       Verify human:", token);
+    if (token === undefined || token === null) {
+        console.log("[message]       Token fail.");
+        return false;
+    }
     let salt = token.substr(0,10);
     let parity = token.substr(10);
     
