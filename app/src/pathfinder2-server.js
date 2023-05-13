@@ -212,8 +212,12 @@ module.exports = {
                 case "Lost Omens Ancestry Guide":
                 case "Lost Omens Character Guide":
                 case "Lost Omens World Guide":
+                case "Lost Omens Travel Guide":
                 case "Lost Omens Legends":
+                case "Lost Omens Firebrands":
                 case "Lost Omens Gods and Magic":
+                case "Lost Omens Gods & Magic":
+                case "Lost Omens Knights of Lastwall":
                 case "Lost Omens Pathfinder Society Guide":
                 case "Absalom, City of Lost Omens":
                 case "Lost Omens Grand Bazaar":
@@ -226,6 +230,16 @@ module.exports = {
                 case "Agents of Edgewatch":
                 case "Little Trouble in Big Absalom":
                 case "Pathfinder Society":
+                case "Strength of Thousands":
+                case "Fists of the Ruby Phoenix":
+                case "Blood Lords":
+                case "Abomination Vaults":
+                case "Quest for the Frozen Flame":
+                case "Gatewalkers":
+                case "Crown of the Kobold King":
+                case "Outlaws of Alkenstar":
+                case "Stolen Fate":
+                case "The Fall of Plaguestone":
                     return "adventures";
 
                 default:
