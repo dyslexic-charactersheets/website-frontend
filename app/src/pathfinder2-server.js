@@ -221,6 +221,7 @@ module.exports = {
                 case "Lost Omens Pathfinder Society Guide":
                 case "Absalom, City of Lost Omens":
                 case "Lost Omens Grand Bazaar":
+                case "Lost Omens Mwangi Expanse":
                     return "lost-omens"
 
                 case "Pathfinder Beginner Box":

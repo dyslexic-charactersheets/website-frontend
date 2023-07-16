@@ -22,10 +22,16 @@
     <section class='tab selected' id='start-tab'>
       <h2 id='start-tab-title'>{{gameData.name}}</h2>
 
+      {{#if isLoggedIn}}
+      <div class='patreon-banner'>
+        <p>You are logged in!</p>
+      </div>
+      {{else}}
       <div class='patreon-banner'>
         <p>Character sheets are free, but patrons get more.</p>
         <a class="button lightbox login-button" rel="#login-lightbox">More Info</a>
       </div>
+      {{/if}}
       
       <div id='start-options'>
         <a id='start-single'>
@@ -60,10 +66,16 @@
 
     <section class='tab' id='class-tab'>
 
+      {{#if isLoggedIn}}
+      <div class='patreon-banner'>
+        <p>You are logged in!</p>
+      </div>
+      {{else}}
       <div class='patreon-banner'>
         <p>Character sheets are free, but patrons get more.</p>
         <a class="button lightbox login-button" rel="#login-lightbox">More Info</a>
       </div>
+      {{/if}}
 
         <h2>{{__ "Name"}}</h2>
         <fieldset>
@@ -567,10 +579,16 @@
     
     <section class='tab' id='gm-start-tab'>
 
+      {{#if isLoggedIn}}
+      <div class='patreon-banner'>
+        <p>You are logged in!</p>
+      </div>
+      {{else}}
       <div class='patreon-banner'>
         <p>Character sheets are free, but patrons get more.</p>
         <a class="button lightbox login-button" rel="#login-lightbox">More Info</a>
       </div>
+      {{/if}}
 
       <h2>{{__ "Game Master"}}</h2>
 
@@ -605,10 +623,16 @@
 
     <section class='tab' id='gm-options-tab'>
 
+      {{#if isLoggedIn}}
+      <div class='patreon-banner'>
+        <p>You are logged in!</p>
+      </div>
+      {{else}}
       <div class='patreon-banner'>
         <p>Character sheets are free, but patrons get more.</p>
         <a class="button lightbox login-button" rel="#login-lightbox">More Info</a>
       </div>
+      {{/if}}
 
       <div id='gm-characters-options' class='gm-options-section'>
         <img src='/images/gm-characters.png' class='float'/>
@@ -714,10 +738,16 @@
     
     <section class='tab' id='kingmaker-start-tab'>
 
+      {{#if isLoggedIn}}
+      <div class='patreon-banner'>
+        <p>You are logged in!</p>
+      </div>
+      {{else}}
       <div class='patreon-banner'>
         <p>Character sheets are free, but patrons get more.</p>
         <a class="button lightbox login-button" rel="#login-lightbox">More Info</a>
       </div>
+      {{/if}}
 
       <h2>{{__ "Kingmaker"}}</h2>
 
@@ -744,10 +774,16 @@
 
     <section class='tab' id='appearance-tab'>
 
+      {{#if isLoggedIn}}
+      <div class='patreon-banner'>
+        <p>You are logged in!</p>
+      </div>
+      {{else}}
       <div class='patreon-banner'>
         <p>Character sheets are free, but patrons get more.</p>
         <a class="button lightbox login-button" rel="#login-lightbox">More Info</a>
       </div>
+      {{/if}}
 
       <h2>{{__ "Accessibility"}}</h2>
 
@@ -978,10 +1014,16 @@
 
     <section class='tab' id='download-tab'>
 
+      {{#if isLoggedIn}}
+      <div class='patreon-banner'>
+        <p>You are logged in!</p>
+      </div>
+      {{else}}
       <div class='patreon-banner'>
         <p>Character sheets are free, but patrons get more.</p>
         <a class="button lightbox login-button" rel="#login-lightbox">More Info</a>
       </div>
+      {{/if}}
 
       {{!-- Languages --}}
       <h2>{{__ "Language"}}</h2>

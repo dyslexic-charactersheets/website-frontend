@@ -65,10 +65,17 @@ function parsePO (data) {
 }
 
 fs.readdir("../data/i18n", (err, files) => {
-    files.forEach(file => {
+    if (err) {
+        log("[i18n]          Cannot read translation files:", err);
+        return;
+    }
+    for (let file of files) {
         if (file.match(/\.po$/)) {
             fs.readFile('../data/i18n/'+file, 'utf8', (err, data) => {
-                if (err) throw err;
+                if (err) {            
+                    log(`[i18n]          Cannot read translation file ${file}:`, err);
+                    throw err;
+                }
 
                 var lang = file.replace(/.po$/, '');
                 if (!_.has(translations, lang))
@@ -80,7 +87,7 @@ fs.readdir("../data/i18n", (err, files) => {
                 console.log(`[i18n]          Loaded ${_.size(translations[lang])} translations for ${lang}`);
             });
         }
-    });
+    }
 });
 
 
