@@ -1,12 +1,14 @@
 const fs = require('fs');
 const _ = require('lodash');
+const path = require('path');
 
 // quotes
 // load quotes from a text file
 
 var quotes = {};
 
-fs.readFile('../assets/quotes.txt', 'utf-8', (err, data) => {
+let assetsDir = path.normalize(`${__dirname}/../../../assets`);
+fs.readFile(assetsDir+'/quotes.txt', 'utf-8', (err, data) => {
     if (err) {
         console.log("[quotes]        Error reading quotes", err);
         throw err;

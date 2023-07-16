@@ -1,5 +1,6 @@
 const fs = require('fs');
 const _ = require('lodash');
+const path = require('path');
 
 // i18n
 // load translations from a JSON file produced by the translator
@@ -64,14 +65,15 @@ function parsePO (data) {
     return trans;
 }
 
-fs.readdir("data/i18n", (err, files) => {
+let i18ndir = `${__dirname}/../../data/i18n`;
+fs.readdir(path.normalize(i18ndir), (err, files) => {
     if (err) {
         console.log("[i18n]          Cannot read translation files:", err);
         return;
     }
     for (let file of files) {
         if (file.match(/\.po$/)) {
-            fs.readFile('data/i18n/'+file, 'utf8', (err, data) => {
+            fs.readFile(i18ndir+'/'+file, 'utf8', (err, data) => {
                 if (err) {            
                     console.log(`[i18n]          Cannot read translation file ${file}:`, err);
                     throw err;
