@@ -74,7 +74,7 @@ function groupAssets(assets) {
 var iconics = [];
 var iconicGroups = {};
 
-fs.readFile('../../assets/iconics/iconics.txt', 'utf-8', (err, data) => {
+fs.readFile('../assets/iconics/iconics.txt', 'utf-8', (err, data) => {
     if (err) {
         console.log("[data] Error loading iconics", err);
         return;
@@ -90,7 +90,7 @@ fs.readFile('../../assets/iconics/iconics.txt', 'utf-8', (err, data) => {
 var logos = [];
 var logoGroups = {};
 
-fs.readFile('../../assets/logos/logos.txt', 'utf-8', (err, data) => {
+fs.readFile('../assets/logos/logos.txt', 'utf-8', (err, data) => {
     if (err) {
         console.log("[data] Error loading logos", err);
         return;

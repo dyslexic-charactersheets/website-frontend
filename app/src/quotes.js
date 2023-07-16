@@ -6,8 +6,11 @@ const _ = require('lodash');
 
 var quotes = {};
 
-fs.readFile('../../assets/quotes.txt', 'utf-8', (err, data) => {
-    if (err) throw err;
+fs.readFile('../assets/quotes.txt', 'utf-8', (err, data) => {
+    if (err) {
+        console.log("[quotes]        Error reading quotes", err);
+        throw err;
+    }
     
     var lines = data.split(/\n/);
     quotes = _(lines).map(line => line.trim())

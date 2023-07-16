@@ -64,14 +64,14 @@ function parsePO (data) {
     return trans;
 }
 
-fs.readdir("../data/i18n", (err, files) => {
+fs.readdir("data/i18n", (err, files) => {
     if (err) {
         console.log("[i18n]          Cannot read translation files:", err);
         return;
     }
     for (let file of files) {
         if (file.match(/\.po$/)) {
-            fs.readFile('../data/i18n/'+file, 'utf8', (err, data) => {
+            fs.readFile('data/i18n/'+file, 'utf8', (err, data) => {
                 if (err) {            
                     console.log(`[i18n]          Cannot read translation file ${file}:`, err);
                     throw err;
