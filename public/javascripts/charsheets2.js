@@ -803,6 +803,7 @@ $(function() {
       $("#accent-magenta").prop('checked', true);
       $("#print-background-magnolia").prop('checked', true);
       $("#underlay-no").prop('checked', true);
+      $("#option-colourful").prop('checked', true);
     });
     
     // iconics
