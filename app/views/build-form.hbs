@@ -8,7 +8,6 @@
         <ul>
           <li><a href='/'>&laquo; {{__ "Back to intro"}}</a></li>
           <li><a rel='#start-tab' class='selected' id='start-tab-link'>{{__ "Start"}}</a></li>
-          <li><a rel='#party-tab' class='start-hidden' id='party-tab-link'>{{__ "Party"}}</a></li>
           <li><a rel='#class-tab' class='start-hidden' id='class-tab-link'>{{__ "Class"}}</a></li>
           <li><a rel='#gm-start-tab' class='start-hidden' id='gm-start-tab-link'>{{#if gameData.isDnd}}{{__ "Dungeon Master"}}{{else}}{{__ "Game Master"}}{{/if}}</a></li>
           <li><a rel='#gm-options-tab' class='start-hidden' id='gm-options-tab-link'>{{__ "Options"}}</a></li>
@@ -26,10 +25,6 @@
         <a id='start-single'>
           <img src='/images/{{#if gameData.isStarfinder}}starfinder-single.png{{else}}single.png{{/if}}'/>
           {{__ "One character"}}
-        </a>
-        <a id='start-party'>
-          <img src='/images/{{#if gameData.isStarfinder}}starfinder-party.png{{else}}party.png{{/if}}'/>
-          {{__ "A whole party"}}
         </a>
         {{#if gameData.isStarfinder}}
           <a id='start-starship'>
@@ -53,20 +48,6 @@
       </nav>
 
       <input type='hidden' id='start-type' name='start-type'/>
-    </section>
-
-    <section class='tab' id='party-tab'>
-      <h2 id='party-tab-title'>{{__ "Your party so far"}}</h2>
-
-      <div id='party-readout'>
-        <input type='hidden' name='charids' value='' id='charids' />
-        <ul>
-        </ul>
-      </div>
-
-      <nav id='party-nav'>
-        <a href='#class-tab' class='button'>{{__ "Build another character"}}</a>
-      </nav>
     </section>
 
     <section class='tab' id='class-tab'>
@@ -599,7 +580,6 @@
 
       <h2>{{__ "Download"}}</h2>
         <p class='center'>
-          <a class='button' id='add-to-party'>{{__ "Add to Party"}}</a>
           <input type="submit" value="Download"/>
         </p>
 

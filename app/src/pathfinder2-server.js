@@ -165,6 +165,7 @@ module.exports = {
             'guns-and-gears',
             'book-of-the-dead',
             'dark-archive',
+            'rage-of-elements',
         ]
         const paizoProducts = [
             'lost-omens'
@@ -206,6 +207,7 @@ module.exports = {
                 case "Guns and Gears":
                 case "Book of the Dead":
                 case "Dark Archive":
+                case "Rage of Elements":
                 case "Gamemastery Guide":
                     return "rulebooks";
 
@@ -504,7 +506,7 @@ module.exports = {
 
          CharacterSheets.create(data).then(result => {
             if (result.err) {
-                console.log("Error:", result.err);
+                console.log("[pathfinder2]   Error:", result.err);
                 res.status(500);
                 res.send("Error");
                 return;
@@ -514,7 +516,7 @@ module.exports = {
             if (chromePDF && pdf) {
                 var paperSize = data.data.attributes.downloadPaperSize;
                 (async () => {
-                    console.log("Writing PDF...");
+                    console.log("[pathfinder2]   Writing PDF...");
                     // console.log("Browser:", browser);
                     let page = await browser.newPage();
                     // console.log("Page", page);
@@ -525,7 +527,7 @@ module.exports = {
                     res.set('Content-Length', pdfdata.length);
                     res.set('Content-Disposition', 'attachment; filename="' + result.filename.replace(/\.html$/, '') + '.pdf"');
                     res.send(pdfdata);
-                    console.log("                Done");
+                    console.log("[pathfinder2]   Done");
                     page.close();
                 })();
             } else {
@@ -539,7 +541,7 @@ module.exports = {
                 res.set('Content-Length', result.data.length);
                 res.set('Content-Disposition', 'attachment; filename="' + result.filename + '"');
                 res.send(result.data);
-                console.log("                Done");
+                console.log("[pathfinder2]   Done");
             }
         });
     }

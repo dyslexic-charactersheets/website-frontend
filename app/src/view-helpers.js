@@ -110,7 +110,7 @@ module.exports = function (conf, i18n, quotes) {
         pdfUrl: function (game) {
             var url = conf('build_url');
             if (_.isNull(url)) url = conf('url');
-            return url+'pdf/'+game;
+            return url+'download/'+game;
         },
 
         bar: function() {

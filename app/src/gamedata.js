@@ -56,7 +56,7 @@ games.forEach(game => {
                             book.displayName = book.name;
                         book.classes = book.classes.map((cls) => {
                             if (!_.has(classes, cls)) {
-                                console.log("[data] Missing class: "+cls);
+                                console.log("[data]          Missing class: "+cls);
                                 return null;
                             } else {
                                 var clas = classes[cls];

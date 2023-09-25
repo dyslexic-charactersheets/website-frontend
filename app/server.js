@@ -13,10 +13,14 @@ const quotes = require('./src/quotes');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
 
 const app = express();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
+// app.use(bodyParser.formData());
+
+let upload = multer();
 // app.use(bodyParser());
 
 // and the app view engine with handlebars
@@ -46,6 +50,7 @@ app.use('/docs', express.static(__dirname+'/../node_modules/dyslexic-charactersh
 const gameData = require('./src/gamedata.js');
 const iconicData = require('./src/iconicdata');
 const pathfinder2 = require('./src/pathfinder2-server.js');
+const recomposer = require('./src/recomposer.js');
 
 // login
 const auth = require('./src/auth')(conf);
@@ -164,8 +169,11 @@ app.get('/:lang/build/:game', (req, res) => loginGuard(req, res, req.params.lang
 
 // let's build a character sheet
 app.post('/download/pathfinder2', (req, res) => loginGuard(req, res, 'en', () => pathfinder2.render(req, res, 'en')));
-
 app.post('/:lang/download/pathfinder2', (req, res) => loginGuard(req, res, req.params.lang, () => pathfinder2.render(req, res, req.params.lang)));
+
+app.post('/download/pathfinder', upload.any(), (req, res) => loginGuard(req, res, req.params.lang, () => recomposer.renderPathfinder(req, res)));
+app.post('/download/starfinder', upload.any(), (req, res) => loginGuard(req, res, req.params.lang, () => recomposer.renderStarfinder(req, res)));
+app.post('/download/dnd35', upload.any(), (req, res) => loginGuard(req, res, req.params.lang, () => recomposer.renderDnD35(req, res)));
 
 // go!
 setTimeout(() => {
