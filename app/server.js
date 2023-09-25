@@ -50,7 +50,6 @@ app.use('/docs', express.static(__dirname+'/../node_modules/dyslexic-charactersh
 const gameData = require('./src/gamedata.js');
 const iconicData = require('./src/iconicdata');
 const pathfinder2 = require('./src/pathfinder2-server.js');
-const recomposer = require('./src/recomposer.js');
 
 // login
 const auth = require('./src/auth')(conf);
@@ -171,13 +170,20 @@ app.get('/:lang/build/:game', (req, res) => loginGuard(req, res, req.params.lang
 app.post('/download/pathfinder2', (req, res) => loginGuard(req, res, 'en', () => pathfinder2.render(req, res, 'en')));
 app.post('/:lang/download/pathfinder2', (req, res) => loginGuard(req, res, req.params.lang, () => pathfinder2.render(req, res, req.params.lang)));
 
-app.post('/download/pathfinder', upload.any(), (req, res) => loginGuard(req, res, req.params.lang, () => recomposer.renderPathfinder(req, res)));
-app.post('/download/starfinder', upload.any(), (req, res) => loginGuard(req, res, req.params.lang, () => recomposer.renderStarfinder(req, res)));
-app.post('/download/dnd35', upload.any(), (req, res) => loginGuard(req, res, req.params.lang, () => recomposer.renderDnD35(req, res)));
 
 // go!
 setTimeout(() => {
     pathfinder2.init(conf, i18n);
+        
+    console.log("[server]        Recomposer", conf('recomposer'));
+    if (conf('recomposer')) {
+        console.log("[server]        Loading Recomposer");
+        const recomposer = require('./src/recomposer.js');
+        app.post('/download/pathfinder', upload.any(), (req, res) => loginGuard(req, res, req.params.lang, () => recomposer.renderPathfinder(req, res)));
+        app.post('/download/starfinder', upload.any(), (req, res) => loginGuard(req, res, req.params.lang, () => recomposer.renderStarfinder(req, res)));
+        app.post('/download/dnd35', upload.any(), (req, res) => loginGuard(req, res, req.params.lang, () => recomposer.renderDnD35(req, res)));
+    }
+
     var listen_port = conf('listen_port');
     app.listen(listen_port, () => console.log(`[server]        Listening on port ${listen_port}\n\n`));
 }, 500);
