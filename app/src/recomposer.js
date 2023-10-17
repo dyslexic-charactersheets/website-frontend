@@ -13,6 +13,10 @@ function parseCharacter(req, game) {
     return defaultValue;
   }
 
+  function has(property) {
+    return values.hasOwnProperty(property) && values[property] !== null && values[property] != "";
+  }
+
   function positive(property) {
     return values.hasOwnProperty(property) && values[property] == "on"
   }
@@ -133,10 +137,10 @@ function parseCharacter(req, game) {
         spellbookSize: get("spellbook-size", "medium"),
         printColour: get("colour", "normal"),
         inventoryIconic: get("inventory-iconic", "default"),
-        customIconic: (get("inventory-iconic") == "custom") ? get("custom-iconic") : null,
+        customIconic: (get("inventory-iconic") == "custom") ? get("inventory-iconic-custom") : null,
         animalIconic: get("animal-iconic", "none"),
         logo: get("logo", game),
-        customLogo: (get("logo") == "custom") ? get("custom-logo") : null,
+        customLogo: (get("logo") == "custom") ? get("logo-custom-file") : null,
 
         permission: positive("permission"),
         buildMyCharacter: positive("build-my-character"),
@@ -203,7 +207,7 @@ function buildPdf(characterRequest, res) {
       res.set('Content-Type', 'application/pdf');
       res.set('Content-Length', result.data.length);
       res.set('Content-Disposition', 'attachment');
-      // res.set('Content-Disposition', 'attachment; filename="' + result.filename + '"');
+      res.set('Content-Disposition', 'attachment; filename="' + result.filename + '"');
       res.send(Buffer.from(result.data));
       console.log("[recomposer]    Sent");
     })

@@ -114,8 +114,9 @@
       <div id='iconics-column'>
         <div class='well' id='iconic'>
           <input type='hidden' name='inventory-iconic' id='inventory-iconic' value='default'/>
+          <input type='hidden' name='inventory-iconic-custom' id='inventory-iconic-custom' value=''/>
           <img src='/iconics/generic.png' id='iconic-generic' class='selected' />
-          <img src='/iconics/custom.png' id='iconic-custom' />
+          <img src='/iconics/custom.png' id='iconic-custom' class="custom" />
           {{#each iconics}}
             <img data-src='{{this.url}}' id='iconic-{{this.id}}'/>
           {{/each}}
@@ -383,11 +384,13 @@
 
         <h3>{{__ "Logo"}}</h3>
           <input type='hidden' name='logo' id='logo-select' />
+          <input type='hidden' name='logo-iconic-custom' id='logo-iconic-custom' value=''/>
 
           <div class='well' id='logo'>
             {{#each logos}}
               <img src='{{url}}' data-id='{{id}}' id='logo-{{id}}' {{#ifEq id @root.gameData.defaultLogo}}class='selected'{{/ifEq}} />
             {{/each}}
+            <img id='logo-custom' class='custom' />
             <p><a class='button' href='javascript:void(0);' id='select-logo-button'>{{__ "Select logo"}}</a></p>
           </div>
 

@@ -2,6 +2,10 @@ function generateId() {
   return Math.floor(Math.random() * 10000000000).toString(16);
 }
 
+var portraitData = null;
+var animalData = null;
+var logoData = null;
+
 function buildCharacterObject() {
   var $form = $("form#build-my-character");
 
@@ -19,6 +23,7 @@ function buildCharacterObject() {
 
   var language = $("input[type=radio][name=language]:checked").val();
   character.language = language.substr(0,2);
+
 
   // classes
   $form.find("input:checkbox[data-class]").each(function (n, input) {
@@ -80,11 +85,14 @@ function buildCharacterObject() {
     }
   }
 
-  var colour = $("input[type=radio][name=colour]:checked").val();
-  // switch (colour) {
-  //   case 
-  // }
-
+  character.print.colour = $("input[type=radio][name=colour]:checked").val();
+  
+  // iconic
+  // character.iconic = $("");
+  character.iconic = $("#inventory-iconic").val();
+  if (character.iconic == "custom") {
+    character['custom-iconic'] = portraitData;
+  }
 
   // make the full request object
   var req = {
@@ -548,6 +556,61 @@ $(function() {
   $(document).keyup(function(e) {
     if (e.keyCode === 27) {
       $("#blanket, #download-thanks-dialog, #iconic-select-dialog").fadeOut("fast");
+    }
+  });
+
+  
+  // capture file drops
+  $(".well").on('dragover', function (e){
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).addClass('drag-ready');
+    console.log("Drag on");
+  }).on('dragleave', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).removeClass('drag-ready');
+    console.log("Drag off");
+  }).on('drop', function (e){
+    e.preventDefault();
+    e.stopPropagation();
+    var $self = $(this);
+    $self.removeClass('drag-ready');
+
+    var files = e.originalEvent.dataTransfer.files;
+    if (files.length > 0) {
+      var file = files[0];
+      switch (file.type) {
+        case 'image/png':
+        case 'image/jpeg':
+        case 'image/webp':
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            var data = e.target.result;
+            console.log("I have data!");
+
+            $self.find("img").removeClass('selected');
+            $self.find("img.custom").addClass('selected').attr('src', data);
+
+            switch ($self.attr('id')) {
+              case 'iconic':
+                portraitData = data;
+                $("#inventory-iconic").val("custom");
+                $("#inventory-iconic-custom").val(data);
+                break;
+
+              // case 'animal': animalData = data;   $("#animal-portrait").val("custom"); break;
+              case 'logo':
+                logoData = data;
+                $("#logo-select").val("custom");
+                $("#log-iconic-custom").val(data);
+                break;
+            }
+          }
+          reader.readAsDataURL(file);
+
+          break;
+      }
     }
   });
 });
