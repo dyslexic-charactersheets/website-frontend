@@ -133,6 +133,8 @@ function parseCharacter(req, game) {
         race: "",
         classes,
         archetypes: [],
+        simple: positive("simple"),
+        more: positive("more"),
         inventoryStyle: get("inventory-style", "normal"),
         spellbookSize: get("spellbook-size", "medium"),
         printColour: get("colour", "normal"),
