@@ -18,11 +18,12 @@
   },
   "homepage": "https://github.com/dyslexic-charactersheets/website2#readme",
   "dependencies": {
+    "@pdf-lib/fontkit": "^1.1.1",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.5",
-    "dyslexic-charactersheets": "^1.9.2",
+    "dyslexic-charactersheets": "^1.10.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "file": "^0.2.2",
@@ -34,6 +35,7 @@
     "node-sass": "^8.0.0",
     "nodemailer": "^2.7.2",
     "patreon": "^0.4.1",
+    "pdf-lib": "^1.17.1",
     "puppeteer": "^1.20.0",
     "request": "^2.88.2"
   }

@@ -1,5 +1,5 @@
 // const fs = require('fs');
-const Recomposer = require('dyslexic-charactersheets-recomposer');
+const Recomposer = require('./recomposer/lib');
 
 function parseCharacter(req, game) {
   let values = {...req.body};
