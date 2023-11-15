@@ -613,8 +613,12 @@
         <div id='iconic-image-list-custom'>
           <fieldset id='inventory-iconic-custom'>
             <h2>{{__ "Custom picture"}}</h2>
-            <p><label for='iconic-custom-file'>{{__ "Upload a picture"}}</label>
-              <input type='file' name='iconic-custom-file' id='iconic-custom-file'/></p>
+            <p><label for='iconic-custom-file'>{{__ "Drag a picture"}}</label>
+            
+            <div class='well' id='iconic-in-dialog'>
+              <img src='/iconics/custom.png' id='iconic-in-dialog-custom' class="custom selected" />
+            </div>
+              
             <p><a class='button' id='iconic-custom-file-ok-button'/>{{__ "OK"}}</a> &nbsp; 
               <a class='button' id='iconic-custom-file-cancel-button'/>{{__ "Cancel"}}</a></p>
           </fieldset>

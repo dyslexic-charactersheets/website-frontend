@@ -594,9 +594,13 @@ $(function() {
 
             switch ($self.attr('id')) {
               case 'iconic':
+              case 'iconic-in-dialog':
                 portraitData = data;
                 $("#inventory-iconic").val("custom");
                 $("#inventory-iconic-custom").val(data);
+                $("#iconic img").removeClass('selected');
+                $('#iconic-custom').addClass('selected').attr('src', data);
+                $('#iconic-in-dialog-custom').attr('src', data);
                 break;
 
               // case 'animal': animalData = data;   $("#animal-portrait").val("custom"); break;
