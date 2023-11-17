@@ -493,7 +493,8 @@ function submitGM() {
         printPortrait: "",
         printBackground: ""
       }
-    }
+    },
+    included: []
   };
 
   var gmStartType = $("#gm-start-type").val();
@@ -542,7 +543,8 @@ function submitKingmaker() {
         printPortrait: "",
         printBackground: ""
       }
-    }
+    },
+    included: []
   };
 
   var kingmakerSheet = $("input[name=kingmaker-sheet]:checked").val();
