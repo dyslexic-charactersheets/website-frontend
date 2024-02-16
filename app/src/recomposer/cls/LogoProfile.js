@@ -1,5 +1,8 @@
+const fs = require('fs');
+
 const { log, error } = require('../log.js');
 const { getAssetPath, loadAsset } = require('../assets.js');
+const { isEmpty, has, slugify } = require('../util.js');
 
 class LogoProfile {
   constructor(args) {
@@ -63,7 +66,37 @@ function getLogoProfile(pageInfo) {
   return null;
 }
 
+// read logo data
+let logoData = {};
+fs.readFile(getAssetPath("logos/logos.txt"), (err, data) => {
+  if (err) {
+    error("LogoProfile", "Couldn't find logo file", err);
+  }
+  for (let line of data.toString().split("\n")) {
+    if (isEmpty(line)) {
+      continue;
+    }
+
+    let [left, right] = line.split('=');
+    let path = `${left}.png`;
+    let slug = slugify(left);
+    logoData[left] = path;
+    logoData[slug] = path;
+    logoData[right] = path;
+  }
+});
+
 function getLogoPath(settings) {
+  // custom logo
+  if (!isEmpty(settings.logo)) {
+    if (has(logoData, settings.logo)) {
+      let logo = getAssetPath(`logos/${logoData[settings.logo]}`);
+      log("LogoProfile", "Found logo", logo);
+      return logo;
+    }
+  }
+
+  // default logo
   switch (settings.game) {
     case "pathfinder":
       return getAssetPath("logos/pathfinder/Pathfinder.png");

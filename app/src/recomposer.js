@@ -100,6 +100,24 @@ function parseCharacter(req, game) {
     };
   }
 
+  if (requestType == "all") {
+    return {
+      verion: 0,
+      data: {
+        type: "all",
+        attributes: {
+          game,
+          language: get("language", "default"),
+          isLoggedIn: positive("isLoggedIn"),
+          
+          printColour: get("colour", "normal"),
+          watermark: positive("has-watermark") ? get("watermark", "") : "",
+          logo: get("logo", game),
+        }
+      }
+    }
+  }
+
 
   // parse a character
   let matchClasses = getMatching(/^class-/, true);

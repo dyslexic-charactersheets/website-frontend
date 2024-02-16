@@ -20,7 +20,10 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 // app.use(bodyParser.formData());
 
-let upload = multer();
+let upload = multer({
+    // allow post/upload up to 20MB
+    limits: { fieldSize: 20 * 1024 * 1024 }
+});
 // app.use(bodyParser());
 
 // and the app view engine with handlebars

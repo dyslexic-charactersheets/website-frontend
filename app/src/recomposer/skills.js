@@ -152,101 +152,152 @@ async function writeSkills(doc, pageInfo) {
       }
 
       // class skill checkbox
-      let classes = doc.settings.classes.map((cls) => doc.gameData.getClassInfo(cls));
-      
-      if (!isSubskill && !skill.noRanks) {
-        if (doc.settings.isPathfinder || doc.settings.isStarfinder) {
-          // log("skills", `Class skill checkbox at ${profile.classSkillMiddle}, line ${pos}`);
-          // log("skills", "isClassSkill", skill);
-          let isClassSkill = false;
-          for (let cls of classes) {
-            // log("skills", "isClassSkill", skill.name, "in", cls.name, cls.skills);
-            if ('skills' in cls && cls.skills.includes(skill.name)) {
-            // if (skill.classSkill[cls.name] || skill.classSkill[cls.baseName] || skill.classSkill[cls.shortName]) {
-              isClassSkill = true;
+      if (doc.settings.classes) {
+        let classes = doc.settings.classes.map((cls) => doc.gameData.getClassInfo(cls));
+        
+        if (!isSubskill && !skill.noRanks) {
+          if (doc.settings.isPathfinder || doc.settings.isStarfinder) {
+            // log("skills", `Class skill checkbox at ${profile.classSkillMiddle}, line ${pos}`);
+            // log("skills", "isClassSkill", skill);
+            let isClassSkill = false;
+            for (let cls of classes) {
+              // log("skills", "isClassSkill", skill.name, "in", cls.name, cls.skills);
+              if ('skills' in cls && cls.skills.includes(skill.name)) {
+              // if (skill.classSkill[cls.name] || skill.classSkill[cls.baseName] || skill.classSkill[cls.shortName]) {
+                isClassSkill = true;
+              }
+            }
+            drawCheckbox(pos, profile.classSkillMiddle, isClassSkill);
+          } else if (doc.settings.isDnD35) {
+            let n = (pageInfo.variant == "more") ? 7 : 5;
+            for (let i = 0; i < n; i++) {
+              let cls = classes[i];
+              let isClassSkill = (cls !== undefined && cls !== null && 'skills' in cls && skill.name in cls.skills); // skill.classSkill[doc.settings.classes[i]];
+              drawCheckbox(pos, profile.classSkillMiddle + i * profile.classSkillIncrement, isClassSkill);
             }
           }
-          drawCheckbox(pos, profile.classSkillMiddle, isClassSkill);
-        } else if (doc.settings.isDnD35) {
-          let n = (pageInfo.variant == "more") ? 7 : 5;
-          for (let i = 0; i < n; i++) {
-            let cls = classes[i];
-            let isClassSkill = (cls !== undefined && cls !== null && 'skills' in cls && skill.name in cls.skills); // skill.classSkill[doc.settings.classes[i]];
-            drawCheckbox(pos, profile.classSkillMiddle + i * profile.classSkillIncrement, isClassSkill);
+        }
+      
+        // Level bonuses
+        let skillBonus = 0;
+        let plusLevelClasses = new Set();
+        let plusHalfLevelClasses = new Set();
+        if (isSubskill || skill.noRanks) {
+          if (skill.plusLevel) {
+            plusLevelClasses.add({
+              name: "Character"
+            });
+          } else if (skill.plusHalfLevel) {
+            plusHalfLevelClasses.add({
+              name: "Character"
+            });
           }
         }
-      }
-     
-      // Level bonuses
-      let skillBonus = 0;
-      let plusLevelClasses = new Set();
-      let plusHalfLevelClasses = new Set();
-      if (isSubskill || skill.noRanks) {
-        if (skill.plusLevel) {
-          plusLevelClasses.add({
-            name: "Character"
-          });
-        } else if (skill.plusHalfLevel) {
-          plusHalfLevelClasses.add({
-            name: "Character"
-          });
-        }
-      }
 
-      for (let cls of classes) {
-        // log("skills", "Class plus level", skill.name, "in", cls.name, cls.plusLevel, cls.plusHalfLevel);
-        if ('skillBonus' in cls && skill.name in cls.skillBonus) {
-          skillBonus += cls.skillBonus[skill.name];
-        }
-        if ('plusLevel' in cls && cls.plusLevel.includes(skill.name)) {
-          plusLevelClasses.add(cls);
-        }
-        if ('plusHalfLevel' in cls && cls.plusHalfLevel.includes(skill.name)) {
-          plusHalfLevelClasses.add(cls);
-        }
-      }
-
-      // log("skills", "Skill bonus", skill.name, skillBonus);
-      // log("skills", "Plus level", skill.name, "in", plusLevelClasses, plusHalfLevelClasses);
-
-      if (plusLevelClasses.size > 0 || plusHalfLevelClasses.size > 0 || skillBonus > 0) {
-        let [plusLevelPlusX, plusLevelX] = 
-          isSubskill ? [profile.abilityMiddle - 6, profile.abilityMiddle + 14] :
-            (skill.noRanks ? [profile.classSkillMiddle + 2.5, profile.ranksMiddle - 1.5] :
-              [profile.ranksMiddle + 12, profile.ranksMiddle + 27]);
-
-        if (skillBonus > 0) {
-          doc.canvas.drawText("+ "+skillBonus+" +", {
-            x: plusLevelPlusX - 3,
-            y: baseline - 2,
-            font: doc.altFont,
-            size: 10.4,
-            color: doc.textColour,
-          });
-        } else {
-          doc.canvas.drawText("+", {
-            x: plusLevelPlusX - 3,
-            y: baseline - 2,
-            font: doc.altFont,
-            size: 10.4,
-            color: doc.textColour,
-          });
+        for (let cls of classes) {
+          // log("skills", "Class plus level", skill.name, "in", cls.name, cls.plusLevel, cls.plusHalfLevel);
+          if ('skillBonus' in cls && skill.name in cls.skillBonus) {
+            skillBonus += cls.skillBonus[skill.name];
+          }
+          if ('plusLevel' in cls && cls.plusLevel.includes(skill.name)) {
+            plusLevelClasses.add(cls);
+          }
+          if ('plusHalfLevel' in cls && cls.plusHalfLevel.includes(skill.name)) {
+            plusHalfLevelClasses.add(cls);
+          }
         }
 
-        if (plusHalfLevelClasses.size > 0) {
-          if (plusLevelClasses.size > 0) {
-            doc.canvas.drawText("(", {
-              x: plusLevelX - 10,
+        // log("skills", "Skill bonus", skill.name, skillBonus);
+        // log("skills", "Plus level", skill.name, "in", plusLevelClasses, plusHalfLevelClasses);
+
+        if (plusLevelClasses.size > 0 || plusHalfLevelClasses.size > 0 || skillBonus > 0) {
+          let [plusLevelPlusX, plusLevelX] = 
+            isSubskill ? [profile.abilityMiddle - 6, profile.abilityMiddle + 14] :
+              (skill.noRanks ? [profile.classSkillMiddle + 2.5, profile.ranksMiddle - 1.5] :
+                [profile.ranksMiddle + 12, profile.ranksMiddle + 27]);
+
+          if (skillBonus > 0) {
+            doc.canvas.drawText("+ "+skillBonus+" +", {
+              x: plusLevelPlusX - 3,
               y: baseline - 2,
               font: doc.altFont,
               size: 10.4,
               color: doc.textColour,
             });
-            plusLevelX += 7;
+          } else {
+            doc.canvas.drawText("+", {
+              x: plusLevelPlusX - 3,
+              y: baseline - 2,
+              font: doc.altFont,
+              size: 10.4,
+              color: doc.textColour,
+            });
           }
 
-          for (let cls of plusHalfLevelClasses) {
-            try {
+          if (plusHalfLevelClasses.size > 0) {
+            if (plusLevelClasses.size > 0) {
+              doc.canvas.drawText("(", {
+                x: plusLevelX - 10,
+                y: baseline - 2,
+                font: doc.altFont,
+                size: 10.4,
+                color: doc.textColour,
+              });
+              plusLevelX += 7;
+            }
+
+            for (let cls of plusHalfLevelClasses) {
+              try {
+                let shortName = ('baseName' in cls) ? cls.baseName : cls.name;
+                shortName = shortName.replace(/^Unchained */, "").replace(/ *\\(.*\\)$/, "");
+                let width = doc.textFont.widthOfTextAtSize(shortName, 6);
+                plusLevelX += width / 2 + 1;
+                doc.canvas.drawText(shortName, {
+                  x: plusLevelX - width / 2,
+                  y: baseline + 2.5,
+                  font: doc.textFont,
+                  size: 6,
+                  color: doc.fillColour,
+                  opacity: 0.5,
+                });
+                doc.canvas.drawText("Level", {
+                  x: plusLevelX - doc.textFont.widthOfTextAtSize("Level", 6) / 2,
+                  y: baseline - 2.5,
+                  font: doc.textFont,
+                  size: 6,
+                  color: doc.fillColour,
+                  opacity: 0.5,
+                });
+                plusLevelX += width / 2 + 1;
+                
+              } catch (e) {
+                error("skills", "Plus level class", cls);
+                error("skills", "Error", e);
+              }
+            }
+            doc.canvas.drawText("÷ 2", {
+              x: plusLevelX - 2,
+              y: baseline - 2,
+              font: doc.altFont,
+              size: 10.4,
+              color: doc.textColour,
+            });
+            plusLevelX += 9;
+            
+            if (plusLevelClasses.size > 0) {
+              doc.canvas.drawText(")", {
+                x: plusLevelX,
+                y: baseline - 2,
+                font: doc.altFont,
+                size: 10.4,
+                color: doc.textColour,
+              });
+              plusLevelX += 20;
+            }
+          }
+
+          if (plusLevelClasses.size > 0) {
+            for (let cls of plusLevelClasses) {
               let shortName = ('baseName' in cls) ? cls.baseName : cls.name;
               shortName = shortName.replace(/^Unchained */, "").replace(/ *\\(.*\\)$/, "");
               let width = doc.textFont.widthOfTextAtSize(shortName, 6);
@@ -268,104 +319,55 @@ async function writeSkills(doc, pageInfo) {
                 opacity: 0.5,
               });
               plusLevelX += width / 2 + 1;
-              
-            } catch (e) {
-              error("skills", "Plus level class", cls);
-              error("skills", "Error", e);
             }
           }
-          doc.canvas.drawText("÷ 2", {
-            x: plusLevelX - 2,
-            y: baseline - 2,
-            font: doc.altFont,
-            size: 10.4,
-            color: doc.textColour,
-          });
-          plusLevelX += 9;
-          
-          if (plusLevelClasses.size > 0) {
-            doc.canvas.drawText(")", {
-              x: plusLevelX,
-              y: baseline - 2,
-              font: doc.altFont,
-              size: 10.4,
+        }
+
+        // class-specific marks
+        if (profile.isRanger || profile.isDruidWorldWalker) {
+          // draw ranger favoured terrain circle
+          if (skill.favouredTerrain) {
+            let r = 4.6;
+            doc.canvas.drawCircle({
+              x: profile.favouredEnemyMiddle,
+              y: baseline + 2,
+              size: r,
+              borderWidth: 1.2,
+              borderColor: doc.textColour,
+            });
+          }
+        }
+
+        if (profile.isRanger) {
+          // draw ranger favoured enemy sigil
+          if (skill.favouredEnemy) {
+            let r = 1.6;
+            doc.canvas.drawRectangle({
+              x: profile.favouredEnemyMiddle - r,
+              y: baseline + 2 - r,
+              width: r * 2,
+              height: r * 2,
               color: doc.textColour,
             });
-            plusLevelX += 20;
           }
-        }
-
-        if (plusLevelClasses.size > 0) {
-          for (let cls of plusLevelClasses) {
-            let shortName = ('baseName' in cls) ? cls.baseName : cls.name;
-            shortName = shortName.replace(/^Unchained */, "").replace(/ *\\(.*\\)$/, "");
-            let width = doc.textFont.widthOfTextAtSize(shortName, 6);
-            plusLevelX += width / 2 + 1;
-            doc.canvas.drawText(shortName, {
-              x: plusLevelX - width / 2,
-              y: baseline + 2.5,
-              font: doc.textFont,
-              size: 6,
-              color: doc.fillColour,
-              opacity: 0.5,
-            });
-            doc.canvas.drawText("Level", {
-              x: plusLevelX - doc.textFont.widthOfTextAtSize("Level", 6) / 2,
-              y: baseline - 2.5,
-              font: doc.textFont,
-              size: 6,
-              color: doc.fillColour,
-              opacity: 0.5,
-            });
-            plusLevelX += width / 2 + 1;
+        } else if (profile.isBarbarian) {
+          try {
+            if (skill.noRage) {
+              // draw barbarian non-rage X
+              // log("skills", "Barbarian: Profile", profile);
+              let args = {
+                x: profile.rageMiddle - 3,
+                y: baseline - 1,
+                font: doc.barbarianFont,
+                size: 8,
+                color: doc.black,
+              };
+              // log("skills", "args", args);
+              doc.canvas.drawText("X", args);
+            }
+          } catch (e) {
+            error("skills", "Error", e);
           }
-        }
-      }
-
-      // class-specific marks
-      if (profile.isRanger || profile.isDruidWorldWalker) {
-        // draw ranger favoured terrain circle
-        if (skill.favouredTerrain) {
-          let r = 4.6;
-          doc.canvas.drawCircle({
-            x: profile.favouredEnemyMiddle,
-            y: baseline + 2,
-            size: r,
-            borderWidth: 1.2,
-            borderColor: doc.textColour,
-          });
-        }
-      }
-
-      if (profile.isRanger) {
-        // draw ranger favoured enemy sigil
-        if (skill.favouredEnemy) {
-          let r = 1.6;
-          doc.canvas.drawRectangle({
-            x: profile.favouredEnemyMiddle - r,
-            y: baseline + 2 - r,
-            width: r * 2,
-            height: r * 2,
-            color: doc.textColour,
-          });
-        }
-      } else if (profile.isBarbarian) {
-        try {
-          if (skill.noRage) {
-            // draw barbarian non-rage X
-            // log("skills", "Barbarian: Profile", profile);
-            let args = {
-              x: profile.rageMiddle - 3,
-              y: baseline - 1,
-              font: doc.barbarianFont,
-              size: 8,
-              color: doc.black,
-            };
-            // log("skills", "args", args);
-            doc.canvas.drawText("X", args);
-          }
-        } catch (e) {
-          error("skills", "Error", e);
         }
       }
 

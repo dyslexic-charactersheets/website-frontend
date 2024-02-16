@@ -6,6 +6,7 @@ const { Document } = require('./cls/Document.js');
 const { Character } = require('./cls/Character.js');
 const { GM } = require('./cls/GM.js');
 const { Starship } = require('./cls/Starship.js');
+const { All } = require('./cls/All.js');
 
 function createCharacterSheet(request) {
   return new Promise((resolve, reject) => {
@@ -29,7 +30,10 @@ function createCharacterSheet(request) {
 }
 
 function interpretPrimary(primary) {
+  log("create", "Primary type", primary.type);
   switch (primary.type) {
+    case "all":
+      return new All(primary);
     case "character":
       return new Character(primary);
     case "gm":

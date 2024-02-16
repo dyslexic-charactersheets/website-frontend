@@ -135,6 +135,11 @@ class GameData {
     return groupPages.filter((p) => !exceptSlot.includes(p.slot));
   }
 
+  getAllPages() {
+    let pages = this.data.pages;
+    return pages;
+  }
+
   inferClassPages(primary) {
     let gameData = systemGameData[primary.attributes.game];
     if (isEmpty(gameData)) {
@@ -240,6 +245,14 @@ class GameData {
     let skills = {};
     let self = this;
 
+    let skillsStyle = settings.skillsStyle;
+    log("GameData", "Skills style:", skillsStyle, " slot:", pageInfo.slot);
+    if (skillsStyle == "blank") {
+      return [];
+    }
+    let isConsolidated = skillsStyle == "consolidated" && has(this.data, "consolidatedSkills");
+    log("GameData", "Consolidated skills", isConsolidated);
+
     function addSkills(skillNames) {
       // log("GameData", "Skill names", skillNames);
       if (isEmpty(skillNames)) {
@@ -248,6 +261,26 @@ class GameData {
       for (let skillName of skillNames) {
         let skill = self.getSkillInfo(skillName);
         if (skill !== null) {
+          if (isConsolidated && has(self.data.consolidatedSkills, skillName)) {
+            for (let altSkill of self.data.consolidatedSkills[skillName]) {
+              log("GameData", "Consolidated skill?", altSkill);
+              skill = self.getSkillInfo(altSkill);
+              log("GameData", "Consolidated skill", skill);
+
+              skillName = skill.name;
+              skills[skillName] = {
+                plusLevel: false,
+                plusHalfLevel: false,
+                skillBonus: 0,
+                classSkill: {},
+                ...skill,
+                displayName: ('displayName' in skill) ? skill.displayName : skill.name,
+              }
+            }
+            
+            continue;
+          }
+
           skills[skillName] = {
             plusLevel: false,
             plusHalfLevel: false,
@@ -278,6 +311,7 @@ class GameData {
     switch (pageInfo.slot) {
       case "core":
         // find all the skills
+        log("GameData", "Core skills!");
         addSkills(this.data.coreSkills);
         for (let className of settings.classes) {
           let cls = this.getClassInfo(className);

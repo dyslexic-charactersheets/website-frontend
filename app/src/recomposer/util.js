@@ -15,8 +15,18 @@ function has(obj, key) {
   return !isEmpty(obj) && Object.prototype.hasOwnProperty.call(obj, key) && !isEmpty(obj[key]);
 }
 
+function slugify(str) {
+  str = str.toLowerCase();
+  str = str.replace("'", "");
+  str = str.replace(/ \(.*\)/, '');
+  str = str.split(/[ _/-]+/).join('-');
+  return str;
+}
+
 module.exports = {
   isEmpty,
+  isNumber,
   isString,
-  has
+  has,
+  slugify
 }
